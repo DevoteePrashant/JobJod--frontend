@@ -40,15 +40,7 @@ function App() {
           {/* <Route path="/Filters" element={<Filters />}/> */}
           {/* <Route path="/JobList" element={<JobList />}/>
           <Route path="/RightSidebar" element={<RightSidebar />}/> */}
-
-
-
-          
-
-
-
-
-        </Routes> 
+   </Routes> 
         {/* <Footer/> */}
         
       </Router>

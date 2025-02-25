@@ -1,5 +1,11 @@
 import logo2 from "../image/logo2.png"
 import { Link } from 'react-router-dom'
+import { FaFacebook } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
+import { RiBasketballLine } from "react-icons/ri";
+import { FaLinkedinIn } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
+
 
 
 const Footer = () => {
@@ -78,15 +84,16 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <h2 className="text-lg font-bold mb-2">Get job notifications</h2>
             <p className="text-gray-400 text-lg mb-4">
-              The latest job news, articles, sent to your inbox weekly.
+              The latest job news, articles, sent to <br /> your inbox weekly.
             </p>
-            <div className="flex space-x-2">
+            <div className="flex space-x-2 ">
               <input
                 type="email"
                 placeholder="Email Address"
-                className="flex-1 p-2 w-100 border border-gray-700 bg-white text-black text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-700 md:flex-grow-0"
+                style={{width:"2000px"}}
+                className="flex-1 p-2 w-300 border border-gray-700 bg-white text-black text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-700 md:flex-grow-0"
               />
-              <button className="bg-purple-700 text-white px-4 py-2 text-sm hover:bg-purple-600 focus:outline-none focus:ring-1 focus:ring-purple-500">
+              <button className="bg-purple-700  text-white px-4 py-2 text-sm hover:bg-purple-600 focus:outline-none focus:ring-1 focus:ring-purple-500">
                 Subscribe
               </button>
             </div>
@@ -95,15 +102,15 @@ const Footer = () => {
   
         {/* Footer Bottom */}
         <div className="border-t border-gray-700 mt-8 pt-6 text-center md:flex md:justify-between md:items-center w-[80%] mx-auto">
-          <p className="text-gray-400 text-lg">
+          <p className="text-gray-400 text-lg pt-3">
             2025 @ JobJod. All rights reserved.
           </p>
           <div className="flex justify-center space-x-4 mt-4">
-            <span className="text-gray-400 text-lg cursor-pointer">🌐</span>
-            <span className="text-gray-400 text-lg cursor-pointer">📸</span>
-            <span className="text-gray-400 text-lg cursor-pointer">🎯</span>
-            <span className="text-gray-400 text-lg cursor-pointer">🔗</span>
-            <span className="text-gray-400 text-lg cursor-pointer">🐦</span>
+            <span className="text-gray-400 bg-gray-600  rounded-[1vw]  p-3 text-lg cursor-pointer"><FaFacebook /></span>
+            <span className="text-gray-400 bg-gray-600  rounded-[1vw]  p-3 text-lg cursor-pointer"><FaInstagram /></span>
+            <span className="text-gray-400 bg-gray-600  rounded-[1vw]  p-3 text-lg cursor-pointer"><RiBasketballLine /></span>
+            <span className="text-gray-400 bg-gray-600  rounded-[1vw]  p-3 text-lg cursor-pointer"><FaLinkedinIn /></span>
+            <span className="text-gray-400 bg-gray-600  rounded-[1vw]  p-3 text-lg cursor-pointer"><FaTwitter /></span>
           </div>
         </div>
       </footer>

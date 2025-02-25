@@ -62,7 +62,7 @@ export default function JobListingPage() {
           are waiting for you.
         </p>
 
-        <div className="flex flex-col sm:flex-row justify-center sm:justify-start items-center max-w-7xl mx-auto space-y-4 sm:space-y-0 ">
+        <div className="flex flex-col sm:flex-row justify-center sm:justify-start items-center max-w-7xl mx-auto space-y-4 sm:space-y-0 ml-2">
           <div className="flex items-center w-full sm:w-auto flex-1 bg-white p-3 sm:rounded-l-3xl border border-gray-200">
             <svg
               xmlns="http://www.w3.org/2000/svg"

@@ -11,6 +11,9 @@ import Message from "./component/Message";
 import Home from "./component/Home";
 import JobListingPage from "./component/JobListingPage";
 import JobseekersSubSection from "./component/JobseekersSubSection";
+import LogoSlider from "./component/LogoSlider";
+import Singlejobview from "./component/Singlejobview";
+import Singlejobviews from "./component/Singlejobviews";
 // import Footer from "./component/Footer";
 // import Filters from "./component/Filters";
 // import JobList from "./component/JobList";
@@ -36,6 +39,8 @@ function App() {
           <Route path="/Message" element={<Message />}/>
           <Route path="/JobListingPage" element={<JobListingPage />}/>
           <Route path="/JobseekersSubSection" element={<JobseekersSubSection />}/>
+          <Route path="/Singlejobview" element={<Singlejobview />}/>
+          <Route path="/Singlejobviews" element={<Singlejobviews />}/>
 
           {/* <Route path="/Filters" element={<Filters />}/> */}
           {/* <Route path="/JobList" element={<JobList />}/>

@@ -3,10 +3,10 @@
 
 
 import { MapPin, Clock } from "lucide-react"
-
+import icon from "../image/icon.png"
 export default function JobList({ jobs }) {
   return (
-    <main className="w-full lg:w-1/2 space-y-4">
+    <main className="w-full lg:w-1/2 space-y-4 mt-12">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-xl font-semibold">3177 Jobs</h1>
         <select className="form-select border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500">
@@ -22,7 +22,7 @@ export default function JobList({ jobs }) {
           <article key={job.id} className="bg-white rounded-lg shadow-md p-6">
             <div className="flex items-start gap-4">
               <img
-                src={job.company.logo || "/placeholder.svg"}
+                src={icon}
                 alt={job.company.name}
                 width={40}
                 height={40}

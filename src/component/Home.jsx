@@ -57,7 +57,7 @@
 //             ].map((field, index) => (
 //               <div key={index}>
 //                 <label className="block text-sm font-medium text-gray-700">{field.label}</label>
-//                 <input
+//                 <inputinput
 //                   type={field.type}
 //                   placeholder={field.placeholder}
 //                   className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
@@ -98,7 +98,7 @@
 
 //             {/* WhatsApp Updates */}
 //             <div className="flex items-center space-x-2">
-//               <input
+//               <inputinput
 //                 type="checkbox"
 //                 id="whatsapp-updates"
 //                 className="h-4 w-4 text-blue-600 border-gray-300 rounded"
@@ -108,13 +108,13 @@
 //               </label>
 //             </div>
 
-//             {/* Submit Button */}
-//             <button
+//             {/* Submit button */}
+//             <buttonbutton
 //               type="submit"
 //               className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded-md"
 //             >
 //               Get Started
-//             </button>
+//             </buttonbutton>
 //           </form>
 
 //           {/* Footer Text */}
@@ -167,14 +167,14 @@
 //             "Compliance Services",
 //             "Other Services",
 //           ].map((tab, index) => (
-//             <button
+//             <buttonbutton
 //               key={index}
 //               className={`text-sm md:text-base font-medium ${
 //                 index === 0 ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500"
 //               }`}
 //             >
 //               {tab}
-//             </button>
+//             </buttonbutton>
 //           ))}
 //         </div>
 
@@ -250,7 +250,7 @@
 //             height="230"
 //             decoding="async"
 //             style={{ color: "transparent" }}
-//             src="https://assets.vakilsearch.com/live-images/world.svg"
+//             src="https://assets.vakilsearch.com/live-imgimgs/world.svg"
 //           />
 //         </div>
 //         <div className="w-px h-[348.5px] bg-gray-300 max-md:hidden"></div>
@@ -291,15 +291,15 @@
 //         <p className="text-[14px] font-normal md:text-[16px] text-[#606162]">
 //           Feeling uncertain about the ideal business structure? Consult with our experts for guidance and support in finding the right one for you
 //         </p>
-//         <button className="text-[18px] font-medium bg-[#FCD209] py-[10px] md:px-[39px] rounded mr-[8px] md:w-fit">
+//         <buttonbutton className="text-[18px] font-medium bg-[#FCD209] py-[10px] md:px-[39px] rounded mr-[8px] md:w-fit">
 //           Talk to expert
-//         </button>
+//         </buttonbutton>
 //       </div>
       
 //     </div>
 //     <div className="bg-[#FFF] px-0 lg:gap-[209px] md:py-[25px] md:mt-[40px] items-center max-md:mb-[38px] flex max-md:flex-col-reverse gap-3 bg-[#F9F9F9] px-6 pt-2 md:pt-5 rounded-lg md:gap-10 md:p-8 md:flex-row-reverse">
 //       <img
-//         src="https://assets.vakilsearch.com/live-images/Company-registration-note.svg"
+//         src="https://assets.vakilsearch.com/live-imgimgs/Company-registration-note.svg"
 //         alt="Register Your Company in India"
 //         title="Register Your Company in India"
 //         className="md:h-[390px] md:w-[390px] md:w-[278px] md:h-[250px]"
@@ -770,7 +770,7 @@
 //         decoding="async"
 //         className="undefined"
 //         style={{ color: "transparent", paddingTop: "0px", width: "250px", height: "250px" }}
-//         src="https://assets.vakilsearch.com/live-images/CompRegCertificate.svg"
+//         src="https://assets.vakilsearch.com/live-imgimgs/CompRegCertificate.svg"
 //       />
 //       <div className="flex flex-col gap-4">
 //         <div className="pb-3 flex flex-col gap-5">
@@ -880,7 +880,7 @@
 //     </div>
 //     <div className="bg-[#FFF] px-0 lg:gap-[209px] md:py-[25px] md:mt-[40px] items-center max-md:mb-[38px] flex max-md:flex-col-reverse gap-3 bg-[#F9F9F9] px-6 pt-2 md:pt-5 rounded-lg md:gap-10 md:p-8 md:flex-row-reverse">
 //       <img
-//         src="https://assets.vakilsearch.com/live-images/company+registration+business+structure.svg"
+//         src="https://assets.vakilsearch.com/live-imgimgs/company+registration+business+structure.svg"
 //         alt="Choosing the Right Business Structure"
 //         title="Choosing the Right Business Structure"
 //         className="md:h-[390px] md:w-[390px] md:w-[278px] md:h-[250px]"
@@ -907,7 +907,7 @@
 //     </div>
 //     <div className="flex !bg-[#FFF] !px-0 lg:!gap-[209px] md:!py-[25px] md:mt-[40px] !items-center max-md:!mb-[38px] wrc-flex max-md:wrc-flex-col-reverse wrc-gap-3 wrc-bg-[#F9F9F9] wrc-px-6 wrc-pt-2 md:wrc-pt-5 wrc-rounded-lg md:wrc-gap-10 md:p-8">
 //       <img
-//         src="https://assets.vakilsearch.com/live-images/cost+of+company+registration.svg"
+//         src="https://assets.vakilsearch.com/live-imgimgs/cost+of+company+registration.svg"
 //         alt="Cost of Company Registration"
 //         title="Cost of Company Registration"
 //         className="md:!h-[390px] md:!w-[390px] md:wrc-w-[278px] md:wrc-h-[250px]"
@@ -924,7 +924,7 @@
 //     </div>
 //     <div className="flex !bg-[#FFF] !px-0 lg:!gap-[209px] md:!py-[25px] md:mt-[40px] !items-center max-md:!mb-[38px] wrc-flex max-md:wrc-flex-col-reverse wrc-gap-3 wrc-bg-[#F9F9F9] wrc-px-6 wrc-pt-2 md:wrc-pt-5 wrc-rounded-lg md:wrc-gap-10 md:p-8 md:wrc-flex-row-reverse">
 //       <img
-//         src="https://assets.vakilsearch.com/live-images/companyStructures/company_img_01.svg"
+//         src="https://assets.vakilsearch.com/live-imgimgs/companyStructures/company_img_01.svg"
 //         alt="Post-Registration Compliance"
 //         title="Post-Registration Compliance"
 //         className="md:!h-[390px] md:!w-[390px] md:wrc-w-[278px] md:wrc-h-[250px]"
@@ -946,7 +946,7 @@
 //     </div>
 //     <div className="flex !bg-[#FFF] !px-0 lg:!gap-[209px] md:!py-[25px] md:mt-[40px] !items-center max-md:!mb-[38px] wrc-flex max-md:wrc-flex-col-reverse wrc-gap-3 wrc-bg-[#F9F9F9] wrc-px-6 wrc-pt-2 md:wrc-pt-5 wrc-rounded-lg md:wrc-gap-10 md:p-8">
 //       <img
-//         src="https://assets.vakilsearch.com/live-images/secure+company+name.svg"
+//         src="https://assets.vakilsearch.com/live-imgimgs/secure+company+name.svg"
 //         alt="Secure Your Company Name"
 //         title="Secure Your Company Name"
 //         className="md:!h-[390px] md:!w-[390px] md:wrc-w-[278px] md:wrc-h-[250px]"
@@ -976,7 +976,7 @@
 //         height="252"
 //         decoding="async"
 //         style={{ color: "transparent" }}
-//         src="https://assets.vakilsearch.com/live-images/simplify+company+registration+process.svg"
+//         src="https://assets.vakilsearch.com/live-imgimgs/simplify+company+registration+process.svg"
 //       />
 //     </div>
 //     <div className="flex flex-col gap-[16px] md:m-auto md:max-w-[90%] lg:max-w-[80%] xl:max-w-[80%]">
@@ -1011,7 +1011,7 @@
 //                   height="16"
 //                   decoding="async"
 //                   style={{ color: "transparent" }}
-//                   src="https://assets.vakilsearch.com/live-images/blue-white-tick-b2b.svg"
+//                   src="https://assets.vakilsearch.com/live-imgimgs/blue-white-tick-b2b.svg"
 //                 />
 //                 <p className="text-[14px] font-normal">{feature}</p>
 //               </div>
@@ -1076,17 +1076,23 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import Header from "../component/Header";
 import Footer from "../component/Footer";
+import Group from '../image/Group.svg';
+import imges from '../image/Group 42.svg';
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Input } from "@headlessui/react";
+import Marquee from "react-fast-marquee"
+import './Home.css'
+import LogoSlider from "./LogoSlider";
 
 
 const Home = () => {
     return (
       <>
-      <Header/>
         <main className="min-h-screen bg-gradient-to-br">
           <HeroSection />
           <div className="w-[87%] mx-auto">
+            <LogoSlider />
             <JobListingsSection />
-            <CompaniesWorkedAt />
             <JobListingsAndSidebar />
             <ResumeFeatureSection />
             <EmailSignupSection />
@@ -1098,49 +1104,274 @@ const Home = () => {
   };
   
   const HeroSection = () => (
-    <section className="w-full sm:w-[45%] container mx-auto px-4 py-20 text-center">
-      <NewFeatureBadge />
-      <h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight">
-        Unlock <span className="text-amber-400">Your</span> Potential
-      </h1>
-      <p className="text-lg text-gray-600 mb-12 font-semibold">
-        Let Us help you find your dream job here.
-      </p>
-      <SearchBar />
-    </section>
-  );
-  
-  const NewFeatureBadge = () => (
-    <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-blue-100 p-3 mb-8">
-      <span className="flex items-center justify-center rounded-full bg-black text-white px-2 py-0.5 text-xs font-medium">
-        New
-      </span>
-      <span className="text-blue-600 text-sm font-medium">
-        278+ Jobs Fulfilled 🎉
-      </span>
-    </div>
-  );
-  
-  const SearchBar = () => (
-    <div className="max-w-3xl mx-auto p-4">
-      <div className="flex flex-col gap-2 p-2 bg-white rounded-3xl shadow-md border-4 border-gray-800 md:rounded-full md:flex-row">
-        <SearchInput icon="🔍" placeholder="Job title or Keyword" />
-        <SearchInput icon="📍" placeholder="City, state or zip" isLocation />
-        <button className="w-full md:w-auto rounded-full bg-purple-500 hover:bg-purple-600 text-white px-6 py-3 shadow-md transition duration-300">
-         
-          <Link to="/JobListingPage" > Find Jobs</Link>
-          
-        </button>
+    <>
+    <Header/>
+       <section className="relative w-full min-h-[600px] flex items-center justify-center overflow-hidden bg-gradient-to-br from-purple-100 via-white to-purple-50">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 w-full h-full">
+        <img
+          src={Group}
+          alt="Background Pattern"
+          className="w-full h-full object-cover opacity-30"
+          width={1440}
+          height={1024}
+          priority
+        />
       </div>
+
+      {/* SVG Patterns */}
+      <div className="absolute inset-0 w-full h-full">
+        {/* First SVG Pattern */}
+        <svg
+          width="804"
+          height="636"
+          className="absolute left-0 top-0"
+          viewBox="0 0 804 636"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g filter="url(#filter0_d_1186_1105)">
+            <ellipse
+              cx="254.988"
+              cy="251.061"
+              rx="12.2159"
+              ry="14.637"
+              transform="rotate(-135 254.988 251.061)"
+              fill="#9E86E0"
+              fillOpacity="0.29"
+              shapeRendering="crispEdges"
+            />
+          </g>
+          <g filter="url(#filter1_d_1186_1105)">
+            <ellipse
+              cx="528.012"
+              cy="355.939"
+              rx="12.2159"
+              ry="14.637"
+              transform="rotate(-135 528.012 355.939)"
+              fill="#FFE0A5"
+              fillOpacity="0.2"
+              shapeRendering="crispEdges"
+            />
+          </g>
+          <defs>
+            <filter
+              id="filter0_d_1186_1105"
+              x="0.0065918"
+              y="0.0795898"
+              width="509.962"
+              height="509.962"
+              filterUnits="userSpaceOnUse"
+              colorInterpolationFilters="sRGB"
+            >
+              <feFlood floodOpacity="0" result="BackgroundimgFix" />
+              <feColorMatrix
+                in="SourceAlpha"
+                type="matrix"
+                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                result="hardAlpha"
+              />
+              <feMorphology radius="156" operator="dilate" in="SourceAlpha" result="effect1_dropShadow_1186_1105" />
+              <feOffset dy="4" />
+              <feGaussianBlur stdDeviation="42.75" />
+              <feComposite in2="hardAlpha" operator="out" />
+              <feColorMatrix type="matrix" values="0 0 0 0 0.890196 0 0 0 0 0.854902 0 0 0 0 0.984314 0 0 0 0.75 0" />
+              <feBlend mode="normal" in2="BackgroundimgFix" result="effect1_dropShadow_1186_1105" />
+              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1186_1105" result="shape" />
+            </filter>
+            <filter
+              id="filter1_d_1186_1105"
+              x="252.531"
+              y="84.4575"
+              width="550.962"
+              height="550.962"
+              filterUnits="userSpaceOnUse"
+              colorInterpolationFilters="sRGB"
+            >
+              <feFlood floodOpacity="0" result="BackgroundimgFix" />
+              <feColorMatrix
+                in="SourceAlpha"
+                type="matrix"
+                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                result="hardAlpha"
+              />
+              <feMorphology radius="162" operator="dilate" in="SourceAlpha" result="effect1_dropShadow_1186_1105" />
+              <feOffset dy="4" />
+              <feGaussianBlur stdDeviation="50" />
+              <feComposite in2="hardAlpha" operator="out" />
+              <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.878431 0 0 0 0 0.647059 0 0 0 0.15 0" />
+              <feBlend mode="normal" in2="BackgroundimgFix" result="effect1_dropShadow_1186_1105" />
+              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1186_1105" result="shape" />
+            </filter>
+          </defs>
+        </svg>
+
+        {/* Second SVG Pattern (mirrored on the right) */}
+        <svg
+          width="804"
+          height="636"
+          className="absolute right-0 top-0 transform scale-x-[-1]"
+          viewBox="0 0 804 636"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g filter="url(#filter0_d_1186_1105_2)">
+            <ellipse
+              cx="254.988"
+              cy="251.061"
+              rx="12.2159"
+              ry="14.637"
+              transform="rotate(-135 254.988 251.061)"
+              fill="#9E86E0"
+              fillOpacity="0.29"
+              shapeRendering="crispEdges"
+            />
+          </g>
+          <g filter="url(#filter1_d_1186_1105_2)">
+            <ellipse
+              cx="528.012"
+              cy="355.939"
+              rx="12.2159"
+              ry="14.637"
+              transform="rotate(-135 528.012 355.939)"
+              fill="#FFE0A5"
+              fillOpacity="0.2"
+              shapeRendering="crispEdges"
+            />
+          </g>
+          <defs>
+            <filter
+              id="filter0_d_1186_1105_2"
+              x="0.0065918"
+              y="0.0795898"
+              width="509.962"
+              height="509.962"
+              filterUnits="userSpaceOnUse"
+              colorInterpolationFilters="sRGB"
+            >
+              <feFlood floodOpacity="0" result="BackgroundimgFix" />
+              <feColorMatrix
+                in="SourceAlpha"
+                type="matrix"
+                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                result="hardAlpha"
+              />
+              <feMorphology radius="156" operator="dilate" in="SourceAlpha" result="effect1_dropShadow_1186_1105" />
+              <feOffset dy="4" />
+              <feGaussianBlur stdDeviation="42.75" />
+              <feComposite in2="hardAlpha" operator="out" />
+              <feColorMatrix type="matrix" values="0 0 0 0 0.890196 0 0 0 0 0.854902 0 0 0 0 0.984314 0 0 0 0.75 0" />
+              <feBlend mode="normal" in2="BackgroundimgFix" result="effect1_dropShadow_1186_1105" />
+              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1186_1105" result="shape" />
+            </filter>
+            <filter
+              id="filter1_d_1186_1105_2"
+              x="252.531"
+              y="84.4575"
+              width="550.962"
+              height="550.962"
+              filterUnits="userSpaceOnUse"
+              colorInterpolationFilters="sRGB"
+            >
+              <feFlood floodOpacity="0" result="BackgroundimgFix" />
+              <feColorMatrix
+                in="SourceAlpha"
+                type="matrix"
+                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                result="hardAlpha"
+              />
+              <feMorphology radius="162" operator="dilate" in="SourceAlpha" result="effect1_dropShadow_1186_1105" />
+              <feOffset dy="4" />
+              <feGaussianBlur stdDeviation="50" />
+              <feComposite in2="hardAlpha" operator="out" />
+              <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.878431 0 0 0 0 0.647059 0 0 0 0.15 0" />
+              <feBlend mode="normal" in2="BackgroundimgFix" result="effect1_dropShadow_1186_1105" />
+              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1186_1105" result="shape" />
+            </filter>
+          </defs>
+        </svg>
+      </div>
+
+      {/* Content */}
+      <div className="relative w-full container mx-auto px-6 py-20 text-center z-10">
+        {/* New Feature Badge */}
+        <div className="inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-sm text-blue-600 mb-6">
+          <span className="font-medium">New</span>
+          <span className="ml-2 text-blue-500">278+ Jobs Fulfilled 🎉</span>
+        </div>
+
+        {/* Heading */}
+        <h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight">
+          Unlock <span className="text-amber-400">Your</span> Potential
+        </h1>
+        <p className="text-lg text-gray-600 mb-12 font-medium">Let us help you find your dream job here.</p>
+
+        {/* Search Bar */}
+        <div className="max-w-3xl mx-auto">
+    <div className="flex flex-col md:flex-row gap-4 p-2 bg-white rounded-full border shadow-lg">
+      {/* Job Title Input */}
+      <div className="flex-1 flex items-center gap-2 px-4">
+        <input
+          type="text"
+          placeholder="Job title or Keyword"
+          className="w-full p-2 focus:outline-none"
+        />
+      </div>
+      {/* Location Input */}
+      <div className="flex-1 flex items-center gap-2 px-4 border-t md:border-t-0 md:border-l">
+        <input
+          type="text"
+          placeholder="City, state or zip"
+          className="w-full p-2 focus:outline-none"
+        />
+      </div>
+      {/* Search Button */}
+      <button className="bg-purple-600 text-white font-semibold py-3 px-8 rounded-full hover:bg-purple-700 transition-colors">
+        Find Jobs
+      </button>
     </div>
-  )
+  </div>
+      </div>
+
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/30 to-transparent pointer-events-none" />
+    </section>
+    </>
+  );
   
-  const SearchInput = ({ icon, placeholder, isLocation = false }) => (
-    <div className={`flex-1 flex items-center gap-2 px-4 py-2 ${isLocation ? "md:border-l md:border-gray-200" : ""}`}>
-      <span className="h-5 w-5 text-gray-400">{icon}</span>
-      <input type="text" placeholder={placeholder} className="border-0 focus:ring-0 w-full outline-none" />
-    </div>
-  )
+
+  
+  // const NewFeatureBadge = () => (
+  //   <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-blue-100 p-3 mb-8">
+  //     <span className="flex items-center justify-center rounded-full bg-black text-white px-2 py-0.5 text-xs font-medium">
+  //       New
+  //     </span>
+  //     <span className="text-blue-600 text-sm font-medium">
+  //       278+ Jobs Fulfilled 🎉
+  //     </span>
+  //   </div>
+  // );
+  
+  // const SearchBar = () => (
+  //   <div className="max-w-3xl mx-auto p-4">
+  //     <div className="flex flex-col gap-2 p-2 bg-white rounded-3xl shadow-md border-4 border-gray-800 md:rounded-full md:flex-row">
+  //       <Searchinputinput icon="🔍" placeholder="Job title or Keyword" />
+  //       <Searchinputinput icon="📍" placeholder="City, state or zip" isLocation />
+  //       <buttonbutton className="w-full md:w-auto rounded-full bg-purple-500 hover:bg-purple-600 text-white px-6 py-3 shadow-md transition duration-300">
+         
+  //         <Link to="/JobListingPage" > Find Jobs</Link>
+          
+  //       </buttonbutton>
+  //     </div>
+  //   </div>
+  // )
+  
+  // const Searchinputinput = ({ icon, placeholder, isLocation = false }) => (
+  //   <div className={`flex-1 flex items-center gap-2 px-4 py-2 ${isLocation ? "md:border-l md:border-gray-200" : ""}`}>
+  //     <span className="h-5 w-5 text-gray-400">{icon}</span>
+  //     <inputinput type="text" placeholder={placeholder} className="border-0 focus:ring-0 w-full outline-none" />
+  //   </div>
+  // )
   
   const JobListingsAndSidebar = () => (
     <div className="container mx-auto flex flex-col md:flex-row gap-8 px-4 py-10 bg-white w-full">
@@ -1154,7 +1385,7 @@ const Home = () => {
       <h2 className="text-lg font-semibold text-gray-800 mb-4">
         Browse Categories
       </h2>
-      <input
+      <inputinput
         type="text"
         placeholder="Search your preferred industry"
         className="w-full mb-4 p-3 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-purple-500"
@@ -1207,7 +1438,7 @@ const Home = () => {
   const JobCardHeader = () => (
     <div className="flex justify-between items-start mb-4">
       <span className="text-sm text-gray-500">1 day ago</span>
-      <button className="text-gray-400 hover:text-gray-600">⭐</button>
+      <buttonbutton className="text-gray-400 hover:text-gray-600">⭐</buttonbutton>
     </div>
   );
   
@@ -1215,7 +1446,7 @@ const Home = () => {
     <div className="flex items-start gap-3 mb-4">
       <div className="h-10 w-10 rounded-full bg-black flex items-center justify-center">
         <img
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-SQEqmRbwyTPSYMKjILQNjsZmQ9UvaW.png"
+          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/imgimg-SQEqmRbwyTPSYMKjILQNjsZmQ9UvaW.png"
           alt="Amazon"
           className="h-6 w-6"
         />
@@ -1246,20 +1477,20 @@ const Home = () => {
         <div className="font-semibold">$260/hr</div>
         <div className="text-sm text-gray-500">Davis, CA, USA</div>
       </div>
-      <button className="rounded-full border border-black px-4 py-1 text-sm hover:bg-gray-200 transition">
+      <buttonbutton className="rounded-full border border-black px-4 py-1 text-sm hover:bg-gray-200 transition">
         View Details
-      </button>
+      </buttonbutton>
     </div>
   );
   
   const ResumeFeatureSection = () => (
     <div className="flex flex-col items-center justify-center min-h-screen bg-white px-4 sm:px-6 lg:px-8 py-10">
       <ResumeFeatureHeader />
-      <ResumeFeatureImageContainer />
+      <ResumeFeatureimgContainer />
       <ResumeBuilderSection />
-      <button className="mt-6 px-6 py-3 bg-black text-white rounded-lg shadow-lg hover:bg-gray-800 transition">
+      <buttonbutton className="mt-6 px-6 py-3 bg-black text-white rounded-lg shadow-lg hover:bg-gray-800 transition">
         Get Started →
-      </button>
+      </buttonbutton>
     </div>
   );
   
@@ -1271,56 +1502,31 @@ const Home = () => {
     </div>
   );
   
-  const CompaniesWorkedAt = () => (
-    <section className="w-full py-8 bg-white">
-      <div className="text-center mb-6">
-        <h2 className="text-lg font-semibold text-gray-600">
-          Companies our talent has worked at:
-        </h2>
-      </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 justify-center items-center px-4">
-        {[
-          { name: "Airplane", opacity: "opacity-50" },
-          { name: "Railway", opacity: "opacity-100" },
-          { name: "Resend", opacity: "opacity-100" },
-          { name: "CodeSendBox", opacity: "opacity-100" },
-          { name: "Clerk", opacity: "opacity-100" },
-          { name: "Inngest", opacity: "opacity-100" },
-          { name: "Crowddev", opacity: "opacity-100" },
-          { name: "Airplane", opacity: "opacity-50" },
-        ].map((company, index) => (
-          <div
-            key={index}
-            className={`flex items-center justify-center h-10 w-32 text-center text-sm font-medium rounded-lg transition ${company.opacity}`}
-          >
-            {company.name}
-          </div>
-        ))}
-      </div>
-    </section>
-  );
+ 
   
-  const ResumeFeatureImageContainer = () => (
+  
+  
+  const ResumeFeatureimgContainer = () => (
     <div className="relative mt-10 mb-10 flex flex-col items-center justify-center gap-4 lg:flex-row lg:items-start">
-      {/* Main Preview Image */}
+      {/* Main Preview img */}
       <img
         src="https://via.placeholder.com/425x225"
         alt="Main Preview"
         className="w-[300px] lg:w-[425px] h-[150px] lg:h-[225px] rounded-lg shadow-lg border border-gray-200"
       />
   
-      {/* Side Image 1 (positioned at bottom-left on medium and larger screens) */}
+      {/* Side img 1 (positioned at bottom-left on medium and larger screens) */}
       <img
-        src="https://images.com/2"
-        alt="Side Image 1"
+        src="https://imgimgs.com/2"
+        alt="Side img 1"
         className="w-[120px] lg:w-[150px] h-[70px] lg:h-[80px] rounded-lg shadow-md border border-gray-200 
             mt-4 lg:mt-0 md:absolute md:left-[-135px] md:bottom-[-55px] lg:block"
       />
   
-      {/* Side Image 2 (Stacked below Image 1 on small screens, positioned at top-right on medium and larger screens) */}
+      {/* Side img 2 (Stacked below img 1 on small screens, positioned at top-right on medium and larger screens) */}
       <img
-        src="https://images.com/2"
-        alt="Side Image 2"
+        src="https://imgimgs.com/2"
+        alt="Side img 2"
         className="w-[120px] lg:w-[150px] h-[70px] lg:h-[80px] rounded-lg shadow-md border border-gray-200 
             mt-4 lg:mt-0 md:absolute md:right-[-135px] md:top-[-55px] lg:block"
       />
@@ -1345,14 +1551,14 @@ const Home = () => {
         We will only send you 1 email / day
       </p>
       <div className="relative mt-6 w-full max-w-md">
-        <input
+        <inputinput
           type="email"
           placeholder="Enter your email here..."
           className="w-full pl-4 pr-28 py-3 rounded-full bg-black text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
         />
-        <button className="absolute right-1 top-1 bottom-1 px-5 bg-purple-500 text-white text-sm font-semibold rounded-full hover:bg-purple-600 transition">
+        <buttonbutton className="absolute right-1 top-1 bottom-1 px-5 bg-purple-500 text-white text-sm font-semibold rounded-full hover:bg-purple-600 transition">
           Get Started &gt;
-        </button>
+        </buttonbutton>
       </div>
     </div>
   

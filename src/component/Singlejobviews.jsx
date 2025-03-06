@@ -1,5 +1,5 @@
 import Navbar from './Navbar';
-import React from 'react';
+import React, { useState } from 'react';
 import t1 from "../image/t1.png";
 import t2 from "../image/t2.png";
 import t3 from "../image/t3.png";
@@ -9,10 +9,15 @@ import star from "../image/star.png";
 import tick from "../image/tick.png";
 
 const Singlejobviews = () => {
+    const [expanded, setExpanded] = useState(false)
+  
+    const description =
+      "The right and contemporary use of technology is key to the progress of a nation. Keeping this in mind, Grameenphone always brings future-proof technology in order to facilitate your progress. The possibilities in this new world are immense and someone as bright as you should be the forerunner in leading the change..."
+  
   return (
     <>
       <Navbar />
-      <div className="container mx-auto px-4 py-8">
+
         <div className="bg-white rounded-lg overflow-hidden md:flex">
           {/* Left Side - Job Listings */}
           <div className="w-full md:w-1/4 p-4 border-r-2 border-gray-200">
@@ -227,40 +232,28 @@ const Singlejobviews = () => {
             </div>
 
             {/* Company Info */}
-            <div className="mt-6 border-t p-8 border-2 rounded-2xl relative">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <img
-                    src={t1} // Replace with actual logo
-                    alt="Company Logo"
-                    className="w-8 h-8 rounded-full mr-2"
-                  />
-                  <div>
-                    <div className="text-sm font-medium text-gray-800 ">Grameenphone Ltd.</div>
-                    <div className="text-xs text-gray-500">
-                      Telecommunications 6,424 employees <span className="text-green-400 font-bold">Actively Hiring</span>
-                    </div>
-                  </div>
-                </div>
-                <a
-                  href="##"
-                  className="text-purple-400 text-sm font-bold absolute top-8 right-8"
-                >
-                  View Page
-                </a>
-              </div>
-              <p className="text-xs text-gray-600 mt-2">
-                The right and contemporary use of technology is key to the progress of a nation. Keeping this in mind,
-                Grameenphone always brings future-proof technology in order to facilitate your progress. The possibilities in this new
-                world are immense and someone as bright as you should be the forerunner in leading the change...
-                <a href="##" className="text-purple-400">
-                  see more
-                </a>
-              </p>
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div className="flex items-start md:items-center gap-2">
+          <img
+            src="/placeholder.svg?height=32&width=32"
+            alt="Company Logo"
+            className="w-8 h-8 rounded-full mt-1 md:mt-0"
+          />
+          <div>
+            <div className="text-sm font-medium text-gray-800">Grameenphone Ltd.</div>
+            <div className="text-xs text-gray-500">
+              Telecommunications 6,424 employees <span className="text-green-400 font-bold">Actively Hiring</span>
             </div>
           </div>
         </div>
+
+        <a href="#" className="text-purple-400 text-sm font-bold md:self-start">
+          View Page
+        </a>
       </div>
+          </div>
+        </div>
+    
     </>
   );
 };

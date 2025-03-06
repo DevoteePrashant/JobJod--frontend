@@ -1,45 +1,54 @@
 import React from "react";
 import Marquee from "react-fast-marquee";
+import Group from '../image/Group 4.png';
+import Group5 from '../image/Group 5.png';
+import Group6 from '../image/Group 6.png';
 
-const LogoSlider = ({ direction = "right", speed = 50 }) => {
+const LogoSlider = ({ direction = "left", speed = 50 }) => {
   // Sample company data - replace with your actual data
   const companies = [
     {
-      name: "Airplane",
-      logo: "/placeholder.svg"
+      // name: "Airplane",
+      logo: Group6
     },
     {
-      name: "Railway",
-      logo: "/placeholder.svg"
+      // name: "Railway",
+      logo: Group
     },
     {
-      name: "Resend",
-      logo: "/placeholder.svg"
+      // name: "Resend",
+      logo: Group5
     },
     {
-      name: "CodeSendBox",
-      logo: "/placeholder.svg"
+      // name: "CodeSendBox",
+      logo: Group6
     },
     {
-      name: "Clerk",
-      logo: "/placeholder.svg"
+      // name: "Clerk",
+      logo: Group5
     },
     {
-      name: "Inngest",
-      logo: "/placeholder.svg"
+      // name: "Inngest",
+      logo: Group6
     },
     {
-      name: "Crowddev",
-      logo: "/placeholder.svg"
+      // name: "Crowddev",
+      logo: Group
     },
     {
-      name: "Airplane",
-      logo: "/placeholder.svg"
+      // name: "Airplane",
+      logo: Group5
     }
   ];
 
   return (
     <section className="w-full py-12 bg-white relative overflow-hidden">
+
+<div className="w-full py-8">
+      <h2 className="text-center text-xl font-medium text-gray-900 dark:text-gray-100">
+        Companies our talent has worked at:
+      </h2>
+    </div>
       <div className="relative">
         {/* Left fade effect */}
         <div className="absolute left-0 top-0 h-full w-20 bg-gradient-to-r from-white to-transparent z-10" />

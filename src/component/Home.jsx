@@ -185,7 +185,7 @@
 //           everything from documentation to government approvals.
 //         </p>
 
-//         {/* Cards Section */}
+//         {/* divs Section */}
 //         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 //           {[
 //             {
@@ -224,16 +224,16 @@
 //                 "Producer Companies are designed for farmers and agriculturalists to promote their mutual interests and provide support in production and marketing.",
 //               icon: "🌾", // Replace with an actual icon if needed
 //             },
-//           ].map((card, index) => (
+//           ].map((divdiv, index) => (
 //             <div
 //               key={index}
 //               className="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition-shadow"
 //             >
 //               <div className="flex items-center space-x-4 mb-4">
-//                 <div className="text-blue-600 text-xl">{card.icon}</div>
-//                 <h3 className="text-lg font-semibold text-gray-800">{card.title}</h3>
+//                 <div className="text-blue-600 text-xl">{divdiv.icon}</div>
+//                 <h3 className="text-lg font-semibold text-gray-800">{divdiv.title}</h3>
 //               </div>
-//               <p className="text-sm text-gray-600">{card.description}</p>
+//               <p className="text-sm text-gray-600">{divdiv.description}</p>
 //             </div>
 //           ))}
 //         </div>
@@ -472,7 +472,7 @@
 //           <ul>
 //             {[
 //               "Passport size photos of directors and shareholders",
-//               "PAN card of all the directors",
+//               "PAN divdiv of all the directors",
 //               "Aadhar, driver license, passport or voter ID of the directors",
 //               "Proof of residence",
 //               "NOC of the registered office address",
@@ -584,7 +584,7 @@
 //                 Certifying Authorities (e.g., eMudhra, Sify, Ncode).
 //               </li>
 //               <li>
-//                 <b>Documents Required:</b> PAN card, Address proof, and a
+//                 <b>Documents Required:</b> PAN divdiv, Address proof, and a
 //                 passport-size photo.
 //               </li>
 //             </ul>
@@ -809,7 +809,7 @@
 //                       { name: "Proprietorship Firm", link: "https://vakilsearch.com/company-registration/sole-proprietorship" },
 //                     ].map((header, index) => (
 //                       <th key={index} className="!p-5 wrc-text-[16px] md:wrc-text-[20px] wrc-font-semibold wrc-p-3 wrc-px-5 wrc-text-left md:wrc-px-10 false">
-//                         <a href={header.link} target="_blank" rel="noopener noreferrer" className="wrc-underline wrc-text-[#007AFF]">
+//                         <a to={header.link} target="_blank" rel="noopener noreferrer" className="wrc-underline wrc-text-[#007AFF]">
 //                           {header.name}
 //                         </a>
 //                       </th>
@@ -1029,7 +1029,7 @@
 //             <p>
 //               <a
 //                 className="wrc-underline wrc-decoration-[#007bff] wrc-text-[#007bff] wrc-inline wrc-pr-2"
-//                 href="https://vakilsearch.com/authors/mithra-menon"
+//                 to="https://vakilsearch.com/authors/mithra-menon"
 //               >
 //                 Mithra Menon
 //               </a>
@@ -1045,7 +1045,7 @@
 //             <p>
 //               <a
 //                 className="wrc-underline wrc-decoration-[#007bff] wrc-text-[#007bff] wrc-inline wrc-pr-2"
-//                 href="https://vakilsearch.com/blog/author/nithya-ramanivakilsearch-com/"
+//                 to="https://vakilsearch.com/blog/author/nithya-ramanivakilsearch-com/"
 //               >
 //                 Nithya Ramani Iyer,
 //               </a>
@@ -1072,275 +1072,336 @@
 
 // export default Home;
 
-import React from "react";
+import { useRef, useState } from "react"
 import { Link } from 'react-router-dom';
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import Group from '../image/Group.svg';
-import imges from '../image/Group 42.svg';
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Input } from "@headlessui/react";
-import Marquee from "react-fast-marquee"
+import imges from '../image/login.png';
+import logo2 from '../image/logo2.png';
+import { Bookmark, Search, Star } from "lucide-react"
 import './Home.css'
 import LogoSlider from "./LogoSlider";
+import { FaBookmark } from "react-icons/fa6";
+import { AiOutlineSearch } from "react-icons/ai";
+import { FiMapPin } from "react-icons/fi";
+import { Swiper, SwiperSlide } from "swiper/react"
+import { Autoplay, Navigation } from "swiper/modules"
+// Import Swiper styles
+import "swiper/css"
+import "swiper/css/navigation"
 
 
 const Home = () => {
+  const scrollContainerRef = useRef(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    setStartX(e.pageX - scrollContainerRef.current.offsetLeft);
+    setScrollLeft(scrollContainerRef.current.scrollLeft);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    
+    const x = e.pageX - scrollContainerRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    scrollContainerRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseLeave = () => {
+    setIsDragging(false);
+  };
+
+  const handleTouchStart = (e) => {
+    setIsDragging(true);
+    setStartX(e.touches[0].pageX - scrollContainerRef.current.offsetLeft);
+    setScrollLeft(scrollContainerRef.current.scrollLeft);
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDragging) return;
+    
+    const x = e.touches[0].pageX - scrollContainerRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    scrollContainerRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+  };
+
+  const jobs = [
+   
+    // Duplicate job for demo
+    {
+      title: "Product Designer",
+      company: "Google",
+      location: "Mountain View, CA",
+      salary: "$240/hr",
+      tags: ["Full time", "On-site", "Senior"],
+      postedTime: "2 days ago",
+      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+    },
+    {
+      title: "UI Engineer",
+      company: "Microsoft",
+      location: "Seattle, WA",
+      salary: "$220/hr",
+      tags: ["Contract", "Hybrid", "Senior"],
+      postedTime: "3 days ago",
+      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+    },
+    {
+      title: "UX Researcher",
+      company: "Apple",
+      location: "Cupertino, CA",
+      salary: "$200/hr",
+      tags: ["Full time", "Remote", "Senior"],
+      postedTime: "4 days ago",
+      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+    },
+    {
+      title: "UI Engineer",
+      company: "Microsoft",
+      location: "Seattle, WA",
+      salary: "$220/hr",
+      tags: ["Contract", "Hybrid", "Senior"],
+      postedTime: "3 days ago",
+      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+    },
+    {
+      title: "Product Designer",
+      company: "Google",
+      location: "Mountain View, CA",
+      salary: "$240/hr",
+      tags: ["Full time", "On-site", "Senior"],
+      postedTime: "2 days ago",
+      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+    },
+  ]
+  
+
     return (
       <>
-        <main className="min-h-screen bg-gradient-to-br">
+        <main className=" bg-gradient-to-br">
           <HeroSection />
-          <div className="w-[87%] mx-auto">
-            <LogoSlider />
+          <div className="w-[100%] mx-auto mt-4">
             <JobListingsSection />
+            <div className="w-[87%] mx-auto">
+            <LogoSlider />
+            </div>
             <JobListingsAndSidebar />
             <ResumeFeatureSection />
             <EmailSignupSection />
           </div>
+
         </main>
         <Footer/>
       </>
     );
   };
   
-  const HeroSection = () => (
+ 
+ function HeroSection() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+
+  return (
     <>
-    <Header/>
-       <section className="relative w-full min-h-[600px] flex items-center justify-center overflow-hidden bg-gradient-to-br from-purple-100 via-white to-purple-50">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 w-full h-full">
-        <img
-          src={Group}
-          alt="Background Pattern"
-          className="w-full h-full object-cover opacity-30"
-          width={1440}
-          height={1024}
-          priority
-        />
-      </div>
-
-      {/* SVG Patterns */}
-      <div className="absolute inset-0 w-full h-full">
-        {/* First SVG Pattern */}
-        <svg
-          width="804"
-          height="636"
-          className="absolute left-0 top-0"
-          viewBox="0 0 804 636"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g filter="url(#filter0_d_1186_1105)">
-            <ellipse
-              cx="254.988"
-              cy="251.061"
-              rx="12.2159"
-              ry="14.637"
-              transform="rotate(-135 254.988 251.061)"
-              fill="#9E86E0"
-              fillOpacity="0.29"
-              shapeRendering="crispEdges"
-            />
-          </g>
-          <g filter="url(#filter1_d_1186_1105)">
-            <ellipse
-              cx="528.012"
-              cy="355.939"
-              rx="12.2159"
-              ry="14.637"
-              transform="rotate(-135 528.012 355.939)"
-              fill="#FFE0A5"
-              fillOpacity="0.2"
-              shapeRendering="crispEdges"
-            />
-          </g>
-          <defs>
-            <filter
-              id="filter0_d_1186_1105"
-              x="0.0065918"
-              y="0.0795898"
-              width="509.962"
-              height="509.962"
-              filterUnits="userSpaceOnUse"
-              colorInterpolationFilters="sRGB"
-            >
-              <feFlood floodOpacity="0" result="BackgroundimgFix" />
-              <feColorMatrix
-                in="SourceAlpha"
-                type="matrix"
-                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                result="hardAlpha"
-              />
-              <feMorphology radius="156" operator="dilate" in="SourceAlpha" result="effect1_dropShadow_1186_1105" />
-              <feOffset dy="4" />
-              <feGaussianBlur stdDeviation="42.75" />
-              <feComposite in2="hardAlpha" operator="out" />
-              <feColorMatrix type="matrix" values="0 0 0 0 0.890196 0 0 0 0 0.854902 0 0 0 0 0.984314 0 0 0 0.75 0" />
-              <feBlend mode="normal" in2="BackgroundimgFix" result="effect1_dropShadow_1186_1105" />
-              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1186_1105" result="shape" />
-            </filter>
-            <filter
-              id="filter1_d_1186_1105"
-              x="252.531"
-              y="84.4575"
-              width="550.962"
-              height="550.962"
-              filterUnits="userSpaceOnUse"
-              colorInterpolationFilters="sRGB"
-            >
-              <feFlood floodOpacity="0" result="BackgroundimgFix" />
-              <feColorMatrix
-                in="SourceAlpha"
-                type="matrix"
-                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                result="hardAlpha"
-              />
-              <feMorphology radius="162" operator="dilate" in="SourceAlpha" result="effect1_dropShadow_1186_1105" />
-              <feOffset dy="4" />
-              <feGaussianBlur stdDeviation="50" />
-              <feComposite in2="hardAlpha" operator="out" />
-              <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.878431 0 0 0 0 0.647059 0 0 0 0.15 0" />
-              <feBlend mode="normal" in2="BackgroundimgFix" result="effect1_dropShadow_1186_1105" />
-              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1186_1105" result="shape" />
-            </filter>
-          </defs>
-        </svg>
-
-        {/* Second SVG Pattern (mirrored on the right) */}
-        <svg
-          width="804"
-          height="636"
-          className="absolute right-0 top-0 transform scale-x-[-1]"
-          viewBox="0 0 804 636"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g filter="url(#filter0_d_1186_1105_2)">
-            <ellipse
-              cx="254.988"
-              cy="251.061"
-              rx="12.2159"
-              ry="14.637"
-              transform="rotate(-135 254.988 251.061)"
-              fill="#9E86E0"
-              fillOpacity="0.29"
-              shapeRendering="crispEdges"
-            />
-          </g>
-          <g filter="url(#filter1_d_1186_1105_2)">
-            <ellipse
-              cx="528.012"
-              cy="355.939"
-              rx="12.2159"
-              ry="14.637"
-              transform="rotate(-135 528.012 355.939)"
-              fill="#FFE0A5"
-              fillOpacity="0.2"
-              shapeRendering="crispEdges"
-            />
-          </g>
-          <defs>
-            <filter
-              id="filter0_d_1186_1105_2"
-              x="0.0065918"
-              y="0.0795898"
-              width="509.962"
-              height="509.962"
-              filterUnits="userSpaceOnUse"
-              colorInterpolationFilters="sRGB"
-            >
-              <feFlood floodOpacity="0" result="BackgroundimgFix" />
-              <feColorMatrix
-                in="SourceAlpha"
-                type="matrix"
-                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                result="hardAlpha"
-              />
-              <feMorphology radius="156" operator="dilate" in="SourceAlpha" result="effect1_dropShadow_1186_1105" />
-              <feOffset dy="4" />
-              <feGaussianBlur stdDeviation="42.75" />
-              <feComposite in2="hardAlpha" operator="out" />
-              <feColorMatrix type="matrix" values="0 0 0 0 0.890196 0 0 0 0 0.854902 0 0 0 0 0.984314 0 0 0 0.75 0" />
-              <feBlend mode="normal" in2="BackgroundimgFix" result="effect1_dropShadow_1186_1105" />
-              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1186_1105" result="shape" />
-            </filter>
-            <filter
-              id="filter1_d_1186_1105_2"
-              x="252.531"
-              y="84.4575"
-              width="550.962"
-              height="550.962"
-              filterUnits="userSpaceOnUse"
-              colorInterpolationFilters="sRGB"
-            >
-              <feFlood floodOpacity="0" result="BackgroundimgFix" />
-              <feColorMatrix
-                in="SourceAlpha"
-                type="matrix"
-                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                result="hardAlpha"
-              />
-              <feMorphology radius="162" operator="dilate" in="SourceAlpha" result="effect1_dropShadow_1186_1105" />
-              <feOffset dy="4" />
-              <feGaussianBlur stdDeviation="50" />
-              <feComposite in2="hardAlpha" operator="out" />
-              <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.878431 0 0 0 0 0.647059 0 0 0 0.15 0" />
-              <feBlend mode="normal" in2="BackgroundimgFix" result="effect1_dropShadow_1186_1105" />
-              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1186_1105" result="shape" />
-            </filter>
-          </defs>
-        </svg>
-      </div>
-
-      {/* Content */}
-      <div className="relative w-full container mx-auto px-6 py-20 text-center z-10">
-        {/* New Feature Badge */}
-        <div className="inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-sm text-blue-600 mb-6">
-          <span className="font-medium">New</span>
-          <span className="ml-2 text-blue-500">278+ Jobs Fulfilled 🎉</span>
+      <header className="py-4 w-full relative overflow-hidden bg-gradient-to-r from-purple-100 via-white to-purple-50">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 w-full h-full">
+          <img
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Group-y8VIQbQhSCi7xcFqUiFvxXXwZtkvps.svg"
+            alt="Background Pattern"
+            className="w-full h-full object-cover opacity-30"
+            width={1440}
+            height={1024}
+            priority
+          />
         </div>
 
-        {/* Heading */}
-        <h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight">
-          Unlock <span className="text-amber-400">Your</span> Potential
-        </h1>
-        <p className="text-lg text-gray-600 mb-12 font-medium">Let us help you find your dream job here.</p>
+        {/* SVG Patterns */}
+        <div className="absolute inset-0 w-full h-full">
+          {/* First SVG Pattern */}
+          <svg
+            width="804"
+            height="636"
+            className="absolute left-0 top-0"
+            viewBox="0 0 804 636"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M-192.5 -238C-192.5 -238 -76.5 -191 -76.5 -95.5C-76.5 0 -192.5 47 -192.5 142.5C-192.5 238 -76.5 285 -76.5 380.5C-76.5 476 -192.5 523 -192.5 618.5C-192.5 714 -76.5 761 -76.5 856.5"
+              stroke="#E4E2FF"
+              strokeWidth="3"
+            />
+            {/* Other paths remain the same */}
+          </svg>
 
-        {/* Search Bar */}
-        <div className="max-w-3xl mx-auto">
-    <div className="flex flex-col md:flex-row gap-4 p-2 bg-white rounded-full border shadow-lg">
-      {/* Job Title Input */}
-      <div className="flex-1 flex items-center gap-2 px-4">
-        <input
-          type="text"
-          placeholder="Job title or Keyword"
-          className="w-full p-2 focus:outline-none"
-        />
-      </div>
-      {/* Location Input */}
-      <div className="flex-1 flex items-center gap-2 px-4 border-t md:border-t-0 md:border-l">
-        <input
-          type="text"
-          placeholder="City, state or zip"
-          className="w-full p-2 focus:outline-none"
-        />
-      </div>
-      {/* Search Button */}
-      <button className="bg-purple-600 text-white font-semibold py-3 px-8 rounded-full hover:bg-purple-700 transition-colors">
-        Find Jobs
-      </button>
-    </div>
-  </div>
-      </div>
+          {/* Second SVG Pattern (mirrored on the right) */}
+          <svg
+            width="804"
+            height="636"
+            className="absolute right-0 top-0 transform scale-x-[-1]"
+            viewBox="0 0 804 636"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M-192.5 -238C-192.5 -238 -76.5 -191 -76.5 -95.5C-76.5 0 -192.5 47 -192.5 142.5C-192.5 238 -76.5 285 -76.5 380.5C-76.5 476 -192.5 523 -192.5 618.5C-192.5 714 -76.5 761 -76.5 856.5"
+              stroke="#E4E2FF"
+              strokeWidth="3"
+            />
+            {/* Other paths remain the same */}
+          </svg>
+        </div>
 
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/30 to-transparent pointer-events-none" />
-    </section>
+        {/* Header Content */}
+        <div className="container mx-auto px-4 py-3 flex justify-between items-center relative z-10">
+          <div className="flex items-center">
+            <Link to="/" className="text-2xl font-bold">
+              <div className="flex items-center">
+              <Link to="/"><img src={logo2} alt="JobJod" /></Link>
+              </div>
+            </Link>
+          </div>
+
+          <nav className="hidden md:flex ml-10 space-x-6">
+            <Link to="/JobListingPage" className="text-gray-800 hover:text-black">
+              Find Jobs
+            </Link>
+            <Link to="/companies" className="text-gray-800 hover:text-black">
+              Browse Company
+            </Link>
+         
+          </nav>
+
+          <div className="hidden md:block">
+          <Link to="/JobListingPage" className="text-black font-semibold">
+            Hire Now <span className="text-gray-400 pr-4">|</span>
+            </Link>
+        
+            <Link
+              to="/LoginPage"
+              className="bg-black text-white font-medium py-2 px-6 rounded-full hover:bg-gray-800 transition-colors"
+            >
+              Login / Signup
+            </Link>
+          </div>
+
+          <button
+            className="md:hidden text-gray-600 focus:outline-none"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="24" height="2" rx="1" fill="currentColor" />
+              <rect y="8" width="24" height="2" rx="1" fill="currentColor" />
+              <rect y="16" width="24" height="2" rx="1" fill="currentColor" />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <section className="relative w-full min-h-[600px] flex items-center justify-center overflow-hidden bg-gradient-to-r from-purple-100 via-white to-purple-50">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 w-full h-full">
+          <img
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Group-y8VIQbQhSCi7xcFqUiFvxXXwZtkvps.svg"
+            alt="Background Pattern"
+            className="w-full h-full object-cover opacity-30"
+            width={1440}
+            height={1024}
+            priority
+          />
+        </div>
+
+        {/* Content */}
+        <div className="relative w-full container mx-auto px-6 py-20 text-center z-10">
+          {/* New Feature Badge */}
+          <div className="inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-sm text-blue-600 mb-6">
+            <span className="font-medium">New</span>
+            <span className="ml-2 text-blue-500">278+ Jobs Fulfilled 🎉</span>
+          </div>
+
+          {/* Heading */}
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight">
+            Unlock <span className="text-amber-500">Your</span> Potential
+          </h1>
+          <p className="text-lg mb-8">Let us help you find your dream job here.</p>
+
+          {/* Search Bar */}
+          <div className="max-w-3xl mx-auto p-4">
+            <div className="flex flex-col md:flex-row gap-2 p-2 bg-white rounded-3xl shadow-md border-4 border-gray-800 md:rounded-full">
+              <SearchInput placeholder="Job title or Keyword" />
+              <SearchInput placeholder="City, state or zip" isLocation />
+              <Link
+                to="/JobListingPage"
+                className="bg-purple-500 text-white font-medium py-3 px-12 rounded-full hover:bg-purple-600 transition-colors duration-200 shadow-sm relative"
+                style={{
+                  boxShadow: `0 0 5px rgba(255, 255, 255, 0.5),
+                    0 0 10px rgba(255, 255, 255, 0.3),
+                    0 0 20px rgba(255, 255, 255, 0.2),
+                    0 0 0 4px rgba(0, 0, 0, 0.1)`,
+                }}
+              >
+                Find Jobs
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/30 to-transparent pointer-events-none" />
+      </section>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden fixed top-[4rem] left-0 right-0 bg-white py-4 shadow-md z-50 animate-slideDown">
+          <nav className="flex flex-col space-y-4 px-4">
+            <Link to="/JobListingPage" className="text-gray-800 hover:text-black py-2">
+              Find Jobs
+            </Link>
+            <Link to="/companies" className="text-gray-800 hover:text-black py-2">
+              Browse Company
+            </Link>
+            <Link to="/hire" className="text-gray-800 hover:text-black py-2">
+              Hire Now
+            </Link>
+            <Link to="/LoginPage" className="bg-black text-white font-medium py-2 px-6 rounded-full text-center">
+              Login / Signup
+            </Link>
+          </nav>
+        </div>
+      )}
     </>
-  );
+  )
+}
   
-
+  const SearchInput = ({ icon, placeholder, isLocation = false }) => (
+    <div className={`flex-1 flex items-center gap-2 px-4 py-2 ${isLocation ? "md:border-l md:border-gray-200" : ""}`}>
+      <AiOutlineSearch className="text-gray-400 h-5 w-5 text-gray-400" />
+      <input type="text" placeholder={placeholder} className="border-0 focus:ring-0 w-full outline-none" />
+    </div>
+  )
   
+  const SearchInput2 = ({ icon, placeholder, isLocation = false }) => (
+    <div className={`flex-1 flex items-center gap-2 px-4 py-2 ${isLocation ? "md:border-l md:border-gray-200" : ""}`}>
+     <FiMapPin className="text-gray-400 h-5 w-5 text-gray-400" />
+      <input type="text" placeholder={placeholder} className="border-0 focus:ring-0 w-full outline-none" />
+    </div>
+  )
   // const NewFeatureBadge = () => (
   //   <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-blue-100 p-3 mb-8">
   //     <span className="flex items-center justify-center rounded-full bg-black text-white px-2 py-0.5 text-xs font-medium">
@@ -1374,165 +1435,681 @@ const Home = () => {
   // )
   
   const JobListingsAndSidebar = () => (
-    <div className="container mx-auto flex flex-col md:flex-row gap-8 px-4 py-10 bg-white w-full">
+    <div className="container mx-auto flex flex-col md:flex-row gap-8 px-4 py-10 bg-white w-full dark:bg-gray-900 rounded-[24px] p-5 border border-gray-200 
+            dark:border-gray-800 ">
       <Sidebar />
-      <JobListingsSection />
+      <JobListingsSectionNew />
     </div>
   );
+
   
-  const Sidebar = () => (
-    <aside className="w-full md:w-1/4 bg-white p-6 border border-gray-200 rounded-lg shadow-sm">
-      <h2 className="text-lg font-semibold text-gray-800 mb-4">
-        Browse Categories
-      </h2>
-      <inputinput
-        type="text"
-        placeholder="Search your preferred industry"
-        className="w-full mb-4 p-3 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-purple-500"
-      />
-      <div className="space-y-3">
-        {Array(12)
-          .fill("Information Technology")
-          .map((category, index) => (
-            <div
-              key={index}
-              className={`p-3 text-center rounded-md cursor-pointer ${
-                index % 3 === 0
-                  ? "bg-purple-200"
-                  : index % 3 === 1
-                  ? "bg-yellow-200"
-                  : "bg-blue-200"
-              } hover:scale-105 transition-all duration-200`}
-            >
-              {category}
+export function JobListingsSectionNew() {
+  const jobs = [
+   
+    // Duplicate job for demo
+    {
+      title: "Product Designer",
+      company: "Google",
+      location: "Mountain View, CA",
+      salary: "$240/hr",
+      tags: ["Full time", "On-site", "Senior"],
+      postedTime: "2 days ago",
+      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+      isNew: true,
+   
+    },
+    {
+      title: "UI Engineer",
+      company: "Microsoft",
+      location: "Seattle, WA",
+      salary: "$220/hr",
+      tags: ["Contract", "Hybrid", "Senior"],
+      postedTime: "3 days ago",
+      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+      featured: true,
+    },
+    {
+      title: "UX Researcher",
+      company: "Apple",
+      location: "Cupertino, CA",
+      salary: "$200/hr",
+      tags: ["Full time", "Remote", "Senior"],
+      postedTime: "4 days ago",
+      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+      isNew: true,
+    },
+    {
+      title: "UI Engineer",
+      company: "Microsoft",
+      location: "Seattle, WA",
+      salary: "$220/hr",
+      tags: ["Contract", "Hybrid", "Senior"],
+      postedTime: "3 days ago",
+      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+      isNew: true,
+    },
+    {
+      title: "Product Designer",
+      company: "Google",
+      location: "Mountain View, CA",
+      salary: "$240/hr",
+      tags: ["Full time", "On-site", "Senior"],
+      postedTime: "2 days ago",
+      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+      featured: true,
+    },
+    
+    {
+      title: "UX Researcher",
+      company: "Apple",
+      location: "Cupertino, CA",
+      salary: "$200/hr",
+      tags: ["Full time", "Remote", "Senior"],
+      postedTime: "4 days ago",
+      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+      isNew: true,
+    },
+    {
+      title: "UI Engineer",
+      company: "Microsoft",
+      location: "Seattle, WA",
+      salary: "$220/hr",
+      tags: ["Contract", "Hybrid", "Senior"],
+      postedTime: "3 days ago",
+      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+      isNew: true,
+      featured: true,
+    },
+    {
+      title: "UX Researcher",
+      company: "Apple",
+      location: "Cupertino, CA",
+      salary: "$200/hr",
+      tags: ["Full time", "Remote", "Senior"],
+      postedTime: "4 days ago",
+      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+      isNew: true,
+    },
+    {
+      title: "UI Engineer",
+      company: "Microsoft",
+      location: "Seattle, WA",
+      salary: "$220/hr",
+      tags: ["Contract", "Hybrid", "Senior"],
+      postedTime: "3 days ago",
+      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+      isNew: true,
+    },
+  ]
+  return (
+    <div className="w-full space-y-6 pt-[70px]">
+      <div className="flex flex-wrap gap-4">
+        {jobs.map((job, index) => (
+          <div
+            key={index}
+            className="w-full sm:w-[calc(50%-0.5rem)] xl:w-[calc(33.33%-1rem)] 
+            relative bg-white dark:bg-gray-900 rounded-[24px] p-5 border border-gray-200 
+            dark:border-gray-800 hover:bg-[#e3dafb] dark:hover:bg-purple-900/20 
+            transition-all duration-300 group"
+          >
+            <header className="flex flex-row items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-gray-500 dark:text-gray-400">{job.postedTime}</span>
+                {job.isNew && (
+                  <span className="px-3 py-1 rounded-full text-sm bg-purple-100 text-purple-700 opacity-0 group-hover:opacity-100 transition-opacity">
+                    New
+                  </span>
+                )}
+                {job.featured && (
+                  <span className="px-3 py-1 rounded-full text-sm bg-orange-100 text-orange-700 opacity-0 group-hover:opacity-100 transition-opacity ml-2">
+                    Featured
+                  </span>
+                )}
+              </div>
+              <button className="p-2 rounded-full">
+                <Bookmark className="h-4 w-4 text-[#4B5563]" />
+              </button>
+            </header>
+            <div className="space-y-4 mt-4">
+              <div className="flex items-start gap-3">
+                <div className="h-10 w-10 rounded-full bg-white border border-gray-200 flex items-center justify-center overflow-hidden">
+                  <img
+                    src={job.logo || "/placeholder.svg"}
+                    alt={`${job.company} logo`}
+                    className="w-6 h-6 object-contain"
+                  />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 dark:text-white">{job.title}</h3>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">{job.company}</p>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {job.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-3 py-1 rounded-full text-sm border border-gray-200 dark:border-gray-700
+                             bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 
+                             group-hover:bg-white/50 dark:group-hover:bg-gray-800/50"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
-          ))}
-      </div>
-    </aside>
-  );
-  
-  const JobListingsSection = () => (
-    <section className="flex-1 w-full bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-      <h2 className="text-2xl font-semibold mb-6">Job Listings</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {[1, 2, 3, 4, 5, 6].map((job, index) => (
-          <JobCard key={job} index={index} />
+            <footer className="flex items-center justify-between mt-4 bg-white dark:bg-gray-900 rounded-b-[24px] -mx-5 -mb-5 p-5">
+              <div>
+                <div className="font-semibold text-gray-900 dark:text-white">{job.salary}</div>
+                <div className="text-sm text-gray-500 dark:text-gray-400">{job.location}</div>
+              </div>
+              <button
+                className="px-4 py-2 rounded-full border border-gray-200 dark:border-gray-700 
+                         bg-white dark:bg-gray-900"
+              >
+                View Details
+              </button>
+            </footer>
+          </div>
         ))}
       </div>
-    </section>
-  );
-  
-  const JobCard = ({ index }) => (
-    <div
-      className={`p-6 w-full border border-gray-300 rounded-lg shadow-sm bg-white ${
-        index % 2 === 0 ? "bg-purple-50" : ""
-      }`}
-    >
-      <JobCardHeader />
-      <JobCardBody />
-      <JobTags />
-      <JobCardFooter />
     </div>
-  );
+  )
+}
+
   
-  const JobCardHeader = () => (
-    <div className="flex justify-between items-start mb-4">
-      <span className="text-sm text-gray-500">1 day ago</span>
-      <buttonbutton className="text-gray-400 hover:text-gray-600">⭐</buttonbutton>
+
+
+export function Sidebar() {
+  const categories = [
+    "Software Development",
+    "Data Science",
+    "Product Design",
+    "Digital Marketing",
+    "Customer Service",
+    "Sales & Business",
+    "Healthcare & Medical",
+    "Finance & Banking",
+    "Education & Teaching",
+    "Engineering",
+    "Human Resources",
+    "Project Management"
+  ]
+  return (
+    <aside className="w-full lg:w-[561px] md:w-[334px] p-6 bg-white rounded-2xl ">
+ 
+    
+    <div className="relative mb-6">
+      <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+      <input
+        type="text"
+        placeholder="Search your preferred industry"
+        className="w-full h-12 pl-11 pr-4 rounded-2xl border border-gray-200 text-gray-600 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+      />
     </div>
-  );
-  
-  const JobCardBody = () => (
-    <div className="flex items-start gap-3 mb-4">
-      <div className="h-10 w-10 rounded-full bg-black flex items-center justify-center">
-        <img
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/imgimg-SQEqmRbwyTPSYMKjILQNjsZmQ9UvaW.png"
-          alt="Amazon"
-          className="h-6 w-6"
-        />
-      </div>
-      <div>
-        <h3 className="font-semibold">Sr. UX Designer</h3>
-        <p className="text-sm text-gray-500">Amazon</p>
-      </div>
-    </div>
-  );
-  
-  const JobTags = () => (
-    <div className="flex flex-wrap gap-2 mb-4">
-      {["Full time", "Remote", "Intermediate", "Project Work"].map((tag) => (
-        <span
-          key={tag}
-          className="px-2 py-1 border rounded-full text-xs font-normal text-gray-600"
+
+    <div className="space-y-3">
+      {categories.map((category, i) => (
+        <button
+          key={i}
+          className={`w-full py-4 px-6 rounded-2xl text-center text-sm font-medium transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] ${
+            i % 3 === 0
+              ? "bg-[#F3E8FF] text-purple-700"
+              : i % 3 === 1
+              ? "bg-[#FEF3C7] text-amber-700"
+              : "bg-[#E0F2FE] text-sky-700"
+          }`}
         >
-          {tag}
-        </span>
+          {category}
+        </button>
       ))}
     </div>
-  );
+  </aside>
+  )
+}
   
-  const JobCardFooter = () => (
-    <div className="flex items-center justify-between mt-4">
-      <div>
-        <div className="font-semibold">$260/hr</div>
-        <div className="text-sm text-gray-500">Davis, CA, USA</div>
+  const JobListingsSection = () =>  {
+    const scrollContainerRef = useRef(null)
+    const [isDragging, setIsDragging] = useState(false)
+    const [startX, setStartX] = useState(0)
+    const [scrollLeft, setScrollLeft] = useState(0)
+  
+    const handleMouseDown = (e) => {
+      setIsDragging(true)
+      setStartX(e.pageX - scrollContainerRef.current.offsetLeft)
+      setScrollLeft(scrollContainerRef.current.scrollLeft)
+    }
+  
+    const handleMouseMove = (e) => {
+      if (!isDragging) return
+      e.preventDefault()
+  
+      const x = e.pageX - scrollContainerRef.current.offsetLeft
+      const walk = (x - startX) * 2
+      scrollContainerRef.current.scrollLeft = scrollLeft - walk
+    }
+  
+    const handleMouseUp = () => {
+      setIsDragging(false)
+    }
+  
+    const handleMouseLeave = () => {
+      setIsDragging(false)
+    }
+  
+    const handleTouchStart = (e) => {
+      setIsDragging(true)
+      setStartX(e.touches[0].pageX - scrollContainerRef.current.offsetLeft)
+      setScrollLeft(scrollContainerRef.current.scrollLeft)
+    }
+  
+    const handleTouchMove = (e) => {
+      if (!isDragging) return
+  
+      const x = e.touches[0].pageX - scrollContainerRef.current.offsetLeft
+      const walk = (x - startX) * 2
+      scrollContainerRef.current.scrollLeft = scrollLeft - walk
+    }
+  
+    const handleTouchEnd = () => {
+      setIsDragging(false)
+    }
+  
+    const jobs = [
+   
+    // Duplicate job for demo
+    {
+      title: "Product Designer",
+      company: "Google",
+      location: "Mountain View, CA",
+      salary: "$240/hr",
+      tags: ["Full time", "On-site", "Senior"],
+      postedTime: "2 days ago",
+      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+      isNew: true,
+   
+    },
+    {
+      title: "UI Engineer",
+      company: "Microsoft",
+      location: "Seattle, WA",
+      salary: "$220/hr",
+      tags: ["Contract", "Hybrid", "Senior"],
+      postedTime: "3 days ago",
+      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+      featured: true,
+    },
+    {
+      title: "UX Researcher",
+      company: "Apple",
+      location: "Cupertino, CA",
+      salary: "$200/hr",
+      tags: ["Full time", "Remote", "Senior"],
+      postedTime: "4 days ago",
+      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+      isNew: true,
+    },
+    {
+      title: "UI Engineer",
+      company: "Microsoft",
+      location: "Seattle, WA",
+      salary: "$220/hr",
+      tags: ["Contract", "Hybrid", "Senior"],
+      postedTime: "3 days ago",
+      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+      isNew: true,
+    },
+    {
+      title: "Product Designer",
+      company: "Google",
+      location: "Mountain View, CA",
+      salary: "$240/hr",
+      tags: ["Full time", "On-site", "Senior"],
+      postedTime: "2 days ago",
+      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+      featured: true,
+    },
+    
+    {
+      title: "UX Researcher",
+      company: "Apple",
+      location: "Cupertino, CA",
+      salary: "$200/hr",
+      tags: ["Full time", "Remote", "Senior"],
+      postedTime: "4 days ago",
+      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+      isNew: true,
+    },
+    {
+      title: "UI Engineer",
+      company: "Microsoft",
+      location: "Seattle, WA",
+      salary: "$220/hr",
+      tags: ["Contract", "Hybrid", "Senior"],
+      postedTime: "3 days ago",
+      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+      isNew: true,
+      featured: true,
+    },
+    {
+      title: "UX Researcher",
+      company: "Apple",
+      location: "Cupertino, CA",
+      salary: "$200/hr",
+      tags: ["Full time", "Remote", "Senior"],
+      postedTime: "4 days ago",
+      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+      isNew: true,
+    },
+    {
+      title: "UI Engineer",
+      company: "Microsoft",
+      location: "Seattle, WA",
+      salary: "$220/hr",
+      tags: ["Contract", "Hybrid", "Senior"],
+      postedTime: "3 days ago",
+      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+      isNew: true,
+    },
+    ]
+  
+    return (
+  // <Swiper
+  //       modules={[Autoplay, Navigation]}
+  //       spaceBetween={20}
+  //       slidesPerView={1}
+  //       navigation={true}
+  //       autoplay={{
+  //         delay: 3000,
+  //         disableOnInteraction: false,
+  //       }}
+  //       breakpoints={{
+  //         640: {
+  //           slidesPerView: 2,
+  //         },
+  //         1024: {
+  //           slidesPerView: 3,
+  //         },
+  //       }}
+  //       className="job-swiper"
+  //     >
+  //       {jobs.map((job, index) => (
+  //         <SwiperSlide key={index}>
+  //           <div
+  //             className="h-full w-full relative bg-white dark:bg-gray-900 rounded-[24px] p-5 border border-gray-200 
+  //             dark:border-gray-800 hover:bg-[#e3dafb] dark:hover:bg-purple-900/20 
+  //             transition-all duration-300 group"
+  //           >
+  //             <header className="flex flex-row items-center justify-between">
+  //               <div className="flex items-center gap-2">
+  //                 <span className="text-sm text-gray-500 dark:text-gray-400">{job.postedTime}</span>
+  //                 {job.isNew && (
+  //                   <span className="px-3 py-1 rounded-full text-sm bg-purple-100 text-purple-700 opacity-0 group-hover:opacity-100 transition-opacity">
+  //                     New
+  //                   </span>
+  //                 )}
+  //                 {job.featured && (
+  //                   <span className="px-3 py-1 rounded-full text-sm bg-orange-100 text-orange-700 opacity-0 group-hover:opacity-100 transition-opacity ml-2">
+  //                     Featured
+  //                   </span>
+  //                 )}
+  //               </div>
+  //               <button className="p-2 rounded-full">
+  //                 <Bookmark className="h-4 w-4 text-[#4B5563]" />
+  //               </button>
+  //             </header>
+  //             <div className="space-y-4 mt-4">
+  //               <div className="flex items-start gap-3">
+  //                 <div className="h-10 w-10 rounded-full bg-white border border-gray-200 flex items-center justify-center overflow-hidden">
+  //                   <img
+  //                     src={job.logo || "/placeholder.svg"}
+  //                     alt={`${job.company} logo`}
+  //                     className="w-6 h-6 object-contain"
+  //                   />
+  //                 </div>
+  //                 <div>
+  //                   <h3 className="font-semibold text-gray-900 dark:text-white">{job.title}</h3>
+  //                   <p className="text-sm text-gray-500 dark:text-gray-400">{job.company}</p>
+  //                 </div>
+  //               </div>
+  //               <div className="flex flex-wrap gap-2">
+  //                 {job.tags.map((tag) => (
+  //                   <span
+  //                     key={tag}
+  //                     className="px-3 py-1 rounded-full text-sm border border-gray-200 dark:border-gray-700
+  //                              bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 
+  //                              group-hover:bg-white/50 dark:group-hover:bg-gray-800/50"
+  //                   >
+  //                     {tag}
+  //                   </span>
+  //                 ))}
+  //               </div>
+  //             </div>
+  //             <footer className="flex items-center justify-between mt-4 bg-white dark:bg-gray-900 rounded-b-[24px] -mx-5 -mb-5 p-5">
+  //               <div>
+  //                 <div className="font-semibold text-gray-900 dark:text-white">{job.salary}</div>
+  //                 <div className="text-sm text-gray-500 dark:text-gray-400">{job.location}</div>
+  //               </div>
+  //               <button
+  //                 className="px-4 py-2 rounded-full border border-gray-200 dark:border-gray-700 
+  //                          bg-white dark:bg-gray-900"
+  //               >
+  //                 View Details
+  //               </button>
+  //             </footer>
+  //           </div>
+  //         </SwiperSlide>
+  //       ))}
+  //     </Swiper>
+  <Swiper
+  modules={[Autoplay, Navigation]}
+  spaceBetween={20}
+  slidesPerView="auto"
+  autoplay={{
+    delay: 3000,
+    disableOnInteraction: false,
+    pauseOnMouseEnter: true,
+  }}
+  loop={true}
+  speed={800}
+  grabCursor={true}
+  className="job-swiper !overflow-visible"
+>
+  {jobs.map((job, index) => (
+    <SwiperSlide
+      key={index}
+      className="!w-[calc(100%-20px)] sm:!w-[calc(50%-20px)] md:!w-[calc(33.333%-20px)] lg:!w-[calc(25%-20px)]"
+    >
+      <div
+        className="h-full w-full relative bg-white dark:bg-gray-900 rounded-[24px] p-5 border border-gray-200 
+        dark:border-gray-800 hover:bg-[#e3dafb] dark:hover:bg-purple-900/20 
+        transition-all duration-300 group"
+      >
+        <header className="flex flex-row items-center justify-between">
+          <div className="flex flex-wrap items-center gap-1 sm:gap-2">
+            <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">{job.postedTime}</span>
+            {job.isNew && (
+              <span className="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm bg-purple-100 text-purple-700 opacity-0 group-hover:opacity-100 transition-opacity">
+                New
+              </span>
+            )}
+            {job.featured && (
+              <span className="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm bg-orange-100 text-orange-700 opacity-0 group-hover:opacity-100 transition-opacity ml-1 sm:ml-2">
+                Featured
+              </span>
+            )}
+          </div>
+          <button
+            className="p-1.5 sm:p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            aria-label="Bookmark job"
+          >
+            <Bookmark className="h-3 w-3 sm:h-4 sm:w-4 text-gray-500 dark:text-gray-400" />
+          </button>
+        </header>
+        <div className="space-y-4 mt-4">
+          <div className="flex items-start gap-3">
+            <div className="h-10 w-10 rounded-full bg-white border border-gray-200 dark:border-gray-700 flex items-center justify-center overflow-hidden">
+              <img
+                src={job.logo || "/placeholder.svg?height=24&width=24"}
+                alt={`${job.company} logo`}
+                width={24}
+                height={24}
+                className="w-6 h-6 object-contain"
+              />
+            </div>
+            <div>
+              <h3 className="font-semibold text-gray-900 dark:text-white">{job.title}</h3>
+              <p className="text-sm text-gray-500 dark:text-gray-400">{job.company}</p>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-1 sm:gap-2">
+            {job.tags.map((tag) => (
+              <span
+                key={tag}
+                className="px-2 py-1 sm:px-3 text-xs sm:text-sm rounded-full border border-gray-200 dark:border-gray-700
+                         bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 
+                         group-hover:bg-white/50 dark:group-hover:bg-gray-800/50"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+        <footer className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mt-4 bg-white dark:bg-gray-900 rounded-b-[24px] -mx-5 -mb-5 p-5 border-t border-gray-100 dark:border-gray-800">
+          <div>
+            <div className="font-semibold text-gray-900 dark:text-white">{job.salary}</div>
+            <div className="text-sm text-gray-500 dark:text-gray-400">{job.location}</div>
+          </div>
+          <button
+            className="w-full sm:w-auto px-3 py-1.5 sm:px-4 sm:py-2 text-sm rounded-full border border-gray-200 dark:border-gray-700 
+                     bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+          >
+            View Details
+          </button>
+        </footer>
       </div>
-      <buttonbutton className="rounded-full border border-black px-4 py-1 text-sm hover:bg-gray-200 transition">
-        View Details
-      </buttonbutton>
-    </div>
-  );
+    </SwiperSlide>
+  ))}
+</Swiper>
+    )
+  }
+  
+  // const Jobdiv = ({ index }) => (
+  //   <div
+  //     className={`p-6 w-full border border-gray-300 rounded-lg shadow-sm bg-white ${
+  //       index % 2 === 0 ? "bg-purple-50" : ""
+  //     }`}
+  //   >
+  //     <JobdivHeader />
+  //     <JobdivBody />
+  //     <JobTags />
+  //     <JobdivFooter />
+  //   </div>
+  // );
+  
+  // const JobdivHeader = () => (
+  //   <div className="flex justify-between items-start mb-4">
+  //     <span className="text-sm text-gray-500">1 day ago</span>
+  //     <button className="text-gray-400 hover:text-gray-600">⭐</button>
+  //   </div>
+  // );
+  
+  // const JobdivBody = () => (
+  //   <div className="flex items-start gap-3 mb-4">
+  //     <div className="h-10 w-10 rounded-full bg-black flex items-center justify-center">
+  //       <img
+  //         src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/imgimg-SQEqmRbwyTPSYMKjILQNjsZmQ9UvaW.png"
+  //         alt="Amazon"
+  //         className="h-6 w-6"
+  //       />
+  //     </div>
+  //     <div>
+  //       <h3 className="font-semibold">Sr. UX Designer</h3>
+  //       <p className="text-sm text-gray-500">Amazon</p>
+  //     </div>
+  //   </div>
+  // );
+  
+  // const JobTags = () => (
+  //   <div className="flex flex-wrap gap-2 mb-4">
+  //     {["Full time", "Remote", "Intermediate", "Project Work"].map((tag) => (
+  //       <span
+  //         key={tag}
+  //         className="px-2 py-1 border rounded-full text-xs font-normal text-gray-600"
+  //       >
+  //         {tag}
+  //       </span>
+  //     ))}
+  //   </div>
+  // );
+  
+  // const JobdivFooter = () => (
+  //   <div className="flex items-center justify-between mt-4">
+  //     <div>
+  //       <div className="font-semibold">$260/hr</div>
+  //       <div className="text-sm text-gray-500">Davis, CA, USA</div>
+  //     </div>
+  //     <buttonbutton className="rounded-full border border-black px-4 py-1 text-sm hover:bg-gray-200 transition">
+  //       View Details
+  //     </buttonbutton>
+  //   </div>
+  // );
   
   const ResumeFeatureSection = () => (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-white px-4 sm:px-6 lg:px-8 py-10">
+    <div className="flex ms-auto me-auto z-1  flex-col w-[70%] items-center justify-center bg-white dark:bg-gray-900 px-4 sm:px-6 lg:px-10 py-10 rounded-lg shadow-md border border-gray-200 dark:border-gray-800">
+    <div className="text-center w-full max-w-xl p-6  ">
+      {/* Header Section */}
       <ResumeFeatureHeader />
+
+      {/* Image Container */}
       <ResumeFeatureimgContainer />
+
+      {/* Resume Builder Section */}
       <ResumeBuilderSection />
-      <buttonbutton className="mt-6 px-6 py-3 bg-black text-white rounded-lg shadow-lg hover:bg-gray-800 transition">
-        Get Started →
-      </buttonbutton>
+
+      {/* Button */}
+      <button className="mt-6 ms-auto me-auto px-8 py-4 bg-black text-white text-sm font-medium rounded-full border border-gray-400 hover:bg-gray-800 transition-colors duration-200 shadow-md flex items-center justify-center gap-2">
+        Get Started <span className="ml-1">&gt;</span>
+      </button>
     </div>
+  </div>
   );
   
+  
   const ResumeFeatureHeader = () => (
-    <div className="text-center">
+    <div className="text-center ">
       <p className="text-sm text-gray-500 font-semibold uppercase">New feature</p>
       <h1 className="text-3xl font-bold mt-2">Resume leveled up</h1>
       <p className="text-gray-600 mt-2">Showcase your skills the better way</p>
     </div>
   );
-  
- 
-  
-  
-  
   const ResumeFeatureimgContainer = () => (
-    <div className="relative mt-10 mb-10 flex flex-col items-center justify-center gap-4 lg:flex-row lg:items-start">
-      {/* Main Preview img */}
-      <img
-        src="https://via.placeholder.com/425x225"
-        alt="Main Preview"
-        className="w-[300px] lg:w-[425px] h-[150px] lg:h-[225px] rounded-lg shadow-lg border border-gray-200"
-      />
-  
-      {/* Side img 1 (positioned at bottom-left on medium and larger screens) */}
-      <img
-        src="https://imgimgs.com/2"
-        alt="Side img 1"
-        className="w-[120px] lg:w-[150px] h-[70px] lg:h-[80px] rounded-lg shadow-md border border-gray-200 
+    <div className="relative mt-10 mb-10 flex flex-col items-center justify-center gap-4 lg:flex-row lg:items-start ">
+   <img
+        src={imges}
+        alt="SideImage 1"
+        className="w-[120px] lg:w-[150px] h-[70px] lg:h-[80px] rounded-2xl shadow-md border border-gray-200 
             mt-4 lg:mt-0 md:absolute md:left-[-135px] md:bottom-[-55px] lg:block"
       />
-  
-      {/* Side img 2 (Stacked below img 1 on small screens, positioned at top-right on medium and larger screens) */}
+
+      {/* Main Preview Image */}
       <img
-        src="https://imgimgs.com/2"
-        alt="Side img 2"
-        className="w-[120px] lg:w-[150px] h-[70px] lg:h-[80px] rounded-lg shadow-md border border-gray-200 
+        src={imges}
+        alt="Main Preview"
+        className="w-[300px] lg:w-[425px] h-[150px] lg:h-[225px] rounded-2xl shadow-lg border border-gray-200 "
+      />
+  
+      {/* Side Image 1 (positioned at bottom-left on medium and larger screens) */}
+   
+  
+      {/* Side Image 2 (Stacked below Image 1 on small screens, positioned at top-right on medium and larger screens) */}
+      <img
+        src={imges}
+        alt="SideImage "
+        className="w-[120px] lg:w-[150px] h-[70px] lg:h-[80px] rounded-2xl shadow-md border border-gray-200 
             mt-4 lg:mt-0 md:absolute md:right-[-135px] md:top-[-55px] lg:block"
       />
     </div>
   );
-  
   const ResumeBuilderSection = () => (
     <div className="text-center mt-10">
       <h2 className="text-2xl font-semibold">Resume Builder</h2>
@@ -1543,24 +2120,29 @@ const Home = () => {
   );
   
   const EmailSignupSection = () => (
-    <div className="flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-white">
-      <h2 className="text-2xl font-bold text-gray-900">
-        Signup for new Job alerts
-      </h2>
-      <p className="text-gray-600 mt-2 text-sm">
-        We will only send you 1 email / day
-      </p>
-      <div className="relative mt-6 w-full max-w-md">
-        <inputinput
+    <div className="flex flex-col items-center justify-center w-full py-12 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900 flex ms-auto me-auto  flex-col p-2 z-2  mb-6  items-center justify-center bg-white dark:bg-gray-900 px-4 sm:px-6 lg:px-10 py-10 rounded-lg shadow-md border border-gray-200 dark:border-gray-800">
+    <h2 className="text-3xl font-semibold text-gray-900 dark:text-white text-center">Signup for new Job alerts</h2>
+    <p className="text-gray-600 dark:text-gray-400 mt-2 text-sm text-center">We will only send you 1 email / day</p>
+
+    <div className="w-full max-w-xl">
+      <form  className="relative">
+        <input
           type="email"
           placeholder="Enter your email here..."
-          className="w-full pl-4 pr-28 py-3 rounded-full bg-black text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+      
+          className="w-full h-[50px] pl-6 pr-36 py-3 rounded-full bg-black text-white placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-purple-400 text-base"
+          required
         />
-        <buttonbutton className="absolute right-1 top-1 bottom-1 px-5 bg-purple-500 text-white text-sm font-semibold rounded-full hover:bg-purple-600 transition">
-          Get Started &gt;
-        </buttonbutton>
-      </div>
+        <button
+          type="submit"
+          className="absolute right-[3px] top-[6px] bottom-[6px] px-5 py-2 bg-purple-500 text-white font-medium rounded-full hover:bg-purple-600 transition flex items-center justify-center"
+          style={{ minWidth: "140px" }}
+        >
+          <span className="whitespace-nowrap">Get Started &gt;</span>
+        </button>
+      </form>
     </div>
+  </div>
   
   
 

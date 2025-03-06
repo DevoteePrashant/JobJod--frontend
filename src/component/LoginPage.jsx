@@ -1,114 +1,142 @@
-import React from "react";
-import { FaLinkedin } from "react-icons/fa6";
-import { FaFacebook } from "react-icons/fa6";
-import { FaGoogle } from "react-icons/fa";
-import img from "../image/login.png";
-import { Link } from 'react-router-dom';
+"use client"
+import { useState } from "react"
 
-const LoginPage = () => {
+import { ArrowLeft, Phone } from "lucide-react"
+import { Link } from "react-router-dom"
+import logo2 from '../image/login.png'
+
+
+export default function LoginPage() {
+  const [otp, setOtp] = useState(Array(7).fill(""))
+  const [mobileNumber, setMobileNumber] = useState("")
+
+  const handleOtpChange = (index, value) => {
+    if (value.length <= 1) {
+      const newOtp = [...otp]
+      newOtp[index] = value
+      setOtp(newOtp)
+
+      // Auto-focus next input after entering a digit
+      if (value !== "" && index < 6) {
+        const nextInput = document.getElementById(`otp-${index + 1}`)
+        if (nextInput) {
+          nextInput.focus()
+        }
+      }
+    }
+  }
+
+  const handleMobileNumberChange = e => {
+    setMobileNumber(e.target.value)
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    // Handle form submission logic here
+    console.log("Mobile Number:", mobileNumber)
+    console.log("OTP:", otp.join(""))
+  }
+
   return (
-    <div className="bg-black min-h-screen flex items-center justify-center p-4 sm:p-8 md:p-20">
-      <div className="container mx-auto">
-        <div className="flex flex-col md:flex-row shadow-lg bg-white rounded-lg overflow-hidden">
-          {/* Left Image Section */}
-          <div className="hidden md:block md:w-4/5">
-            <img
-              src={img}
-              alt="Login Illustration"
-              className="h-full w-full object-cover"
-            />
+    <div className="relative w-full h-screen bg-gray-900 ">
+      {/* Background img */}
+      <div className="absolute inset-0 w-full h-full">
+        <img
+          src={logo2}
+          alt="Office space background"
+       className="opacity-60 body w-full h-full"
+            priority
+        />
+      </div>
+
+      {/* Modal Overlay */}
+      <div className="absolute inset-0 flex items-center justify-center p-4 ">
+        <div className="bg-white rounded-3xl shadow-xl w-full max-w-md p-8 relative">
+          {/* Back Button */}
+          <button className="absolute left-6 top-16 rounded-full p-1 hover:bg-gray-100">
+            <ArrowLeft size={20} />
+          </button>
+
+          {/* Header */}
+          <div className="text-center mb-8 mt-4">
+            <h1 className="text-2xl font-bold mb-1">Log in</h1>
+            <p className="text-sm text-gray-600">
+              Enter to continue and explore within your goal.
+            </p>
           </div>
 
-          {/* Right Form Section */}
-          <div className="bg-white p-6 sm:p-8 md:p-12 w-full md:w-1/2">
-            <h2 className="text-2xl font-bold text-gray-800">Log in</h2>
-            <p className="text-sm text-gray-600 mt-2">
-              Enter to continue and explore within your grasp.
-            </p>
-
-            <form className="mt-6 space-y-4">
-              {/* Email Input */}
-              <div>
-                <label htmlFor="email" className="sr-only">
-                  Email ID
-                </label>
+          <form onSubmit={handleSubmit}>
+            {/* Mobile Number Input */}
+            <div className="mb-6 relative">
+              <label
+                htmlFor="mobile"
+                className="block text-sm font-medium mb-2 text-gray-700"
+              >
+                Mobile Number
+              </label>
+              <div className="relative">
                 <input
-                  id="email"
-                  type="email"
-                  placeholder="Enter your Email ID"
-                  required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  id="mobile"
+                  type="tel"
+                  value={mobileNumber}
+                  onChange={handleMobileNumberChange}
+                  placeholder="Mobile Number"
+                  className="w-full h-12 px-4 border border-gray-200 rounded-md text-base outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                 />
+                <button
+                  type="button"
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black text-white rounded-full p-2"
+                >
+                  <Phone size={16} />
+                </button>
               </div>
+            </div>
 
-              {/* Password Input */}
-              <div>
-                <label htmlFor="password" className="sr-only">
-                  Password
-                </label>
-                <input
-                  id="password"
-                  type="password"
-                  placeholder="Enter your Password"
-                  required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-              </div>
-
-            
-
-              {/* Remember Me and Forgot Password */}
-              <div className="flex justify-between items-center text-sm">
-                <label className="flex items-center space-x-2">
+            {/* OTP Input */}
+            <div className="mb-6">
+              <label
+                htmlFor="otp-0"
+                className="block text-sm font-medium mb-2 text-gray-700"
+              >
+                Enter OTP
+              </label>
+              <div className="flex justify-between gap-2 relative">
+                {otp.map((digit, index) => (
                   <input
-                    type="checkbox"
-                    className="form-checkbox h-4 w-4 text-blue-600"
+                    key={index}
+                    id={`otp-${index}`}
+                    type="text"
+                    value={digit}
+                    onChange={e => handleOtpChange(index, e.target.value)}
+                    className="w-10 h-10 text-center border border-gray-200 rounded-md text-base bg-gray-50 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                    maxLength={1}
                   />
-                  <span>Remember Me</span>
-                </label>
-                <a href="##" className="text-gray-500 hover:underline">
-                  Forgot password?
-                </a>
+                ))}
+                {/* Center dot indicator */}
+                {/* The index variable was already declared in the map function. No changes needed here. */}
               </div>
+            </div>
 
-              {/* Submit Button */}
-              <button
-      type="submit"
-      class="w-full bg-blue-900 text-white py-2 rounded-md transition "
-    >
-      <Link to="/Jobseeker">Login to Continue</Link>
-    </button>
-            </form>
+            {/* Submit Button */}
+            <button
+              type="submit"
+              className="w-full h-12 bg-[#3b4a81] hover:bg-[#2e3b6e] text-white rounded-md text-base font-medium transition-colors duration-200 mt-6"
+            >
+              Submit
+            </button>
 
-            {/* Social Login */}
-                <div class="mt-6 flex flex-col items-center space-y-4 md:flex-row md:space-y-0 md:space-x-4">
-    <h3 class="font-bold text-blue-900">Login with</h3>
-    <button class="flex items-center space-x-2 px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300 transition">
-      <span class="text-blue-700"><FaLinkedin /></span>
-      <span>LinkedIn</span>
-    </button>
-    <button class="flex items-center space-x-2 px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300 transition">
-      <span class="text-blue-600"><FaFacebook /></span>
-      <span>Facebook</span>
-    </button>
-    <button class="flex items-center space-x-2 px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300 transition">
-      <span class="text-red-500"><FaGoogle /></span>
-      <span>Google</span>
-    </button>
-  </div>
-            {/* Signup Link */}
-            <p className="mt-6 text-center text-sm text-gray-600">
-            New Job Seeker ?{" "}
-            
-              <Link to="/Signup"  className="text-purple-700 font-bold hover:underline">
-              Sign up 
+            {/* Terms and Conditions */}
+            <p className="text-xs text-center mt-4 text-gray-600">
+              By clicking Submit, you agree to our{" "}
+              <Link href="/terms" className="text-red-500 hover:underline">
+                Terms and Conditions
               </Link>
             </p>
-          </div>
+          </form>
+
+         
         </div>
       </div>
     </div>
-  );
-};
-
-export default LoginPage;
+  )
+}

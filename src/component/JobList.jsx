@@ -4,6 +4,7 @@
 
 import { MapPin, Clock } from "lucide-react"
 import icon from "../image/icon.png"
+import { Link } from "react-router-dom"
 export default function JobList({ jobs }) {
   return (
     <main className="w-full lg:w-1/2 space-y-4 mt-12">
@@ -19,43 +20,59 @@ export default function JobList({ jobs }) {
 
       <div className="space-y-4">
         {jobs.map((job) => (
-          <article key={job.id} className="bg-white rounded-lg shadow-md p-6">
-            <div className="flex items-start gap-4">
-              <img
-                src={icon}
-                alt={job.company.name}
-                width={40}
-                height={40}
-                className="rounded-md"
-              />
-              <div className="flex-1">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <h3 className="text-lg font-semibold">{job.title}</h3>
-                    <p className="text-gray-600">{job.company.name}</p>
+          <Link to="/Singlejobview" key={job.id} className="block transition-transform hover:translate-y-[-2px]">
+            <article className="bg-white rounded-lg shadow-md p-4 md:p-6 border border-gray-100">
+              <div className="flex flex-col md:flex-row md:items-start gap-4">
+                <img
+                    src={icon}
+                    alt={job.company.name}
+                    width={40}
+                    height={40}
+                    className="rounded-md"
+                />
+
+                <div className="flex-1">
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-0">
+                    <div className="flex items-center gap-3 md:block">
+                      <img
+                        src={job.company.icon || "/placeholder.svg"}
+                        alt={`${job.company.name} logo`}
+                        width={32}
+                        height={32}
+                        className="rounded-md md:hidden"
+                      />
+                      <div>
+                        <h3 className="text-lg font-semibold">{job.title}</h3>
+                        <p className="text-gray-600 text-sm">{job.company.name}</p>
+                      </div>
+                    </div>
+
+                    {job.isNew && (
+                      <span className="px-3 py-1 text-xs font-medium text-purple-700 bg-purple-100 rounded-full w-fit h-fit">
+                        New post
+                      </span>
+                    )}
                   </div>
-                  {job.isNew && (
-                    <span className="px-2 py-1 text-xs font-medium text-purple-700 bg-purple-100 rounded-full">
-                      New post
-                    </span>
-                  )}
+
+                  <div className="mt-3 flex flex-wrap items-center gap-3 text-sm text-gray-500">
+                    <div className="flex items-center gap-1">
+                      <MapPin className="w-4 h-4" />
+                      <span>{job.location}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Clock className="w-4 h-4" />
+                      <span>{job.type}</span>
+                    </div>
+                    <div className="font-medium text-gray-900">${job.salary}</div>
+                  </div>
+
+                  <p className="mt-3 text-gray-600 line-clamp-2 md:line-clamp-none">{job.description}</p>
+
+                  <div className="mt-3 text-sm text-gray-500">Posted {job.postedAt}</div>
                 </div>
-                <div className="mt-2 flex items-center gap-4 text-sm text-gray-500">
-                  <div className="flex items-center gap-1">
-                    <MapPin className="w-4 h-4" />
-                    {job.location}
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Clock className="w-4 h-4" />
-                    {job.type}
-                  </div>
-                  <div className="font-medium text-gray-900">${job.salary}</div>
-                </div>
-                <p className="mt-2 text-gray-600">{job.description}</p>
-                <div className="mt-4 text-sm text-gray-500">Posted {job.postedAt}</div>
               </div>
-            </div>
-          </article>
+            </article>
+          </Link>
         ))}
       </div>
 

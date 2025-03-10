@@ -7,6 +7,7 @@ import Navbar from "./Navbar"
 import Group from '../image/Group.svg';
 import Footer from "./Footer"
 export default function JobListingPage() {
+
   // Job data
   const jobs = [
     {

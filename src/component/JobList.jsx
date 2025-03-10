@@ -2,20 +2,80 @@
 
 
 
-import { MapPin, Clock } from "lucide-react"
+import { MapPin, Clock, ChevronDown } from "lucide-react"
 import icon from "../image/icon.png"
 import { Link } from "react-router-dom"
+import { useState } from "react";
 export default function JobList({ jobs }) {
+  const options = ["Most Recent", "Highest Paid", "Most Relevant"];
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const toggleDropdown = () => setIsOpen(!isOpen);
+
+  const selectOption = (option) => {
+    setSelectedOption(option);
+    setIsOpen(false);
+  };
   return (
     <main className="w-full lg:w-1/2 space-y-4 mt-12">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-xl font-semibold">3177 Jobs</h1>
-        <select className="form-select border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500">
-          <option>Filter by</option>
-          <option>Most recent</option>
-          <option>Highest paid</option>
-          <option>Most relevant</option>
-        </select>
+           <div className="flex justify-end">
+        <div className="relative">
+          <button
+            className="flex items-center justify-between p-2 sm:p-3 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-50 transition-colors"
+            onClick={toggleDropdown}
+            aria-expanded={isOpen}
+            aria-haspopup="true"
+          >
+            <div className="flex items-center gap-2 sm:gap-3">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+              >
+                <path
+                  d="M3 6H21M6 12H18M10 18H14"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <span className="text-sm sm:text-lg font-medium">
+                {selectedOption ? `Filter by: ${selectedOption}` : "Filter by"}
+              </span>
+            </div>
+            <ChevronDown
+              className={`h-5 w-5 transition-transform duration-200 ${
+                isOpen ? "rotate-180" : ""
+              }`}
+            />
+          </button>
+
+          {isOpen && (
+            <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg">
+              <ul className="py-1" role="menu" aria-orientation="vertical">
+                {options.map((option) => (
+                  <li key={option}>
+                    <button
+                      className={`w-full text-left px-4 py-2 hover:bg-gray-50 ${
+                        selectedOption === option ? "bg-gray-50 font-medium" : ""
+                      }`}
+                      onClick={() => selectOption(option)}
+                      role="menuitem"
+                    >
+                      {option}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
       </div>
 
       <div className="space-y-4">

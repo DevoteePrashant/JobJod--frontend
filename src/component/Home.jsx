@@ -1194,7 +1194,7 @@ const Home = () => {
       <>
         <main className=" bg-gradient-to-br">
           <HeroSection />
-          <div className="w-[100%] mx-auto mt-4">
+          <div className="w-[100%] mx-auto ">
             <JobListingsSection />
             <div className="w-[87%] mx-auto">
             <LogoSlider />
@@ -1667,331 +1667,245 @@ export function Sidebar() {
   )
 }
   
-  const JobListingsSection = () =>  {
-    const scrollContainerRef = useRef(null)
-    const [isDragging, setIsDragging] = useState(false)
-    const [startX, setStartX] = useState(0)
-    const [scrollLeft, setScrollLeft] = useState(0)
+//   const JobListingsSection = () =>  {
+//     const scrollContainerRef = useRef(null)
+//     const [isDragging, setIsDragging] = useState(false)
+//     const [startX, setStartX] = useState(0)
+//     const [scrollLeft, setScrollLeft] = useState(0)
   
-    const handleMouseDown = (e) => {
-      setIsDragging(true)
-      setStartX(e.pageX - scrollContainerRef.current.offsetLeft)
-      setScrollLeft(scrollContainerRef.current.scrollLeft)
-    }
+//     const handleMouseDown = (e) => {
+//       setIsDragging(true)
+//       setStartX(e.pageX - scrollContainerRef.current.offsetLeft)
+//       setScrollLeft(scrollContainerRef.current.scrollLeft)
+//     }
   
-    const handleMouseMove = (e) => {
-      if (!isDragging) return
-      e.preventDefault()
+//     const handleMouseMove = (e) => {
+//       if (!isDragging) return
+//       e.preventDefault()
   
-      const x = e.pageX - scrollContainerRef.current.offsetLeft
-      const walk = (x - startX) * 2
-      scrollContainerRef.current.scrollLeft = scrollLeft - walk
-    }
+//       const x = e.pageX - scrollContainerRef.current.offsetLeft
+//       const walk = (x - startX) * 2
+//       scrollContainerRef.current.scrollLeft = scrollLeft - walk
+//     }
   
-    const handleMouseUp = () => {
-      setIsDragging(false)
-    }
+//     const handleMouseUp = () => {
+//       setIsDragging(false)
+//     }
   
-    const handleMouseLeave = () => {
-      setIsDragging(false)
-    }
+//     const handleMouseLeave = () => {
+//       setIsDragging(false)
+//     }
   
-    const handleTouchStart = (e) => {
-      setIsDragging(true)
-      setStartX(e.touches[0].pageX - scrollContainerRef.current.offsetLeft)
-      setScrollLeft(scrollContainerRef.current.scrollLeft)
-    }
+//     const handleTouchStart = (e) => {
+//       setIsDragging(true)
+//       setStartX(e.touches[0].pageX - scrollContainerRef.current.offsetLeft)
+//       setScrollLeft(scrollContainerRef.current.scrollLeft)
+//     }
   
-    const handleTouchMove = (e) => {
-      if (!isDragging) return
+//     const handleTouchMove = (e) => {
+//       if (!isDragging) return
   
-      const x = e.touches[0].pageX - scrollContainerRef.current.offsetLeft
-      const walk = (x - startX) * 2
-      scrollContainerRef.current.scrollLeft = scrollLeft - walk
-    }
+//       const x = e.touches[0].pageX - scrollContainerRef.current.offsetLeft
+//       const walk = (x - startX) * 2
+//       scrollContainerRef.current.scrollLeft = scrollLeft - walk
+//     }
   
-    const handleTouchEnd = () => {
-      setIsDragging(false)
-    }
+//     const handleTouchEnd = () => {
+//       setIsDragging(false)
+//     }
   
-    const jobs = [
+//     const jobs = [
    
-    // Duplicate job for demo
-    {
-      title: "Product Designer",
-      company: "Google",
-      location: "Mountain View, CA",
-      salary: "$240/hr",
-      tags: ["Full time", "On-site", "Senior"],
-      postedTime: "2 days ago",
-      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
-      isNew: true,
+//     // Duplicate job for demo
+//     {
+//       title: "Product Designer",
+//       company: "Google",
+//       location: "Mountain View, CA",
+//       salary: "$240/hr",
+//       tags: ["Full time", "On-site", "Senior"],
+//       postedTime: "2 days ago",
+//       logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+//       isNew: true,
    
-    },
-    {
-      title: "UI Engineer",
-      company: "Microsoft",
-      location: "Seattle, WA",
-      salary: "$220/hr",
-      tags: ["Contract", "Hybrid", "Senior"],
-      postedTime: "3 days ago",
-      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
-      featured: true,
-    },
-    {
-      title: "UX Researcher",
-      company: "Apple",
-      location: "Cupertino, CA",
-      salary: "$200/hr",
-      tags: ["Full time", "Remote", "Senior"],
-      postedTime: "4 days ago",
-      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
-      isNew: true,
-    },
-    {
-      title: "UI Engineer",
-      company: "Microsoft",
-      location: "Seattle, WA",
-      salary: "$220/hr",
-      tags: ["Contract", "Hybrid", "Senior"],
-      postedTime: "3 days ago",
-      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
-      isNew: true,
-    },
-    {
-      title: "Product Designer",
-      company: "Google",
-      location: "Mountain View, CA",
-      salary: "$240/hr",
-      tags: ["Full time", "On-site", "Senior"],
-      postedTime: "2 days ago",
-      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
-      featured: true,
-    },
+//     },
+//     {
+//       title: "UI Engineer",
+//       company: "Microsoft",
+//       location: "Seattle, WA",
+//       salary: "$220/hr",
+//       tags: ["Contract", "Hybrid", "Senior"],
+//       postedTime: "3 days ago",
+//       logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+//       featured: true,
+//     },
+//     {
+//       title: "UX Researcher",
+//       company: "Apple",
+//       location: "Cupertino, CA",
+//       salary: "$200/hr",
+//       tags: ["Full time", "Remote", "Senior"],
+//       postedTime: "4 days ago",
+//       logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+//       isNew: true,
+//     },
+//     {
+//       title: "UI Engineer",
+//       company: "Microsoft",
+//       location: "Seattle, WA",
+//       salary: "$220/hr",
+//       tags: ["Contract", "Hybrid", "Senior"],
+//       postedTime: "3 days ago",
+//       logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+//       isNew: true,
+//     },
+//     {
+//       title: "Product Designer",
+//       company: "Google",
+//       location: "Mountain View, CA",
+//       salary: "$240/hr",
+//       tags: ["Full time", "On-site", "Senior"],
+//       postedTime: "2 days ago",
+//       logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+//       featured: true,
+//     },
     
-    {
-      title: "UX Researcher",
-      company: "Apple",
-      location: "Cupertino, CA",
-      salary: "$200/hr",
-      tags: ["Full time", "Remote", "Senior"],
-      postedTime: "4 days ago",
-      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
-      isNew: true,
-    },
-    {
-      title: "UI Engineer",
-      company: "Microsoft",
-      location: "Seattle, WA",
-      salary: "$220/hr",
-      tags: ["Contract", "Hybrid", "Senior"],
-      postedTime: "3 days ago",
-      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
-      isNew: true,
-      featured: true,
-    },
-    {
-      title: "UX Researcher",
-      company: "Apple",
-      location: "Cupertino, CA",
-      salary: "$200/hr",
-      tags: ["Full time", "Remote", "Senior"],
-      postedTime: "4 days ago",
-      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
-      isNew: true,
-    },
-    {
-      title: "UI Engineer",
-      company: "Microsoft",
-      location: "Seattle, WA",
-      salary: "$220/hr",
-      tags: ["Contract", "Hybrid", "Senior"],
-      postedTime: "3 days ago",
-      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
-      isNew: true,
-    },
-    ]
+//     {
+//       title: "UX Researcher",
+//       company: "Apple",
+//       location: "Cupertino, CA",
+//       salary: "$200/hr",
+//       tags: ["Full time", "Remote", "Senior"],
+//       postedTime: "4 days ago",
+//       logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+//       isNew: true,
+//     },
+//     {
+//       title: "UI Engineer",
+//       company: "Microsoft",
+//       location: "Seattle, WA",
+//       salary: "$220/hr",
+//       tags: ["Contract", "Hybrid", "Senior"],
+//       postedTime: "3 days ago",
+//       logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+//       isNew: true,
+//       featured: true,
+//     },
+//     {
+//       title: "UX Researcher",
+//       company: "Apple",
+//       location: "Cupertino, CA",
+//       salary: "$200/hr",
+//       tags: ["Full time", "Remote", "Senior"],
+//       postedTime: "4 days ago",
+//       logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+//       isNew: true,
+//     },
+//     {
+//       title: "UI Engineer",
+//       company: "Microsoft",
+//       location: "Seattle, WA",
+//       salary: "$220/hr",
+//       tags: ["Contract", "Hybrid", "Senior"],
+//       postedTime: "3 days ago",
+//       logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+//       isNew: true,
+//     },
+//     ]
   
-    return (
-  // <Swiper
-  //       modules={[Autoplay, Navigation]}
-  //       spaceBetween={20}
-  //       slidesPerView={1}
-  //       navigation={true}
-  //       autoplay={{
-  //         delay: 3000,
-  //         disableOnInteraction: false,
-  //       }}
-  //       breakpoints={{
-  //         640: {
-  //           slidesPerView: 2,
-  //         },
-  //         1024: {
-  //           slidesPerView: 3,
-  //         },
-  //       }}
-  //       className="job-swiper"
-  //     >
-  //       {jobs.map((job, index) => (
-  //         <SwiperSlide key={index}>
-  //           <div
-  //             className="h-full w-full relative bg-white dark:bg-gray-900 rounded-[24px] p-5 border border-gray-200 
-  //             dark:border-gray-800 hover:bg-[#e3dafb] dark:hover:bg-purple-900/20 
-  //             transition-all duration-300 group"
-  //           >
-  //             <header className="flex flex-row items-center justify-between">
-  //               <div className="flex items-center gap-2">
-  //                 <span className="text-sm text-gray-500 dark:text-gray-400">{job.postedTime}</span>
-  //                 {job.isNew && (
-  //                   <span className="px-3 py-1 rounded-full text-sm bg-purple-100 text-purple-700 opacity-0 group-hover:opacity-100 transition-opacity">
-  //                     New
-  //                   </span>
-  //                 )}
-  //                 {job.featured && (
-  //                   <span className="px-3 py-1 rounded-full text-sm bg-orange-100 text-orange-700 opacity-0 group-hover:opacity-100 transition-opacity ml-2">
-  //                     Featured
-  //                   </span>
-  //                 )}
-  //               </div>
-  //               <button className="p-2 rounded-full">
-  //                 <Bookmark className="h-4 w-4 text-[#4B5563]" />
-  //               </button>
-  //             </header>
-  //             <div className="space-y-4 mt-4">
-  //               <div className="flex items-start gap-3">
-  //                 <div className="h-10 w-10 rounded-full bg-white border border-gray-200 flex items-center justify-center overflow-hidden">
-  //                   <img
-  //                     src={job.logo || "/placeholder.svg"}
-  //                     alt={`${job.company} logo`}
-  //                     className="w-6 h-6 object-contain"
-  //                   />
-  //                 </div>
-  //                 <div>
-  //                   <h3 className="font-semibold text-gray-900 dark:text-white">{job.title}</h3>
-  //                   <p className="text-sm text-gray-500 dark:text-gray-400">{job.company}</p>
-  //                 </div>
-  //               </div>
-  //               <div className="flex flex-wrap gap-2">
-  //                 {job.tags.map((tag) => (
-  //                   <span
-  //                     key={tag}
-  //                     className="px-3 py-1 rounded-full text-sm border border-gray-200 dark:border-gray-700
-  //                              bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 
-  //                              group-hover:bg-white/50 dark:group-hover:bg-gray-800/50"
-  //                   >
-  //                     {tag}
-  //                   </span>
-  //                 ))}
-  //               </div>
-  //             </div>
-  //             <footer className="flex items-center justify-between mt-4 bg-white dark:bg-gray-900 rounded-b-[24px] -mx-5 -mb-5 p-5">
-  //               <div>
-  //                 <div className="font-semibold text-gray-900 dark:text-white">{job.salary}</div>
-  //                 <div className="text-sm text-gray-500 dark:text-gray-400">{job.location}</div>
-  //               </div>
-  //               <button
-  //                 className="px-4 py-2 rounded-full border border-gray-200 dark:border-gray-700 
-  //                          bg-white dark:bg-gray-900"
-  //               >
-  //                 View Details
-  //               </button>
-  //             </footer>
-  //           </div>
-  //         </SwiperSlide>
-  //       ))}
-  //     </Swiper>
-  <Swiper
-  modules={[Autoplay, Navigation]}
-  spaceBetween={20}
-  slidesPerView="auto"
-  autoplay={{
-    delay: 3000,
-    disableOnInteraction: false,
-    pauseOnMouseEnter: true,
-  }}
-  loop={true}
-  speed={800}
-  grabCursor={true}
-  className="job-swiper !overflow-visible"
->
-  {jobs.map((job, index) => (
-    <SwiperSlide
-      key={index}
-      className="!w-[calc(100%-20px)] sm:!w-[calc(50%-20px)] md:!w-[calc(33.333%-20px)] lg:!w-[calc(25%-20px)]"
-    >
-      <div
-        className="h-full w-full relative bg-white dark:bg-gray-900 rounded-[24px] p-5 border border-gray-200 
-        dark:border-gray-800 hover:bg-[#e3dafb] dark:hover:bg-purple-900/20 
-        transition-all duration-300 group"
-      >
-        <header className="flex flex-row items-center justify-between">
-          <div className="flex flex-wrap items-center gap-1 sm:gap-2">
-            <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">{job.postedTime}</span>
-            {job.isNew && (
-              <span className="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm bg-purple-100 text-purple-700 opacity-0 group-hover:opacity-100 transition-opacity">
-                New
-              </span>
-            )}
-            {job.featured && (
-              <span className="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm bg-orange-100 text-orange-700 opacity-0 group-hover:opacity-100 transition-opacity ml-1 sm:ml-2">
-                Featured
-              </span>
-            )}
-          </div>
-          <button
-            className="p-1.5 sm:p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-            aria-label="Bookmark job"
-          >
-            <Bookmark className="h-3 w-3 sm:h-4 sm:w-4 text-gray-500 dark:text-gray-400" />
-          </button>
-        </header>
-        <div className="space-y-4 mt-4">
-          <div className="flex items-start gap-3">
-            <div className="h-10 w-10 rounded-full bg-white border border-gray-200 dark:border-gray-700 flex items-center justify-center overflow-hidden">
-              <img
-                src={job.logo || "/placeholder.svg?height=24&width=24"}
-                alt={`${job.company} logo`}
-                width={24}
-                height={24}
-                className="w-6 h-6 object-contain"
-              />
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-900 dark:text-white">{job.title}</h3>
-              <p className="text-sm text-gray-500 dark:text-gray-400">{job.company}</p>
-            </div>
-          </div>
-          <div className="flex flex-wrap gap-1 sm:gap-2">
-            {job.tags.map((tag) => (
-              <span
-                key={tag}
-                className="px-2 py-1 sm:px-3 text-xs sm:text-sm rounded-full border border-gray-200 dark:border-gray-700
-                         bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 
-                         group-hover:bg-white/50 dark:group-hover:bg-gray-800/50"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-        <footer className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mt-4 bg-white dark:bg-gray-900 rounded-b-[24px] -mx-5 -mb-5 p-5 border-t border-gray-100 dark:border-gray-800">
-          <div>
-            <div className="font-semibold text-gray-900 dark:text-white">{job.salary}</div>
-            <div className="text-sm text-gray-500 dark:text-gray-400">{job.location}</div>
-          </div>
-          <button
-            className="w-full sm:w-auto px-3 py-1.5 sm:px-4 sm:py-2 text-sm rounded-full border border-gray-200 dark:border-gray-700 
-                     bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-          >
-            View Details
-          </button>
-        </footer>
-      </div>
-    </SwiperSlide>
-  ))}
-</Swiper>
-    )
-  }
+//     return (
+  
+//   <Swiper
+//   modules={[Autoplay, Navigation]}
+//   spaceBetween={20}
+//   slidesPerView="auto"
+//   autoplay={{
+//     delay: 3000,
+//     disableOnInteraction: false,
+//     pauseOnMouseEnter: true,
+//   }}
+//   loop={true}
+//   speed={800}
+//   grabCursor={true}
+//   className="job-swiper !overflow-visible"
+// >
+//   {jobs.map((job, index) => (
+//     <SwiperSlide
+//       key={index}
+//       className="!w-[calc(100%-20px)] sm:!w-[calc(50%-20px)] md:!w-[calc(33.333%-20px)] lg:!w-[calc(25%-20px)]"
+//     >
+//       <div
+//         className="h-full w-full relative bg-white dark:bg-gray-900 rounded-[24px] p-5 border border-gray-200 
+//         dark:border-gray-800 hover:bg-[#e3dafb] dark:hover:bg-purple-900/20 
+//         transition-all duration-300 group"
+//       >
+//         <header className="flex flex-row items-center justify-between">
+//           <div className="flex flex-wrap items-center gap-1 sm:gap-2">
+//             <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">{job.postedTime}</span>
+//             {job.isNew && (
+//               <span className="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm bg-purple-100 text-purple-700 opacity-0 group-hover:opacity-100 transition-opacity">
+//                 New
+//               </span>
+//             )}
+//             {job.featured && (
+//               <span className="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm bg-orange-100 text-orange-700 opacity-0 group-hover:opacity-100 transition-opacity ml-1 sm:ml-2">
+//                 Featured
+//               </span>
+//             )}
+//           </div>
+//           <button
+//             className="p-1.5 sm:p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+//             aria-label="Bookmark job"
+//           >
+//             <Bookmark className="h-3 w-3 sm:h-4 sm:w-4 text-gray-500 dark:text-gray-400" />
+//           </button>
+//         </header>
+//         <div className="space-y-4 mt-4">
+//           <div className="flex items-start gap-3">
+//             <div className="h-10 w-10 rounded-full bg-white border border-gray-200 dark:border-gray-700 flex items-center justify-center overflow-hidden">
+//               <img
+//                 src={job.logo || "/placeholder.svg?height=24&width=24"}
+//                 alt={`${job.company} logo`}
+//                 width={24}
+//                 height={24}
+//                 className="w-6 h-6 object-contain"
+//               />
+//             </div>
+//             <div>
+//               <h3 className="font-semibold text-gray-900 dark:text-white">{job.title}</h3>
+//               <p className="text-sm text-gray-500 dark:text-gray-400">{job.company}</p>
+//             </div>
+//           </div>
+//           <div className="flex flex-wrap gap-1 sm:gap-2">
+//             {job.tags.map((tag) => (
+//               <span
+//                 key={tag}
+//                 className="px-2 py-1 sm:px-3 text-xs sm:text-sm rounded-full border border-gray-200 dark:border-gray-700
+//                          bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 
+//                          group-hover:bg-white/50 dark:group-hover:bg-gray-800/50"
+//               >
+//                 {tag}
+//               </span>
+//             ))}
+//           </div>
+//         </div>
+//         <footer className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mt-4 bg-white dark:bg-gray-900 rounded-b-[24px] -mx-5 -mb-5 p-5 border-t border-gray-100 dark:border-gray-800">
+//           <div>
+//             <div className="font-semibold text-gray-900 dark:text-white">{job.salary}</div>
+//             <div className="text-sm text-gray-500 dark:text-gray-400">{job.location}</div>
+//           </div>
+//           <button
+//             className="w-full sm:w-auto px-3 py-1.5 sm:px-4 sm:py-2 text-sm rounded-full border border-gray-200 dark:border-gray-700 
+//                      bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+//           >
+//             View Details
+//           </button>
+//         </footer>
+//       </div>
+//     </SwiperSlide> 
+//   ))}
+// </Swiper>
+//     )
+//   }
   
   // const Jobdiv = ({ index }) => (
   //   <div
@@ -2054,6 +1968,220 @@ export function Sidebar() {
   //   </div>
   // );
   
+
+  export function JobListingsSection() {
+    const jobs = [
+      {
+        title: "Product Designer",
+        company: "Google",
+        location: "Mountain View, CA",
+        salary: "$240/hr",
+        tags: ["Full time", "On-site", "Senior"],
+        postedTime: "2 days ago",
+        logo:
+          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+        isNew: true
+      },
+      {
+        title: "UI Engineer",
+        company: "Microsoft",
+        location: "Seattle, WA",
+        salary: "$220/hr",
+        tags: ["Contract", "Hybrid", "Senior"],
+        postedTime: "3 days ago",
+        logo:
+          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+        featured: true
+      },
+      {
+        title: "UX Researcher",
+        company: "Apple",
+        location: "Cupertino, CA",
+        salary: "$200/hr",
+        tags: ["Full time", "Remote", "Senior"],
+        postedTime: "4 days ago",
+        logo:
+          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+        isNew: true
+      },
+      {
+        title: "UI Engineer",
+        company: "Microsoft",
+        location: "Seattle, WA",
+        salary: "$220/hr",
+        tags: ["Contract", "Hybrid", "Senior"],
+        postedTime: "3 days ago",
+        logo:
+          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+        isNew: true
+      },
+      {
+        title: "Product Designer",
+        company: "Google",
+        location: "Mountain View, CA",
+        salary: "$240/hr",
+        tags: ["Full time", "On-site", "Senior"],
+        postedTime: "2 days ago",
+        logo:
+          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+        featured: true
+      },
+      {
+        title: "UX Researcher",
+        company: "Apple",
+        location: "Cupertino, CA",
+        salary: "$200/hr",
+        tags: ["Full time", "Remote", "Senior"],
+        postedTime: "4 days ago",
+        logo:
+          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+        isNew: true
+      },
+      {
+        title: "UI Engineer",
+        company: "Microsoft",
+        location: "Seattle, WA",
+        salary: "$220/hr",
+        tags: ["Contract", "Hybrid", "Senior"],
+        postedTime: "3 days ago",
+        logo:
+          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+        isNew: true,
+        featured: true
+      },
+      {
+        title: "UX Researcher",
+        company: "Apple",
+        location: "Cupertino, CA",
+        salary: "$200/hr",
+        tags: ["Full time", "Remote", "Senior"],
+        postedTime: "4 days ago",
+        logo:
+          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+        isNew: true
+      },
+      {
+        title: "UI Engineer",
+        company: "Microsoft",
+        location: "Seattle, WA",
+        salary: "$220/hr",
+        tags: ["Contract", "Hybrid", "Senior"],
+        postedTime: "3 days ago",
+        logo:
+          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+        isNew: true
+      }
+    ]
+  
+    return (
+      <div className="w-full h-full flex flex-col overflow-hidden">
+      
+        <Swiper
+          modules={[Autoplay, Navigation]}
+          spaceBetween={20}
+          slidesPerView="auto"
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true
+          }}
+          loop={true}
+          speed={800}
+          grabCursor={true}
+          className="job-swiper !overflow-visible flex-1"
+        >
+          {jobs.map((job, index) => (
+            <SwiperSlide
+              key={index}
+              className="!w-[calc(90%-20px)] sm:!w-[calc(40%-20px)] md:!w-[calc(33.333%-20px)] lg:!w-[calc(25%-20px)]"
+            >
+              <div
+                className="h-full w-full relative bg-white dark:bg-gray-900 rounded-[24px] p-5 border border-gray-200 
+                dark:border-gray-800 hover:bg-[#e3dafb] dark:hover:bg-purple-900/20 
+                transition-all duration-300 group"
+              >
+                <header className="flex flex-row items-center justify-between">
+                  <div className="flex flex-wrap items-center gap-1 sm:gap-2">
+                    <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+                      {job.postedTime}
+                    </span>
+                    {job.isNew && (
+                      <span className="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm bg-purple-100 text-purple-700 opacity-0 group-hover:opacity-100 transition-opacity">
+                        New
+                      </span>
+                    )}
+                    {job.featured && (
+                      <span className="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm bg-orange-100 text-orange-700 opacity-0 group-hover:opacity-100 transition-opacity ml-1 sm:ml-2">
+                        Featured
+                      </span>
+                    )}
+                  </div>
+                  <button
+                    className="p-1.5 sm:p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                    aria-label="Bookmark job"
+                  >
+                    <Bookmark className="h-3 w-3 sm:h-4 sm:w-4 text-gray-500 dark:text-gray-400" />
+                  </button>
+                </header>
+                <div className="space-y-4 mt-4">
+                  <div className="flex items-start gap-3">
+                    <div className="h-10 w-10 rounded-full bg-white border border-gray-200 dark:border-gray-700 flex items-center justify-center overflow-hidden">
+                      <img
+                        src={job.logo || "/placeholder.svg?height=24&width=24"}
+                        alt={`${job.company} logo`}
+                        width={24}
+                        height={24}
+                        className="w-6 h-6 object-contain"
+                      />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-900 dark:text-white">
+                        {job.title}
+                      </h3>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
+                        {job.company}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-1 sm:gap-2">
+                    {job.tags.map(tag => (
+                      <span
+                        key={tag}
+                        className="px-2 py-1 sm:px-3 text-xs sm:text-sm rounded-full border border-gray-200 dark:border-gray-700
+                                 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 
+                                 group-hover:bg-white/50 dark:group-hover:bg-gray-800/50"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <footer className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mt-4 bg-white dark:bg-gray-900 rounded-b-[24px] -mx-5 -mb-5 p-5 border-t border-gray-100 dark:border-gray-800">
+                  <div>
+                    <div className="font-semibold text-gray-900 dark:text-white">
+                      {job.salary}
+                    </div>
+                    <div className="text-sm text-gray-500 dark:text-gray-400">
+                      {job.location}
+                    </div>
+                  </div>
+                  <button
+                    className="w-full sm:w-auto px-3 py-1.5 sm:px-4 sm:py-2 text-sm rounded-full border border-gray-200 dark:border-gray-700 
+                             bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                  >
+                    View Details
+                  </button>
+                </footer>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+    )
+  }
+  
+
+
   const ResumeFeatureSection = () => (
     <div className="flex ms-auto me-auto z-1  flex-col w-[70%] items-center justify-center bg-white dark:bg-gray-900 px-4 sm:px-6 lg:px-10 py-10 rounded-lg shadow-md border border-gray-200 dark:border-gray-800">
     <div className="text-center w-full max-w-xl p-6  ">
@@ -2122,7 +2250,7 @@ export function Sidebar() {
   const EmailSignupSection = () => (
     <div className="flex flex-col items-center justify-center w-full py-12 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900 flex ms-auto me-auto  flex-col p-2 z-2  mb-6  items-center justify-center bg-white dark:bg-gray-900 px-4 sm:px-6 lg:px-10 py-10 rounded-lg shadow-md border border-gray-200 dark:border-gray-800">
     <h2 className="text-3xl font-semibold text-gray-900 dark:text-white text-center">Signup for new Job alerts</h2>
-    <p className="text-gray-600 dark:text-gray-400 mt-2 text-sm text-center">We will only send you 1 email / day</p>
+    <p className="text-gray-600 dark:text-gray-400 mt-2 text-sm text-center mb-6">We will only send you 1 email / day</p>
 
     <div className="w-full max-w-xl">
       <form  className="relative">

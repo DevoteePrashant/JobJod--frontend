@@ -75,17 +75,17 @@ import Singlejobviews from "./component/Singlejobviews";
 import CompanyApplications from "./component/CompanyApplications";
 // import CompanyProfile from "./component/CompanyProfile";
 import CompanyPostJobs from "./component/CompanyPostJobs";
-import FormJobseeker from "./component/FormJobseeker";
-import FormJobseeker2 from "./component/FormJobseeker2";
-import FormJobseeker3 from "./component/FormJobseeker3";
-import FormJobseeker4 from "./component/FormJobseeker4";
-import FormJobseeker5 from "./component/FormJobseeker5";
-import FormJobseeker6 from "./component/FormJobseeker6";
-import FormCompany from "./component/FormCompany";
-import FormCompany2 from "./component/FormCompany2";
-import FormCompany3 from "./component/FormCompany3";
-import FormCompany4 from "./component/FormCompany4";
-import FormCompany5 from "./component/FormCompany5";
+import FormJobseeker from "../src/component/FormJobseeker";
+import FormJobseeker2 from "../src/component/FormCompany2";
+import FormJobseeker3 from "../src/component/FormJobseeker3";
+import FormJobseeker4 from "../src/component/FormJobseeker4";
+import FormJobseeker5 from "../src/component/FormJobseeker5";
+import FormJobseeker6 from "../src/component/FormJobseeker6";
+import FormCompany from "../src/component/FormCompany";
+import FormCompany2 from "../src/component/FormCompany2";
+import FormCompany3 from "../src/component/FormCompany3";
+import FormCompany4 from "../src/component/FormCompany4";
+import FormCompany5 from "../src/component/FormCompany5";
 
 
 

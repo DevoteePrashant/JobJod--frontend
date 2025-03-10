@@ -134,7 +134,7 @@ const Singlejobview = () => {
             </div>
           </div>
           {/* Right Side - Job Details */}
-          <div className="w-full md:w-3/4 p-6" style={{ overflowY: 'scroll', maxHeight: '80vh', msOverflowStyle: 'none', scrollbarWidth: 'none' }}> {/* Added overflow-y-auto and a height */}
+          <div className="w-full md:w-3/4 p-6" style={{ overflowY: 'scroll', maxHeight: '100vh', msOverflowStyle: 'none', scrollbarWidth: 'none' }}> {/* Added overflow-y-auto and a height */}
             {/* Job Title and Location */}
             <div className="flex flex-col md:flex-row justify-between items-start ">
               <div>
@@ -146,6 +146,7 @@ const Singlejobview = () => {
                   <span className="font-semibold">Grameenphone</span> Dhaka, Bangladesh
                 </div>
                 <div className="text-xs text-gray-500 mt-1 font-semibold">Posted on 15 May 20  &nbsp; Expire on 30 May 20</div>
+                <h2 className="font-bold mt-2">Salary:25000-30000 INR</h2>
                 <div className="flex items-center">
                   {/* <img src={tick} alt="tick" className="mr-1 h-4 w-4" />
                 <span className="text-sm">Applied on 23 May 20</span> */}
@@ -178,9 +179,9 @@ const Singlejobview = () => {
                 <div className="text-sm font-medium text-gray-800 ">Hamish Marsh</div>
                 <div className="text-xs text-gray-500">HR Manager, Grameenphone</div>
               </div>
-              <button className="ml-auto text-purple-400 rounded-md px-4 py-2 text-sm font-bold">
+              {/* <button className="ml-auto text-purple-400 rounded-md px-4 py-2 text-sm font-bold">
                 Send Message
-              </button>
+              </button> */}
             </div>
 
             {/* Responsibilities */}

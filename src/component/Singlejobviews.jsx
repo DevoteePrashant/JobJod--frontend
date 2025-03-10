@@ -20,7 +20,7 @@ const Singlejobviews = () => {
 
         <div className="bg-white rounded-lg overflow-hidden md:flex">
           {/* Left Side - Job Listings */}
-          <div className="w-full md:w-1/4 p-4 border-r-2 border-gray-200">
+          <div className="w-full md:w-1/4 p-10 border-r-2 border-gray-200 ">
             <div className="text-xl font-semibold text-gray-700 mb-2 mx-6">
               Top job picks for you
             </div>
@@ -133,7 +133,7 @@ const Singlejobviews = () => {
             </div>
           </div>
           {/* Right Side - Job Details */}
-          <div className="w-full md:w-3/4 p-6 overflow-y-auto h-[80vh]" style={{ overflowY: 'scroll', maxHeight: '80vh', msOverflowStyle: 'none', scrollbarWidth: 'none' }}>
+          <div className="w-full md:w-3/4 p-6 overflow-y-auto" style={{ overflowY: 'scroll', maxHeight: '100vh', msOverflowStyle: 'none', scrollbarWidth: 'none' }}>
             {/* Job Title and Location */}
             <div className="flex flex-col md:flex-row justify-between items-start">
               <div>
@@ -145,10 +145,8 @@ const Singlejobviews = () => {
                   <span className="font-semibold">Grameenphone</span> Dhaka, Bangladesh
                 </div>
                 <div className="text-xs text-gray-500 mt-1 font-semibold">Posted on 15 May 20  &nbsp; Expire on 30 May 20</div>
-                <div className="flex items-center">
-                  <img src={tick} alt="tick" className="mr-2 mt-4 h-4 w-4" />
-                  <span className="text-sm mt-4 font-bold">Applied on 23 May 20</span>
-                </div>
+                <h2 className="font-bold mt-2">Salary:25000-30000 INR</h2>
+                
               </div>
               <div className="flex items-center mt-4 md:mt-0">
                 {/* <button className="bg-purple-500 text-white rounded-xl px-6 py-2 text-sm font-medium mr-2">
@@ -157,6 +155,13 @@ const Singlejobviews = () => {
                 <button className="bg-black text-white rounded-xl px-5 py-2 text-sm font-medium">
                   Save
                 </button> */}
+                <div className="flex items-center">
+                  <img src={tick} alt="tick" className="mr-2 mt-2 h-4 w-4" />
+                  <span className="text-md mt-2 
+                  
+                  
+                  ">Applied on 23 May 20</span>
+                </div>
                 <button className="ml-2 text-gray-500">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
@@ -232,7 +237,8 @@ const Singlejobviews = () => {
             </div>
 
             {/* Company Info */}
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div className="mt-6 border-2 rounded-2xl p-4 md:p-8 relative">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div className="flex items-start md:items-center gap-2">
           <img
             src="/placeholder.svg?height=32&width=32"
@@ -251,6 +257,17 @@ const Singlejobviews = () => {
           View Page
         </a>
       </div>
+
+      <div className="mt-3 md:mt-2">
+        <p className="text-xs text-gray-600">
+          {expanded ? description : description.substring(0, 150) + "..."}
+          <button onClick={() => setExpanded(!expanded)} className="text-purple-400 ml-1 inline-flex items-center">
+            {expanded ? "see less" : "see more"}
+          </button>
+        </p>
+      </div>
+ 
+          </div>
           </div>
         </div>
     

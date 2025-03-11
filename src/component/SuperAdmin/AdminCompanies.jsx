@@ -18,7 +18,6 @@ import { Search, AlignJustify, ChevronDown } from "lucide-react"
 
 function AdminCompanies() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen)
   }

@@ -1,5 +1,3 @@
-"use client"  
-
 import { useState } from "react"
 import dashboard from "../image/dashboard.png"
 import { RxDashboard } from "react-icons/rx"
@@ -161,7 +159,7 @@ function CompanyPostJobs() {
               {/* Job List */}
               <div className="space-y-4">
                 {[1, 2, 3].map(item => (
-                  <div key={item} className="p-3 bg-indigo-50 rounded-md">
+                  <div key={item} className="p-3 bg-violet-50 rounded-md ">
                     <h3 className="font-bold text-gray-900">
                       Product Designer
                     </h3>

@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import profile from '../image/profile.jpg';
 import logo2 from '../image/logo2.png';
-import { RxDashboard } from "react-icons/rx";
-import { FaBell } from "react-icons/fa";
-
 import ProfileContent from './ProfileContent';
 import profilebg from '../image/g.png';
-
+import NotificationPanel from './NotificationPanel';
+import { FaBell } from "react-icons/fa";
+import { RxDashboard } from "react-icons/rx";
 import { ProfileHeader } from "../component/ProfileHeader"
 import { ProfileSidebar } from "../component/ProfileSidebar"
 import { ProfileInfo } from "../component/ProfileInfo"
 import { Link } from 'react-router-dom';
 import { Bell, Mail, Search } from 'lucide-react';
-import NotificationPanel from './NotificationPanel';
 
 const profileData = {
     name: "Anamoul Rouf",

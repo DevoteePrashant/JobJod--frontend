@@ -43,6 +43,25 @@ function CompanyProfile() {
       <span className={active ? "font-medium" : ""}>{text}</span>
     </li>
   );
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const handleFileUpload = (e) => {
+    setSelectedFile(e.target.files[0]);
+    uploadFileToServer(e.target.files[0]);
+  };
+
+  const uploadFileToServer = (file) => {
+    const formData = new FormData();
+    formData.append("file", file);
+
+    fetch("/upload", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.error("Error:", error));
+  };
 
   const InfoItem = ({ label, value }) => (
     <div className="break-words">
@@ -50,6 +69,10 @@ function CompanyProfile() {
       <p className="font-medium text-base md:text-lg">{value}</p>
     </div>
   );
+  const industryData = {
+    title: "Company Industry",
+    industries: ["Information Technology", "Digital Marketing"],
+  };
 
   const UserIcon = (props) => (
     <svg
@@ -283,12 +306,11 @@ function CompanyProfile() {
                     <div className="w-4 h-4 bg-purple-500 rounded-full"></div>
                   </div>
                 </div>
-                
-                <div className="text-center sm:text-left mt-auto mb-auto">
-  <h1 className="text-2xl font-semibold">Nihar Gami</h1>
-  <p className="text-gray-600">Godhani Technology</p>
-</div>
 
+                <div className="text-center sm:text-left mt-auto mb-auto">
+                  <h1 className="text-2xl font-semibold">Nihar Gami</h1>
+                  <p className="text-gray-600">Godhani Technology</p>
+                </div>
               </div>
               <div className="flex items-center justify-center sm:justify-start gap-2"></div>
             </div>
@@ -296,10 +318,10 @@ function CompanyProfile() {
               <div className="w-full lg:w-[280px] lg:flex-shrink-0 ">
                 <div className="bg-white rounded-2xl shadow-sm border p-4">
                   <nav>
-                    <ul className="space-y-2">
+                    <ul className="space-y-2 font-semibold">
                       <NavItem
                         icon={<PiBagSimpleFill />}
-                        text="Description"
+                        text="Information"
                         active
                       />
                       <NavItem icon={<FaTrophy />} text="Recognition" />
@@ -313,30 +335,69 @@ function CompanyProfile() {
                 </div>
               </div>
               <div className="flex-1 rounded-lg max-w-screen-lg mx-auto w-full sm:w-[70px] sticky top-20">
-  <div className="flex justify-between items-start mb-6">
-    <div className="mx-5">
-      <h1 className="text-2xl font-semibold">Basic Information</h1>
-      <p className="text-gray-500">Update profile information</p>
-    </div>
-    <button className="px-6 py-2 font-semibold text-purple-600 bg-white border-2 border-purple-600 hover:bg-purple-100 rounded-xl">
-      Edit
-    </button>
-  </div>
-  <div className="p-4 md:p-6 w-full max-w-screen-xl mx-auto overflow-hidden">
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-      <InfoItem label="Email Address" value="nihargami@gmail.com" />
-      <InfoItem label="Year Established" value="05/03/2025" />
-      <InfoItem label="Phone Number" value="+919876543210" />
-      <InfoItem label="Location" value="Gujarat, India" />
-      <InfoItem label="Website" value="www.godhanitechnology.com" />
-    </div>
-  </div>
-</div>
-
+                <div className="flex justify-between items-start mb-6">
+                  <div className="mx-5">
+                    <h1 className="text-2xl font-semibold">
+                      Basic Information
+                    </h1>
+                    <p className="text-gray-500">Update profile information</p>
+                  </div>
+                  <button className="px-6 py-2 font-semibold text-purple-600 bg-white border-2 border-purple-600 hover:bg-purple-100 rounded-xl">
+                    Edit
+                  </button>
+                </div>
+                <div className="p-4 md:p-6 w-full max-w-screen-xl mx-auto overflow-hidden">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+                    <InfoItem
+                      label="Email Address"
+                      value="nihargami@gmail.com"
+                    />
+                    <InfoItem label="Phone Number" value="+919876543210" />
+                    <InfoItem label="Location" value="New York, USA" />
+                    <InfoItem label="Year Established" value="22/02/2025" />
+                    <InfoItem
+                      label="Website"
+                      value="www.godhanitechnology.com"
+                    />
+                    <InfoItem label="Pincode" value="123456" />
+                    <InfoItem
+                      label="Interview Person"
+                      value="John Smith,John Doe"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
             {/* Overview,mission,vision code  */}
+            <div className="rounded-lg p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 lg:pl-20 xl:pl-80 justify-center">
+              <div className="mb-8 ">
+                <div className="flex flex-row justify-between items-center mb-4 ">
+                  <h2 className="text-2xl font-medium text-gray-900 ">
+                    {industryData.title}
+                  </h2>
+                  <div className="flex gap-4">
+                    <button className="text-base text-gray-500 hover:text-gray-700 font-semibold">
+                      Delete
+                    </button>
+                    <button className="text-base text-purple-500 hover:text-purple-700 font-semibold">
+                      Edit
+                    </button>
+                  </div>
+                </div>
 
-            <div className="rounded-lg p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 lg:pl-20 xl:pl-80">
+                <div className="flex flex-wrap gap-3">
+                  {industryData.industries.map((industry, index) => (
+                    <div
+                      key={index}
+                      className="bg-purple-100 px-4 py-2 rounded-md text-gray-800"
+                    >
+                      {industry}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className="rounded-lg p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 lg:pl-20 xl:pl-80 justify-center">
               {sections.map((section, index) => (
                 <div key={section.title} className="mb-4 sm:mb-6 md:mb-8">
                   <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4">
@@ -352,7 +413,7 @@ function CompanyProfile() {
                       </button>
                     </div>
                   </div>
-                  <p className="text-sm sm:text-base text-gray-700 mb-2">
+                  <p className="text-sm sm:text-base text-gray-700 mb-2 text-justify">
                     {section.content}
                   </p>
                   <button className="text-sm sm:text-base text-purple-500 hover:text-purple-700">
@@ -366,8 +427,7 @@ function CompanyProfile() {
             </div>
 
             {/* Recognition Section */}
-            {/* <div className="rounded-lg  p-4 sm:p-6 md:p-10 max-w-screen-lg mx-auto w-full sm:w-[720px] sm:mr-[320px]  "> */}
-            <div className="rounded-lg p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 lg:pl-20 xl:pl-80">
+            <div className="rounded-lg p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 lg:pl-20 xl:pl-80 ">
               <div className="flex items-center justify-between mb-8 ">
                 <div className="flex items-center gap-4">
                   <div className="relative w-12 h-12">
@@ -381,7 +441,7 @@ function CompanyProfile() {
                   </div>
                   <div>
                     <h2 className="text-xl font-bold">Recognition</h2>
-                    <p className="text-gray-600 text-sm">
+                    <p className="text-gray-600 text-sm ">
                       Add recognition to provide more information
                     </p>
                   </div>
@@ -427,7 +487,7 @@ function CompanyProfile() {
                           </button>
                         </div>
                       </div>
-                      <p className="mt-4 text-gray-700">
+                      <p className="mt-4 text-gray-700 text-justify">
                         This hands-on course examines how content is organized
                         and structured to create an experience for a user, and
                         what role the designer plays in creating and shaping
@@ -479,7 +539,7 @@ function CompanyProfile() {
                           </button>
                         </div>
                       </div>
-                      <p className="mt-4 text-gray-700">
+                      <p className="mt-4 text-gray-700 text-justify">
                         Gamification is the application of game elements and
                         digital game design techniques to non-game problems,
                         such as business and social impact challenges. This
@@ -502,7 +562,6 @@ function CompanyProfile() {
 
             {/* Culture section */}
             <div className="rounded-lg p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 lg:pl-20 xl:pl-80 ">
-            
               <div className="flex justify-between items-center mb-8 mt-8">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-green-100 to-blue-100 rounded-md flex items-center justify-center relative">
@@ -529,9 +588,9 @@ function CompanyProfile() {
                     </p>
                   </div>
                 </div>
-                <button className="px-6 py-2 font-semibold text-purple-600 bg-white border-2 border-purple-600 hover:bg-purple-100 rounded-xl">
+                {/* <button className="px-6 py-2 font-semibold text-purple-600 bg-white border-2 border-purple-600 hover:bg-purple-100 rounded-xl">
                   Add
-                </button>
+                </button> */}
               </div>
 
               {/* Company Environment Section */}
@@ -547,7 +606,7 @@ function CompanyProfile() {
                     </button>
                   </div>
                 </div>
-                <p className="text-gray-700 mb-2">
+                <p className="text-gray-700 mb-2 text-justify">
                   ShareTrip is the country's first and pioneer online travel
                   aggregator (OTA). My goal was to craft a functional and
                   delightful experience through web and mobile apps currently
@@ -571,7 +630,7 @@ function CompanyProfile() {
                     </button>
                   </div>
                 </div>
-                <p className="text-gray-700 mb-2">
+                <p className="text-gray-700 mb-2 text-justify">
                   ShareTrip is the country's first and pioneer online travel
                   aggregator (OTA). My goal was to craft a functional and
                   delightful experience through web and mobile apps currently
@@ -595,7 +654,7 @@ function CompanyProfile() {
                     </button>
                   </div>
                 </div>
-                <p className="text-gray-700 mb-2">
+                <p className="text-gray-700 mb-2 text-justify">
                   ShareTrip is the country's first and pioneer online travel
                   aggregator (OTA). My goal was to craft a functional and
                   delightful experience through web and mobile apps currently
@@ -613,12 +672,52 @@ function CompanyProfile() {
                 <h1 className="text-2xl font-bold text-gray-900">
                   Legal Information
                 </h1>
-                <button className="px-2 py-2 font-semibold text-purple-600 bg-white border-2 border-purple-600 hover:bg-purple-100 rounded-xl">
+                {/* <button className="px-2 py-2 font-semibold text-purple-600 bg-white border-2 border-purple-600 hover:bg-purple-100 rounded-xl">
                   Add File
-                </button>
+                </button> */}
               </div>
 
               <div className="space-y-4">
+                {/* Company GST Certificate */}
+                <div className="border-b border-gray-200 pb-4">
+                  <div className="flex items-center">
+                    <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mr-4">
+                      <div className="w-6 h-6 bg-emerald-400 rounded-sm flex items-center justify-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="white"
+                          className="w-4 h-4"
+                        >
+                          <path d="M7 18h10v-2H7v2zM7 14h10v-2H7v2zM7 10h10V8H7v2zM7 6h7V4H7v2z" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h2 className="text-base font-medium text-gray-900">
+                        Company GST Certificate
+                      </h2>
+                      <p className="text-sm text-gray-500">Not Uploaded</p>
+                    </div>
+                    <div className="flex space-x-4">
+                      {/* <button className="px-2 py-2 font-semibold text-purple-600 bg-white border-2 border-purple-600 hover:bg-purple-100 rounded-xl">Upload</button> */}
+                      <button
+                        className="px-6 py-2 font-semibold text-purple-600 bg-white border-2 border-purple-600 hover:bg-purple-100 rounded-xl"
+                        onClick={() =>
+                          document.getElementById("fileInput").click()
+                        }
+                      >
+                        Upload
+                      </button>
+                      <input
+                        type="file"
+                        id="fileInput"
+                        className="hidden"
+                        onChange={(e) => handleFileUpload(e)}
+                      />
+                    </div>
+                  </div>
+                </div>
                 {/* Registration Information */}
                 <div className="border-b border-gray-200 pb-4">
                   <div className="flex items-center">
@@ -636,7 +735,245 @@ function CompanyProfile() {
                     </div>
                     <div className="flex-1">
                       <h2 className="text-base font-medium text-gray-900">
-                        Registration Information
+                        Company PAN Card
+                      </h2>
+                      <p className="text-sm text-gray-500">PDF 1.21 MB</p>
+                    </div>
+                    <div className="flex space-x-4">
+                      <button className="w-8 h-8 flex items-center justify-center rounded-full text-gray-500 hover:bg-gray-100">
+                        <Trash2 className="w-5 h-5" />
+                      </button>
+                      <button className="w-8 h-8 flex items-center justify-center rounded-full text-purple-500 hover:bg-purple-100">
+                        <Eye className="w-5 h-5" />
+                      </button>
+                      <button className="w-8 h-8 flex items-center justify-center rounded-full text-purple-500 hover:bg-purple-100">
+                        <FaEdit className="w-5 h-5" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                {/* Legal Info 1 */}
+                <div className="border-b border-gray-200 pb-4">
+                  <div className="flex items-center">
+                    <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mr-4">
+                      <div className="w-6 h-6 bg-emerald-400 rounded-sm flex items-center justify-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="white"
+                          className="w-4 h-4"
+                        >
+                          <path d="M7 18h10v-2H7v2zM7 14h10v-2H7v2zM7 10h10V8H7v2zM7 6h7V4H7v2z" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h2 className="text-base font-medium text-gray-900">
+                        FSSAI Licence
+                      </h2>
+                      <p className="text-sm text-gray-500">PDF 1.21 MB</p>
+                    </div>
+                    <div className="flex space-x-4">
+                      <button className="w-8 h-8 flex items-center justify-center rounded-full text-gray-500 hover:bg-gray-100">
+                        <Trash2 className="w-5 h-5" />
+                      </button>
+                      <button className="w-8 h-8 flex items-center justify-center rounded-full text-purple-500 hover:bg-purple-100">
+                        <Eye className="w-5 h-5" />
+                      </button>
+                      <button className="w-8 h-8 flex items-center justify-center rounded-full text-purple-500 hover:bg-purple-100">
+                        <FaEdit className="w-5 h-5" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                {/* Legal Info2 */}
+                <div className="border-b border-gray-200 pb-4">
+                  <div className="flex items-center">
+                    <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mr-4">
+                      <div className="w-6 h-6 bg-emerald-400 rounded-sm flex items-center justify-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="white"
+                          className="w-4 h-4"
+                        >
+                          <path d="M7 18h10v-2H7v2zM7 14h10v-2H7v2zM7 10h10V8H7v2zM7 6h7V4H7v2z" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h2 className="text-base font-medium text-gray-900">
+                        FSSAI Licance
+                      </h2>
+                      <p className="text-sm text-gray-500">PDF 1.21 MB</p>
+                    </div>
+                    <div className="flex space-x-4">
+                      <button className="w-8 h-8 flex items-center justify-center rounded-full text-gray-500 hover:bg-gray-100">
+                        <Trash2 className="w-5 h-5" />
+                      </button>
+                      <button className="w-8 h-8 flex items-center justify-center rounded-full text-purple-500 hover:bg-purple-100">
+                        <Eye className="w-5 h-5" />
+                      </button>
+                      <button className="w-8 h-8 flex items-center justify-center rounded-full text-purple-500 hover:bg-purple-100">
+                        <FaEdit className="w-5 h-5" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                {/* Legal Info3 */}
+                <div className="border-b border-gray-200 pb-4">
+                  <div className="flex items-center">
+                    <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mr-4">
+                      <div className="w-6 h-6 bg-emerald-400 rounded-sm flex items-center justify-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="white"
+                          className="w-4 h-4"
+                        >
+                          <path d="M7 18h10v-2H7v2zM7 14h10v-2H7v2zM7 10h10V8H7v2zM7 6h7V4H7v2z" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h2 className="text-base font-medium text-gray-900">
+                        Company Incorporation Certificate
+                      </h2>
+                      <p className="text-sm text-gray-500">PDF 1.21 MB</p>
+                    </div>
+                    <div className="flex space-x-4">
+                      <button className="w-8 h-8 flex items-center justify-center rounded-full text-gray-500 hover:bg-gray-100">
+                        <Trash2 className="w-5 h-5" />
+                      </button>
+                      <button className="w-8 h-8 flex items-center justify-center rounded-full text-purple-500 hover:bg-purple-100">
+                        <Eye className="w-5 h-5" />
+                      </button>
+                      <button className="w-8 h-8 flex items-center justify-center rounded-full text-purple-500 hover:bg-purple-100">
+                        <FaEdit className="w-5 h-5" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                {/* Legal Info4 */}
+                <div className="border-b border-gray-200 pb-4">
+                  <div className="flex items-center">
+                    <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mr-4">
+                      <div className="w-6 h-6 bg-emerald-400 rounded-sm flex items-center justify-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="white"
+                          className="w-4 h-4"
+                        >
+                          <path d="M7 18h10v-2H7v2zM7 14h10v-2H7v2zM7 10h10V8H7v2zM7 6h7V4H7v2z" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h2 className="text-base font-medium text-gray-900">
+                        Shop & Establishment Certificate
+                      </h2>
+                      <p className="text-sm text-gray-500">PDF 1.21 MB</p>
+                    </div>
+                    <div className="flex space-x-4">
+                      <button className="w-8 h-8 flex items-center justify-center rounded-full text-gray-500 hover:bg-gray-100">
+                        <Trash2 className="w-5 h-5" />
+                      </button>
+                      <button className="w-8 h-8 flex items-center justify-center rounded-full text-purple-500 hover:bg-purple-100">
+                        <Eye className="w-5 h-5" />
+                      </button>
+                      <button className="w-8 h-8 flex items-center justify-center rounded-full text-purple-500 hover:bg-purple-100">
+                        <FaEdit className="w-5 h-5" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                {/* Legal Info5 */}
+                <div className="border-b border-gray-200 pb-4">
+                  <div className="flex items-center">
+                    <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mr-4">
+                      <div className="w-6 h-6 bg-emerald-400 rounded-sm flex items-center justify-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="white"
+                          className="w-4 h-4"
+                        >
+                          <path d="M7 18h10v-2H7v2zM7 14h10v-2H7v2zM7 10h10V8H7v2zM7 6h7V4H7v2z" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h2 className="text-base font-medium text-gray-900">
+                        MSME or Udhyam
+                      </h2>
+                      <p className="text-sm text-gray-500">PDF 1.21 MB</p>
+                    </div>
+                    <div className="flex space-x-4">
+                      <button className="w-8 h-8 flex items-center justify-center rounded-full text-gray-500 hover:bg-gray-100">
+                        <Trash2 className="w-5 h-5" />
+                      </button>
+                      <button className="w-8 h-8 flex items-center justify-center rounded-full text-purple-500 hover:bg-purple-100">
+                        <Eye className="w-5 h-5" />
+                      </button>
+                      <button className="w-8 h-8 flex items-center justify-center rounded-full text-purple-500 hover:bg-purple-100">
+                        <FaEdit className="w-5 h-5" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                {/*  Legal Info6 */}
+                <div className="border-b border-gray-200 pb-4">
+                  <div className="flex items-center">
+                    <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mr-4">
+                      <div className="w-6 h-6 bg-emerald-400 rounded-sm flex items-center justify-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="white"
+                          className="w-4 h-4"
+                        >
+                          <path d="M7 18h10v-2H7v2zM7 14h10v-2H7v2zM7 10h10V8H7v2zM7 6h7V4H7v2z" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h2 className="text-base font-medium text-gray-900">
+                        ID Card
+                      </h2>
+                      <p className="text-sm text-gray-500">PDF 1.21 MB</p>
+                    </div>
+                    <div className="flex space-x-4">
+                      <button className="w-8 h-8 flex items-center justify-center rounded-full text-gray-500 hover:bg-gray-100">
+                        <Trash2 className="w-5 h-5" />
+                      </button>
+                      <button className="w-8 h-8 flex items-center justify-center rounded-full text-purple-500 hover:bg-purple-100">
+                        <Eye className="w-5 h-5" />
+                      </button>
+                      <button className="w-8 h-8 flex items-center justify-center rounded-full text-purple-500 hover:bg-purple-100">
+                        <FaEdit className="w-5 h-5" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                {/* Other */}
+                <div className="border-b border-gray-200 pb-4">
+                  <div className="flex items-center">
+                    <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mr-4">
+                      <div className="w-6 h-6 bg-emerald-400 rounded-sm flex items-center justify-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="white"
+                          className="w-4 h-4"
+                        >
+                          <path d="M7 18h10v-2H7v2zM7 14h10v-2H7v2zM7 10h10V8H7v2zM7 6h7V4H7v2z" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h2 className="text-base font-medium text-gray-900">
+                        Other
                       </h2>
                       <p className="text-sm text-gray-500">PDF 1.21 MB</p>
                     </div>
@@ -655,7 +992,7 @@ function CompanyProfile() {
                 </div>
 
                 {/* Privacy Policy */}
-                <div className="border-b border-gray-200 pb-4">
+                {/* <div className="border-b border-gray-200 pb-4">
                   <div className="flex items-center">
                     <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mr-4">
                       <div className="w-6 h-6 bg-emerald-400 rounded-sm flex items-center justify-center">
@@ -695,7 +1032,7 @@ function CompanyProfile() {
                       </button>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

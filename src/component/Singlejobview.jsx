@@ -251,7 +251,7 @@ const Singlejobview = () => {
           </div>
         </div>
 
-        <a href="#" className="text-purple-400 text-sm font-bold md:self-start">
+        <a href="##" className="text-purple-400 text-sm font-bold md:self-start">
           View Page
         </a>
       </div>

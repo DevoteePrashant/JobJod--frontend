@@ -1643,7 +1643,7 @@ export function Sidebar() {
       <input
         type="text"
         placeholder="Search your preferred industry"
-        className="w-full h-12 pl-11 pr-4 rounded-2xl border border-gray-200 text-gray-600 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+        className="w-full h-12 pl-11 pr-4 rounded-3xl border border-gray-200 text-gray-600 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
       />
     </div>
 
@@ -1651,12 +1651,12 @@ export function Sidebar() {
       {categories.map((category, i) => (
         <button
           key={i}
-          className={`w-full py-4 px-6 rounded-2xl text-center text-sm font-medium transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] ${
+          className={`w-full py-4 px-6 rounded-3xl text-center text-sm font-medium transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] ${
             i % 3 === 0
-              ? "bg-[#F3E8FF] text-purple-700"
+              ? "bg-[#e3dafb] text-purple-700"
               : i % 3 === 1
-              ? "bg-[#FEF3C7] text-amber-700"
-              : "bg-[#E0F2FE] text-sky-700"
+              ? "bg-[#ffe0a5] text-amber-700"
+              : "bg-[#b9deee] text-sky-700"
           }`}
         >
           {category}
@@ -2248,7 +2248,7 @@ export function Sidebar() {
   );
   
   const EmailSignupSection = () => (
-    <div className="flex flex-col items-center justify-center w-full py-12 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900 flex ms-auto me-auto  flex-col p-2 z-2  mb-6  items-center justify-center bg-white dark:bg-gray-900 px-4 sm:px-6 lg:px-10 py-10 rounded-lg shadow-md border border-gray-200 dark:border-gray-800">
+    <div className="flex flex-col items-center justify-center w-full py-12 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900 flex ms-auto me-auto  flex-col p-2 z-2    items-center justify-center bg-white dark:bg-gray-900 px-4 sm:px-6 lg:px-10 py-10 rounded-lg shadow-md border border-gray-200 dark:border-gray-800">
     <h2 className="text-3xl font-semibold text-gray-900 dark:text-white text-center">Signup for new Job alerts</h2>
     <p className="text-gray-600 dark:text-gray-400 mt-2 text-sm text-center mb-6">We will only send you 1 email / day</p>
 

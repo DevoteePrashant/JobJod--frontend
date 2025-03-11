@@ -1,6 +1,6 @@
-import { Share2, MoreVertical, MessageSquare, Briefcase } from "lucide-react"
+import { Share2} from "lucide-react"
 import { useRef, useEffect } from 'react';
-
+import img from "../image/profile.jpg"
 export function ProfileHeader({ name, role, avatarUrl }) {
     const buttonRef = useRef(null);
 
@@ -29,8 +29,8 @@ export function ProfileHeader({ name, role, avatarUrl }) {
       <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
         <div className="relative order-1 sm:order-none">
           <img
-            src={avatarUrl || "/placeholder.svg"}
-            alt={`${name}'s profile picture`}
+            src={img}
+            alt={"Profile "}
             className="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-4 border-white shadow-lg object-cover"
           />
           <div className="absolute bottom-0 right-0 w-6 h-6 bg-white rounded-full flex items-center justify-center">

@@ -59,6 +59,16 @@ module.exports = {
           "100%": { transform: "translateX(-100%)" },
         },
       },
+      theme: {
+        extend: {
+          colors: {
+            input: '#e2e8f0',
+            muted: {
+              foreground: '#64748b'
+            }
+          }
+        }
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],

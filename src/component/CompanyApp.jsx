@@ -1,145 +1,210 @@
-import { useState } from "react"
-import { MdOutlineRemoveRedEye } from "react-icons/md"
-import { CgAttachment } from "react-icons/cg"
-import { IoCallOutline } from "react-icons/io5"
-import { CiMail } from "react-icons/ci"
+import { Search, Phone, Mail, ChevronDown } from "lucide-react";
+import { IoFilter } from "react-icons/io5";
 
-const candidates = [
-  { name: "Shubh Mangukiya", date: "22/02/2025", status: "Application" },
-  { name: "Shubh Mangukiya", date: "22/02/2025", status: "Application" },
-  { name: "Shubh Mangukiya", date: "22/02/2025", status: "Interview" },
-  { name: "Shubh Mangukiya", date: "22/02/2025", status: "Application" },
-
-
-]
-
-const statusClasses = {
-  Application: "bg-gray-300 text-gray-700",
-  Interview: "bg-green-200 text-green-700",
-  Reject: "bg-red-500 text-white",
-  Pending: "bg-yellow-500 text-white"
-}
-
-const CompanyApp = () => {
-  const [updatedCandidates, setUpdatedCandidates] = useState(candidates)
-
-  const handleStatusChange = (index, newStatus) => {
-    const updatedCandidatesList = [...updatedCandidates]
-    updatedCandidatesList[index].status = newStatus
-    setUpdatedCandidates(updatedCandidatesList)
-  }
-
-  // State to keep track of selected div index
-  const [selectedIndex, setSelectedIndex] = useState(0)
-
-  // Handle click event to set the selected div
-  const handleClick = index => {
-    setSelectedIndex(index) // Set the clicked div as selected
-  }
-
+export default function JobCandidateListing() {
   return (
-    <div className="p-3 md:p-4 xl:p-8 w-ful flex flex-col lg:flex-row gap-6">
-      {/* Left Column: Company Information */}
-      <div className="lg:w-1/3 flex flex-col ">
-        {[...Array(5)].map((_, idx) => (
-          <div
-            key={idx}
-            // Set the index when div is clicked
-            onClick={() => handleClick(idx)}
-            // Apply background color to the selected div
-            className={`p-4 rounded-lg cursor-pointer shadow-md ${
-              selectedIndex === idx ? "bg-[#F4F5FF]" : ""
-            }`}
-          >
-            <h2 className="text-lg font-semibold">Product Designer</h2>
-            <p className="text-sm text-gray-600">
-              <span className="font-semibold">Grameenphone</span> Dhaka,
-              Bangladesh
-            </p>
-          </div>
-        ))}
+    <div className="flex flex-col lg:flex-row h-screen bg-white overflow-hidden">
+      {/* Left Sidebar */}
+      <div className="hidden lg:block w-full lg:w-1/4 bg-white border-r border-gray-200 p-4">
+        <div className="relative mb-6">
+          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+          <input
+            type="text"
+            placeholder="search job name..."
+            className="pl-10 w-full bg-gray-50 border rounded-full py-2 text-sm"
+          />
+        </div>
+
+        {/* Job Listings */}
+        <div className="space-y-4">
+          {jobListings.map((job, index) => (
+            <div
+              key={index}
+              className="p-4 rounded-lg bg-violet-50 cursor-pointer hover:bg-violet-100 transition-colors"
+            >
+              <h3 className="font-medium">{job.title}</h3>
+              <div className="text-sm text-muted-foreground mt-1">
+                <p>{job.company}</p>
+                <p>{job.location}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* Right Column: Candidate List */}
-      <div className="lg:w-2/3 overflow-x-auto">
-        <table className="min-w-full bg-[#F4F5FF] border rounded-lg shadow-md">
-          <thead className="bg-indigo-50">
-            <tr>
-              <th className="py-4 px-3 text-left text-xs sm:text-base">
-                Candidate Name
-              </th>
-              <th className="py-4 px-3 text-left text-xs sm:text-base">
-                Date Applied
-              </th>
-              <th className="py-4 px-3 text-center text-xs sm:text-base">
-                Profile
-              </th>
-              <th className="py-4 px-3 text-center text-xs sm:text-base">
-                Contact
-              </th>
-              <th className="py-4 px-3 text-center text-xs sm:text-base">
-                Status
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {updatedCandidates.map((candidate, index) => (
-              <tr key={index} className="border-t">
-                <td className="py-2 px-3 text-xs sm:text-sm">
-                  {candidate.name}
-                </td>
-                <td className="py-2 px-3 text-xs sm:text-sm">
-                  {candidate.date}
-                </td>
-                <td className="py-2 px-3">
-                  <span className="flex justify-center gap-3">
-                    <MdOutlineRemoveRedEye className="cursor-pointer text-base sm:text-lg" />
-                    <a
-                      href={`/path/to/${candidate.name
-                        .toLowerCase()
-                        .replace(" ", "_")}_resume.pdf`}
-                      download={`${candidate.name}_Resume.pdf`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <CgAttachment className="cursor-pointer text-base sm:text-lg" />
-                    </a>
-                  </span>
-                </td>
-                <td className="py-2 px-3">
-                  <span className="flex justify-center gap-3">
-                    <IoCallOutline
-                      className="cursor-pointer text-base sm:text-lg"
-                      style={{ strokeWidth: 2 }}
-                    />
-                    <CiMail
-                      className="cursor-pointer text-base sm:text-lg"
-                      style={{ strokeWidth: 1 }}
-                    />
-                  </span>
-                </td>
-                <td className="py-2 px-3 text-center">
-                  <select
-                    value={candidate.status}
-                    onChange={e => handleStatusChange(index, e.target.value)}
-                    className={`px-2 py-1 rounded-full text-xs sm:text-sm font-medium ${
-                      statusClasses[candidate.status]
-                    }`}
-                  >
-                    {Object.keys(statusClasses).map(status => (
-                      <option key={status} value={status}>
-                        {status}
-                      </option>
-                    ))}
-                  </select>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col p-4 md:p-6 overflow-y-auto">
+        {/* Mobile Header with Search and Filter */}
+        <div className="lg:hidden flex items-center gap-3 mb-6">
+          <div className="relative flex-1">
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <input
+              type="text"
+              placeholder="search job name..."
+              className="pl-10 w-full bg-gray-50 border rounded-full py-2 text-sm"
+            />
+          </div>
+          <button className="flex items-center gap-2 px-3 py-2 rounded-md border border-gray-200 bg-white text-sm font-medium whitespace-nowrap">
+            <IoFilter className="h-4 w-8" />
+            <span className="hidden sm:inline">Filter by</span>
+            <ChevronDown className="h-4 w-8" />
+          </button>
+        </div>
+
+        {/* Desktop Filter */}
+        <div className="hidden lg:flex justify-end mb-6">
+          <button className="flex items-center gap-2 px-4 py-2 rounded-md border border-gray-200 bg-white text-sm font-medium">
+            <IoFilter className="h-4 w-4" />
+            <span className="w-20">Filter by</span>
+            <ChevronDown className="h-4 w-4" />
+          </button>
+        </div>
+
+        {/* Candidate Cards */}
+        <div className="space-y-4">
+          {candidates.map((candidate, index) => (
+            <div
+              key={index}
+              className="shadow-sm overflow-hidden bg-violet-50 rounded-md border border-gray-100"
+            >
+              <div className="p-4 md:p-6">
+                <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
+                  <div className="flex-1">
+                    <h2 className="text-xl font-semibold">{candidate.name}</h2>
+                    <div className="flex items-center gap-1 mt-1">
+                      <p className="font-medium">{candidate.role}</p>
+                      <span className="text-muted-foreground">
+                        ({candidate.experience})
+                      </span>
+                    </div>
+
+                    <div className="mt-3">
+                      <p className="text-sm font-medium">Skills:</p>
+                      <p className="text-sm text-muted-foreground">
+                        {candidate.skills}
+                      </p>
+                    </div>
+
+                    <div className="mt-3">
+                      <p className="text-sm font-medium">
+                        Available to join from:
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        {candidate.availability}
+                      </p>
+                    </div>
+
+                    {/* Contact Information (only for first candidate) */}
+                    {index === 0 && (
+                      <div className="mt-6">
+                        <h3 className="font-semibold mb-3">
+                          Contact Information
+                        </h3>
+                        <div className="flex flex-col font-semibold gap-2">
+                          <div className="flex items-center gap-2">
+                            <Phone className="h-4 w-4 text-gray-500" />
+                            <span>{candidate.phone}</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Mail className="h-4 w-4 text-gray-500" />
+                            <span>{candidate.email}</span>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="md:text-right">
+                    <p className="text-sm text-muted-foreground mb-4">
+                      Application: {candidate.applicationTime}
+                    </p>
+
+                    <div className="space-y-2 w-full md:w-auto">
+                      {index === 0 ? (
+                        <>
+                          {/* <button className="w-20 ml-20 md:min-w-[150px] flex items-center justify-center rounded-full bg-gray-200 py-2 px-4 font-medium text-gray-800 hover:bg-gray-400">
+                            Application
+                            <ChevronDown className="h-4 w-4 ml-2" />
+                          </button> */}
+                          <button className="w-full md:w-48 sm:w-48 justify-center rounded-full bg-gray-200 text-gray-800 py-2 px-4 font-medium hover:bg-gray-400">
+                            Application
+                          </button>
+                          <br />
+
+                          <button className="w-full md:w-48 sm:w-48 justify-center rounded-full bg-violet-400 py-2 px-4 font-medium text-gray-800 hover:bg-violet-500">
+                            Profile
+                          </button>
+                          <br />
+
+                          <button className="w-full md:w-48 sm:w-48 justify-center rounded-full bg-black text-white py-2 px-4 font-medium hover:bg-gray-800">
+                            Resume
+                          </button>
+                        </>
+                      ) : (
+                        <button className="w-full md:min-w-[150px] justify-center rounded-full bg-violet-400 py-2 px-4 font-medium text-gray-800 hover:bg-violet-500">
+                          Unlock Candidate
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default CompanyApp
+// Sample data
+const jobListings = [
+  {
+    title: "Product Designer",
+    company: "Grameenphone",
+    location: "Dhaka, Bangladesh",
+  },
+  {
+    title: "Sales Manager",
+    company: "Grameenphone",
+    location: "Dhaka, Bangladesh",
+  },
+  {
+    title: "Product Designer",
+    company: "Grameenphone",
+    location: "Dhaka, Bangladesh",
+  },
+];
+
+const candidates = [
+  {
+    name: "John Doe",
+    role: "Web Developer",
+    experience: "2 Year 6 Month Experience",
+    skills: "Javascript, React, MongoDB",
+    availability: "01/April/2025",
+    applicationTime: "12:45:00 22/02/2025",
+    phone: "+91 12345 67890",
+    email: "demo@gmail.com",
+  },
+  {
+    name: "John Doe",
+    role: "Web Developer",
+    experience: "2 Year 6 Month Experience",
+    skills: "Javascript, React, MongoDB",
+    availability: "01/April/2025",
+    applicationTime: "12:45:00 22/02/2025",
+    phone: "+91 12345 67890",
+    email: "demo@gmail.com",
+  },
+  {
+    name: "John Doe",
+    role: "Web Developer",
+    experience: "2 Year 6 Month Experience",
+    skills: "Javascript, React, MongoDB",
+    availability: "01/April/2025",
+    applicationTime: "12:45:00 22/02/2025",
+    phone: "+91 12345 67890",
+    email: "demo@gmail.com",
+  },
+];

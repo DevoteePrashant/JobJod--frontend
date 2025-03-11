@@ -26,6 +26,10 @@ function AdminDashboard() {
       label: 'My First Dataset',
       data: [300, 50, 100],
       backgroundColor: [
+
+
+
+        
         'rgb(0 0 0)',
         'rgb(250 151 108)',
         'rgba(158, 134, 224)' 

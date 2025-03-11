@@ -10,7 +10,7 @@ import { IoMdSettings } from "react-icons/io"
 import logo2 from "../../image/logo2.png"
 import img from "../../image/dashboard.png"
 
-import Dheader from "../Dheader"
+import Dheader2 from "../Dheader2"
 import { GiHamburgerMenu } from "react-icons/gi"
 import { AiOutlineClose } from "react-icons/ai"
 import { Link } from "react-router-dom"
@@ -121,7 +121,7 @@ function AdminJobseeker() {
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
-        <Dheader />
+        <Dheader2 />
         {/* <Chartdashboard/> */}
 
         {/* Content Area */}

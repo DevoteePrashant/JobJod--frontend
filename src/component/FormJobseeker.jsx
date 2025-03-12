@@ -232,21 +232,23 @@
 
 
 
-import React, { useState } from 'react'
-import logo2 from "../image/logo2.png";
-import { Link } from 'react-router-dom';
-import { ChevronDown } from 'lucide-react';
-import { label } from 'recharts';
+"use client"
+
+import { useState } from "react"
+import logo2 from "../image/logo2.png"
+import { Link } from "react-router-dom"
+import { ChevronDown } from "lucide-react"
 
 function FormJobseeker() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [formData, setFormData] = useState({
     fullName: "",
     emailAddress: "",
     location: "",
     gender: "",
     mobileNumber: "",
-    dateOfBirth: ""
+    dateOfBirth: "",
+    pincode: ""
   })
 
   const handleChange = e => {
@@ -261,7 +263,7 @@ function FormJobseeker() {
   }
   return (
     <>
-          <header className=" p-8 py-4 w-full relative overflow-hidden bg-gradient-to-r from-purple-100 via-white to-purple-50">
+         <header className=" p-8 py-4 w-full relative overflow-hidden bg-gradient-to-r from-purple-100 via-white to-purple-50">
         {/* Background Pattern */}
         <div className="absolute inset-0 w-full h-full">
           <img
@@ -363,7 +365,7 @@ function FormJobseeker() {
       )}
     </header>
 
-      <section className="relative w-full min-h-[900px] flex items-center justify-center overflow-hidden bg-gradient-to-r from-purple-100 via-white to-purple-50">
+      <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-r from-purple-100 via-white to-purple-50">
         {/* Background Pattern */}
         <div className="absolute inset-0 w-full h-full">
           <img
@@ -378,186 +380,195 @@ function FormJobseeker() {
 
         {/* Content */}
         <div className="relative w-full container mx-auto px-6 py-20 text-center z-10">
-        <div className="mx-auto w-full max-w-4xl">
-          {/* Progress Steps */}
-          
-          <div className="flex justify-between mb-4 md:mb-6 px-2 md:px-8">
-            <div className="h-1.5 md:h-2 bg-green-400 rounded-full w-[14%]"></div>
-            <div className="h-1.5 md:h-2 bg-gray-300 rounded-full w-[14%] ml-1 md:ml-2"></div>
-            <div className="h-1.5 md:h-2 bg-gray-300 rounded-full w-[14%] ml-1 md:ml-2"></div>
-            <div className="h-1.5 md:h-2 bg-gray-300 rounded-full w-[14%] ml-1 md:ml-2"></div>
-            <div className="h-1.5 md:h-2 bg-gray-300 rounded-full w-[14%] ml-1 md:ml-2"></div>
-            <div className="h-1.5 md:h-2 bg-gray-300 rounded-full w-[14%] ml-1 md:ml-2"></div>
-            <div className="h-1.5 md:h-2 bg-gray-300 rounded-full w-[14%] ml-1 md:ml-2"></div>
-          </div>
+          <div className="mx-auto w-full max-w-4xl">
+            {/* Progress Steps */}
 
-          {/* Form Container - Fixed height to match other forms */}
-          <div className="w-full bg-white rounded-xl md:rounded-3xl shadow-sm p-4 md:p-8 border border-gray-100 h-[450px] md:h-[520px] overflow-y-auto">
+            <div className="flex justify-between mb-4 md:mb-6 px-2 md:px-8">
+              <div className="h-1.5 md:h-2 bg-green-400 rounded-full w-[14%]"></div>
+              <div className="h-1.5 md:h-2 bg-gray-300 rounded-full w-[14%] ml-1 md:ml-2"></div>
+              <div className="h-1.5 md:h-2 bg-gray-300 rounded-full w-[14%] ml-1 md:ml-2"></div>
+              <div className="h-1.5 md:h-2 bg-gray-300 rounded-full w-[14%] ml-1 md:ml-2"></div>
+              <div className="h-1.5 md:h-2 bg-gray-300 rounded-full w-[14%] ml-1 md:ml-2"></div>
+              <div className="h-1.5 md:h-2 bg-gray-300 rounded-full w-[14%] ml-1 md:ml-2"></div>
+              <div className="h-1.5 md:h-2 bg-gray-300 rounded-full w-[14%] ml-1 md:ml-2"></div>
+            </div>
+
+            {/* Form Container - Fixed height to match other forms */}
+            <div className="w-full bg-white rounded-xl md:rounded-3xl shadow-sm p-4 md:p-8 border border-gray-100 min-h-[450px] md:h-[520px] overflow-y-auto">
               <div className="mb-4 md:mb-8">
-                <h2 className="text-xl md:text-2xl font-bold text-left">Basic Information</h2>
+                <h2 className="text-xl md:text-2xl font-bold text-left">
+                  Basic Information
+                </h2>
               </div>
 
-              <form onSubmit={handleSubmit} className="h-[calc(100%-60px)] md:h-[calc(100%-80px)] flex flex-col">
-            <div className="flex-1">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 md:gap-x-8 gap-y-4 md:gap-y-6">
-                {/* Full Name */}
-                <div>
-                  <label htmlFor="fullName" className="block text-left   text-sm font-medium text-gray-700 mb-1">
-                    Full Name
-                  </label>
-                  <input
-                    type="text"
-                    id="fullName"
-                    name="fullName"
-                    value={formData.fullName}
-                    onChange={handleChange}
-                    className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none"
-                  />
+              <form
+                onSubmit={handleSubmit}
+                className="h-[calc(100%-60px)] md:h-[calc(100%-80px)] flex flex-col"
+              >
+                <div className="flex-1">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 md:gap-x-8 gap-y-3 md:gap-y-6">
+                    {/* Full Name */}
+                    <div>
+                      <label
+                        htmlFor="fullName"
+                        className="block text-left text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Full Name
+                      </label>
+                      <input
+                        type="text"
+                        id="fullName"
+                        name="fullName"
+                        value={formData.fullName}
+                        onChange={handleChange}
+                        className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none text-base"
+                      />
+                    </div>
+
+                    {/* Gender */}
+                    <div>
+                      <label
+                        htmlFor="gender"
+                        className="block  text-left  text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Gender
+                      </label>
+                      <div className="relative">
+                        <select
+                          id="gender"
+                          name="gender"
+                          value={formData.gender}
+                          onChange={handleChange}
+                          className="w-full appearance-none border-b border-gray-300 pb-2 pr-8 focus:border-purple-500 focus:outline-none bg-transparent text-base"
+                        >
+                          <option value="" disabled></option>
+                          <option value="male">Male</option>
+                          <option value="female">Female</option>
+                          <option value="other">Other</option>
+                          <option value="prefer-not-to-say">
+                            Prefer not to say
+                          </option>
+                        </select>
+                        <ChevronDown className="absolute right-2 bottom-3 h-4 w-4 text-gray-500" />
+                      </div>
+                    </div>
+
+                    {/* Email Address */}
+                    <div>
+                      <label
+                        htmlFor="emailAddress"
+                        className=" text-left  block text-sm text-left font-medium text-gray-700 mb-1"
+                      >
+                        Email Address
+                      </label>
+                      <input
+                        type="email"
+                        id="emailAddress"
+                        name="emailAddress"
+                        value={formData.emailAddress}
+                        onChange={handleChange}
+                        className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none text-base"
+                      />
+                    </div>
+
+                    {/* Mobile Number */}
+                    <div>
+                      <label
+                        htmlFor="mobileNumber"
+                        className=" text-left  block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Mobile Number
+                      </label>
+                      <input
+                        type="tel"
+                        id="mobileNumber"
+                        name="mobileNumber"
+                        value={formData.mobileNumber}
+                        onChange={handleChange}
+                        className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none text-base"
+                      />
+                    </div>
+
+                    {/* Location */}
+                    <div>
+                      <label
+                        htmlFor="location"
+                        className="block text-left   text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Location
+                      </label>
+                      <input
+                        type="text"
+                        id="location"
+                        name="location"
+                        value={formData.location}
+                        onChange={handleChange}
+                        className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none text-base"
+                      />
+                    </div>
+
+                    {/* Date of Birth */}
+                    <div>
+                      <label
+                        htmlFor="dateOfBirth"
+                        className="block text-left   text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Date of Birth
+                      </label>
+                      <div className="relative">
+                        <input
+                          type="date"
+                          id="dateOfBirth"
+                          name="dateOfBirth"
+                          value={formData.dateOfBirth}
+                          onChange={handleChange}
+                          className="w-full border-b border-gray-300 pb-2 pr-8 focus:border-purple-500 focus:outline-none text-base"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Pincode */}
+                    <div>
+                      <label
+                        htmlFor="pincode"
+                        className="block text-left   text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Pincode
+                      </label>
+                      <input
+                        type="text"
+                        id="pincode"
+                        name="pincode"
+                        pattern="\d{6}"
+                        maxLength={6}
+                        required
+                        value={formData.pincode}
+                        onChange={handleChange}
+                        className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none text-base"
+                      />
+                    </div>
+                  </div>
                 </div>
 
-                {/* Gender */}
-                <div>
-                  <label htmlFor="gender" className="block  text-left  text-sm font-medium text-gray-700 mb-1">
-                    Gender
-                  </label>
-                  <div className="relative">
-                    <select
-                      id="gender"
-                      name="gender"
-                      value={formData.gender}
-                      onChange={handleChange}
-                      className="w-full appearance-none border-b border-gray-300 pb-2 pr-8 focus:border-purple-500 focus:outline-none bg-transparent"
+                {/* Save & Next Button */}
+                <div className="flex justify-end mt-6 md:mt-auto">
+                  <Link to="/FormJobseeker2">
+                    <button
+                      type="submit"
+                      className="bg-purple-500 hover:bg-purple-600 text-white px-4 md:px-6 py-2 md:py-3 rounded-full text-sm md:text-base font-medium w-full md:w-auto min-w-[120px]"
                     >
-                      <option value="" disabled></option>
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                      <option value="other">Other</option>
-                      <option value="prefer-not-to-say">Prefer not to say</option>
-                    </select>
-                    <ChevronDown className="absolute right-2 bottom-3 h-4 w-4 text-gray-500" />
-                  </div>
+                      Save & Next
+                    </button>
+                  </Link>
                 </div>
-
-                {/* Email Address */}
-                <div>
-                  <label htmlFor="emailAddress" className=" text-left  block text-sm text-left font-medium text-gray-700 mb-1">
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    id="emailAddress"
-                    name="emailAddress"
-                    value={formData.emailAddress}
-                    onChange={handleChange}
-                    className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none"
-                  />
-                </div>
-
-                {/* Mobile Number */}
-                <div>
-                  <label htmlFor="mobileNumber" className=" text-left  block text-sm font-medium text-gray-700 mb-1">
-                    Mobile Number
-                  </label>
-                  <input
-                    type="tel"
-                    id="mobileNumber"
-                    name="mobileNumber"
-                    value={formData.mobileNumber}
-                    onChange={handleChange}
-                    className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none"
-                  />
-                </div>
-
-                {/* Location */}
-                <div>
-                  <label htmlFor="location" className="block text-left   text-sm font-medium text-gray-700 mb-1">
-                    Location
-                  </label>
-                  <input
-                    type="text"
-                    id="location"
-                    name="location"
-                    value={formData.location}
-                    onChange={handleChange}
-                    className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none"
-                  />
-                </div>
-
-                {/* Date of Birth */}
-                <div>
-                  <label htmlFor="dateOfBirth" className="block text-left   text-sm font-medium text-gray-700 mb-1">
-                    Date of Birth
-                  </label>
-                  <div className="relative">
-                    <input
-                      type="date"
-                      id="dateOfBirth"
-                      name="dateOfBirth"
-                      value={formData.dateOfBirth}
-                      onChange={handleChange}
-                      className="w-full border-b border-gray-300 pb-2 pr-8 focus:border-purple-500 focus:outline-none"
-                    />
-                   
-                  </div>
-                </div>
-
-                {/* Pincode */}
-                <div>
-                  <label htmlFor="pincode" className="block text-left   text-sm font-medium text-gray-700 mb-1">
-                    Pincode
-                  </label>
-                  <input
-                    type="text"
-                    id="pincode"
-                    name="pincode"
-                    pattern="\d{6}"
-                    maxLength={6}
-                    required
-                    value={formData.pincode}
-                    onChange={handleChange}
-                    className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none"
-                  />
-                </div>
-              </div>
+              </form>
             </div>
-
-            {/* Save & Next Button */}
-            <div className="flex justify-end mt-auto">
-                <Link to="/FormJobseeker2">                   <button
-                    type="submit"
-                    className="bg-purple-500 hover:bg-purple-600 text-white px-4 md:px-6 py-2.5 md:py-3 rounded-full text-sm md:text-base font-medium w-full md:w-auto"
-                  >
-                    Save & Next
-                  </button>
-                </Link>
-              </div>
-          </form>
-            </div>
-        </div> </div>
+          </div>{" "}
+        </div>
 
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/30 to-transparent pointer-events-none" />
       </section>
-
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden fixed top-[4rem] left-0 right-0 bg-white py-4 shadow-md z-50 animate-slideDown">
-          <nav className="flex flex-col space-y-4 px-4">
-            <Link to="/JobListingPage" className="text-gray-800 hover:text-black py-2">
-              Find Jobs
-            </Link>
-            <Link to="/companies" className="text-gray-800 hover:text-black py-2">
-              Browse Company
-            </Link>
-            <Link to="/hire" className="text-gray-800 hover:text-black py-2">
-              Hire Now
-            </Link>
-            <Link to="/LoginPage" className="bg-black text-white font-medium py-2 px-6 rounded-full text-center">
-              Login / Signup
-            </Link>
-          </nav>
-        </div>
-      )}
     </>
   )
 }

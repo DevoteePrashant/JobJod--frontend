@@ -73,17 +73,17 @@ function Jobs() {
           </li>
           <li className="mb-2">
             <Link to="/AdminJobseeker" className="flex items-center p-2 rounded-xl text-sm font-medium text-gray-700 hover:bg-gray-100">
-              <PiMonitorFill className="mr-2" /> <span className="m-auto">Jobseekers</span>
+            <FaUser className="mr-2" /> <span className="m-auto">Jobseekers</span>
             </Link>
           </li>
           <li className="mb-2">
             <Link to="/AdminCompanies" className="flex items-center p-2 rounded-xl text-sm font-medium text-gray-700 hover:bg-gray-100">
-              <FaUser className="mr-2" /> <span className="m-auto">Companies</span>
+            <PiMonitorFill className="mr-2" /> <span className="m-auto">Companies</span>
             </Link>
           </li>
           <li>
             <Link to="##" className="flex items-center p-2 rounded-xl text-sm font-medium text-gray-700 hover:bg-gray-100">
-              <IoMdSettings className="mr-2" /> <span className="m-auto">Enquiries</span>
+            <FaUser className="mr-2" /> <span className="m-auto">Enquiries</span>
             </Link>
           </li>
         </ul>

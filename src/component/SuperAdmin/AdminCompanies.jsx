@@ -90,7 +90,7 @@ function AdminCompanies() {
                 to="/AdminJobseeker"
                 className="flex items-center p-2 rounded-xl text-sm font-medium text-gray-700 hover:bg-gray-100"
               >
-                <PiMonitorFill className="mr-2" />{" "}
+                <FaUser className="mr-2" />{" "}
                 <span className="m-auto">Jobseekers</span>
               </Link>
             </li>
@@ -99,7 +99,7 @@ function AdminCompanies() {
                 to="/AdminCompanies"
                 className="flex items-center p-2 rounded-xl text-sm font-medium text-white bg-gray-900 hover:bg-gray-800 "
               >
-                <FaUser className="mr-2" />{" "}
+                <PiMonitorFill className="mr-2" />{" "}
                 <span className="m-auto">Companies</span>
               </Link>
             </li>
@@ -108,7 +108,7 @@ function AdminCompanies() {
                 to="##"
                 className="flex items-center p-2 rounded-xl text-sm font-medium text-gray-700 hover:bg-gray-100"
               >
-                <IoMdSettings className="mr-2" />{" "}
+                <FaUser className="mr-2" />{" "}
                 <span className="m-auto">Enquiries</span>
               </Link>
             </li>

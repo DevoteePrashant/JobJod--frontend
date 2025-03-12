@@ -33,6 +33,7 @@ import AdminDashboard from "./component/SuperAdmin/AdminDashboard";
 import Jobs from "./component/SuperAdmin/Jobs";
 import AdminJobseeker from "./component/SuperAdmin/AdminJobseeker";
 import AdminCompanies from "./component/SuperAdmin/AdminCompanies";
+import Login_Signin from "./component/Login_Signin";
 
 
 
@@ -89,6 +90,8 @@ function App() {
           <Route path="/Jobs" element={<Jobs />}/>
           <Route path="/AdminJobseeker" element={<AdminJobseeker />}/>
           <Route path="/AdminCompanies" element={<AdminCompanies />}/>
+          <Route path="/Login_Signin" element={<Login_Signin />}/>
+
 
 
           

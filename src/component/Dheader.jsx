@@ -15,9 +15,9 @@ const Dheader = () => {
     <header className="bg-white border-b-2 py-2 px-3 sm:px-4 flex flex-wrap items-center justify-between">
       {/* Mobile Menu Toggle */}
       <div className="block lg:hidden">
-        <button className="p-2 text-gray-700 hover:text-gray-900">
+        {/* <button className="p-2 text-gray-700 hover:text-gray-900">
           <FontAwesomeIcon icon={faBars} className="text-xl" />
-        </button>
+        </button> */}
       </div>
 
       {/* Search Bar - Desktop */}

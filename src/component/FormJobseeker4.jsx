@@ -677,12 +677,12 @@
 
 
 
+"use client"
 
-import React, { useEffect, useRef, useState } from 'react'
-import { ChevronDown, ChevronLeft, X, Check } from "lucide-react"
-import logo2 from "../image/logo2.png";
-import { Link } from 'react-router-dom';
-import { label } from 'recharts';
+import { useEffect, useRef, useState } from "react"
+import { ChevronDown, ChevronLeft, X } from "lucide-react"
+import logo2 from "../image/logo2.png"
+import { Link } from "react-router-dom"
 
 function FormJobseeker4() {
   const [skills, setSkills] = useState([
@@ -692,7 +692,7 @@ function FormJobseeker4() {
   ])
   const [newSkill, setNewSkill] = useState("")
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-  
+
   const dropdownRef = useRef(null)
 
   // Common skills for the dropdown
@@ -763,26 +763,24 @@ function FormJobseeker4() {
     }
   }, [])
 
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [formData, setFormData] = useState({
-      fullName: "",
-      emailAddress: "",
-      location: "",
-      gender: "",
-      mobileNumber: "",
-      dateOfBirth: ""
-    })
-  
-    const handleChange = e => {
-      const { name, value } = e.target
-      setFormData(prev => ({ ...prev, [name]: value }))
-    }
-  
-   
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [formData, setFormData] = useState({
+    fullName: "",
+    emailAddress: "",
+    location: "",
+    gender: "",
+    mobileNumber: "",
+    dateOfBirth: ""
+  })
+
+  const handleChange = e => {
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+  }
 
   return (
     <>
-      <header className=" p-8 py-4 w-full relative overflow-hidden bg-gradient-to-r from-purple-100 via-white to-purple-50">
+         <header className=" p-8 py-4 w-full relative overflow-hidden bg-gradient-to-r from-purple-100 via-white to-purple-50">
         {/* Background Pattern */}
         <div className="absolute inset-0 w-full h-full">
           <img
@@ -884,7 +882,7 @@ function FormJobseeker4() {
       )}
     </header>
 
-      <section className="relative w-full min-h-[900px] flex items-center justify-center overflow-hidden bg-gradient-to-r from-purple-100 via-white to-purple-50">
+      <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-r from-purple-100 via-white to-purple-50">
         {/* Background Pattern */}
         <div className="absolute inset-0 w-full h-full">
           <img
@@ -898,151 +896,132 @@ function FormJobseeker4() {
         </div>
 
         {/* Content */}
-        <div className="relative w-full max-w-4xl">
-          {/* Progress Steps */}
-          <div className="flex justify-between mb-4 md:mb-6 px-2 md:px-8">
-            <div className="h-1.5 md:h-2 bg-green-400 rounded-full w-[14%]"></div>
-            <div className="h-1.5 md:h-2 bg-green-400 rounded-full w-[14%] ml-1 md:ml-2"></div>
-            <div className="h-1.5 md:h-2 bg-green-400 rounded-full w-[14%] ml-1 md:ml-2"></div>
-            <div className="h-1.5 md:h-2 bg-green-400 rounded-full w-[14%] ml-1 md:ml-2"></div>
-            <div className="h-1.5 md:h-2 bg-green-400 rounded-full w-[14%] ml-1 md:ml-2"></div>
-            <div className="h-1.5 md:h-2 bg-gray-300 rounded-full w-[14%] ml-1 md:ml-2"></div>
-            <div className="h-1.5 md:h-2 bg-gray-300 rounded-full w-[14%] ml-1 md:ml-2"></div>
-          </div>
-
-          {/* Form Container - Fixed height to match other forms */}
-          <div className="w-full bg-white rounded-xl md:rounded-3xl shadow-sm p-4 md:p-8 border border-gray-100 h-[450px] md:h-[520px] overflow-y-auto">
-            {/* Header with back button */}
-            <div className="flex items-center mb-4 md:mb-8">
-              <button
-                type="button"
-                className="mr-3 md:mr-4 rounded-full border border-black p-0.5 md:p-1"
-                aria-label="Go back"
-              >
-                <Link to="/FormJobseeker3">
-                  <ChevronLeft className="h-4 w-4 md:h-5 md:w-5" />
-                </Link>
-              </button>
-              <h2 className="text-xl md:text-2xl font-bold">
-                Skill & Expertise
-              </h2>
+        <div className="relative w-full container mx-auto px-6 py-20 text-center z-10">
+          <div className="mx-auto w-full max-w-4xl">
+            {/* Progress Steps */}
+            <div className="flex justify-between mb-4 md:mb-6 px-2 md:px-8">
+              <div className="h-1.5 md:h-2 bg-green-400 rounded-full w-[14%]"></div>
+              <div className="h-1.5 md:h-2 bg-green-400 rounded-full w-[14%] ml-1 md:ml-2"></div>
+              <div className="h-1.5 md:h-2 bg-green-400 rounded-full w-[14%] ml-1 md:ml-2"></div>
+              <div className="h-1.5 md:h-2 bg-green-400 rounded-full w-[14%] ml-1 md:ml-2"></div>
+              <div className="h-1.5 md:h-2 bg-green-400 rounded-full w-[14%] ml-1 md:ml-2"></div>
+              <div className="h-1.5 md:h-2 bg-gray-300 rounded-full w-[14%] ml-1 md:ml-2"></div>
+              <div className="h-1.5 md:h-2 bg-gray-300 rounded-full w-[14%] ml-1 md:ml-2"></div>
             </div>
 
-            <form
-              onSubmit={handleSubmit}
-              className="h-[calc(100%-60px)] md:h-[calc(100%-80px)] flex flex-col"
-            >
-              <div className="flex-1">
-                {/* Skills Input with Dropdown */}
-                <div className="relative mb-4 md:mb-6" ref={dropdownRef}>
-                  <input
-                    type="text"
-                    value={newSkill}
-                    onChange={e => setNewSkill(e.target.value)}
-                    onKeyDown={handleAddSkill}
-                    onFocus={() => setIsDropdownOpen(true)}
-                    placeholder="Add skills (Get noticed for the right job by adding your skills)"
-                    className="w-full border-b border-gray-300 pb-2 pr-8 focus:border-purple-500 focus:outline-none text-sm md:text-base"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                    className="absolute right-2 bottom-3 h-4 w-4 text-gray-500"
-                  >
-                    <ChevronDown className="h-4 w-4" />
-                  </button>
+            {/* Form Container - Fixed height to match other forms */}
+            <div className="w-full bg-white rounded-xl md:rounded-3xl shadow-sm p-4 md:p-8 border border-gray-100 min-h-[450px] md:h-[520px] overflow-y-auto">
+              {/* Header with back button */}
+              <div className="flex items-center mb-4 md:mb-8">
+                <button
+                  type="button"
+                  className="mr-3 md:mr-4 rounded-full border border-black p-0.5 md:p-1"
+                  aria-label="Go back"
+                >
+                  <Link to="/FormJobseeker7">
+                    <ChevronLeft className="h-4 w-4 md:h-5 md:w-5" />
+                  </Link>
+                </button>
+                <h2 className="text-xl md:text-2xl font-bold">
+                  Skill & Expertise
+                </h2>
+              </div>
 
-                  {/* Dropdown Menu */}
-                  {isDropdownOpen && (
-                    <div className="absolute z-10 mt-1 w-full bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto">
-                      {filteredOptions.length > 0 ? (
-                        filteredOptions.map((skill, index) => (
-                          <div
-                            key={index}
-                            className="px-4 py-2 hover:bg-purple-50 cursor-pointer flex items-center justify-between text-sm"
-                            onClick={() => handleSelectSkill(skill)}
-                          >
-                            <span>{skill}</span>
-                            <button
-                              type="button"
-                              className="text-purple-500 hover:text-purple-700"
-                            >
-                              {/* <Check className="h-4 w-4" /> */}
-                            </button>
-                          </div>
-                        ))
-                      ) : (
-                        <div className="px-4 py-2 text-gray-500 text-sm">
-                          {newSkill
-                            ? "No matching skills found"
-                            : "Type to search or select a skill"}
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-
-                {/* Skills Tags */}
-                <div className="flex flex-wrap gap-2 mb-6 md:mb-8">
-                  {skills.map((skill, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center gap-1 md:gap-2 bg-purple-100 text-black px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-semibold"
+              <form
+                onSubmit={handleSubmit}
+                className="h-[calc(100%-60px)] md:h-[calc(100%-80px)] flex flex-col"
+              >
+                <div className="flex-1">
+                  {/* Skills Input with Dropdown */}
+                  <div className="relative mb-4 md:mb-6" ref={dropdownRef}>
+                    <input
+                      type="text"
+                      value={newSkill}
+                      onChange={e => setNewSkill(e.target.value)}
+                      onKeyDown={handleAddSkill}
+                      onFocus={() => setIsDropdownOpen(true)}
+                      placeholder="Add skills (Get noticed for the right job by adding your skills)"
+                      className="w-full border-b border-gray-300 pb-2 pr-8 focus:border-purple-500 focus:outline-none text-sm md:text-base"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                      className="absolute right-2 bottom-3 h-4 w-4 text-gray-500"
                     >
-                      <span>{skill}</span>
-                      <button
-                        type="button"
-                        onClick={() => handleRemoveSkill(index)}
-                        className="hover:bg-purple-200 rounded-full p-0.5"
-                      >
-                        <X className="h-3 w-3" />
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              </div>
+                      <ChevronDown className="h-4 w-4" />
+                    </button>
 
-              {/* Save & Next Button */}
-              <div className="flex justify-end mt-auto">
-                <Link to="/FormJobseeker5" className="w-full md:w-auto">
-                  <button
-                    type="submit"
-                    className="bg-purple-500 hover:bg-purple-600 text-white px-4 md:px-6 py-2.5 md:py-3 rounded-full text-sm md:text-base font-medium w-full md:w-auto"
-                  >
-                    Save & Next
-                  </button>
-                </Link>
-              </div>
-            </form>
+                    {/* Dropdown Menu */}
+                    {isDropdownOpen && (
+                      <div className="absolute z-10 mt-1 w-full bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto">
+                        {filteredOptions.length > 0 ? (
+                          filteredOptions.map((skill, index) => (
+                            <div
+                              key={index}
+                              className="px-4 py-2 hover:bg-purple-50 cursor-pointer flex items-center justify-between text-sm"
+                              onClick={() => handleSelectSkill(skill)}
+                            >
+                              <span>{skill}</span>
+                              <button
+                                type="button"
+                                className="text-purple-500 hover:text-purple-700"
+                              >
+                                {/* <Check className="h-4 w-4" /> */}
+                              </button>
+                            </div>
+                          ))
+                        ) : (
+                          <div className="px-4 py-2 text-gray-500 text-sm">
+                            {newSkill
+                              ? "No matching skills found"
+                              : "Type to search or select a skill"}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Skills Tags */}
+                  <div className="flex flex-wrap gap-2 mb-6 md:mb-8">
+                    {skills.map((skill, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center gap-1 md:gap-2 bg-purple-100 text-black px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-semibold"
+                      >
+                        <span>{skill}</span>
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveSkill(index)}
+                          className="hover:bg-purple-200 rounded-full p-0.5"
+                        >
+                          <X className="h-3 w-3" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Save & Next Button */}
+                <div className="flex justify-end mt-6 md:mt-auto">
+                  <Link to="/FormJobseeker5" className="w-full md:w-auto">
+                    <button
+                      type="submit"
+                      className="bg-purple-500 hover:bg-purple-600 text-white px-4 md:px-6 py-2.5 md:py-3 rounded-full text-sm md:text-base font-medium w-full md:w-auto min-w-[120px]"
+                    >
+                      Save & Next
+                    </button>
+                  </Link>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
-      
 
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/30 to-transparent pointer-events-none" />
       </section>
-
-      {/* Mobile Menu */}
-      {/* {isMenuOpen && ( */}
-        <div className="md:hidden fixed top-[4rem] left-0 right-0 bg-white py-4 shadow-md z-50 animate-slideDown">
-          <nav className="flex flex-col space-y-4 px-4">
-            <Link to="/JobListingPage" className="text-gray-800 hover:text-black py-2">
-              Find Jobs
-            </Link>
-            <Link to="/companies" className="text-gray-800 hover:text-black py-2">
-              Browse Company
-            </Link>
-            <Link to="/hire" className="text-gray-800 hover:text-black py-2">
-              Hire Now
-            </Link>
-            <Link to="/LoginPage" className="bg-black text-white font-medium py-2 px-6 rounded-full text-center">
-              Login / Signup
-            </Link>
-          </nav>
-        </div>
-      {/* )} */}
     </>
   )
 }
 
-export default FormJobseeker4;
+export default FormJobseeker4

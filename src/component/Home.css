@@ -61,7 +61,7 @@
   }
   
   .job-swiper {
-    padding-bottom: 12px;
+    padding-bottom: 0 !important;
     padding-left: 0 !important;
   }
   
@@ -113,7 +113,7 @@
   }
   
   .job-swiper {
-    padding: 10px 0 40px 0 !important;
+    padding: 0px 0 40px 0 !important;
   }
   
   /* Mobile pagination styles */
@@ -145,7 +145,7 @@
   /* Optimize for landscape orientation */
   @media (orientation: landscape) and (max-height: 500px) {
     .job-swiper {
-      padding: 5px 0 30px 0 !important;
+      padding: 0px 0 40px 0 !important;
     }
   
     .swiper-slide > div {

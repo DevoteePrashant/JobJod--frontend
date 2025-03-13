@@ -676,7 +676,7 @@ export function Sidebar() {
     ]
   
     return (
-      <div className="w-full h-full flex flex-col overflow-hidden">
+      <div className="w-full h-full flex flex-col overflow-hidden bg-gradient-to-r from-purple-100 via-white to-purple-50">
       
         <Swiper
           modules={[Autoplay, Navigation]}
@@ -695,12 +695,12 @@ export function Sidebar() {
           {jobs.map((job, index) => (
             <SwiperSlide
               key={index}
-              className="!w-[calc(90%-20px)] sm:!w-[calc(40%-20px)] md:!w-[calc(33.333%-20px)] lg:!w-[calc(25%-20px)]"
+              className="!w-[300px] !h-[300px] sm:!w-[calc(40%-20px)] md:!w-[calc(33.333%-20px)] lg:!w-[calc(25%-20px)]"
             >
               <div
-                className="h-full w-full relative bg-white dark:bg-gray-900 rounded-[24px] p-5 border border-gray-200 
-                dark:border-gray-800 hover:bg-[#e3dafb] dark:hover:bg-purple-900/20 
-                transition-all duration-300 group"
+                className="h-[300px] w-[300px] sm:h-full sm:w-full relative bg-white dark:bg-gray-900 rounded-[24px] p-5 border border-gray-200 
+              dark:border-gray-800 hover:bg-[#e3dafb] dark:hover:bg-purple-900/20 
+              transition-all duration-300 group overflow-hidden"
               >
                 <header className="flex flex-row items-center justify-between">
                   <div className="flex flex-wrap items-center gap-1 sm:gap-2">
@@ -758,22 +758,23 @@ export function Sidebar() {
                     ))}
                   </div>
                 </div>
-                <footer className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mt-4 bg-white dark:bg-gray-900 rounded-b-[24px] -mx-5 -mb-5 p-5 border-t border-gray-100 dark:border-gray-800">
-                  <div>
-                    <div className="font-semibold text-gray-900 dark:text-white">
-                      {job.salary}
-                    </div>
-                    <div className="text-sm text-gray-500 dark:text-gray-400">
-                      {job.location}
-                    </div>
-                  </div>
-                  <button
-                    className="w-full sm:w-auto px-3 py-1.5 sm:px-4 sm:py-2 text-sm rounded-full border border-gray-200 dark:border-gray-700 
-                             bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-                  >
-                    View Details
-                  </button>
-                </footer>
+                <footer
+                className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 
+                  bg-white dark:bg-gray-900 rounded-b-[24px] -mx-5 p-5 
+                  border-t border-gray-100 dark:border-gray-800 
+                  absolute bottom-0 left-0 right-0"
+              >
+                <div className="pt-2 ps-3">
+                  <div className="font-semibold ps-3   text-gray-900 dark:text-white">{job.salary}</div>
+                  <div className="text-sm ps-1 text-gray-500 dark:text-gray-400">{job.location}</div>
+                </div>
+                <button
+                  className="w-full sm:w-auto px-3 py-1.5 sm:px-4 sm:py-2 text-sm rounded-full border border-gray-200 dark:border-gray-700 
+                           bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                >
+                  View Details
+                </button>
+              </footer>
               </div>
             </SwiperSlide>
           ))}
@@ -814,29 +815,26 @@ export function Sidebar() {
   );
   const ResumeFeatureimgContainer = () => (
     <div className="relative mt-10 mb-10 flex flex-col items-center justify-center gap-4 lg:flex-row lg:items-start ">
-   <img
+      <img
         src={imges}
         alt="SideImage 1"
-        className="w-[120px] lg:w-[150px] h-[70px] lg:h-[80px] rounded-2xl shadow-md border border-gray-200 
-            mt-4 lg:mt-0 md:absolute md:left-[-135px] md:bottom-[-55px] lg:block"
+        className="w-[120px] lg:w-[150px] hidden md:block lg:block h-[70px] lg:h-[80px] rounded-2xl shadow-md border border-gray-200 
+            mt-4 lg:mt-0 md:absolute md:left-[-135px] md:bottom-[-55px]"
       />
 
       {/* Main Preview Image */}
       <img
         src={imges}
         alt="Main Preview"
-        className="w-[300px] lg:w-[425px] h-[150px] lg:h-[225px] rounded-2xl shadow-lg border border-gray-200 "
+        className="w-[300px] lg:w-[425px] h-[150px] lg:h-[225px] rounded-2xl shadow-lg border border-gray-200"
       />
-  
-      {/* Side Image 1 (positioned at bottom-left on medium and larger screens) */}
-   
-  
-      {/* Side Image 2 (Stacked below Image 1 on small screens, positioned at top-right on medium and larger screens) */}
+
+      {/* Side Image 2 */}
       <img
         src={imges}
-        alt="SideImage "
-        className="w-[120px] lg:w-[150px] h-[70px] lg:h-[80px] rounded-2xl shadow-md border border-gray-200 
-            mt-4 lg:mt-0 md:absolute md:right-[-135px] md:top-[-55px] lg:block"
+        alt="SideImage 2"
+        className="w-[120px] lg:w-[150px] hidden md:block lg:block h-[70px] lg:h-[80px] rounded-2xl shadow-md border border-gray-200 
+            mt-4 lg:mt-0 md:absolute md:right-[-135px] md:top-[-55px]"
       />
     </div>
   );

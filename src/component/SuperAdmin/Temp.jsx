@@ -1,5 +1,13 @@
-import { Search, MapPin, Clock, DollarSign, ChevronLeft, ChevronRight, ChevronDown, AlignJustify } from "lucide-react"
-import { IoFilter } from "react-icons/io5"
+import {
+  Search,
+  MapPin,
+  Clock,
+  DollarSign,
+  ChevronLeft,
+  ChevronRight,
+  ChevronDown,
+  AlignJustify,
+} from "lucide-react";
 
 export default function JobListings() {
   return (
@@ -16,18 +24,13 @@ export default function JobListings() {
             className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-primary/20"
           />
         </div>
-        {/* <button className="flex items-center gap-2 px-4 py-2 rounded-full border border-gray-200 bg-white text-sm font-medium w-full sm:w-auto justify-center sm:justify-start">
-          <IoFilter className="h-4 w-4" />
-          <span>Filters</span>
-          <ChevronDown className="h-4 w-4 ml-auto sm:ml-2" />
-        </button> */}
         <button className="w-full sm:w-auto flex items-center justify-between px-4 py-2.5 bg-white border border-gray-200 rounded-lg min-w-[140px] sm:min-w-[180px]">
-                  <div className="flex items-center gap-2">
-                    <AlignJustify className="h-5 w-5 text-gray-700" />
-                    <span className="font-medium text-gray-700">Filter by</span>
-                  </div>
-                  <ChevronDown className="h-5 w-5 text-gray-700 ml-2" />
-                </button>
+          <div className="flex items-center gap-2">
+            <AlignJustify className="h-5 w-5 text-gray-700" />
+            <span className="font-medium text-gray-700">Filter by</span>
+          </div>
+          <ChevronDown className="h-5 w-5 text-gray-700 ml-2" />
+        </button>
       </div>
 
       {/* Job Listings */}
@@ -157,10 +160,20 @@ export default function JobListings() {
         </button>
       </div>
     </div>
-  )
+  );
 }
 
-function JobCard({ logo, company, title, isNew = false, location, type, salary, timeAgo, status }) {
+function JobCard({
+  logo,
+  company,
+  title,
+  isNew = false,
+  location,
+  type,
+  salary,
+  timeAgo,
+  status,
+}) {
   return (
     <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 p-3 sm:p-4 border border-gray-100 rounded-lg hover:shadow-md transition-shadow">
       <div className="flex-shrink-0 w-12 h-12">{logo}</div>
@@ -170,12 +183,20 @@ function JobCard({ logo, company, title, isNew = false, location, type, salary, 
             <p className="text-sm text-gray-600">{company}</p>
             <h3 className="font-semibold text-gray-900 flex items-center gap-2 flex-wrap">
               {title}
-              {isNew && <span className="text-xs text-purple-600 font-normal">New post</span>}
+              {isNew && (
+                <span className="text-xs text-purple-600 font-normal">
+                  New post
+                </span>
+              )}
             </h3>
           </div>
           <div className="sm:ml-auto">
             <span
-              className={`px-2 sm:px-3 py-1 text-xs rounded-full ${status === "active" ? "bg-green-500 text-white" : "bg-red-600 text-white"}`}
+              className={`px-2 sm:px-3 py-1 text-xs rounded-full ${
+                status === "active"
+                  ? "bg-green-500 text-white"
+                  : "bg-red-600 text-white"
+              }`}
             >
               {status === "active" ? "Active" : "Inactive"}
             </span>
@@ -202,11 +223,11 @@ function JobCard({ logo, company, title, isNew = false, location, type, salary, 
         </div>
 
         <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-gray-500 line-clamp-2 sm:line-clamp-none">
-          Mollit in laborum tempor Lorem incididunt irure. Aute eu ex ad sunt. Pariatur sint culpa do incididunt eiusmod
-          eiusmod culpa. laborum tempor Lorem incididunt.
+          Mollit in laborum tempor Lorem incididunt irure. Aute eu ex ad sunt.
+          Pariatur sint culpa do incididunt eiusmod eiusmod culpa. laborum
+          tempor Lorem incididunt.
         </p>
       </div>
     </div>
-  )
+  );
 }
-

@@ -293,12 +293,12 @@ const Jobseeker = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Left Column */}
             <div className="space-y-6">
-              <div className="grid grid-cols-2 gap-6 text-2xl sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2">
-                <DashboardStats title="Potential Jobs" subtext="(This Month)" value="13" />
-                <DashboardStats title="Area" subtext="Jobs in your preferred area" value="13" />
-                <DashboardStats title="Salary" subtext="Your expectation based" value="13" />
-                <DashboardStats title="Experience" subtext="Your experience" value="13" />
-              </div>
+            <div className="flex flex-col gap-4 sm:grid sm:grid-cols-2 sm:gap-4 md:gap-6">
+        <DashboardStats title="Potential Jobs" subtext="(This Month)" value="13" />
+        <DashboardStats title="Area" subtext="Jobs in your preferred area" value="13" />
+        <DashboardStats title="Salary" subtext="Your expectation based" value="13" />
+        <DashboardStats title="Experience" subtext="Your experience" value="13" />
+      </div>
               {/* Notifications Section */}
               <div className="rounded-xl border bg-white p-6">
                 <h2 className="font-bold text-xl mb-4">Recent Notifications</h2>

@@ -9,14 +9,14 @@ export default function RightSidebar() {
           placeholder="name@email.com"
           className="w-full mt-4 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
         />
-        <button className="w-full mt-4 py-2 bg-purple-600 hover:bg-purple-700 transition text-white rounded-md">
+        <button className="w-full mt-4  rounded-3xl py-2 bg-purple-500 hover:bg-purple-600 transition text-white ">
           Subscribe
         </button>
       </div>
 
       <div className="bg-white p-6 rounded-lg shadow-md">
         <h3 className="font-semibold text-lg mb-4">Get noticed faster</h3>
-        <button className="w-full py-2 bg-purple-600 hover:bg-purple-700 transition text-white rounded-md">
+        <button className="w-full py-2 rounded-3xl   bg-purple-500 hover:bg-purple-600 transition text-white ">
           Upload your resume
         </button>
       </div>

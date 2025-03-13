@@ -40,15 +40,6 @@ import Login_Signin from "./component/Login_Signin";
 
 
 
-// import CompanyProfile from "./component/CompanyApp";
-// import CompanyApp from "./component/CompanyApp";
-// import Header from "./component/Header";
-// import Footer from "./component/Footer";
-// import Filters from "./component/Filters";
-// import JobList from "./component/JobList";
-// import RightSidebar from "./component/RightSidebar";
-// import Sidebar from "./component/Sidebar";
-
 
 
 function App() {

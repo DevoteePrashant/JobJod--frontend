@@ -1,7 +1,3 @@
-
-
-
-
 import { MapPin, Clock, ChevronDown } from "lucide-react"
 import icon from "../image/icon.png"
 import { Link } from "react-router-dom"

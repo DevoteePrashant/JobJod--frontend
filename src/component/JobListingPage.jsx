@@ -1,13 +1,28 @@
-import { useState } from "react"
-import Filters from "./Filters"
-import JobList from "./JobList"
-import RightSidebar from "./RightSidebar"
-import Navbar from "./Navbar"
-
-import Group from '../image/Group.svg';
-import Footer from "./Footer"
+import { useState } from "react";
+import Filters from "./Filters";
+import JobList from "./JobList";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faSearch,
+  faBell,
+  faEnvelope,
+  faBars,
+  faXmark,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
+import profile from "../image/dashboard.png";
+import { Bell, Mail, Search, X } from "lucide-react";
+import NotificationPanel from "./NotificationPanel";
+import image2 from "../image/profile.jpg";
+import RightSidebar from "./RightSidebar";
+import Navbar from "./Navbar";
+import logo2 from "../image/logo2.png";
+import Group from "../image/Group.svg";
+import Footer from "./Footer";
+import Dheader from "./Dheader";
+import { Link } from "react-router-dom";
+import logo from "../image/logo2.png"
 export default function JobListingPage() {
-
   // Job data
   const jobs = [
     {
@@ -22,7 +37,8 @@ export default function JobListingPage() {
       salary: "50-55k",
       postedAt: "29 min ago",
       isNew: true,
-      description: "Mollit in laborum tempor Lorem incididunt irure. Aute eu ex ad sunt."
+      description:
+        "Mollit in laborum tempor Lorem incididunt irure. Aute eu ex ad sunt.",
     },
     {
       id: 2,
@@ -35,10 +51,10 @@ export default function JobListingPage() {
       type: "Part time",
       salary: "30-32k",
       postedAt: "1 day ago",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     },
     // Add more job listings as needed
-  ]
+  ];
 
   // Filters state
   const [filters, setFilters] = useState({
@@ -48,32 +64,49 @@ export default function JobListingPage() {
     datePosted: "",
     experience: "",
     employmentType: [],
-  })
+  });
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+    const [isNotificationsOpen, setIsNotificationsOpen] = useState(false)
+    const [showMobileSearch, setShowMobileSearch] = useState(false)
+    const [isSidebarVisible, setIsSidebarVisible] = useState(false)
+  const [showNotifications, setShowNotifications] = useState(false)
+
+    const toggleSidebar = () => {
+        setIsSidebarVisible(!isSidebarVisible);
+    };
+    
+
+
+const handleImageError = (event) => {
+  event.target.src = "/placeholder.svg"; // Fallback image
+}
 
   return (
     <>
-    <Navbar/>
-    <div className=" min-h-screen ">
-  
-      
-      <div className="container mx-auto py-10 px-4 sm:px-6 lg:px-8">
-      <div className="container mx-auto text-center sm:text-left relative">
-      <div className="absolute inset-0 w-full h-full">
-    <img
-      src={Group}
-      alt="Background Pattern"
-      className="w-full h-full object-cover opacity-30"
-      width={1440}
-      height={1024}
-      priority
-    />
-  </div>
-  <div className="relative z-10">
+     <Navbar />
+
+      <div className=" min-h-screen ">
+        <div className="container mx-auto py-10 px-4 sm:px-6 lg:px-8">
+          <div className="container mx-auto text-center sm:text-left relative">
+            <div className="absolute inset-0 w-full h-full">
+              <img
+                src={Group}
+                alt="Background Pattern"
+                className="w-full h-full object-cover opacity-30"
+                width={1440}
+                height={1024}
+                priority
+              />
+            </div>
+            <div className="relative z-10">
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
                 Find your <span className="text-purple-600">new job</span> today
               </h1>
               <p className="text-gray-600 text-base sm:text-lg mb-8 max-w-3xl">
-                Thousands of jobs in the computer, engineering, and technology sectors are waiting for you.
+                Thousands of jobs in the computer, engineering, and technology
+                sectors are waiting for you.
               </p>
 
               {/* Search Bar - Fixed styling */}
@@ -127,15 +160,15 @@ export default function JobListingPage() {
                 </button>
               </div>
             </div>
-      </div>
-        <div className="flex flex-col lg:flex-row gap-6">
-          <Filters filters={filters} setFilters={setFilters} />
-          <JobList jobs={jobs} />
-          <RightSidebar />
+          </div>
+          <div className="flex flex-col lg:flex-row gap-6">
+            <Filters filters={filters} setFilters={setFilters} />
+            <JobList jobs={jobs} />
+            <RightSidebar />
+          </div>
         </div>
       </div>
-    </div>
-    <Footer/>
+      <Footer />
     </>
-  )
+  );
 }

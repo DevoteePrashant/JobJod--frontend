@@ -279,13 +279,6 @@ function CompanyProfile() {
         <Dheader />
         {/* Main Content */}
         <div className="min-h-[24rem] sm:min-h-[32rem] md:min-h-[56rem] lg:w-[80%]  md:w-[80%] w-full mx-auto">
-          {/* <div className="relative bg-white overflow-hidden">
-                <img
-                    alt="Profile Background"
-                    className="min-h-[20rem] sm:min-h-[20rem] md:min-h-[20rem] lg:w-[80%] md:w-[80%] w-full mx-auto"
-                    src="/static/media/g.af47b1fe0a2396978832.png"
-                />
-            </div> */}
           <div className="relative bg-white overflow-hidden">
             <img
               alt="Profile Background"
@@ -990,49 +983,6 @@ function CompanyProfile() {
                     </div>
                   </div>
                 </div>
-
-                {/* Privacy Policy */}
-                {/* <div className="border-b border-gray-200 pb-4">
-                  <div className="flex items-center">
-                    <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mr-4">
-                      <div className="w-6 h-6 bg-emerald-400 rounded-sm flex items-center justify-center">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          fill="white"
-                          className="w-4 h-4"
-                        >
-                          <path d="M7 18h10v-2H7v2zM7 14h10v-2H7v2zM7 10h10V8H7v2zM7 6h7V4H7v2z" />
-                        </svg>
-                      </div>
-                    </div>
-                    <div className="flex-1">
-                      <h2 className="text-base font-medium text-gray-900">
-                        Privacy Policy
-                      </h2>
-                      <p className="text-sm text-gray-500 flex items-center">
-                        <a
-                          href="www.godhanitechnology/privacy-policy"
-                          className="flex items-center"
-                        >
-                          <BsLink45Deg className="mr-1" />
-                          Click Here
-                        </a>
-                      </p>
-                    </div>
-                    <div className="flex space-x-4">
-                      <button className="w-8 h-8 flex items-center justify-center rounded-full text-gray-500 hover:bg-gray-100">
-                        <Trash2 className="w-5 h-5" />
-                      </button>
-                      <button className="w-8 h-8 flex items-center justify-center rounded-full text-purple-500 hover:bg-purple-100">
-                        <Eye className="w-5 h-5" />
-                      </button>
-                      <button className="w-8 h-8 flex items-center justify-center rounded-full text-purple-500 hover:bg-purple-100">
-                        <FaEdit className="w-5 h-5" />
-                      </button>
-                    </div>
-                  </div>
-                </div> */}
               </div>
             </div>
           </div>

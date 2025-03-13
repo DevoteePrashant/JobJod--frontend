@@ -1,24 +1,39 @@
-import { useState } from "react"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSearch, faBell, faEnvelope, faBars, faXmark, faUser } from "@fortawesome/free-solid-svg-icons"
-import profile from "../image/dashboard.png"
+import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faSearch,
+  faBell,
+  faEnvelope,
+  faBars,
+  faXmark,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
+import profile from "../image/dashboard.png";
+import { Bell, Mail, Search, X } from "lucide-react";
+import NotificationPanel from "./NotificationPanel";
 // Remove the direct import of the image that's causing the error
 // import profile from '../image/dashboard.png';
+import image2 from "../image/profile.jpg";
 
 const Dheader = () => {
-  const [showMobileSearch, setShowMobileSearch] = useState(false)
+  // const [showMobileSearch, setShowMobileSearch] = useState(false)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
+  const [showMobileSearch, setShowMobileSearch] = useState(false);
+  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+  const [showNotifications, setShowNotifications] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarVisible(!isSidebarVisible);
+  };
 
   // Use a placeholder or default avatar when the image isn't available
-  const profileImageUrl = "/placeholder.svg?height=40&width=40"
+  const profileImageUrl = "/placeholder.svg?height=40&width=40";
 
   return (
     <header className="bg-white border-b-2 py-2 px-3 sm:px-4 flex flex-wrap items-center justify-between">
       {/* Mobile Menu Toggle */}
-      <div className="block lg:hidden">
-        {/* <button className="p-2 text-gray-700 hover:text-gray-900">
-          <FontAwesomeIcon icon={faBars} className="text-xl" />
-        </button> */}
-      </div>
+      <div className="block lg:hidden"></div>
 
       {/* Search Bar - Desktop */}
       <div className="hidden md:flex flex-grow mr-4">
@@ -42,21 +57,57 @@ const Dheader = () => {
             onClick={() => setShowMobileSearch(!showMobileSearch)}
             className="p-2 text-gray-700 hover:text-gray-900"
           >
-            <FontAwesomeIcon icon={showMobileSearch ? faXmark : faSearch} className="text-xl" />
+            <FontAwesomeIcon
+              icon={showMobileSearch ? faXmark : faSearch}
+              className="text-xl"
+            />
           </button>
         </div>
-        <button className="p-2 text-gray-700 hover:text-gray-900">
-          <FontAwesomeIcon icon={faBell} className="text-lg sm:text-xl" />
-        </button>
-        <button className="p-2 text-gray-700 hover:text-gray-900">
-          <FontAwesomeIcon icon={faEnvelope} className="text-lg sm:text-xl" />
-        </button>
-        <div className="flex items-center ml-1">
-          {/* Replace the image with a more robust implementation */}
-          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full cursor-pointer border border-gray-200 bg-gray-100 flex items-center justify-center overflow-hidden">
-            {/* Fallback to an icon if image fails to load */}
-            <img src={profile} alt="profile" className="text-gray-400" />
-            {/* <FontAwesomeIcon icon={faUser} className="text-gray-400" /> */}
+        <div className="flex flex-1 justify-end md:hidden">
+          <button
+            onClick={() => setShowMobileSearch(!showMobileSearch)}
+            className="rounded-full p-2 hover:bg-gray-100"
+            aria-label={showMobileSearch ? "Close search" : "Open search"}
+          >
+            {showMobileSearch ? (
+              <X className="h-5 w-5" />
+            ) : (
+              <Search className="h-5 w-5" />
+            )}
+          </button>
+        </div>
+
+        {/* Right side icons */}
+        <div className="flex items-center gap-2  md:gap-4">
+          <div className="relative pt-2">
+            <button
+              className="relative rounded-full  hover:bg-gray-100"
+              onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
+            >
+              <Bell className="h-5 w-5" />
+              <span className="absolute -top-1 -right-1 w-3 h-3 bg-pink-500 rounded-full"></span>
+            </button>
+
+            <NotificationPanel
+              isOpen={isNotificationsOpen}
+              onClose={() => setIsNotificationsOpen(false)}
+            />
+          </div>
+
+          <a
+            href="/Message"
+            className="relative rounded-full p-2 hover:bg-gray-100"
+          >
+            <Mail className="h-5 w-5" />
+            <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-blue-500" />
+          </a>
+
+          <div className="h-8 w-8 overflow-hidden rounded-full border-2 border-primary md:h-10 md:w-10">
+            <img
+              src={image2 || "/placeholder.svg"}
+              alt="Profile"
+              className="h-full w-full object-cover"
+            />
           </div>
         </div>
       </div>
@@ -78,7 +129,7 @@ const Dheader = () => {
         </div>
       )}
     </header>
-  )
-}
+  );
+};
 
-export default Dheader
+export default Dheader;

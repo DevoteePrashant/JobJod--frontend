@@ -1,21 +1,31 @@
-"use client"
-
-import { useState, useEffect } from "react"
-import { FaBell, FaEnvelope, FaBars, FaTimes } from "react-icons/fa"
+import { useState, useEffect, useRef } from "react"
+import { FaBars, FaTimes } from "react-icons/fa"
 import NotificationPanel from "./NotificationPanel"
-import profile from "../image/profile.jpg"
 import logo from "../image/logo2.png"
+
 import { Link } from "react-router-dom"
+import { Bell, Mail, MessageSquare, Search, X } from "lucide-react"
+import { FaEnvelope } from "react-icons/fa6"
+import image2 from "../image/profile.jpg";
+
 
 const Navbar = () => {
-  const [showNotifications, setShowNotifications] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false)
+  const notificationRef = useRef(null)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
-  // Handle window resize
+  const [showMobileSearch, setShowMobileSearch] = useState(false)
+  const [isSidebarVisible, setIsSidebarVisible] = useState(false)
+const [showNotifications, setShowNotifications] = useState(false)
+
+  const toggleSidebar = () => {
+      setIsSidebarVisible(!isSidebarVisible);
+  };
+  
+
   useEffect(() => {
     const handleResize = () => {
-      setWindowWidth(window.innerWidth)
       if (window.innerWidth >= 768) {
         setMobileMenuOpen(false)
       }
@@ -25,24 +35,43 @@ const Navbar = () => {
     return () => window.removeEventListener("resize", handleResize)
   }, [])
 
-  // Close notifications when mobile menu is opened
   useEffect(() => {
     if (mobileMenuOpen) {
-      setShowNotifications(false)
+      setIsNotificationsOpen(false)
     }
   }, [mobileMenuOpen])
 
-  // Close mobile menu when clicking outside
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (mobileMenuOpen && !event.target.closest("nav")) {
+    const handleClickOutside = event => {
+      if (
+        mobileMenuOpen &&
+        event.target instanceof Node &&
+        !event.target.closest("nav")
+      ) {
         setMobileMenuOpen(false)
+      }
+
+      if (
+        isNotificationsOpen &&
+        notificationRef.current &&
+        event.target instanceof Node &&
+        !notificationRef.current.contains(event.target)
+      ) {
+        setIsNotificationsOpen(false)
       }
     }
 
     document.addEventListener("mousedown", handleClickOutside)
     return () => document.removeEventListener("mousedown", handleClickOutside)
-  }, [mobileMenuOpen])
+  }, [mobileMenuOpen, isNotificationsOpen])
+
+  const toggleNotifications = () => {
+    setIsNotificationsOpen(!isNotificationsOpen)
+  }
+
+  const handleImageError = (event) => {
+    event.target.src = "/placeholder.svg"; // Fallback image
+  }
 
   return (
     <nav className="w-[93%] mx-auto p-4 relative">
@@ -50,7 +79,7 @@ const Navbar = () => {
         {/* Left Section: Logo */}
         <div className="flex items-center">
           <Link to="/" className="flex items-center space-x-2">
-            <img src={logo || "/placeholder.svg"} alt="JobJod" className="h-8 md:h-10" />
+            <img src={logo} alt="JobJod" className="h-8 md:h-10" onError={handleImageError} />
           </Link>
         </div>
 
@@ -65,45 +94,40 @@ const Navbar = () => {
         </div>
 
         {/* Icons and Profile - Modified for responsive */}
-        <div className="flex items-center space-x-4">
-          {/* Mobile menu toggle - Only visible on mobile */}
-          <button
-            className="md:hidden text-black focus:outline-none"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? <FaTimes className="text-xl" /> : <FaBars className="text-xl" />}
-          </button>
-
-          {/* Notifications - Visible on all screens */}
-          <div className="relative">
-            <FaBell
-              className="text-xl text-black cursor-pointer"
-              onClick={() => setShowNotifications(!showNotifications)}
-            />
-            <span className="absolute top-0 right-0 bg-purple-500 w-2 h-2 rounded-full"></span>
-            {showNotifications && (
-              <div
-                className="absolute right-0 mt-2 bg-white shadow-md border border-gray-200 rounded-2xl z-50"
-                style={{ width: windowWidth < 768 ? "300px" : "550px" }}
-              >
-                <NotificationPanel />
-              </div>
-            )}
-          </div>
-
-          {/* Messages - Hidden on smallest screens, visible on medium+ */}
-          <div className="relative hidden sm:block">
-            <Link to="/Message">
-              <FaEnvelope className="text-xl text-black" />
-            </Link>
-            <span className="absolute top-0 right-0 bg-purple-500 w-2 h-2 rounded-full"></span>
-          </div>
-
-          {/* Profile - Hidden on smallest screens, visible on medium+ */}
-          <div className="w-10 h-10 rounded-full overflow-hidden border border-gray-300 hidden sm:block">
-            <img src={profile || "/placeholder.svg"} alt="User Profile" className="w-full h-full object-cover" />
-          </div>
-        </div>
+         {/* Mobile search toggle */}
+         <div className="flex flex-1 justify-end md:hidden">
+                             <button
+                               onClick={() => setShowMobileSearch(!showMobileSearch)}
+                               className="rounded-full p-2 hover:bg-gray-100"
+                               aria-label={showMobileSearch ? "Close search" : "Open search"}
+                             >
+                               {showMobileSearch ? <X className="h-5 w-5" /> : <Search className="h-5 w-5" />}
+                             </button>
+                           </div>
+               
+                           {/* Right side icons */}
+                           <div className="flex items-center gap-2  md:gap-4">
+                             <div className="relative pt-2">
+                               <button
+                                 className="relative rounded-full  hover:bg-gray-100"
+                                 onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
+                               >
+                                 <Bell className="h-5 w-5" />
+                                 <span className="absolute -top-1 -right-1 w-3 h-3 bg-pink-500 rounded-full"></span>
+                               </button>
+               
+                               <NotificationPanel isOpen={isNotificationsOpen} onClose={() => setIsNotificationsOpen(false)} />
+                             </div>
+               
+                             <a href="/Message" className="relative rounded-full p-2 hover:bg-gray-100">
+                               <Mail className="h-5 w-5" />
+                               <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-blue-500" />
+                             </a>
+               
+                             <div className="h-8 w-8 overflow-hidden rounded-full border-2 border-primary md:h-10 md:w-10">
+                               <img src={image2 || "/placeholder.svg"} alt="Profile" className="h-full w-full object-cover" />
+                             </div>
+                           </div>
       </div>
 
       {/* Mobile Menu - Only visible when toggled */}
@@ -134,7 +158,7 @@ const Navbar = () => {
             </Link>
             <div className="flex items-center space-x-3 py-2 sm:hidden">
               <div className="w-8 h-8 rounded-full overflow-hidden border border-gray-300">
-                <img src={profile || "/placeholder.svg"} alt="User Profile" className="w-full h-full object-cover" />
+                {/* <img src={profile} alt="User Profile" className="w-full h-full object-cover" onError={handleImageError} /> */}
               </div>
               <span className="text-black font-medium">Profile</span>
             </div>
@@ -146,4 +170,3 @@ const Navbar = () => {
 }
 
 export default Navbar
-

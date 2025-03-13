@@ -1,28 +1,23 @@
-"use client"
-
-import { useState } from "react"
-import dashboard from "../../image/dashboard.png"
-import { RxDashboard } from "react-icons/rx"
-import { PiBagSimpleFill } from "react-icons/pi"
-import { PiMonitorFill } from "react-icons/pi"
-import { FaUser } from "react-icons/fa6"
-import { IoMdSettings } from "react-icons/io"
-import logo2 from "../../image/logo2.png"
-import img from "../../image/dashboard.png"
-
-import Dheader2 from "../Dheader2"
-import { GiHamburgerMenu } from "react-icons/gi"
-import { AiOutlineClose } from "react-icons/ai"
-import { Link } from "react-router-dom"
-import { Search, ChevronDown, AlignJustify } from "lucide-react"
-import { IoFilter } from "react-icons/io5"
+import { useState } from "react";
+import dashboard from "../../image/dashboard.png";
+import { RxDashboard } from "react-icons/rx";
+import { PiBagSimpleFill } from "react-icons/pi";
+import { PiMonitorFill } from "react-icons/pi";
+import { FaUser } from "react-icons/fa6";
+import logo2 from "../../image/logo2.png";
+import img from "../../image/dashboard.png";
+import Dheader2 from "../Dheader2";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { AiOutlineClose } from "react-icons/ai";
+import { Link } from "react-router-dom";
+import { Search, ChevronDown, AlignJustify } from "lucide-react";
 
 function AdminJobseeker() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen)
-  }
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   return (
     <div className="flex h-screen bg-gray-50">
@@ -127,31 +122,27 @@ function AdminJobseeker() {
         {/* Content Area */}
         <main className="flex-1 p-2 sm:p-4 overflow-y-auto">
           <div className="max-h-screen mx-auto p-3 sm:p-6 bg-white">
-         {/* Search and Filter Section */}
-         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 sm:mb-6 gap-3 sm:gap-4">
-        <div className="relative flex-1 w-full">
-          <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-            <Search className="h-4 w-4 text-gray-400" />
-          </div>
-          <input
-            type="text"
-            placeholder="Search jobs..."
-            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-primary/20"
-          />
-        </div>
-        {/* <button className="flex items-center gap-2 px-4 py-2 rounded-full border border-gray-200 bg-white text-sm font-medium w-full sm:w-auto justify-center sm:justify-start">
-          <IoFilter className="h-4 w-4" />
-          <span>Filters</span>
-          <ChevronDown className="h-4 w-4 ml-auto sm:ml-2" />
-        </button> */}
-        <button className="w-full sm:w-auto flex items-center justify-between px-4 py-2.5 bg-white border border-gray-200 rounded-lg min-w-[140px] sm:min-w-[180px]">
-                  <div className="flex items-center gap-2">
-                    <AlignJustify className="h-5 w-5 text-gray-700" />
-                    <span className="font-medium text-gray-700">Filter by</span>
-                  </div>
-                  <ChevronDown className="h-5 w-5 text-gray-700 ml-2" />
-                </button>
-      </div>
+            {/* Search and Filter Section */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 sm:mb-6 gap-3 sm:gap-4">
+              <div className="relative flex-1 w-full">
+                <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+                  <Search className="h-4 w-4 text-gray-400" />
+                </div>
+                <input
+                  type="text"
+                  placeholder="Search jobs..."
+                  className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-primary/20"
+                />
+              </div>
+
+              <button className="w-full sm:w-auto flex items-center justify-between px-4 py-2.5 bg-white border border-gray-200 rounded-lg min-w-[140px] sm:min-w-[180px]">
+                <div className="flex items-center gap-2">
+                  <AlignJustify className="h-5 w-5 text-gray-700" />
+                  <span className="font-medium text-gray-700">Filter by</span>
+                </div>
+                <ChevronDown className="h-5 w-5 text-gray-700 ml-2" />
+              </button>
+            </div>
 
             {/* Employee Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
@@ -242,7 +233,7 @@ function AdminJobseeker() {
         </main>
       </div>
     </div>
-  )
+  );
 }
 
-export default AdminJobseeker
+export default AdminJobseeker;

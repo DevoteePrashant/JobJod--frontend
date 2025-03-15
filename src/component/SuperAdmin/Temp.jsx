@@ -3,7 +3,7 @@ import {
   MapPin,
   Clock,
   DollarSign,
-  ChevronLeft,
+  ChevronLeft,  
   ChevronRight,
   ChevronDown,
   AlignJustify,

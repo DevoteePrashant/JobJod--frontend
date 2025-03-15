@@ -1,45 +1,52 @@
-
-import { useState } from "react";
+import React,{useState} from 'react'
 import dashboard from "../../image/dashboard.png";
 import { RxDashboard } from "react-icons/rx";
 import { PiBagSimpleFill } from "react-icons/pi";
 import { PiMonitorFill } from "react-icons/pi";
 import { FaUser } from "react-icons/fa6";
-// import { IoMdSettings } from "react-icons/io";
 import logo2 from "../../image/logo2.png";
-import img from "../../image/icon.png";
-import Dheader2 from "../Dheader2";
+import Dheader from "../Dheader";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import { Search, AlignJustify, ChevronDown } from "lucide-react";
 
-function AdminCompanies() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const AdminSidebar = ({substrLocation}) => {
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-}
-function AdminSidebar() {
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const toggleMobileMenu = () => {
+      setIsMobileMenuOpen(!isMobileMenuOpen);
+    };
   return (
-<>  {/* <div
+    <div>
+      <button
+        onClick={toggleMobileMenu}
+        className="lg:hidden fixed top-4 left-4 z-50 text-gray-700 hover:text-gray-900"
+      >
+        {isMobileMenuOpen ? (
+          <AiOutlineClose size={24} />
+        ) : (
+          <GiHamburgerMenu size={24} />
+        )}
+      </button>
+
+      {/* Sidebar */}
+      <div
         className={`
-          w-64 flex-shrink-0 bg-white shadow-lg fixed top-0 left-0 h-full z-40 transform transition-transform duration-300 ease-in-out
-          ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"}
-          lg:translate-x-0 lg:static lg:block
-        `}
+  w-64 flex-shrink-0 bg-white shadow-lg fixed top-0 left-0 h-full z-40 transform transition-transform duration-300 ease-in-out
+  ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"}
+  lg:translate-x-0 lg:static lg:block
+`}
       >
         {/* Sidebar Content */}
         <div className="flex items-center justify-center h-20">
-          <img src={logo2 || "/placeholder.svg"} alt="JOBJOD" className="h-9" />
+          <Link to="/"><img src={logo2} alt="JOBJOD" className="h-9" /></Link>
         </div>
 
         {/* Profile */}
         <div className="flex items-center p-4 space-x-4 m-auto">
           <div className="relative">
             <img
-              src={dashboard || "/placeholder.svg"}
+              src={dashboard}
               alt="User Avatar"
               className="w-12 h-12 rounded-full"
             />
@@ -56,7 +63,7 @@ function AdminSidebar() {
             <li className="mb-2">
               <Link
                 to="/AdminDashboard"
-                className="flex items-center p-2 rounded-xl text-sm font-medium text-gray-700 hover:bg-gray-100 "
+                className={`${substrLocation==='AdminDashboard'?'bg-gray-900 text-white hover:bg-gray-900 hover:text-white':'text-black bg-white'} flex items-center p-2 rounded-xl text-sm font-medium hover:text-black  bg-gray-800 hover:bg-gray-100 `}
               >
                 <RxDashboard className="mr-2" />{" "}
                 <span className="m-auto">Dashboard</span>
@@ -65,7 +72,7 @@ function AdminSidebar() {
             <li className="mb-2">
               <Link
                 to="/Jobs"
-                className="flex items-center p-2 rounded-xl text-sm font-medium text-gray-700 hover:bg-gray-100"
+                className={`${substrLocation==='Jobs'?'bg-gray-900 text-white hover:bg-gray-900 hover:text-white':'text-black bg-white'} flex items-center p-2 rounded-xl text-sm font-medium hover:text-black  bg-gray-800 hover:bg-gray-100 `}
               >
                 <PiBagSimpleFill className="mr-2" />{" "}
                 <span className="m-auto">Jobs</span>
@@ -74,7 +81,7 @@ function AdminSidebar() {
             <li className="mb-2">
               <Link
                 to="/AdminJobseeker"
-                className="flex items-center p-2 rounded-xl text-sm font-medium text-gray-700 hover:bg-gray-100"
+                className={`${substrLocation==='AdminJobseeker'?'bg-gray-900 text-white hover:bg-gray-900 hover:text-white':'text-black bg-white'} flex items-center p-2 rounded-xl text-sm font-medium hover:text-black  bg-gray-800 hover:bg-gray-100 `}
               >
                 <FaUser className="mr-2" />{" "}
                 <span className="m-auto">Jobseekers</span>
@@ -83,7 +90,7 @@ function AdminSidebar() {
             <li className="mb-2">
               <Link
                 to="/AdminCompanies"
-                className="flex items-center p-2 rounded-xl text-sm font-medium text-white bg-gray-900 hover:bg-gray-800 "
+                className={`${substrLocation==='AdminCompanies'?'bg-gray-900 text-white hover:bg-gray-900 hover:text-white':'text-black bg-white'} flex items-center p-2 rounded-xl text-sm font-medium hover:text-black  bg-gray-800 hover:bg-gray-100 `}
               >
                 <PiMonitorFill className="mr-2" />{" "}
                 <span className="m-auto">Companies</span>
@@ -100,7 +107,12 @@ function AdminSidebar() {
             </li>
           </ul>
         </nav>
-      </>
+      </div>
+
+
+
+
+    </div>
   )
 }
 

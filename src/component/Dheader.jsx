@@ -53,7 +53,7 @@ const Dheader = () => {
       <div className="flex items-center space-x-2 sm:space-x-4">
         {/* Mobile Search Toggle */}
         <div className="md:hidden flex items-center">
-          <button
+          {/* <button
             onClick={() => setShowMobileSearch(!showMobileSearch)}
             className="p-2 text-gray-700 hover:text-gray-900"
           >
@@ -61,7 +61,7 @@ const Dheader = () => {
               icon={showMobileSearch ? faXmark : faSearch}
               className="text-xl"
             />
-          </button>
+          </button> */}
         </div>
         <div className="flex flex-1 justify-end md:hidden">
           <button

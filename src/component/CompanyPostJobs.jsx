@@ -9,15 +9,20 @@ import logo2 from "../image/logo2.png"
 import Dheader from "./Dheader"
 import { GiHamburgerMenu } from "react-icons/gi"
 import { AiOutlineClose } from "react-icons/ai"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { ChevronDown, ChevronDownIcon, ChevronUp, ChevronUpIcon, Plus, PlusIcon, User } from "lucide-react"
 import profile from "../image/Notificationlogo1.png"
 import t1 from "../image/t1.png"
 import JobPostModal from "./JobPostModal"
+import DashSidebar from "./DashSidebar"
 
 function CompanyPostJobs() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isJobModalOpen, setIsJobModalOpen] = useState(false)
+  const location=useLocation();
+  const substrLocation=location.pathname.substring(1)
+ 
+  
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen)
@@ -124,95 +129,7 @@ function CompanyPostJobs() {
   return (
     <div className="flex h-screen bg-gray-50 overflow-hidden">
       {/* Mobile Menu Button */}
-      <button
-        onClick={toggleMobileMenu}
-        className="lg:hidden fixed top-4 left-4 z-50 text-gray-700 hover:text-gray-900"
-      >
-        {isMobileMenuOpen ? (
-          <AiOutlineClose size={24} />
-        ) : (
-          <GiHamburgerMenu size={24} />
-        )}
-      </button>
-
-      {/* Sidebar */}
-      <div
-        className={`w-64 fixed top-0 left-0 h-full bg-white shadow-lg transform transition-transform ${
-          isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-        } lg:translate-x-0 lg:static`}
-      >
-        {/* Sidebar Content */}
-        <div className="flex items-center justify-center h-20">
-          <img src={logo2 || "/placeholder.svg"} alt="JOBJOD" className="h-9" />
-        </div>
-
-        {/* Profile */}
-        <div className="flex items-center p-4 space-x-4 m-auto">
-          <div className="relative">
-            <img
-              src={dashboard || "/placeholder.svg"}
-              alt="User Avatar"
-              className="w-12 h-12 rounded-full"
-            />
-            <span className="absolute bottom-0 right-0 inline-block w-3 h-3 bg-green-500 border-2 border-white rounded-full"></span>
-          </div>
-          <div>
-            <p className="text-gray-700 font-bold">Hello, Company</p>
-          </div>
-        </div>
-
-        {/* Navigation */}
-        <nav className="flex-1 p-4 mt-6">
-          <ul>
-            <li className="mb-2">
-              <Link
-                to="/CompanyDashboard"
-                className="flex items-center p-2 rounded-xl text-sm font-medium  text-gray-700 hover:bg-gray-100"
-              >
-                <RxDashboard className="mr-2" />{" "}
-                <span className="m-auto">Dashboard</span>
-              </Link>
-            </li>
-            <li className="mb-2">
-              <Link
-                to="/CompanyPostJobs"
-                className="flex items-center p-2 rounded-xl text-sm font-medium  text-white bg-gray-900 hover:bg-gray-800 "
-              >
-                <PiBagSimpleFill className="mr-2" />{" "}
-                <span className="m-auto">Jobs</span>
-              </Link>
-            </li>
-            <li className="mb-2">
-              <Link
-                to="/CompanyApplications"
-                className="flex items-center p-2 rounded-xl text-sm font-medium text-gray-700 hover:bg-gray-100"
-              >
-                <PiMonitorFill className="mr-2" />{" "}
-                <span className="m-auto">Applications</span>
-              </Link>
-            </li>
-            <li className="mb-2">
-              <Link
-                to="/CompanyProfile"
-                className="flex items-center p-2 rounded-xl text-sm font-medium text-gray-700 hover:bg-gray-100 "
-              >
-                <FaUser className="mr-2" />{" "}
-                <span className="m-auto">Company Profile</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="##"
-                className="flex items-center p-2 rounded-xl text-sm font-medium text-gray-700 hover:bg-gray-100"
-              >
-                <IoMdSettings className="mr-2" />{" "}
-                <span className="m-auto">Settings</span>
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      </div>
-
+     <DashSidebar substrLocation={substrLocation}/> 
       {/* Main Content */}
       <div className="flex-1  overflow-hidden">
         {/* Header */}

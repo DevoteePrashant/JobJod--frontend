@@ -26,29 +26,29 @@ const Footer = () => {
             <h2 className="text-lg font-bold mb-2">About</h2>
             <ul className="text-gray-400 space-y-1">
               <li>
-                <a href="##" className="hover:text-white">
+                <Link href="##" className="hover:text-white">
                   Companies
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="##" className="hover:text-white">
+                <Link href="##" className="hover:text-white">
                   Pricing
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="##" className="hover:text-white">
+                <Link href="##" className="hover:text-white">
                   Terms
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="##" className="hover:text-white">
+                <Link href="##" className="hover:text-white">
                   Advice
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="##" className="hover:text-white">
+                <Link href="##" className="hover:text-white">
                   Privacy Policy
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -58,24 +58,24 @@ const Footer = () => {
             <h2 className="text-lg font-bold mb-2">Resources</h2>
             <ul className="text-gray-400 space-y-1">
               <li>
-                <a href="##" className="hover:text-white">
+                <Link href="##" className="hover:text-white">
                   Help Docs
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="##" className="hover:text-white">
+                <Link href="##" className="hover:text-white">
                   Guide
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="##" className="hover:text-white">
+                <Link href="##" className="hover:text-white">
                   Updates
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="##" className="hover:text-white">
+                <Link href="##" className="hover:text-white">
                   Contact Us
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

@@ -1,4 +1,4 @@
-
+"use client"
 
 import { useEffect, useRef } from "react"
 import t4 from "../image/t4.png"
@@ -80,7 +80,7 @@ const NotificationPanel = ({ isOpen, onClose }) => {
           inset-x-0 md:inset-auto
           z-50 md:z-20
           md:mt-2
-          md:w-80
+          md:w-96 lg:w-[420px]
           max-h-[80vh] md:max-h-[500px]
           overflow-y-auto
           bg-white 

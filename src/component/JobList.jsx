@@ -76,7 +76,7 @@ export default function JobList({ jobs }) {
 
       <div className="space-y-4">
         {jobs.map((job) => (
-          <Link to="/Singlejobview" key={job.id} className="block transition-transform hover:translate-y-[-2px]">
+          <Link to="/Singlejobview" key={job.id} className="block ">
             <article className="bg-white rounded-lg shadow-md p-4 md:p-6 border border-gray-100">
               <div className="flex flex-col md:flex-row md:items-start gap-4">
                 <img

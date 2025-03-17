@@ -1,6 +1,7 @@
 import { Share2} from "lucide-react"
 import { useRef, useEffect } from 'react';
 import img from "../image/profile.jpg"
+import { Link } from "react-router-dom";
 export function ProfileHeader({ name, role, avatarUrl }) {
     const buttonRef = useRef(null);
 
@@ -61,9 +62,9 @@ export function ProfileHeader({ name, role, avatarUrl }) {
     {/* <!-- Dropdown Menu --> */}
     <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
       <div class="py-1">
-        <a href="##" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
-        <a href="##" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
-        <a href="##" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+        <Link href="##" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</Link>
+        <Link href="##" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</Link>
+        <Link href="##" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</Link>
       </div>
     </div>
   </div>

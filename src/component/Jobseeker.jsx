@@ -1,9 +1,9 @@
-"use client"
+
 
 import { useState } from "react"
 import { Bell, Mail, Menu, Search, X } from "lucide-react"
 import { RxDashboard } from "react-icons/rx"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import NotificationPanel from "../component/NotificationPanel"
 import image from "../image/logo2.png"
 import image2 from "../image/profile.jpg"
@@ -58,6 +58,7 @@ const jobData = [
 
 // Components
 const DashboardSidebar = ({ profile, isOpen, onClose }) => (
+  
   <div
     className={cn(
       "fixed inset-y-0 left-0 z-50 w-64 transform border-r bg-white transition-transform duration-300 ease-in-out lg:translate-x-0",
@@ -84,14 +85,14 @@ const DashboardSidebar = ({ profile, isOpen, onClose }) => (
       <nav>
         <ul className="space-y-2">
           <li>
-            <a href="/Job" className="flex items-center p-3 text-white rounded-lg bg-black ">
+            <Link to="/Job" className="flex items-center p-3 text-white rounded-lg bg-black ">
               <RxDashboard />
               <span className="ml-3">Dashboard</span>
-            </a>
+            </Link>
           </li>
 
           <li>
-            <a href="/Job" className="flex items-center p-3  text-gray-700 rounded-lg hover:bg-gray-100 ">
+            <Link to="/Job" className="flex items-center p-3  text-gray-700 rounded-lg hover:bg-gray-100 ">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
@@ -101,10 +102,10 @@ const DashboardSidebar = ({ profile, isOpen, onClose }) => (
                 />
               </svg>
               <span className="ml-3">Jobs</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/Profile" className="flex items-center p-3 text-gray-700 rounded-lg hover:bg-gray-100">
+            <Link to="/Profile" className="flex items-center p-3 text-gray-700 rounded-lg hover:bg-gray-100">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
@@ -114,10 +115,10 @@ const DashboardSidebar = ({ profile, isOpen, onClose }) => (
                 />
               </svg>
               <span className="ml-3">Profile</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="##" className="flex items-center p-3 text-gray-700 rounded-lg hover:bg-gray-100">
+            <Link to="##" className="flex items-center p-3 text-gray-700 rounded-lg hover:bg-gray-100">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
@@ -133,7 +134,7 @@ const DashboardSidebar = ({ profile, isOpen, onClose }) => (
                 />
               </svg>
               <span className="ml-3">Settings</span>
-            </a>
+              </Link>
           </li>
         </ul>
       </nav>
@@ -183,6 +184,8 @@ const Jobseeker = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false)
   const [showMobileSearch, setShowMobileSearch] = useState(false)
+
+  
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -252,10 +255,10 @@ const Jobseeker = () => {
                 <NotificationPanel isOpen={isNotificationsOpen} onClose={() => setIsNotificationsOpen(false)} />
               </div>
 
-              <a href="/messages" className="relative rounded-full p-2 hover:bg-gray-100">
+              <Link to="/Message" className="relative rounded-full p-2 hover:bg-gray-100">
                 <Mail className="h-5 w-5" />
                 <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-blue-500" />
-              </a>
+              </Link>
 
               <div className="h-8 w-8 overflow-hidden rounded-full border-2 border-primary md:h-10 md:w-10">
                 <img src={image2 || "/placeholder.svg"} alt="Profile" className="h-full w-full object-cover" />
@@ -319,9 +322,9 @@ const Jobseeker = () => {
             <div className="rounded-xl border bg-white p-6 h-full">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="font-bold text-2xl">Applied Jobs</h2>
-                <a href="/jobs" className="text-sm text-blue-500 hover:underline">
+                <Link href="/jobs" className="text-sm text-blue-500 hover:underline">
                   <span className="font-semibold text-lg">All Jobs</span>
-                </a>
+                </Link>
               </div>
               <JobList jobs={jobData} />
             </div>

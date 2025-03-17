@@ -13,9 +13,9 @@ const Header = () => {
             <Link to="/JobListingPage" className="text-black-800 font-semibold">
               Find Jobs
             </Link>
-            <a href="##" className=" text-black-800 font-semibold ">
+            <Link href="##" className=" text-black-800 font-semibold ">
               Browse Company
-            </a>
+            </Link>
           </nav>
         </div>
         <div className="hidden md:flex items-center space-x-4">

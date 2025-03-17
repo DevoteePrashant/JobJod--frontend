@@ -12,6 +12,7 @@ import profile from "../image/dashboard.png";
 import { Bell, Mail, Search, X } from "lucide-react";
 import NotificationPanel from "./NotificationPanel";
 import image2 from "../image/profile.jpg";
+import { Link } from "react-router-dom";
 // Remove the direct import of the image that's causing the error
 // import profile from '../image/dashboard.png';
 
@@ -72,13 +73,13 @@ const Dheader = () => {
             />
           </div>
 
-          <a
+          <Link
             href="/messages"
             className="relative rounded-full p-2 hover:bg-gray-100"
           >
             <Mail className="h-5 w-5" />
             <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-blue-500" />
-          </a>
+          </Link>
 
           <div className="h-8 w-8 overflow-hidden rounded-full border-2 border-primary md:h-10 md:w-10">
             <img

@@ -396,17 +396,17 @@ const DashboardSidebar = ({ profile, isOpen, onClose }) => (
       <nav>
         <ul className="space-y-2">
           <li>
-            <a
-              href="/Jobseeker"
+            <Link
+              to="/Jobseeker"
               className="flex items-center p-3  text-gray-700 rounded-lg hover:bg-gray-100 "
             >
               <RxDashboard />
               <span className="ml-3">Dashboard</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="/Job"
+            <Link
+              to="/Job"
               className="flex items-center p-3 text-white rounded-lg bg-black "
             >
               <svg
@@ -423,11 +423,11 @@ const DashboardSidebar = ({ profile, isOpen, onClose }) => (
                 />
               </svg>
               <span className="ml-3">Jobs</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="/Profile"
+            <Link
+              to="/Profile"
               className="flex items-center p-3 text-gray-700 rounded-lg hover:bg-gray-100"
             >
               <svg
@@ -444,11 +444,11 @@ const DashboardSidebar = ({ profile, isOpen, onClose }) => (
                 />
               </svg>
               <span className="ml-3">Profile</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="##"
+            <Link
+              to="##"
               className="flex items-center p-3 text-gray-700 rounded-lg hover:bg-gray-100"
             >
               <svg
@@ -471,7 +471,7 @@ const DashboardSidebar = ({ profile, isOpen, onClose }) => (
                 />
               </svg>
               <span className="ml-3">Settings</span>
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
@@ -566,17 +566,17 @@ const Job = () => {
           <nav>
             <ul className="space-y-2">
               <li>
-                <a
-                  href="/Jobseeker"
+                <Link
+                  to="/Jobseeker"
                   className="flex items-center p-3  text-gray-700 rounded-lg hover:bg-gray-100 "
                 >
                   <RxDashboard />
                   <span className="ml-3">Dashboard</span>
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/Job"
+                <Link
+                  to="/Job"
                   className="flex items-center p-3 text-white rounded-lg bg-black "
                 >
                   <svg
@@ -593,11 +593,11 @@ const Job = () => {
                     />
                   </svg>
                   <span className="ml-3">Jobs</span>
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/Profile"
+                <Link
+                  to="/Profile"
                   className="flex items-center p-3 text-gray-700 rounded-lg hover:bg-gray-100"
                 >
                   <svg
@@ -614,11 +614,11 @@ const Job = () => {
                     />
                   </svg>
                   <span className="ml-3">Profile</span>
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="##"
+                <Link
+                  to="##"
                   className="flex items-center p-3 text-gray-700 rounded-lg hover:bg-gray-100"
                 >
                   <svg
@@ -641,7 +641,7 @@ const Job = () => {
                     />
                   </svg>
                   <span className="ml-3">Settings</span>
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>
@@ -727,13 +727,13 @@ const Job = () => {
                 />
               </div>
 
-              <a
-                href="/messages"
+              <Link
+                to="/Message"
                 className="relative rounded-full p-2 hover:bg-gray-100"
               >
                 <Mail className="h-5 w-5" />
                 <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-blue-500" />
-              </a>
+              </Link>
 
               <div className="h-8 w-8 overflow-hidden rounded-full border-2 border-primary md:h-10 md:w-10">
                 <img

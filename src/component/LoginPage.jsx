@@ -1,142 +1,195 @@
-"use client"
-import { useState } from "react"
+import React, { useState, useRef } from "react";
+import axios from "axios";
+import { useNavigate, useLocation } from "react-router-dom"; // Import useLocation hook
+// import backgroundImage from "../src/"; // Import the provided image
+import backgroundImage from '../image/login.png'
+const LoginPage = () => {
+  const [mobileNumber, setMobileNumber] = useState("");
+  const [otp, setOtp] = useState(["", "", "", "", "", ""]); // Array to store OTP digits
+  const [message, setMessage] = useState("");
+  const [otpSent, setOtpSent] = useState(false);
+  const [showSendOtp, setShowSendOtp] = useState(true); // State to track if "Send OTP" button is shown
+  const [mobileError, setMobileError] = useState(""); // State for mobile validation error
+  const [otpError, setOtpError] = useState(""); // State for OTP validation error
 
-import { ArrowLeft, Phone } from "lucide-react"
-import { Link } from "react-router-dom"
-import logo2 from '../image/login.png'
+  const navigate = useNavigate(); // Initialize useNavigate hook
+  const location = useLocation(); // Initialize useLocation hook to get the passed state
 
+  // Refs for OTP input fields to allow auto-focus
+  const otpRefs = useRef([]);
 
-export default function LoginPage() {
-  const [otp, setOtp] = useState(Array(7).fill(""))
-  const [mobileNumber, setMobileNumber] = useState("")
+  // Destructure the passed state (title) from UserSelection
+  const { title } = location.state || {}; // 'title' is passed from the previous page (UserSelection)
 
-  const handleOtpChange = (index, value) => {
-    if (value.length <= 1) {
-      const newOtp = [...otp]
-      newOtp[index] = value
-      setOtp(newOtp)
+  // Validate mobile number (must be a valid phone number with a minimum length of 10)
+  const validateMobileNumber = (number) => {
+    const phoneRegex = /^[0-9]{10}$/; // Basic validation for 10 digits
+    if (!phoneRegex.test(number)) {
+      setMobileError("Please enter a valid mobile number (10 digits).");
+      return false;
+    }
+    setMobileError("");
+    return true;
+  };
 
-      // Auto-focus next input after entering a digit
-      if (value !== "" && index < 6) {
-        const nextInput = document.getElementById(`otp-${index + 1}`)
-        if (nextInput) {
-          nextInput.focus()
-        }
+  // Validate OTP (ensure it's not empty)
+  const validateOtp = () => {
+    if (otp.some((digit) => digit === "")) {
+      setOtpError("OTP cannot be empty.");
+      return false;
+    }
+    setOtpError("");
+    return true;
+  };
+
+  const handleSendOtp = async () => {
+    if (!validateMobileNumber(mobileNumber)) {
+      return; // If mobile number is invalid, stop the process
+    }
+
+    try {
+      setShowSendOtp(false); // Hide the Send OTP button
+      setOtpSent(true);
+      setMessage("OTP has been sent. Please enter it to login or register.");
+    } catch (error) {
+      setMessage(error.response?.data?.message || "Something went wrong");
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Validate OTP before submitting
+    if (!validateOtp()) {
+      return; // If OTP is invalid, stop the submission
+    }
+
+    try {
+      // Determine the API endpoint based on the 'title'
+      const apiUrl =
+        title === "Job Seeker"
+          ? "http://127.0.0.1:5000/api/otp/verify-otp"
+          : "http://127.0.0.1:5005/api/otp/company-verify-otp"; // Different endpoint for JobGiver
+
+      // Make the request to the backend to verify OTP and login/register user
+      const response = await axios.post(apiUrl, {
+        mobileNumber,
+        otp: otp.join(""), // Convert OTP array to a single string
+      });
+
+      // Get the token from the response
+      const token = response.data.token; // Assuming the token is returned in the response
+      const userId = response.data.login.id; // Assuming the user data is also returned
+
+      // Save the token to localStorage (or any other method)
+      localStorage.setItem("authToken", token);
+
+      // Redirect based on the 'title' value
+      if (title === "Job Seeker") {
+        navigate("/userform", {
+          state: { token, userId, title }, // Pass the 'title' to the next page
+        });
+      } else if (title === "Job Giver") {
+        navigate("/companyform", {
+          state: { token, userId, title }, // Pass the 'title' to the next page
+        });
+      }
+    } catch (error) {
+      setMessage(error.response?.data?.message || "Something went wrong");
+    }
+  };
+
+  // Update OTP array when the user types in one of the OTP boxes
+  const handleOtpChange = (e, index) => {
+    const value = e.target.value;
+    if (/^[0-9]$/.test(value) || value === "") {
+      // Allow only digits (0-9)
+      const newOtp = [...otp];
+      newOtp[index] = value;
+      setOtp(newOtp);
+
+      // Automatically focus on the next input field
+      if (value && index < otp.length - 1) {
+        otpRefs.current[index + 1].focus();
       }
     }
-  }
-
-  const handleMobileNumberChange = e => {
-    setMobileNumber(e.target.value)
-  }
-
-  const handleSubmit = e => {
-    e.preventDefault()
-    // Handle form submission logic here
-    console.log("Mobile Number:", mobileNumber)
-    console.log("OTP:", otp.join(""))
-  }
+  };
 
   return (
-    <div className="relative w-full h-screen bg-gray-900 ">
-      {/* Background img */}
+    <div className="relative flex justify-center items-center min-h-screen bg-gray-900">
+      {/* Background Image */}
       <div className="absolute inset-0 w-full h-full">
         <img
-          src={logo2}
+          src={backgroundImage}
           alt="Office space background"
-       className="opacity-60 body w-full h-full"
-            priority
+          className="w-full h-full object-cover opacity-75"
         />
       </div>
 
-      {/* Modal Overlay */}
-      <div className="absolute inset-0 flex items-center justify-center p-4 ">
-        <div className="bg-white rounded-3xl shadow-xl w-full max-w-md p-8 relative">
-          {/* Back Button */}
-          <button className="absolute left-6 top-16 rounded-full p-1 hover:bg-gray-100">
-            <ArrowLeft size={20} />
-          </button>
-
-          {/* Header */}
-          <div className="text-center mb-8 mt-4">
-            <h1 className="text-2xl font-bold mb-1">Log in</h1>
-            <p className="text-sm text-gray-600">
-              Enter to continue and explore within your goal.
-            </p>
+      {/* Session Content */}
+      <div className="relative p-8 rounded-2xl max-w-[600px] border border-gray-100 bg-white">
+        <h2 className="text-2xl font-bold mb-8 text-center text-gray-800">
+          {title} OTP Login
+        </h2>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Mobile Number Input */}
+          <div>
+            <input
+              type="text"
+              placeholder="Mobile Number"
+              value={mobileNumber}
+              onChange={(e) => setMobileNumber(e.target.value)}
+              onBlur={() => validateMobileNumber(mobileNumber)}
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+            />
+            {mobileError && (
+              <p className="text-sm text-red-500">{mobileError}</p>
+            )}
           </div>
 
-          <form onSubmit={handleSubmit}>
-            {/* Mobile Number Input */}
-            <div className="mb-6 relative">
-              <label
-                htmlFor="mobile"
-                className="block text-sm font-medium mb-2 text-gray-700"
-              >
-                Mobile Number
-              </label>
-              <div className="relative">
-                <input
-                  id="mobile"
-                  type="tel"
-                  value={mobileNumber}
-                  onChange={handleMobileNumberChange}
-                  placeholder="Mobile Number"
-                  className="w-full h-12 px-4 border border-gray-200 rounded-md text-base outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                />
-                <button
-                  type="button"
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black text-white rounded-full p-2"
-                >
-                  <Phone size={16} />
-                </button>
-              </div>
-            </div>
+          {showSendOtp && (
+            <button
+              type="button"
+              onClick={handleSendOtp}
+              className="w-full bg-purple-600 text-white py-3 rounded-md font-medium hover:bg-purple-700 transition duration-200"
+            >
+              Send OTP
+            </button>
+          )}
 
-            {/* OTP Input */}
-            <div className="mb-6">
-              <label
-                htmlFor="otp-0"
-                className="block text-sm font-medium mb-2 text-gray-700"
-              >
-                Enter OTP
-              </label>
-              <div className="flex justify-between gap-2 relative">
+          {otpSent && (
+            <div className="space-y-4">
+              {/* OTP Input Fields */}
+              <div className="flex space-x-2 justify-center">
                 {otp.map((digit, index) => (
                   <input
                     key={index}
-                    id={`otp-${index}`}
+                    ref={(el) => (otpRefs.current[index] = el)}
                     type="text"
                     value={digit}
-                    onChange={e => handleOtpChange(index, e.target.value)}
-                    className="w-10 h-10 text-center border border-gray-200 rounded-md text-base bg-gray-50 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                    onChange={(e) => handleOtpChange(e, index)}
                     maxLength={1}
+                    className="w-12 h-12 text-center border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
                   />
                 ))}
-                {/* Center dot indicator */}
-                {/* The index variable was already declared in the map function. No changes needed here. */}
               </div>
+              {otpError && (
+                <p className="text-sm text-red-500 text-center">{otpError}</p>
+              )}
+              <button
+                type="submit"
+                className="w-full bg-purple-600 text-white py-3 rounded-md font-medium hover:bg-purple-700 transition duration-200"
+              >
+                Submit OTP
+              </button>
             </div>
+          )}
+        </form>
 
-            {/* Submit Button */}
-            <button
-              type="submit"
-              className="w-full h-12 bg-[#3b4a81] hover:bg-[#2e3b6e] text-white rounded-md text-base font-medium transition-colors duration-200 mt-6"
-            >
-              Submit
-            </button>
-
-            {/* Terms and Conditions */}
-            <p className="text-xs text-center mt-4 text-gray-600">
-              By clicking Submit, you agree to our{" "}
-              <Link href="/terms" className="text-red-500 hover:underline">
-                Terms and Conditions
-              </Link>
-            </p>
-          </form>
-
-         
-        </div>
+        {message && <p className="mt-4 text-center text-red-500">{message}</p>}
       </div>
     </div>
-  )
-}
+  );
+};
+
+export default LoginPage;

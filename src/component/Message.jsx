@@ -314,16 +314,16 @@ const Messages = () => {
                         </div>
                     </div>
                     {/* Message Input */}
-                    <div className="border-t border-gray-200 px-6 py-4">
+                    <div className="fixed lg:w-[calc(100% - 20rem)] md:w-[100%] w-[100%] px-[1.5rem] bottom-0 border-t border-gray-200 py-4">
       <div className="space-y-3">
         <input
           type="text"
           placeholder="Write a message"
-          className="w-full px-4 py-3 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-200 focus:border-gray-200"
+          className="px-4 py-3 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-200 focus:border-gray-200 lg:w-[62svw] w-[100%]"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between w-[100%] lg:w-[62svw]">
           <div className="flex items-center space-x-4">
             <input type="file" id="fileInput" ref={fileInputRef} className="hidden" onChange={handleFileUpload} />
             <button onClick={triggerFileInput} className="text-gray-500 hover:text-gray-600 transition-colors">

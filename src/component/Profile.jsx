@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import { Bell, Mail, Menu, Search, X } from "lucide-react";
 import image2 from "../image/profile.jpg";
 import image from "../image/logo2.png"
+import Jobseekerheader from "./Jobseekerheader";
 
 const profileData = {
   name: "Anamoul Rouf",
@@ -85,103 +86,10 @@ const Profile = () => {
     { name: "CaseStudy-01.pdf", size: "1.7 MB" },
   ];
 
-  const cn = (...classes) => classes.filter(Boolean).join(" ")
-
-// Mock data
-const profileData = {
-  name: "Anamoul",
-  avatar: "/placeholder.svg?height=100&width=100",
-}
-
-
-
-const DashboardSidebar = ({ profile, isOpen, onClose }) => (
-  <div
-    className={cn(
-      "fixed inset-y-0 left-0 z-50 w-64 transform border-r bg-white transition-transform duration-300 ease-in-out lg:translate-x-0",
-      isOpen ? "translate-x-0" : "-translate-x-full",
-    )}
-  >
-    <div className="p-6">
-      <div className="flex items-center mb-4 ">
-        <Link to="/">
-          <img src={image || "/placeholder.svg"} alt="JobJod" className="text-center items-center mx-10" />
-        </Link>
-      </div>
-
-      {/* Profile Section */}
-      <div className="mb-8 text-center">
-        <div className="w-16 h-16 rounded-full bg-gray-300 mx-auto mb-2 overflow-hidden">
-          <img src={image2 || "/placeholder.svg"} alt="profile" className="w-full h-full object-cover" />
-        </div>
-        <p className="text-sm text-black font-bold ">Hello, Anamoul</p>
-      </div>
-    </div>
-
-    <div className="flex flex-1 flex-col gap-4 p-6">
-      <nav>
-        <ul className="space-y-2">
-          <li>
-            <Link to="/Jobseeker" className="     flex items-center p-3 text-gray-700 rounded-lg hover:bg-gray-100">
-              <RxDashboard />
-              <span className="ml-3">Dashboard</span>
-            </Link>
-          </li>
-
-          <li>
-            <Link to="/Job" className="flex items-center p-3  text-gray-700 rounded-lg hover:bg-gray-100 ">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                />
-              </svg>
-              <span className="ml-3">Jobs</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/Profile" className="flex items-center p-3 text-white rounded-lg bg-black ">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                />
-              </svg>
-              <span className="ml-3">Profile</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="##" className="flex items-center p-3 text-gray-700 rounded-lg hover:bg-gray-100">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                />
-              </svg>
-              <span className="ml-3">Settings</span>
-            </Link>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </div>
-)
 
 
   return (
-    
+
     <>
       <div className="">
         {/* Mobile Menu Button */}
@@ -199,119 +107,10 @@ const DashboardSidebar = ({ profile, isOpen, onClose }) => (
         </div>
 
         {/* Sidebar */}
-     <DashboardSidebar profile={profileData} isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
-   
-        <header className=" ml-0 md:ml-64 sticky top-0 z-40 w-84 border-b bg-white">
-          <div className="flex h-16 items-center px-4">
-            {/* Mobile sidebar toggle */}
-            <button
-              className="mr-2 rounded-lg p-2 hover:bg-gray-100 lg:hidden"
-              aria-label="Open sidebar"
-              onClick={() => setIsSidebarOpen(true)}
-            >
-              <Menu className="h-5 w-5" />
-              <span className="sr-only">Open sidebar</span>
-            </button>
+        <Jobseekerheader isSidebarVisible={isSidebarVisible}/>
 
-            {/* Desktop search */}
-            <div className="hidden flex-1 md:block">
-              <div className="flex max-w-md gap-4">
-                <div className="relative flex-1">
-                  <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500" />
-                  <input
-                    type="search"
-                    placeholder="Search job title or skill"
-                    className="h-9 w-full rounded-full border border-gray-200 bg-white pl-8 pr-4 text-sm outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                  />
-                </div>
-                <div className="relative flex-1">
-                  <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500" />
-                  <input
-                    type="search"
-                    placeholder="Search location"
-                    className="h-9 w-full rounded-full border border-gray-200 bg-white pl-8 pr-4 text-sm outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Mobile search toggle */}
-            <div className="flex flex-1 justify-end md:hidden">
-              <button
-                onClick={() => setShowMobileSearch(!showMobileSearch)}
-                className="rounded-full p-2 hover:bg-gray-100"
-                aria-label={showMobileSearch ? "Close search" : "Open search"}
-              >
-                {showMobileSearch ? (
-                  <X className="h-5 w-5" />
-                ) : (
-                  <Search className="h-5 w-5" />
-                )}
-              </button>
-            </div>
-
-            {/* Right side icons */}
-            <div className="flex items-center gap-2  md:gap-4">
-              <div className="relative pt-2">
-                <button
-                  className="relative rounded-full  hover:bg-gray-100"
-                  onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
-                >
-                  <Bell className="h-5 w-5" />
-                  <span className="absolute -top-1 -right-1 w-3 h-3 bg-pink-500 rounded-full"></span>
-                </button>
-
-                <NotificationPanel
-                  isOpen={isNotificationsOpen}
-                  onClose={() => setIsNotificationsOpen(false)}
-                />
-              </div>
-
-              <Link
-                to="/Message"
-                className="relative rounded-full p-2 hover:bg-gray-100"
-              >
-                <Mail className="h-5 w-5" />
-                <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-blue-500" />
-              </Link>
-
-              <div className="h-8 w-8 overflow-hidden rounded-full border-2 border-primary md:h-10 md:w-10">
-                <img
-                  src={image2 || "/placeholder.svg"}
-                  alt="Profile"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* Mobile search expanded */}
-          {showMobileSearch && (
-            <div className="px-4 pb-4 md:hidden">
-              <div className="flex flex-col gap-2">
-                <div className="relative">
-                  <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500" />
-                  <input
-                    type="search"
-                    placeholder="Search job title or skill"
-                    className="h-9 w-full rounded-full border border-gray-200 bg-white pl-8 pr-4 text-sm outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                    autoFocus
-                  />
-                </div>
-                <div className="relative">
-                  <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500" />
-                  <input
-                    type="search"
-                    placeholder="Search location"
-                    className="h-9 w-full rounded-full border border-gray-200 bg-white pl-8 pr-4 text-sm outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                  />
-                </div>
-              </div>
-            </div>
-          )}
-        </header>
         <div className="flex  w-full  ">
-          <div className="flex-1 w-full p-2 md:ml-64">
+          <div className="flex-1 w-full p-2 lg:ml-64">
             {/* Header Illustration */}
             <div className="relative bg-white overflow-hidden">
               <img
@@ -321,49 +120,47 @@ const DashboardSidebar = ({ profile, isOpen, onClose }) => (
               />
             </div>
 
-          
 
-<div className="min-h-screen  p-4 md:p-8">
-      <div className="max-w-7xl mx-auto">
-        <ProfileHeader name={profile.name} role={profile.role} avatarUrl="/placeholder.svg?height=96&width=96" />
 
-        <div className="flex flex-col lg:flex-row gap-6">
-          <ProfileSidebar name={profile.name} role={profile.role} avatarUrl="/placeholder.svg?height=96&width=96" />
+            <div className="min-h-screen  p-4 md:p-8">
+              <div className="max-w-7xl mx-auto">
+                <ProfileHeader name={profile.name} role={profile.role} avatarUrl="/placeholder.svg?height=96&width=96" />
 
-          <div className="flex-1">
-            {activeTab === "Information" && (
-              <ProfileInfo profile={profile} onEdit={() => console.log("Edit clicked")} />
-            )}
-            {activeTab === "Experiences" && (
-              <ProfileContent experiences={experiences} education={[]} skills={[]} attachments={[]} />
-            )}
-            {activeTab === "Education" && (
-              <ProfileContent experiences={[]} education={education} skills={[]} attachments={[]} />
-            )}
-            {activeTab === "Skills" && (
-              <ProfileContent experiences={[]} education={[]} skills={skills} attachments={[]} />
-            )}
-            {activeTab === "Attachments" && (
-              <ProfileContent experiences={[]} education={[]} skills={[]} attachments={attachments} />
-            )}
+                <div className="flex flex-col lg:flex-row gap-6">
+                  <ProfileSidebar name={profile.name} role={profile.role} avatarUrl="/placeholder.svg?height=96&width=96" />
+
+                  <div className="flex-1">
+                    {activeTab === "Information" && (
+                      <ProfileInfo profile={profile} onEdit={() => console.log("Edit clicked")} />
+                    )}
+                    {activeTab === "Experiences" && (
+                      <ProfileContent experiences={experiences} education={[]} skills={[]} attachments={[]} />
+                    )}
+                    {activeTab === "Education" && (
+                      <ProfileContent experiences={[]} education={education} skills={[]} attachments={[]} />
+                    )}
+                    {activeTab === "Skills" && (
+                      <ProfileContent experiences={[]} education={[]} skills={skills} attachments={[]} />
+                    )}
+                    {activeTab === "Attachments" && (
+                      <ProfileContent experiences={[]} education={[]} skills={[]} attachments={attachments} />
+                    )}
+                  </div>
+
+                </div>
+                <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 mt-5  ">
+                  <ProfileContent
+                    experiences={experiences}
+                    education={education}
+                    skills={skills}
+                    attachments={attachments}
+                  />
+                </div>
+
+              </div>
+            </div>
           </div>
-          
         </div>
-        <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 mt-5  ">
-          <ProfileContent
-            experiences={experiences}
-            education={education}
-            skills={skills}
-            attachments={attachments}
-          />
-        </div>
-        
-      </div>
-    </div>
-          </div>
-        </div>
-
-       
       </div>
     </>
   );

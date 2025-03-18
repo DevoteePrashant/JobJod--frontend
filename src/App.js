@@ -36,12 +36,6 @@ import AdminCompanies from "./component/SuperAdmin/AdminCompanies";
 import Login_Signin from "./component/Login_Signin";
 
 
-
-
-
-
-
-
 function App() {
   return (
     <>

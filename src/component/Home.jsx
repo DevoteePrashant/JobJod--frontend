@@ -206,12 +206,12 @@ const Home = () => {
             </nav>
           </div>
           <div className="hidden md:flex items-center space-x-4">
-          <Link to="/Login_Signin" className="text-black font-semibold">
+          <Link to="/" className="text-black font-semibold">
               Hire Now <span className="text-gray-400">|</span>
               </Link>
             {/* <button className="bg-black text-white px-4 py-2 rounded-full"> */}
             <button className="bg-black text-white font-bold py-2 px-6 items-center text-center rounded-full  focus:outline-none focus:shadow-outline">
-            <Link to="/LoginPage" className="text-sm text-black-500 ">Login / Signup</Link>
+            <Link to="/Login_Signin" className="text-sm text-black-500 ">Login / Signup</Link>
             </button>
             
             {/* </button> */}
@@ -240,7 +240,7 @@ const Home = () => {
               <Link to="/JobListingPage" > Find Jobs</Link>
               <Link to="/" > Browse Company</Link>
               <Link to="/">Hire Now</Link>
-              <Link to="/LoginPage"><button className="bg-black text-white px-4 py-2 rounded-full">Login/Signup </button></Link>
+              <Link to="/Login_Signin"><button className="bg-black text-white px-4 py-2 rounded-full">Login/Signup </button></Link>
             </nav>
           </div>
         )}

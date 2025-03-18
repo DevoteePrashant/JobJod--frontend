@@ -224,38 +224,6 @@ function FormJobseeker7() {
                     Never Expire
                   </label>
                 </div>
-
-                {/* Action Buttons */}
-                {/* <div className="flex flex-col md:flex-row justify-between items-center mt-6 md:mt-auto gap-2 md:gap-4">
-                  <Link
-                    to="/Formjobseeker4"
-                    className="mb-2 md:mb-0 w-full md:w-auto order-3 md:order-1"
-                  >
-                    <button
-                      type="button"
-                      className="text-gray-600 font-medium text-sm md:text-base w-full md:w-auto"
-                    >
-                      Skip & Next
-                    </button>
-                  </Link>
-                  <button
-                    type="button"
-                    className="bg-orange-400 hover:bg-orange-500 text-white px-4 md:px-6 py-2 md:py-2.5 rounded-full font-medium w-full md:w-auto mb-2 md:mb-0 text-sm md:text-base order-2 md:order-2"
-                  >
-                    Add More +
-                  </button>
-                  <Link
-                    to="/Formjobseeker4"
-                    className="w-full md:w-auto order-1 md:order-3"
-                  >
-                    <button
-                      type="submit"
-                      className="bg-purple-500 hover:bg-purple-600 text-white px-4 md:px-6 py-2 md:py-2.5 rounded-full font-medium w-full md:w-auto text-sm md:text-base min-w-[120px]"
-                    >
-                      Save & Next
-                    </button>
-                  </Link>
-                </div> */}
                 {/* Bottom Buttons  */}
                 <div className="flex flex-wrap md:flex-row flex-col justify-end items-center gap-2 md:gap-4">
                 <Link to="/Formjobseeker4">

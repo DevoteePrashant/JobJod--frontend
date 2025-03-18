@@ -98,21 +98,7 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Icons and Profile - Modified for responsive */}
-        {/* Mobile search toggle */}
-        {/* <div className="flex flex-1 justify-end md:hidden">
-          <button
-            onClick={() => setShowMobileSearch(!showMobileSearch)}
-            className="rounded-full p-2 hover:bg-gray-100"
-            aria-label={showMobileSearch ? "Close search" : "Open search"}
-          >
-            {showMobileSearch ? (
-              <X className="h-5 w-5" />
-            ) : (
-              <Search className="h-5 w-5" />
-            )}
-          </button>
-        </div> */}
+
 
         {/* Right side icons */}
         <div className="flex items-center gap-2  md:gap-4">
@@ -161,7 +147,7 @@ const Navbar = () => {
               Find Jobs
             </Link>
             <Link
-              href="##"
+              to="##"
               className="text-black font-medium hover:text-gray-600 py-2"
               onClick={() => setMobileMenuOpen(false)}
             >

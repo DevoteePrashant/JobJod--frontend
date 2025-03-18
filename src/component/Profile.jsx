@@ -12,6 +12,7 @@ import { ProfileInfo } from "../component/ProfileInfo";
 import { Link } from "react-router-dom";
 import { Bell, Mail, Menu, Search, X } from "lucide-react";
 import image2 from "../image/profile.jpg";
+import image from "../image/logo2.png"
 
 const profileData = {
   name: "Anamoul Rouf",
@@ -25,6 +26,7 @@ const profileData = {
 };
 
 const Profile = () => {
+  const [activeTab, setActiveTab] = useState("Information")
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [showMobileSearch, setShowMobileSearch] = useState(false);
@@ -83,7 +85,103 @@ const Profile = () => {
     { name: "CaseStudy-01.pdf", size: "1.7 MB" },
   ];
 
+  const cn = (...classes) => classes.filter(Boolean).join(" ")
+
+// Mock data
+const profileData = {
+  name: "Anamoul",
+  avatar: "/placeholder.svg?height=100&width=100",
+}
+
+
+
+const DashboardSidebar = ({ profile, isOpen, onClose }) => (
+  <div
+    className={cn(
+      "fixed inset-y-0 left-0 z-50 w-64 transform border-r bg-white transition-transform duration-300 ease-in-out lg:translate-x-0",
+      isOpen ? "translate-x-0" : "-translate-x-full",
+    )}
+  >
+    <div className="p-6">
+      <div className="flex items-center mb-4 ">
+        <Link to="/">
+          <img src={image || "/placeholder.svg"} alt="JobJod" className="text-center items-center mx-10" />
+        </Link>
+      </div>
+
+      {/* Profile Section */}
+      <div className="mb-8 text-center">
+        <div className="w-16 h-16 rounded-full bg-gray-300 mx-auto mb-2 overflow-hidden">
+          <img src={image2 || "/placeholder.svg"} alt="profile" className="w-full h-full object-cover" />
+        </div>
+        <p className="text-sm text-black font-bold ">Hello, Anamoul</p>
+      </div>
+    </div>
+
+    <div className="flex flex-1 flex-col gap-4 p-6">
+      <nav>
+        <ul className="space-y-2">
+          <li>
+            <Link to="/Jobseeker" className="     flex items-center p-3 text-gray-700 rounded-lg hover:bg-gray-100">
+              <RxDashboard />
+              <span className="ml-3">Dashboard</span>
+            </Link>
+          </li>
+
+          <li>
+            <Link to="/Job" className="flex items-center p-3  text-gray-700 rounded-lg hover:bg-gray-100 ">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                />
+              </svg>
+              <span className="ml-3">Jobs</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/Profile" className="flex items-center p-3 text-white rounded-lg bg-black ">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                />
+              </svg>
+              <span className="ml-3">Profile</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="##" className="flex items-center p-3 text-gray-700 rounded-lg hover:bg-gray-100">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+              </svg>
+              <span className="ml-3">Settings</span>
+            </Link>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+)
+
+
   return (
+    
     <>
       <div className="">
         {/* Mobile Menu Button */}
@@ -101,114 +199,8 @@ const Profile = () => {
         </div>
 
         {/* Sidebar */}
-        <div
-          className={` shadow-2xl fixed top-0 z-50 left-0 h-full w-64 bg-white transform transition-transform duration-300 ease-in-out ${
-            isSidebarVisible ? "translate-x-0" : "-translate-x-full"
-          } md:translate-x-0 z-40`}
-        >
-          <div className="p-6">
-            {/* Logo */}
-            <div className="flex items-center mb-4">
-              <img src={logo2} alt="JobJod" className="text-center m-auto" />
-            </div>
-
-            {/* Profile Section */}
-            <div className="mb-8 text-center">
-              <div className="w-16 h-16 rounded-full bg-gray-300 mx-auto mb-2 overflow-hidden">
-                <img
-                  src={profile}
-                  alt="profile"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <p className="text-sm text-black font-bold ">Hello, Anamoul</p>
-            </div>
-
-            {/* Navigation */}
-            <nav>
-              <ul className="space-y-2">
-                <li>
-                  <Link
-                    to="/Jobseeker"
-                    className="flex items-center p-3  text-gray-700 rounded-lg hover:bg-gray-100 "
-                  >
-                    <RxDashboard />
-                    <span className="ml-3">Dashboard</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/Job"
-                    className="flex items-center p-3  text-gray-700 rounded-lg hover:bg-gray-100 "
-                  >
-                    <svg
-                      className="w-5 h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                      />
-                    </svg>
-                    <span className="ml-3">Jobs</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/Profile"
-                    className="flex items-center p-3 text-white  rounded-lg  bg-black"
-                  >
-                    <svg
-                      className="w-5 h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                      />
-                    </svg>
-                    <span className="ml-3">Profile</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="##"
-                    className="flex items-center p-3 text-gray-700 rounded-lg hover:bg-gray-100"
-                  >
-                    <svg
-                      className="w-5 h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                      />
-                    </svg>
-                    <span className="ml-3">Settings</span>
-                  </Link>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
+     <DashboardSidebar profile={profileData} isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+   
         <header className=" ml-0 md:ml-64 sticky top-0 z-40 w-84 border-b bg-white">
           <div className="flex h-16 items-center px-4">
             {/* Mobile sidebar toggle */}
@@ -318,7 +310,7 @@ const Profile = () => {
             </div>
           )}
         </header>
-        <div className="flex  w-full  bg-gray-50">
+        <div className="flex  w-full  ">
           <div className="flex-1 w-full p-2 md:ml-64">
             {/* Header Illustration */}
             <div className="relative bg-white overflow-hidden">
@@ -329,31 +321,35 @@ const Profile = () => {
               />
             </div>
 
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
-              <div className="relative">
-                <ProfileHeader
-                  name={profileData.name}
-                  role={profileData.role}
-                  avatarUrl={profileData.avatarUrl}
-                />
+          
 
-                <div className="flex flex-col lg:flex-row gap-4 sm:gap-6">
-                  <ProfileSidebar
-                    name={profileData.name}
-                    role={profileData.role}
-                    avatarUrl={profileData.avatarUrl}
-                  />
-                  <ProfileInfo
-                    profile={profileData}
-                    onEdit={() => console.log("Edit profile")}
-                  />
-                </div>
-              </div>
-            </div>
+<div className="min-h-screen  p-4 md:p-8">
+      <div className="max-w-7xl mx-auto">
+        <ProfileHeader name={profile.name} role={profile.role} avatarUrl="/placeholder.svg?height=96&width=96" />
+
+        <div className="flex flex-col lg:flex-row gap-6">
+          <ProfileSidebar name={profile.name} role={profile.role} avatarUrl="/placeholder.svg?height=96&width=96" />
+
+          <div className="flex-1">
+            {activeTab === "Information" && (
+              <ProfileInfo profile={profile} onEdit={() => console.log("Edit clicked")} />
+            )}
+            {activeTab === "Experiences" && (
+              <ProfileContent experiences={experiences} education={[]} skills={[]} attachments={[]} />
+            )}
+            {activeTab === "Education" && (
+              <ProfileContent experiences={[]} education={education} skills={[]} attachments={[]} />
+            )}
+            {activeTab === "Skills" && (
+              <ProfileContent experiences={[]} education={[]} skills={skills} attachments={[]} />
+            )}
+            {activeTab === "Attachments" && (
+              <ProfileContent experiences={[]} education={[]} skills={[]} attachments={attachments} />
+            )}
           </div>
+          
         </div>
-
-        <div className="md:ml-64 p-4 text-justify">
+        <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 mt-5  ">
           <ProfileContent
             experiences={experiences}
             education={education}
@@ -361,6 +357,13 @@ const Profile = () => {
             attachments={attachments}
           />
         </div>
+        
+      </div>
+    </div>
+          </div>
+        </div>
+
+       
       </div>
     </>
   );

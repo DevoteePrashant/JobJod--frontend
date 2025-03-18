@@ -1,9 +1,9 @@
-
+"use client"
 
 import { useState } from "react"
 import { Bell, Mail, Menu, Search, X } from "lucide-react"
 import { RxDashboard } from "react-icons/rx"
-import { Link, useLocation } from "react-router-dom"
+import { Link } from "react-router-dom"
 import NotificationPanel from "../component/NotificationPanel"
 import image from "../image/logo2.png"
 import image2 from "../image/profile.jpg"
@@ -58,7 +58,6 @@ const jobData = [
 
 // Components
 const DashboardSidebar = ({ profile, isOpen, onClose }) => (
-  
   <div
     className={cn(
       "fixed inset-y-0 left-0 z-50 w-64 transform border-r bg-white transition-transform duration-300 ease-in-out lg:translate-x-0",
@@ -85,7 +84,7 @@ const DashboardSidebar = ({ profile, isOpen, onClose }) => (
       <nav>
         <ul className="space-y-2">
           <li>
-            <Link to="/Job" className="flex items-center p-3 text-white rounded-lg bg-black ">
+            <Link to="/jobseeker" className="flex items-center p-3 text-white rounded-lg bg-black ">
               <RxDashboard />
               <span className="ml-3">Dashboard</span>
             </Link>
@@ -134,7 +133,7 @@ const DashboardSidebar = ({ profile, isOpen, onClose }) => (
                 />
               </svg>
               <span className="ml-3">Settings</span>
-              </Link>
+            </Link>
           </li>
         </ul>
       </nav>
@@ -184,8 +183,6 @@ const Jobseeker = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false)
   const [showMobileSearch, setShowMobileSearch] = useState(false)
-
-  
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -322,7 +319,7 @@ const Jobseeker = () => {
             <div className="rounded-xl border bg-white p-6 h-full">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="font-bold text-2xl">Applied Jobs</h2>
-                <Link href="/jobs" className="text-sm text-blue-500 hover:underline">
+                <Link to="/jobs" className="text-sm text-blue-500 hover:underline">
                   <span className="font-semibold text-lg">All Jobs</span>
                 </Link>
               </div>

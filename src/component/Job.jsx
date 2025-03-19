@@ -1,31 +1,23 @@
-import React, { useEffect, useRef, useState } from "react";
-import profile from "../image/profile.jpg";
-import logo2 from "../image/logo2.png";
-import image from "../image/logo2.png";
-import { Link } from "react-router-dom";
-import {
-  Bell,
-  ChevronLeft,
-  ChevronRight,
-  Mail,
-  Menu,
-  Search,
-  X,
-} from "lucide-react";
-import { RxDashboard } from "react-icons/rx";
-import NotificationPanel from "../component/NotificationPanel";
-import image2 from "../image/profile.jpg";
-import t4 from "../image/t4.png";
-import Jobseekerheader from "./Jobseekerheader";
+"use client"
+
+import { useEffect, useRef, useState } from "react"
+import image from "../image/logo2.png"
+import { Link } from "react-router-dom"
+import {  ChevronLeft, ChevronRight, Mail, MoreHorizontal,  } from "lucide-react"
+import { LiaShareAltSolid } from "react-icons/lia";
+import { RxDashboard } from "react-icons/rx"
+import image2 from "../image/profile.jpg"
+import t4 from "../image/t4.png"
+import Jobseekerheader from "./Jobseekerheader"
 
 // Utility function for conditional classNames
-const cn = (...classes) => classes.filter(Boolean).join(" ");
+const cn = (...classes) => classes.filter(Boolean).join(" ")
 
 // Mock data
 const profileData = {
   name: "Anamoul",
-  avatar: "/placeholder.svg?height=100&width=100",
-};
+  avatar: "/placeholder.svg?height=100&width=100"
+}
 
 const jobData = [
   {
@@ -33,82 +25,80 @@ const jobData = [
     company: "Grameenphone",
     location: "Dhaka, Bangladesh",
     appliedDate: "23 May 20",
-    logoUrl: t4,
+    logoUrl: t4
   },
   {
     title: "UX Designer",
     company: " Alpha",
     location: "Dhaka, Bangladesh",
     appliedDate: "10 June 20",
-    logoUrl: t4,
+    logoUrl: t4
   },
   {
     title: "Product Designer",
     company: "Grameenphone",
     location: "Dhaka, Bangladesh",
     appliedDate: "23 May 20",
-    logoUrl: t4,
+    logoUrl: t4
   },
   {
     title: "UX Designer",
     company: " Alpha",
     location: "Dhaka, Bangladesh",
     appliedDate: "10 June 20",
-    logoUrl: t4,
+    logoUrl: t4
   },
   {
     title: "Frontend Developer",
     company: "Zudio",
     location: "Dhaka, Bangladesh",
     appliedDate: "15 July 20",
-    logoUrl: t4,
-  },
-];
+    logoUrl: t4
+  }
+]
+
 
 const JobDetails = () => {
-  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
-  const [showNotifications, setShowNotifications] = useState(false);
-  const [activeTab, setActiveTab] = useState("Job Description");
+  const [isSidebarVisible, setIsSidebarVisible] = useState(false)
+  const [showNotifications, setShowNotifications] = useState(false)
+  const [activeTab, setActiveTab] = useState("Job Description")
 
-  const tabs = ["Application Status", "Job Description"];
-  const tabsContainerRef = useRef(null);
-  const activeTabRef = useRef(null);
+  const tabs = ["Application Status", "Job Description"]
+  const tabsContainerRef = useRef(null)
+  const activeTabRef = useRef(null)
 
   // Scroll active tab into view when it changes
   useEffect(() => {
     if (activeTabRef.current && tabsContainerRef.current) {
-      const container = tabsContainerRef.current;
-      const activeTabElement = activeTabRef.current;
+      const container = tabsContainerRef.current
+      const activeTabElement = activeTabRef.current
 
       // Calculate position to center the active tab
-      const scrollLeft =
-        activeTabElement.offsetLeft -
-        container.clientWidth / 2 +
-        activeTabElement.clientWidth / 2;
+      const scrollLeft = activeTabElement.offsetLeft - container.clientWidth / 2 + activeTabElement.clientWidth / 2
 
       container.scrollTo({
         left: scrollLeft,
         behavior: "smooth",
-      });
+      })
     }
-  }, [activeTab]);
+  }, [activeTab])
 
   // Scroll tabs left/right
   const scroll = (direction) => {
     if (tabsContainerRef.current) {
-      const container = tabsContainerRef.current;
-      const scrollAmount = container.clientWidth / 2;
+      const container = tabsContainerRef.current
+      const scrollAmount = container.clientWidth / 2
 
       container.scrollBy({
         left: direction === "left" ? -scrollAmount : scrollAmount,
         behavior: "smooth",
-      });
+      })
     }
-  };
+  }
 
   return (
-    <div className="p-4 md:p-6">
-      <div className="relative w-50 md:w-50 max-w-50 md:max-w-50">
+    <div className="p-4 md:p-6 flex flex-col h-full"> {/* Added flex and h-full */}
+      <div className="relative w-full"> {/* Changed width classes */}
         {/* Scroll buttons for mobile */}
         <button
           onClick={() => scroll("left")}
@@ -119,7 +109,7 @@ const JobDetails = () => {
         </button>
 
         <div
-          className="flex items-center rounded-full p-1 w-50 md:w-50 overflow-x-auto scrollbar-hide"
+          className="flex items-center rounded-full p-1 w-full overflow-x-auto scrollbar-hide" /* Changed width classes */
           ref={tabsContainerRef}
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
@@ -130,9 +120,7 @@ const JobDetails = () => {
                 ref={activeTab === tab ? activeTabRef : null}
                 onClick={() => setActiveTab(tab)}
                 className={`px-3 py-2 md:px-4 rounded-full ms-2 me-2 text-xs md:text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 ${
-                  activeTab === tab
-                    ? "bg-white text-purple-500 shadow-sm"
-                    : "text-gray-600 hover:text-gray-800"
+                  activeTab === tab ? "bg-white text-purple-500 shadow-sm" : "text-gray-600 hover:text-gray-800"
                 }`}
               >
                 {tab}
@@ -157,27 +145,37 @@ const JobDetails = () => {
         `}</style>
       </div>
 
-      <div className="mb-6 md:mb-8">
-        <h1 className="text-xl md:text-2xl font-bold mb-2">Product Designer</h1>
-        <div className="flex flex-wrap items-center text-gray-600 mb-4">
+      <div className="p-4">
+        <div className="flex items-start justify-between">
+          <h1 className="text-2xl font-bold">Product Designer</h1>
+          <div className="flex space-x-2">
+            <button aria-label="Email">
+              <Mail className="h-5 w-5 text-gray-600" />
+            </button>
+            <button aria-label="Settings">
+              <LiaShareAltSolid  className="h-5 w-5 text-gray-600" />
+            </button>
+            <button aria-label="More options">
+              <MoreHorizontal className="h-5 w-5 text-gray-600" />
+            </button>
+          </div>
+        </div>
+
+        <div className="flex items-center mt-2">
           <span className="mr-2">✈️</span>
-          <span className="mr-2">Grameenphone</span>
-          <span className="mr-2">Dhaka, Bangladesh</span>
+          <span className="text-sm">Grameenphone</span>
         </div>
-        <div className="flex flex-wrap items-center text-sm text-gray-500">
-          <span className="mr-4">Posted on 15 May 20</span>
-          <span>Expire on 30 May 20</span>
-        </div>
+
+        <div className="text-sm text-gray-600 mt-1">Dhaka, Bangladesh</div>
+
+        <div className="text-xs text-gray-500 mt-3">Posted on 15 May 20</div>
       </div>
+
+  
 
       <div className="flex flex-wrap items-center justify-between mb-6 md:mb-8">
         <div className="flex items-center mb-4 md:mb-0">
-          <img
-            src={t4}
-            className="w-12 h-12 rounded-full bg-gray-200 mr-4"
-            alt=""
-            srcset=""
-          />
+          <img src={t4 || "/placeholder.svg"} className="w-12 h-12 rounded-full bg-gray-200 mr-4" alt="" srcset="" />
           <div>
             <h3 className="font-medium">Hannah Marsh</h3>
             <p className="text-sm text-gray-600">HR Manager · Grameenphone</p>
@@ -191,83 +189,59 @@ const JobDetails = () => {
           <h2 className="font-bold mb-3">Responsibilities</h2>
           <ul className="list-disc pl-5 space-y-2 text-gray-700 text-justify">
             <li>
-              Work on and execute design projects from start to finish while
-              meeting creative and technical requirements.
+              Work on and execute design projects from start to finish while meeting creative and technical
+              requirements.
             </li>
             <li>
-              Collaborate closely with engineers, researchers, clinicians, and
-              product managers to iterate rapidly.
+              Collaborate closely with engineers, researchers, clinicians, and product managers to iterate rapidly.
             </li>
             <li>
-              Work on the entire project lifecycle, from wireframes to detailed
-              specs across multiple UX platforms.
+              Work on the entire project lifecycle, from wireframes to detailed specs across multiple UX platforms.
             </li>
             <li>
-              Participate in regular design reviews and other team-wide design
-              efforts; create and contribute to a great design team culture.
+              Participate in regular design reviews and other team-wide design efforts; create and contribute to a great
+              design team culture.
             </li>
-            <li>
-              Participate in user experience research and usability studies.
-            </li>
+            <li>Participate in user experience research and usability studies.</li>
           </ul>
         </section>
 
         <section>
           <h2 className="font-bold mb-3">Qualifications and Skills</h2>
           <ul className="list-disc pl-5 space-y-2 text-gray-700 text-justify">
+            <li>BA/BS degree in Design, HCI, CS, or related field, or equivalent practical experience.</li>
             <li>
-              BA/BS degree in Design, HCI, CS, or related field, or equivalent
-              practical experience.
-            </li>
-            <li>
-              3+ years of relevant UX Design experience in consumer products,
-              medical devices or other relevant areas.
+              3+ years of relevant UX Design experience in consumer products, medical devices or other relevant areas.
             </li>
             <li>Portfolio of UX design work.</li>
             <li>
-              Proven ability to work across the design process, from developing
-              strong conceptual foundations to refining the smallest details
-              with high quality and attention to detail.
+              Proven ability to work across the design process, from developing strong conceptual foundations to
+              refining the smallest details with high quality and attention to detail.
             </li>
           </ul>
         </section>
 
         <section>
-          <h2 className="font-bold mb-3">
-            Preferred Qualifications and Skills
-          </h2>
+          <h2 className="font-bold mb-3">Preferred Qualifications and Skills</h2>
           <ul className="list-disc pl-5 space-y-2 text-gray-700 text-justify">
-            <li>
-              Experience designing for health-related products (software and/or
-              hardware).
-            </li>
+            <li>Experience designing for health-related products (software and/or hardware).</li>
             <li>Experience designing for wearable devices.</li>
             <li>Experience with prototyping.</li>
             <li>
-              Self-motivated and able to prioritize and manage workload and meet
-              critical project milestones and deadlines.
+              Self-motivated and able to prioritize and manage workload and meet critical project milestones and
+              deadlines.
             </li>
-            <li>
-              Excellent interpersonal, communication, negotiation, and
-              collaboration skills.
-            </li>
+            <li>Excellent interpersonal, communication, negotiation, and collaboration skills.</li>
           </ul>
         </section>
 
         <div className="mt-8 border-t pt-6">
           <div className="flex flex-wrap items-center justify-between">
             <div className="flex items-center mb-4 md:mb-0">
-              <img
-                src={t4}
-                className="w-12 h-12 bg-blue-100 rounded-lg mr-4"
-                alt=""
-                srcset=""
-              />
+              <img src={t4 || "/placeholder.svg"} className="w-12 h-12 bg-blue-100 rounded-lg mr-4" alt="" srcset="" />
               <div>
                 <h3 className="font-medium">Grameenphone Ltd.</h3>
-                <p className="text-sm text-gray-600">
-                  Telecommunications · 6,525 employees · Actively Hiring
-                </p>
+                <p className="text-sm text-gray-600">Telecommunications · 6,525 employees · Actively Hiring</p>
               </div>
             </div>
             <button className="text-blue-500">View Page</button>
@@ -275,8 +249,8 @@ const JobDetails = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 const ApplicationsList = () => {
   const applications = [
     {
@@ -288,7 +262,7 @@ const ApplicationsList = () => {
       date: "23 May 20",
       logoColor: "bg-blue-400",
       statusColor: "text-green-500",
-      statusIcon: "✓",
+      statusIcon: "✓"
     },
     {
       id: 2,
@@ -299,7 +273,7 @@ const ApplicationsList = () => {
       date: "23 May 20",
       logoColor: "bg-orange-400",
       statusColor: "text-blue-500",
-      statusIcon: "✓",
+      statusIcon: "✓"
     },
     {
       id: 3,
@@ -309,7 +283,7 @@ const ApplicationsList = () => {
       status: "Hired",
       logoColor: "bg-blue-500",
       statusColor: "text-blue-600",
-      statusIcon: "👑",
+      statusIcon: "👑"
     },
     {
       id: 4,
@@ -319,7 +293,7 @@ const ApplicationsList = () => {
       status: "Interview",
       logoColor: "bg-pink-500",
       statusColor: "text-purple-500",
-      statusIcon: "👤",
+      statusIcon: "👤"
     },
     {
       id: 5,
@@ -329,13 +303,13 @@ const ApplicationsList = () => {
       status: "Rejected",
       logoColor: "bg-blue-400",
       statusColor: "text-red-500",
-      statusIcon: "✕",
-    },
-  ];
+      statusIcon: "✕"
+    }
+  ]
 
   return (
     <div className="space-y-4">
-      {applications.map((app) => (
+      {applications.map(app => (
         <div
           key={app.id}
           className="flex items-center p-2 rounded-lg bg-purple-50"
@@ -359,8 +333,8 @@ const ApplicationsList = () => {
         </div>
       ))}
     </div>
-  );
-};
+  )
+}
 
 const DashboardSidebar = ({ profile, isOpen, onClose }) => (
   <div
@@ -478,18 +452,18 @@ const DashboardSidebar = ({ profile, isOpen, onClose }) => (
       </nav>
     </div>
   </div>
-);
+)
 
 const Job = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
-  const [showMobileSearch, setShowMobileSearch] = useState(false);
-  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
-  const [showNotifications, setShowNotifications] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false)
+  const [showMobileSearch, setShowMobileSearch] = useState(false)
+  const [isSidebarVisible, setIsSidebarVisible] = useState(false)
+  const [showNotifications, setShowNotifications] = useState(false)
 
   const toggleSidebar = () => {
-    setIsSidebarVisible(!isSidebarVisible);
-  };
+    setIsSidebarVisible(!isSidebarVisible)
+  }
 
   const tabs = [
     "All Jobs",
@@ -497,54 +471,53 @@ const Job = () => {
     "Short Listed",
     "Interview",
     "Hired",
-    "Rejected",
-  ];
-  const [activeTab, setActiveTab] = useState(tabs[0]);
-  const tabsContainerRef = useRef(null);
-  const activeTabRef = useRef(null);
+    "Rejected"
+  ]
+  const [activeTab, setActiveTab] = useState(tabs[0])
+  const tabsContainerRef = useRef(null)
+  const activeTabRef = useRef(null)
 
   // Scroll active tab into view when it changes
   useEffect(() => {
     if (activeTabRef.current && tabsContainerRef.current) {
-      const container = tabsContainerRef.current;
-      const activeTabElement = activeTabRef.current;
+      const container = tabsContainerRef.current
+      const activeTabElement = activeTabRef.current
 
       // Calculate position to center the active tab
       const scrollLeft =
         activeTabElement.offsetLeft -
         container.clientWidth / 2 +
-        activeTabElement.clientWidth / 2;
+        activeTabElement.clientWidth / 2
 
       container.scrollTo({
         left: scrollLeft,
-        behavior: "smooth",
-      });
+        behavior: "smooth"
+      })
     }
-  }, [activeTab]);
+  }, [activeTab])
 
   // Scroll tabs left/right
-  const scroll = (direction) => {
+  const scroll = direction => {
     if (tabsContainerRef.current) {
-      const container = tabsContainerRef.current;
-      const scrollAmount = container.clientWidth / 2;
+      const container = tabsContainerRef.current
+      const scrollAmount = container.clientWidth / 2
 
       container.scrollBy({
         left: direction === "left" ? -scrollAmount : scrollAmount,
-        behavior: "smooth",
-      });
+        behavior: "smooth"
+      })
     }
-  };
+  }
 
   return (
     <>
-    <div className="min-h-screen">
-      {/* Mobile Menu Button */}
+      <div className="min-h-screen">
+        {/* Mobile Menu Button */}
 
-      {/* Sidebar */}
-      
-      <Jobseekerheader /> 
+        {/* Sidebar */}
+
+        <Jobseekerheader />
         <div className="lg:pl-64">
-          
           <div className="p-4 flex flex-col sm:flex-row sm:justify-between sm:items-center">
             <div className="overflow-x-auto pb-2 sm:pb-0">
               <div className="relative w-full max-w-full">
@@ -563,7 +536,7 @@ const Job = () => {
                   style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
                 >
                   <div className="flex items-center px-6 md:px-0">
-                    {tabs.map((tab) => (
+                    {tabs.map(tab => (
                       <button
                         key={tab}
                         ref={activeTab === tab ? activeTabRef : null}
@@ -612,16 +585,16 @@ const Job = () => {
           </div>
         </div>
 
-      {/* Overlay */}
-      {isSidebarVisible && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 md:hidden z-30"
-          onClick={toggleSidebar}
-        ></div>
-      )}
-    </div>
+        {/* Overlay */}
+        {isSidebarVisible && (
+          <div
+            className="fixed inset-0 bg-black bg-opacity-50 md:hidden z-30"
+            onClick={toggleSidebar}
+          ></div>
+        )}
+      </div>
     </>
-  );
-};
+  )
+}
 
-export default Job;
+export default Job

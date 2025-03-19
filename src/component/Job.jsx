@@ -543,7 +543,7 @@ const Job = () => {
       {/* Sidebar */}
       
       <Jobseekerheader /> 
-        <div className="max-w-6xl lg:w-[calc(100% - 16rem)] w-full ml-auto mt-6 bg-white">
+        <div className="lg:pl-64">
           
           <div className="p-4 flex flex-col sm:flex-row sm:justify-between sm:items-center">
             <div className="overflow-x-auto pb-2 sm:pb-0">

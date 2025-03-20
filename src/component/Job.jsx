@@ -107,7 +107,7 @@ const JobDetails = () => {
   };
 
   return (
-    <div className="p-4 md:p-6">
+    <div className="p-0 md:p-6">
       <div className="relative w-50 md:w-50 max-w-50 md:max-w-50">
         {/* Scroll buttons for mobile */}
         <button
@@ -189,7 +189,7 @@ const JobDetails = () => {
       <div className="space-y-6">
         <section>
           <h2 className="font-bold mb-3">Responsibilities</h2>
-          <ul className="list-disc pl-5 space-y-2 text-gray-700 text-justify">
+          <ul className="list-disc pl-5 space-y-2 text-gray-700 text-left">
             <li>
               Work on and execute design projects from start to finish while
               meeting creative and technical requirements.
@@ -214,7 +214,7 @@ const JobDetails = () => {
 
         <section>
           <h2 className="font-bold mb-3">Qualifications and Skills</h2>
-          <ul className="list-disc pl-5 space-y-2 text-gray-700 text-justify">
+          <ul className="list-disc pl-5 space-y-2 text-gray-700 text-left">
             <li>
               BA/BS degree in Design, HCI, CS, or related field, or equivalent
               practical experience.
@@ -236,7 +236,7 @@ const JobDetails = () => {
           <h2 className="font-bold mb-3">
             Preferred Qualifications and Skills
           </h2>
-          <ul className="list-disc pl-5 space-y-2 text-gray-700 text-justify">
+          <ul className="list-disc pl-5 space-y-2 text-gray-700 text-left">
             <li>
               Experience designing for health-related products (software and/or
               hardware).
@@ -537,15 +537,15 @@ const Job = () => {
 
   return (
     <>
-    <div className="min-h-screen">
-      {/* Mobile Menu Button */}
+      <div className="min-h-screen">
+        {/* Mobile Menu Button */}
 
-      {/* Sidebar */}
-      
-      <Jobseekerheader /> 
-        <div className="max-w-6xl lg:w-[calc(100% - 16rem)] w-full ml-auto mt-6 bg-white">
-          
-          <div className="p-4 flex flex-col sm:flex-row sm:justify-between sm:items-center">
+        {/* Sidebar */}
+
+        <Jobseekerheader />
+        {/* <div className="max-w-6xl lg:w-[calc(100% - 16rem)] w-full ml-auto mt-6 bg-white"> */}
+        <div className="lg:pl-64">
+          <div className="p-3 flex flex-col sm:flex-row sm:justify-between sm:items-center">
             <div className="overflow-x-auto pb-2 sm:pb-0">
               <div className="relative w-full max-w-full">
                 {/* Scroll buttons for mobile */}
@@ -602,24 +602,24 @@ const Job = () => {
           </div>
           <div className="flex flex-col lg:flex-row md:float-col">
             {/* Left Sidebar - Applications List */}
-            <div className="w-full lg:w-[30%]  p-4">
+            <div className="w-full lg:w-[30%]  p-3">
               <ApplicationsList />
             </div>
             {/* Main Content - Job Details */}
-            <div className="w-full lg:w-[70%] p-4">
+            <div className="w-full lg:w-[70%] p-3">
               <JobDetails />
             </div>
           </div>
         </div>
 
-      {/* Overlay */}
-      {isSidebarVisible && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 md:hidden z-30"
-          onClick={toggleSidebar}
-        ></div>
-      )}
-    </div>
+        {/* Overlay */}
+        {isSidebarVisible && (
+          <div
+            className="fixed inset-0 bg-black bg-opacity-50 md:hidden z-30"
+            onClick={toggleSidebar}
+          ></div>
+        )}
+      </div>
     </>
   );
 };

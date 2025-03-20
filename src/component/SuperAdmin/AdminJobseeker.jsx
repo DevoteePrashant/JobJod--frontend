@@ -34,8 +34,8 @@ function AdminJobseeker() {
         {/* <Chartdashboard/> */}
 
         {/* Content Area */}
-        <main className="flex-1 p-2 sm:p-4 overflow-y-auto">
-          <div className="max-h-screen mx-auto p-3 sm:p-6 bg-white">
+        <main className="flex-1 p-3 sm:p-4 overflow-y-auto">
+          <div className="max-h-screen mx-auto p-0 sm:p-6 bg-white">
             {/* Search and Filter Section */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 sm:mb-6 gap-3 sm:gap-4">
               <div className="relative flex-1 w-full">

@@ -67,7 +67,7 @@ const DashboardStats = ({ title, subtext, value }) => (
 const JobList = ({ jobs }) => (
   <div className="space-y-4">
     {jobs.map((job, index) => (
-      <div key={index} className="flex items-start gap-4 bg-white p-4 rounded-lg shadow-sm">
+      <div key={index} className="flex items-start gap-6 p-0 lg:p-4 bg-white  rounded-lg shadow-sm">
         <img
           src={job.logoUrl || "/placeholder.svg"}
           alt={`${job.company} logo`}
@@ -82,7 +82,7 @@ const JobList = ({ jobs }) => (
             <span className="h-4 w-4 rounded-full bg-green-500 flex items-center justify-center text-white text-xs font-bold">
               ✓
             </span>
-            <span className="text-sm text-gray-500">Applied on {job.appliedDate}</span>
+            <span className="text-xs text-gray-500">Applied on {job.appliedDate}</span>
           </div>
         </div>
       </div>
@@ -99,7 +99,7 @@ const Jobseeker = () => {
 
       <div className="lg:pl-64">
 
-        <main className="p-4 lg:p-8">
+        <main className="p-3 lg:p-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Left Column */}
             <div className="space-y-6">
@@ -126,11 +126,11 @@ const Jobseeker = () => {
             </div>
 
             {/* Applied Jobs Section */}
-            <div className="rounded-xl border bg-white p-6 h-full">
+            <div className="rounded-xl border bg-white p-4 h-full">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="font-bold text-2xl">Applied Jobs</h2>
+                <h2 className="font-bold text-xl">Applied Jobs</h2>
                 <Link to="/jobs" className="text-sm text-blue-500 hover:underline">
-                  <span className="font-semibold text-lg">All Jobs</span>
+                  <span className="font-semibold text-sm">All Jobs</span>
                 </Link>
               </div>
               <JobList jobs={jobData} />

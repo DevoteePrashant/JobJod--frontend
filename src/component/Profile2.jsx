@@ -127,8 +127,8 @@ function ExperienceItem({ title, company, location, period, description }) {
         <button className="text-purple-500 text-xs sm:text-sm mt-1 sm:mt-2">See More</button>
       </div>
       <div className="flex gap-2 mt-2 sm:mt-0">
-        <button className="text-gray-500 hover:text-gray-700 text-xs sm:text-sm">Delete</button>
-        <button className="text-purple-500 hover:text-purple-700 text-xs sm:text-sm">Edit</button>
+        <button className="text-gray-500 hover:text-gray-700 text-sm sm:text-sm">Delete</button>
+        <button className="text-purple-500 hover:text-purple-700 text-sm sm:text-sm">Edit</button>
       </div>
     </div>
   )
@@ -136,7 +136,7 @@ function ExperienceItem({ title, company, location, period, description }) {
 
 function EducationItem({ institution, course, grade, description }) {
   return (
-    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+    <div className="flex flex- sm:flex-row gap-3 sm:gap-4">
       <div className="flex-shrink-0">
         <img
           alt={institution}
@@ -152,8 +152,8 @@ function EducationItem({ institution, course, grade, description }) {
         <button className="text-purple-500 text-xs sm:text-sm mt-1 sm:mt-2">See More</button>
       </div>
       <div className="flex gap-2 mt-2 sm:mt-0">
-        <button className="text-gray-500 hover:text-gray-700 text-xs sm:text-sm">Delete</button>
-        <button className="text-purple-500 hover:text-purple-700 text-xs sm:text-sm">Edit</button>
+        <button className="text-gray-500 hover:text-gray-700 text-sm sm:text-sm">Delete</button>
+        <button className="text-purple-500 hover:text-purple-700 text-sm sm:text-sm">Edit</button>
       </div>
     </div>
   )

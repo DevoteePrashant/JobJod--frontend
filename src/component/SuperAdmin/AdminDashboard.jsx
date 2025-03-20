@@ -108,17 +108,17 @@ function AdminDashboard() {
         {/* <Chartdashboard/> */}
 
         {/* Content Area */}
-        <main className="flex-1 p-4 overflow-y-auto">
+        <main className="flex-1 p-3 overflow-y-auto">
           {/* Dashboard Content */}
 
-          <div className="bg-white p-4 rounded-lg">
+          <div className="bg-white p-0 rounded-lg">
             {/* Adjust grid-cols based on screen size */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4"></div>
             <Chartdashboard />
             {/* Adjust grid-cols based on screen size */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               {/* Application Response Chart */}
-              <div className="bg-white rounded-lg p-4 w-full max-w-4xl mx-auto border border-gray-200 shadow-md">
+              <div className="bg-white rounded-xl p-4 w-full max-w-4xl mx-auto border ">
                 <h2 className="text-gray-700 font-bold text-lg md:text-xl mb-4">
                   Application Response
                 </h2>
@@ -182,7 +182,7 @@ function AdminDashboard() {
               </div>
 
               {/* Recent Job Posts */}
-              <div className="bg-white rounded-lg p-4 border border-gray-200 shadow-md">
+              <div className="bg-white rounded-xl p-4 border ">
                 <div className="flex flex-col md:flex-row justify-end mb-4">
                   <h2 className="font-bold mr-auto text-2xl">
                     Recent Job Post

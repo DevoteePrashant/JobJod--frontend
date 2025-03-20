@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { DashboardSidebar } from './Siderbar'
 import { Bell, Mail, Menu, Search, X } from "lucide-react"
 import NotificationPanel from './NotificationPanel'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import image2 from "../image/profile.jpg"
 
 const Jobseekerheader = ({isSidebarVisible}) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false)
   const [showMobileSearch, setShowMobileSearch] = useState(false)
+  
 
   useEffect(()=>{
     setIsSidebarOpen(isSidebarVisible)
@@ -25,14 +26,14 @@ const Jobseekerheader = ({isSidebarVisible}) => {
       <header className="lg:w-[calc(100%-16rem)] left-[16rem] sticky top-0 z-40 w-full border-b bg-white">
         <div className="flex h-16 items-center px-4">
           {/* Mobile sidebar toggle */}
-          <button
+          {/* <button
             className="mr-2 rounded-lg p-2 hover:bg-gray-100 lg:hidden"
-            aria-label="Open sidebar"
-            onClick={() => setIsSidebarOpen(true)}
+            aria-label={isSidebarOpen ? "Close sidebar" : "Open sidebar"}
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           >
-            <Menu className="h-5 w-5" />
-            <span className="sr-only">Open sidebar</span>
-          </button>
+            {isSidebarOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            <span className="sr-only">{isSidebarOpen ? "Close sidebar" : "Open sidebar"}</span>
+          </button> */}
 
           {/* Desktop search */}
           <div className="hidden flex-1 md:block">

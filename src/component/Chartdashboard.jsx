@@ -90,7 +90,7 @@ const MetricCard = ({ title, value, change, changeColor, chartColor, chartData }
   }, [value, numericValue])
 
   return (
-    <div className="bg-white  rounded-lg p-4 border border-gray-200 shadow-md">
+    <div className="bg-white  rounded-xl p-4 border  ">
       <h3 className="text-gray-700 font-semibold text-lg">{title}</h3>
       <div className="flex items-end justify-between h-24 mt-4">
         <div>

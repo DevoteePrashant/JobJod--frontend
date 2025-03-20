@@ -1,4 +1,3 @@
-"use client"
 import { useState } from "react"
 import { ChevronLeft } from "lucide-react"
 import { Link } from "react-router-dom"

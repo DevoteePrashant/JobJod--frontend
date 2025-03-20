@@ -2,13 +2,9 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearch,
-  faBell,
-  faEnvelope,
-  faBars,
-  faXmark,
-  faUser,
+
 } from "@fortawesome/free-solid-svg-icons";
-import profile from "../image/dashboard.png";
+
 import { Bell, Mail, Search, X } from "lucide-react";
 import NotificationPanel from "./NotificationPanel";
 // Remove the direct import of the image that's causing the error
@@ -96,7 +92,7 @@ const Dheader = () => {
           </div>
 
           <Link
-            href="/Message"
+            to="/Message"
             className="relative rounded-full p-2 hover:bg-gray-100"
           >
             <Mail className="h-5 w-5" />

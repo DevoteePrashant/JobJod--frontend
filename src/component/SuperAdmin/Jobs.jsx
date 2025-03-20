@@ -30,7 +30,7 @@ function Jobs() {
         <Dheader2 />
 
         {/* Content Area */}
-        <main className="flex-1 p-4 overflow-y-auto">
+        <main className="flex-1 p-3 overflow-y-auto">
           <Temp />
         </main>
       </div>

@@ -138,7 +138,7 @@ function CompanyPostJobs() {
         {/* Main Content */}
         <div className="flex-1 overflow-hidden">
       {/* Mobile-First Sidebar (collapsible) */}
-      <div className="lg:hidden bg-white border-b border-gray-200 p-4">
+      <div className="lg:hidden bg-white border-b border-gray-200 p-3">
         <button
           onClick={openJobModal}
           className="w-full py-2 px-4 bg-white text-purple-500 border border-purple-500 rounded-xl flex items-center justify-center"
@@ -149,7 +149,7 @@ function CompanyPostJobs() {
       </div>
 
       {/* Mobile Job Selection */}
-      <div className="lg:hidden bg-white border-b border-gray-200 p-4">
+      <div className="lg:hidden bg-white border-b border-gray-200 p-3">
         {/* Mobile Job Selector */}
         <div className="">
           <button

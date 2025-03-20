@@ -193,7 +193,7 @@ function CompanyProfile() {
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-auto">
         {/* Header */}
-        <Dheader />
+        <Dheader/>
         {/* Main Content */}
         <div className="min-h-[24rem] sm:min-h-[32rem] md:min-h-[56rem] lg:w-[80%]  md:w-[80%] w-full mx-auto">
           <div className="relative bg-white overflow-hidden">
@@ -245,7 +245,7 @@ function CompanyProfile() {
                 </div>
               </div>
               <div className="flex-1 rounded-lg max-w-screen-lg mx-auto w-full sm:w-[70px] sticky top-20">
-                <div className="flex justify-between items-start mb-6">
+                <div className="flex justify-between items-start mb-6 p-1">
                   <div className="mx-5">
                     <h1 className="text-2xl font-semibold">
                       Basic Information

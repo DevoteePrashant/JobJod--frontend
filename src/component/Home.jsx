@@ -206,7 +206,7 @@ const Home = () => {
             </nav>
           </div>
           <div className="hidden md:flex items-center space-x-4">
-          <Link to="/" className="text-black font-semibold">
+          <Link to="/Login_Signin" className="text-black font-semibold">
               Hire Now <span className="text-gray-400">|</span>
               </Link>
             {/* <button className="bg-black text-white px-4 py-2 rounded-full"> */}

@@ -1,8 +1,3 @@
-
-
-
-"use client"
-
 import { useState } from "react"
 import logo2 from "../image/logo2.png"
 import { Link } from "react-router-dom"

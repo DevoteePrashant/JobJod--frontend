@@ -110,7 +110,7 @@ const Profile = () => {
         <Jobseekerheader isSidebarVisible={isSidebarVisible}/>
 
         <div className="flex  w-full  ">
-          <div className="flex-1 w-full p-2 lg:ml-64">
+          <div className="flex-1 w-full p-3 lg:ml-64">
             {/* Header Illustration */}
             <div className="relative bg-white overflow-hidden">
               <img
@@ -122,7 +122,7 @@ const Profile = () => {
 
 
 
-            <div className="min-h-screen  p-4 md:p-8">
+            <div className="min-h-screen  p-0 md:p-8">
               <div className="max-w-7xl mx-auto">
                 <ProfileHeader name={profile.name} role={profile.role} avatarUrl="/placeholder.svg?height=96&width=96" />
 

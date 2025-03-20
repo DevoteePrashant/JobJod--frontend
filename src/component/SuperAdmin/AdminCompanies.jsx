@@ -35,8 +35,8 @@ function AdminCompanies() {
           <Dheader2 />
         </div>
         {/* Content Area */}
-        <main className="flex-1 p-2 sm:p-4 overflow-y-auto">
-          <div className="max-h-screen mx-auto p-3 sm:p-6">
+        <main className="flex-1 p-3 sm:p-4 overflow-y-auto">
+          <div className="max-h-screen mx-auto p-0 sm:p-6">
             {/* Search and Filter */}
             <div className="flex flex-col sm:flex-row justify-between gap-3 mb-6">
               <div className="relative flex-1">

@@ -181,7 +181,7 @@ export default function JobCandidateListing() {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col p-4 md:p-6 overflow-y-auto">
+      <div className="flex-1 flex flex-col p-3 md:p-6 overflow-y-auto">
         {/* Mobile Header with Search and Filter */}
         {/* <div className="lg:hidden flex items-center gap-3 mb-6">
           <div className="relative flex-1">
@@ -257,7 +257,7 @@ export default function JobCandidateListing() {
             key={1}
             className="shadow-sm overflow-hidden bg-violet-50 rounded-md border border-gray-100"
           >
-            <div className="p-4 md:p-6">
+            <div className="p-3 md:p-6">
               <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
                 <div className="flex-1">
                   <h2 className="text-xl font-semibold ">John Doe</h2>
@@ -350,7 +350,7 @@ export default function JobCandidateListing() {
             key={2}
             className="shadow-sm overflow-hidden bg-violet-50 rounded-md border border-gray-100"
           >
-            <div className="p-4 md:p-6">
+            <div className="p-3 md:p-6">
               <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
                 <div className="flex-1">
                   <h2 className="text-xl font-semibold ">Jane Doe</h2>
@@ -395,7 +395,7 @@ export default function JobCandidateListing() {
             key={3}
             className="shadow-sm overflow-hidden bg-violet-50 rounded-md border border-gray-100"
           >
-            <div className="p-4 md:p-6">
+            <div className="p-3 md:p-6">
               <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
                 <div className="flex-1 ">
                   <h2 className="text-xl font-semibold filter blur-sm ">Bob Smith</h2>

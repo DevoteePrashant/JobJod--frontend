@@ -9,7 +9,7 @@ import {
   Eye,
   Trash
 } from "lucide-react"
-
+import Rectangle from "../image/Rectangle 3890.png"
 export default function ProfileContent({
   experiences = [],
   education = [],
@@ -17,7 +17,7 @@ export default function ProfileContent({
   attachments = []
 }) {
   return (
-    <div className="rounded-lg p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 lg:pl-20 xl:pl-80 justify-center">
+    <div className="rounded-lg p-0 sm:p-6 md:p-8 lg:p-10 xl:p-12 lg:pl-20 xl:pl-80 justify-center">
       {experiences.length > 0 && (
         <div className="bg-white rounded-2xl shadow-sm border p-6 max-w-screen-xl  mx-auto overflow-hidden " >
           <SectionHeader
@@ -84,18 +84,18 @@ const ExperienceList = ({ experiences }) => (
       <div key={index} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
         <div className="flex-shrink-0">
           <img
-            src="/placeholder.svg?height=48&width=48"
+            src={Rectangle }
             alt={exp.company}
             className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg"
           />
         </div>
         <div className="flex-grow">
-          <h3 className="font-semibold text-sm sm:text-base">{exp.role}</h3>
+          <h3 className="font-semibold text-md sm:text-base">{exp.role}</h3>
           <p className="text-xs sm:text-sm text-gray-600">{exp.company}</p>
           <p className="text-xs sm:text-sm text-gray-500">
             {exp.location} · {exp.period}
           </p>
-          <p className="text-xs sm:text-sm text-gray-600 mt-1 sm:mt-2">
+          <p className="text-sm sm:text-sm text-gray-600 mt-1 sm:mt-2">
             {exp.description}
           </p>
           <button className="text-purple-500 text-xs sm:text-sm mt-1 sm:mt-2">
@@ -119,20 +119,20 @@ const EducationList = ({ education }) => (
   <div className="space-y-4 sm:space-y-6">
     {education.map((edu, index) => (
       <div key={index} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-        <div className="flex-shrink-0">
+        <div className="flex-shrink-0 ">
           <img
-            src="/placeholder.svg?height=48&width=48"
+            src={Rectangle }
             alt={edu.school}
             className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg"
           />
         </div>
         <div className="flex-grow">
-          <h3 className="font-semibold text-sm sm:text-base">{edu.school}</h3>
+          <h3 className="font-semibold text-md sm:text-base">{edu.school}</h3>
           <p className="text-xs sm:text-sm text-gray-600">{edu.course}</p>
           <p className="text-xs sm:text-sm text-gray-500">
             Grade: {edu.grade} · {edu.period}
           </p>
-          <p className="text-xs sm:text-sm text-gray-600 mt-1 sm:mt-2">
+          <p className="text-sm sm:text-sm text-gray-600 mt-1 sm:mt-2">
             {edu.description}
           </p>
           <button className="text-purple-500 text-xs sm:text-sm mt-1 sm:mt-2">

@@ -35,7 +35,6 @@ import AdminJobseeker from "./component/SuperAdmin/AdminJobseeker";
 import AdminCompanies from "./component/SuperAdmin/AdminCompanies";
 import Login_Signin from "./component/Login_Signin";
 
-
 function App() {
   return (
     <>
@@ -76,6 +75,8 @@ function App() {
           <Route path="/AdminJobseeker" element={<AdminJobseeker />}/>
           <Route path="/AdminCompanies" element={<AdminCompanies />}/>
           <Route path="/Login_Signin" element={<Login_Signin />}/>
+     
+
 
 
 

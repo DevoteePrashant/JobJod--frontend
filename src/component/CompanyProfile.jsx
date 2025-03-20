@@ -224,10 +224,10 @@ function CompanyProfile() {
               </div>
               <div className="flex items-center justify-center sm:justify-start gap-2"></div>
             </div>
-            <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 ">
+            <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 sticky">
               <div className="w-full lg:w-[280px] lg:flex-shrink-0 ">
                 <div className="bg-white rounded-2xl shadow-sm border p-4">
-                  <nav>
+                  <nav >
                     <ul className="space-y-2 font-semibold">
                       <NavItem
                         icon={<PiBagSimpleFill />}

@@ -198,10 +198,10 @@ export default function FormCompany6() {
                           handleFileUpload(shortName, e.target.files[0])
                         }
                       />
-                      <span className="text-purple-500 font-medium text-sm md:text-base whitespace-nowrap">
+                      <span className="text-white bg-purple-500  rounded-xl  p-2 font-medium text-sm md:text-base whitespace-nowrap">
                         {documents[shortName]?.file
                           ? "Change File"
-                          : "Upload Document"}
+                          : "Upload "}
                       </span>
                     </label>
                   </div>

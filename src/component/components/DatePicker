@@ -1,0 +1,176 @@
+"use client"
+
+import { useState, useRef, useEffect } from "react"
+
+const DatePicker = ({ className }) => {
+  const [date, setDate] = useState(null)
+  const [isOpen, setIsOpen] = useState(false)
+  const calendarRef = useRef(null)
+
+  // Format date for display
+  const formatDate = (date) => {
+    if (!date) return ""
+    const options = { year: "numeric", month: "long", day: "numeric" }
+    return new Date(date).toLocaleDateString("en-US", options)
+  }
+
+  // Handle click outside to close calendar
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (calendarRef.current && !calendarRef.current.contains(event.target)) {
+        setIsOpen(false)
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [calendarRef])
+
+  // Generate days for the calendar
+  const generateCalendar = () => {
+    const today = new Date()
+    const currentMonth = date ? new Date(date).getMonth() : today.getMonth()
+    const currentYear = date ? new Date(date).getFullYear() : today.getFullYear()
+
+    const firstDay = new Date(currentYear, currentMonth, 1)
+    const lastDay = new Date(currentYear, currentMonth + 1, 0)
+
+    const daysInMonth = lastDay.getDate()
+    const startingDay = firstDay.getDay() // 0 = Sunday
+
+    const monthDays = []
+
+    // Add empty cells for days before the first day of month
+    for (let i = 0; i < startingDay; i++) {
+      monthDays.push(<div key={`empty-${i}`} className="w-8 h-8"></div>)
+    }
+
+    // Add days of the month
+    for (let i = 1; i <= daysInMonth; i++) {
+      const dayDate = new Date(currentYear, currentMonth, i)
+      const isSelected = date && new Date(date).toDateString() === dayDate.toDateString()
+      const isToday = today.toDateString() === dayDate.toDateString()
+
+      monthDays.push(
+        <button
+          key={i}
+          onClick={() => {
+            setDate(dayDate)
+            setIsOpen(false)
+          }}
+          className={`w-8 h-8 rounded-full flex items-center justify-center text-sm ${
+            isSelected
+              ? "bg-blue-500 text-white"
+              : isToday
+                ? "border border-blue-500 text-blue-500"
+                : "hover:bg-gray-100"
+          }`}
+        >
+          {i}
+        </button>,
+      )
+    }
+
+    return monthDays
+  }
+
+  // Get month and year for calendar header
+  const getMonthYear = () => {
+    const currentDate = date ? new Date(date) : new Date()
+    return currentDate.toLocaleDateString("en-US", { month: "long", year: "numeric" })
+  }
+
+  // Navigate between months
+  const changeMonth = (increment) => {
+    const currentDate = date ? new Date(date) : new Date()
+    const newDate = new Date(currentDate.setMonth(currentDate.getMonth() + increment))
+    // Just update the view, not the selected date
+    setDate((prevDate) => {
+      if (!prevDate) return null
+      const prevSelected = new Date(prevDate)
+      prevSelected.setMonth(newDate.getMonth())
+      prevSelected.setFullYear(newDate.getFullYear())
+      return prevSelected
+    })
+  }
+
+  return (
+    <div className={`w-full max-w-md ${className || ""}`}>
+      <div className="relative">
+        <div className="group flex flex-col">
+          <div className="mb-1 text-sm font-normal text-gray-700">Date of Birth</div>
+          <div className="flex items-center justify-between border-b border-gray-300 pb-1 focus-within:border-black">
+            <button
+              className={`h-9 w-full justify-start rounded-none p-0 text-left font-normal ${date ? "text-gray-700" : "text-gray-500"}`}
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {date ? formatDate(date) : "Select date"}
+            </button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 text-gray-700"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              />
+            </svg>
+          </div>
+        </div>
+
+        {isOpen && (
+          <div
+            ref={calendarRef}
+            className="absolute mt-1 bg-white border border-gray-200 rounded-md shadow-lg p-3 z-10"
+          >
+            <div className="flex justify-between items-center mb-2">
+              <button onClick={() => changeMonth(-1)} className="p-1 hover:bg-gray-100 rounded-full">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <div className="font-medium">{getMonthYear()}</div>
+              <button onClick={() => changeMonth(1)} className="p-1 hover:bg-gray-100 rounded-full">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+
+            <div className="grid grid-cols-7 gap-1 mb-2">
+              {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((day) => (
+                <div key={day} className="w-8 h-8 flex items-center justify-center text-xs text-gray-500">
+                  {day}
+                </div>
+              ))}
+            </div>
+
+            <div className="grid grid-cols-7 gap-1">{generateCalendar()}</div>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
+export default DatePicker
+

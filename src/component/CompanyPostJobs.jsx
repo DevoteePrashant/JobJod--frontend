@@ -128,6 +128,7 @@ function CompanyPostJobs() {
 
   return (
     <div className="flex h-screen bg-gray-50 overflow-hidden">
+      
       {/* Mobile Menu Button */}
      <DashSidebar substrLocation={substrLocation}/> 
       {/* Main Content */}
@@ -241,9 +242,10 @@ function CompanyPostJobs() {
                 {currentJob.totalApplications.toLocaleString()}
               </h2>
             </div>
-            <button className="py-2 px-4 font-semibold bg-white text-purple-500 border border-purple-500 rounded-xl mt-2 md:mt-0">
+            <Link to= "/CompanyApplications"><button className="py-2 px-4 font-semibold bg-white text-purple-500 border border-purple-500 rounded-xl mt-2 md:mt-0">
               View Applicants
             </button>
+            </Link>
           </div>
 
           {/* Job Title Section */}

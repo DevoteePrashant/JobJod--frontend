@@ -1,20 +1,20 @@
-"use client"
+"use client";
 import Avatar from "../image/dashboard.png";
-import { useState, useRef } from "react"
-import Navbar from "./Navbar"
-import { ChevronLeft, ImageIcon, Paperclip, Smile } from "lucide-react"
+import { useState, useRef } from "react";
+import Navbar from "./Navbar";
+import { ChevronLeft, ImageIcon, Paperclip, Smile } from "lucide-react";
 import { IoMdSend } from "react-icons/io";
-import useMediaQuery from "./hooks/useMediaQuery"
+import useMediaQuery from "./hooks/useMediaQuery";
 
 // Use placeholder for avatar
 // const Avatar = "../image/Avatar.svg"
 
 const Messages = () => {
-  const [searchQuery, setSearchQuery] = useState("")
-  const [message, setMessage] = useState("")
-  const [currentPage, setCurrentPage] = useState(1)
-  const [selectedChat, setSelectedChat] = useState(null)
-  const isMobile = useMediaQuery("(max-width: 768px)")
+  const [searchQuery, setSearchQuery] = useState("");
+  const [message, setMessage] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [selectedChat, setSelectedChat] = useState(null);
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   const messages = [
     {
@@ -25,7 +25,7 @@ const Messages = () => {
       avatar: Avatar,
       pinned: true,
       online: true,
-      timestamp: "Feb 5, 2025 12:00 PM"
+      timestamp: "Feb 5, 2025 12:00 PM",
     },
     {
       id: 2,
@@ -35,7 +35,7 @@ const Messages = () => {
       avatar: Avatar,
       pinned: false,
       online: true,
-      timestamp: "Feb 5, 2025 11:00 AM"
+      timestamp: "Feb 5, 2025 11:00 AM",
     },
     {
       id: 3,
@@ -45,7 +45,7 @@ const Messages = () => {
       avatar: Avatar,
       pinned: true,
       online: true,
-      timestamp: "Feb 4, 2025 01:00 PM"
+      timestamp: "Feb 4, 2025 01:00 PM",
     },
     {
       id: 4,
@@ -55,7 +55,7 @@ const Messages = () => {
       avatar: Avatar,
       pinned: false,
       online: false,
-      timestamp: "Feb 3, 2025 10:00 AM"
+      timestamp: "Feb 3, 2025 10:00 AM",
     },
     {
       id: 5,
@@ -65,7 +65,7 @@ const Messages = () => {
       avatar: Avatar,
       pinned: true,
       online: true,
-      timestamp: "Feb 2, 2025 03:00 PM"
+      timestamp: "Feb 2, 2025 03:00 PM",
     },
     {
       id: 6,
@@ -75,7 +75,7 @@ const Messages = () => {
       avatar: Avatar,
       pinned: false,
       online: false,
-      timestamp: "Feb 1, 2025 05:00 PM"
+      timestamp: "Feb 1, 2025 05:00 PM",
     },
     {
       id: 7,
@@ -85,7 +85,7 @@ const Messages = () => {
       avatar: Avatar,
       pinned: true,
       online: true,
-      timestamp: "Jan 31, 2025 08:00 AM"
+      timestamp: "Jan 31, 2025 08:00 AM",
     },
     {
       id: 8,
@@ -95,7 +95,7 @@ const Messages = () => {
       avatar: Avatar,
       pinned: false,
       online: false,
-      timestamp: "Jan 30, 2025 11:00 AM"
+      timestamp: "Jan 30, 2025 11:00 AM",
     },
     // Adding more messages to demonstrate scrolling
     {
@@ -106,7 +106,7 @@ const Messages = () => {
       avatar: Avatar,
       pinned: false,
       online: true,
-      timestamp: "Jan 29, 2025 09:00 AM"
+      timestamp: "Jan 29, 2025 09:00 AM",
     },
     {
       id: 10,
@@ -116,9 +116,9 @@ const Messages = () => {
       avatar: Avatar,
       pinned: true,
       online: false,
-      timestamp: "Jan 28, 2025 02:30 PM"
-    }
-  ]
+      timestamp: "Jan 28, 2025 02:30 PM",
+    },
+  ];
 
   // Mock chat messages
   const chatMessages = [
@@ -127,14 +127,14 @@ const Messages = () => {
       sender: "other",
       message:
         "Thank you for joining us today, can you start by telling us a little about yourself and your background?",
-      timestamp: "May 21, 2020, 7:51 PM"
+      timestamp: "May 21, 2020, 7:51 PM",
     },
     {
       id: 2,
       sender: "me",
       message:
-      "Of course! I have knowledge in UI/UX, and I’ve spent the last three years working as a UI/UX designer at a company.",
-      timestamp: "May 21, 2020, 7:51 PM"
+        "Of course! I have knowledge in UI/UX, and I’ve spent the last three years working as a UI/UX designer at a company.",
+      timestamp: "May 21, 2020, 7:51 PM",
     },
     // Adding more messages to demonstrate scrolling
     {
@@ -142,62 +142,62 @@ const Messages = () => {
       sender: "other",
       message:
         "That's great! We're always looking for innovative approaches to improve user experience.",
-      timestamp: "May 21, 2020, 7:55 PM"
+      timestamp: "May 21, 2020, 7:55 PM",
     },
     {
       id: 4,
       sender: "me",
       message:
         "I've been focusing on responsive design and accessibility to ensure all users have a seamless experience.",
-      timestamp: "May 21, 2020, 7:58 PM"
+      timestamp: "May 21, 2020, 7:58 PM",
     },
     {
       id: 5,
       sender: "other",
       message:
         "Accessibility is definitely a priority for us. What specific techniques are you implementing?",
-      timestamp: "May 21, 2020, 8:02 PM"
+      timestamp: "May 21, 2020, 8:02 PM",
     },
     {
       id: 6,
       sender: "me",
       message:
         "I'm using semantic HTML, ensuring proper contrast ratios, implementing keyboard navigation, and adding ARIA attributes where needed.",
-      timestamp: "May 21, 2020, 8:05 PM"
-    }
-  ]
+      timestamp: "May 21, 2020, 8:05 PM",
+    },
+  ];
 
-  const fileInputRef = useRef(null)
+  const fileInputRef = useRef(null);
 
-  const handleFileUpload = e => {
-    const file = e.target.files[0]
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
     if (file) {
-      console.log("File selected:", file.name)
+      console.log("File selected:", file.name);
       // Handle file upload logic here
     }
-  }
+  };
 
   const triggerFileInput = () => {
-    fileInputRef.current.click()
-  }
+    fileInputRef.current.click();
+  };
 
-  const handlePageChange = pageNumber => {
-    setCurrentPage(pageNumber)
-  }
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
-  const openChat = chatId => {
-    setSelectedChat(chatId)
-  }
+  const openChat = (chatId) => {
+    setSelectedChat(chatId);
+  };
 
   const closeChat = () => {
-    setSelectedChat(null)
-  }
+    setSelectedChat(null);
+  };
 
-  const formatTime = timestamp => {
-    if (!timestamp) return ""
-    const date = new Date(timestamp)
-    return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
-  }
+  const formatTime = (timestamp) => {
+    if (!timestamp) return "";
+    const date = new Date(timestamp);
+    return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  };
 
   // Render message list view
   const renderMessageList = () => (
@@ -213,7 +213,7 @@ const Messages = () => {
 
       {/* Message List - With proper scrolling */}
       <div className="flex-1 overflow-y-auto  ">
-        {messages.map(msg => (
+        {messages.map((msg) => (
           <div
             key={msg.id}
             className="flex items-center px-4 py-3 hover:bg-gray-100 cursor-pointer border-b border-gray-100 last:border-none"
@@ -263,83 +263,53 @@ const Messages = () => {
           </div>
         ))}
       </div>
-
-      {/* Pagination */}
-      <div className="flex justify-center items-center p-4 border-t border-gray-200 flex-shrink-0">
-        <div className="flex items-center gap-1">
-          <button
-            onClick={() => handlePageChange(currentPage - 1)}
-            disabled={currentPage === 1}
-            className="px-2 py-1 rounded-md border border-gray-300 bg-white text-sm text-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            Prev
-          </button>
-          {[...Array(5)].map((_, i) => {
-            const pageNumber = i + 1
-            return (
-              <button
-                key={pageNumber}
-                onClick={() => handlePageChange(pageNumber)}
-                className={`px-2 py-1 rounded-md text-sm ${
-                  currentPage === pageNumber
-                    ? "bg-blue-500 text-white"
-                    : "bg-white text-gray-500 border border-gray-300"
-                }`}
-              >
-                {pageNumber}
-              </button>
-            )
-          })}
-          <span className="text-gray-500 mx-1">...</span>
-          <button
-            onClick={() => handlePageChange(89)}
-            className={`px-2 py-1 rounded-md text-sm ${
-              currentPage === 89
-                ? "bg-blue-500 text-white"
-                : "bg-white text-gray-500 border border-gray-300"
-            }`}
-          >
-            89
-          </button>
-          <button
-            onClick={() => handlePageChange(currentPage + 1)}
-            disabled={currentPage === 89}
-            className="px-2 py-1 rounded-md border border-gray-300 bg-white text-sm text-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            Next
-          </button>
-        </div>
-      </div>
     </div>
-  )
+  );
 
   // Render chat view
   const renderChatView = () => (
     <div className="  flex flex-col h-full bg-white">
       {/* Chat Header */}
       <div className="px-4 py-2 flex items-center justify-between border-b border-gray-200 flex-shrink-0">
-  
+        <div className="flex items-center space-x-2">
+          <button
+            onClick={closeChat}
+            className="text-blue-500 flex items-center"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <img
+            src={Avatar}
+            alt="Hamish March"
+            className="w-8 h-8 rounded-full"
+          />
+          {/* Center: Name and Designation */}
+          <div className="flex flex-col">
+            <h2 className="text-sm font-medium">Hamish March</h2>
+            <p className="text-xs text-gray-500">HR Manager · Grameenphone</p>
+          </div>
+        </div>
 
-    <div className="flex items-center space-x-2">
-      <button onClick={closeChat} className="text-blue-500 flex items-center">
-        <ChevronLeft className="h-5 w-5" />
-      </button>
-      <img src={Avatar} alt="Hamish March" className="w-8 h-8 rounded-full" />
-      {/* Center: Name and Designation */}
-      <div className="flex flex-col">
-        <h2 className="text-sm font-medium">Hamish March</h2>
-        <p className="text-xs text-gray-500">HR Manager · Grameenphone</p>
-      </div>
-    </div>
-
-  <div className="flex items-center  space-x-4">
-   <div className="justify-end items-end "> <button className="text-blue-600 text-sm font-medium hidden md:block">View Profile</button></div>
-    <button className="text-gray-400">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-           viewBox="0 0 24 24" strokeWidth={1.5}
-           stroke="currentColor" className="w-5 h-5">
-        <path strokeLinecap="round" strokeLinejoin="round"
-              d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75
+        <div className="flex items-center  space-x-4">
+          <div className="justify-end items-end ">
+            {" "}
+            <button className="text-blue-600 text-sm font-medium hidden md:block">
+              View Profile
+            </button>
+          </div>
+          <button className="text-gray-400">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-5 h-5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75
                  12a.75.75 0 11-1.5
                  0 .75.75 0 011.5
                  0zM18.75
@@ -349,19 +319,18 @@ const Messages = () => {
                  0 .75.75
                  0
                  011.5
-                 0z"/>
-      </svg>
-    </button>
-  </div>
-
-</div>
-
+                 0z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
 
       {/* Chat Messages - With proper scrolling */}
       <div className="flex-1 p-4 overflow-y-auto  ">
         <div className="text-center text-xs text-gray-500 mb-4">Today</div>
         <div className="space-y-4">
-          {chatMessages.map(chatMessage => (
+          {chatMessages.map((chatMessage) => (
             <div
               key={chatMessage.id}
               className={`flex items-start space-x-3 ${
@@ -413,7 +382,7 @@ const Messages = () => {
             placeholder="Message"
             className="flex-1 px-2 py-2 text-sm focus:outline-none bg-transparent"
             value={message}
-            onChange={e => setMessage(e.target.value)}
+            onChange={(e) => setMessage(e.target.value)}
           />
           <div className="flex items-center space-x-1 pe-12 ">
             <input
@@ -437,10 +406,9 @@ const Messages = () => {
             </button>
           </div>
         </div>
-   
       </div>
     </div>
-  )
+  );
 
   return (
     <>
@@ -472,7 +440,7 @@ const Messages = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Messages
+export default Messages;

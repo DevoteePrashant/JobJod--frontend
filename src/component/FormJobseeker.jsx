@@ -104,17 +104,15 @@ function FormJobseeker() {
                           name="gender"
                           value={formData.gender}
                           onChange={handleChange}
-                          className="w-full appearance-none border-b border-gray-300 pb-2 pr-8 focus:border-purple-500 focus:outline-none bg-transparent text-base"
-                        >
+                          className="w-full appearance-none border-b border-gray-300 pb-2 pr-8 focus:border-purple-500 focus:outline-none bg-transparent text-base">
                           <option value="" disabled></option>
-                          <option value="male">Male</option>
+                          <option value="male" className="">Male</option>
                           <option value="female">Female</option>
-                          <option value="other">Other</option>
                           <option value="prefer-not-to-say">
                             Prefer not to say
                           </option>
                         </select>
-                        <ChevronDown className="absolute right-2 bottom-3 h-4 w-4 text-gray-500" />
+                        <ChevronDown className="absolute right-2 bottom-3 h-4 w-4 text-purple-500" />
                       </div>
                     </div>
 

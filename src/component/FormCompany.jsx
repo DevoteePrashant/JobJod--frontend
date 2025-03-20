@@ -174,6 +174,42 @@ export default function FormCompany() {
                         className="w-full border-b border-gray-300 pb-2 pr-8 focus:border-purple-500 focus:outline-none"
                       />
                     </div>
+                    {/* <div className={`w-full max-w-md ${className || ""}`}>
+      <div className="relative">
+        <Popover>
+          <div className="group flex flex-col">
+            <div className="mb-1 text-sm font-normal text-gray-700">Date of Birth</div>
+            <div className="flex items-center justify-between border-b border-gray-300 pb-1 focus-within:border-black">
+              <PopoverTrigger asChild>
+                <button
+                  variant="ghost"
+                  className={`h-9 w-full justify-start rounded-none p-0 text-left font-normal text-gray-700 hover:bg-transparent focus:ring-0 ${!date ? "text-gray-500" : ""}`}
+                >
+                  {date ? format(date, "PPP") : "Select date"}
+                </button>
+              </PopoverTrigger>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 text-gray-700"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                />
+              </svg>
+            </div>
+          </div>
+          <PopoverContent className="w-auto p-0" align="start">
+            <Calendar mode="single" selected={date} onSelect={setDate} initialFocus />
+          </PopoverContent>
+        </Popover>
+      </div>
+    </div> */}
                   </div>
 
                   {/* Website */}

@@ -60,7 +60,7 @@ export default function LoginPage() {
     setIsLoading(true);
     setTimeout(() => {
       localStorage.setItem("authToken", "sample-token-123");
-      navigate("/");
+      navigate("/FormJobseeker");
       setIsLoading(false);
     }, 1500);
   };
@@ -83,7 +83,7 @@ export default function LoginPage() {
   
     {/* Session Content */}
     <div className="relative p-8 rounded-2xl max-w-[600px] border border-gray-100 bg-white">
-    <Link to ="/Login_Signin"><button className="absolute left-6 border border-4  rounded-xl top-9 rounded-full p-2 hover:bg-gray-100">
+    <Link to ="/Login_Signin"><button className="absolute left-6 border  rounded-xl top-9  p-2 hover:bg-gray-100">
           <ArrowLeft size={20} />
         </button>
         </Link>

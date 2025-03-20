@@ -154,4 +154,6 @@
     }
   }
   
-  
+  .swiper-slide-next > div{
+    background-color: #e3dafb
+  }

@@ -191,11 +191,11 @@ function CompanyProfile() {
       {/* Mobile Menu Button */}
      <DashSidebar substrLocation={substrLocation}/>
       {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-auto">
+      <div className="flex-1 flex flex-col">
         {/* Header */}
         <Dheader/>
         {/* Main Content */}
-        <div className="min-h-[24rem] sm:min-h-[32rem] md:min-h-[56rem] lg:w-[80%]  md:w-[80%] w-full mx-auto">
+        <div className="min-h-[24rem] sm:min-h-[32rem] overflow-auto md:min-h-[56rem] lg:w-[80%]  md:w-[80%] w-full mx-auto">
           <div className="relative bg-white overflow-hidden">
             <img
               alt="Profile Background"

@@ -22,7 +22,7 @@ import Footer from "./Footer";
 import Dheader from "./Dheader";
 import { Link } from "react-router-dom";
 import logo from "../image/logo2.png"
-const JobListingPage = () => {
+const JobListingPage = ({isBrowseCompany}) => {
   // Job data
   const jobs = [
     {
@@ -90,6 +90,7 @@ const JobListingPage = () => {
 const handleImageError = (event) => {
   event.target.src = "/placeholder.svg"; // Fallback image
 }
+console.log(isBrowseCompany,"isBrowseCompanyisBrowseCompany")
 
   return (
     <>
@@ -108,7 +109,7 @@ const handleImageError = (event) => {
        
         <div className=" mx-auto py-12 ">
       <h1 className="text-4xl md:text-5xl font-bold mb-3">
-        Find your <span className="text-purple-500">new job</span> today
+        Find your <span className="text-purple-500">{isBrowseCompany ? 'desired job':'new job'}</span> today
       </h1>
       <p className="text-gray-700 mb-8">
         Thousands of jobs in the computer, engineering, and technology sectors are waiting for you.
@@ -152,7 +153,7 @@ const handleImageError = (event) => {
     </div>
           <div className="flex flex-col lg:flex-row gap-6">
             <Filters filters={filters} setFilters={setFilters} />
-            <JobList jobs={jobs} />
+            <JobList jobs={jobs} isBrowseCompany={isBrowseCompany} />
             <RightSidebar />
           </div>
         </div>

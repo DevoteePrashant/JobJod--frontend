@@ -2,7 +2,7 @@ import { MapPin, Clock, ChevronDown } from "lucide-react"
 import icon from "../image/icon.png"
 import { Link } from "react-router-dom"
 import { useState } from "react";
-export default function JobList({ jobs }) {
+export default function JobList({ jobs, isBrowseCompany }) {
   const options = ["Most Recent", "Highest Paid", "Most Relevant"];
 
   const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +16,7 @@ export default function JobList({ jobs }) {
   };
   return (
     <main className="w-full lg:w-1/2 space-y-4 mt-12">
-           <div className="flex justify-end">
+      <div className="flex justify-end">
         <div className="relative">
           <button
             className="flex items-center justify-between p-2 sm:p-3 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-50 transition-colors"
@@ -46,9 +46,8 @@ export default function JobList({ jobs }) {
               </span>
             </div>
             <ChevronDown
-              className={`h-5 w-5 transition-transform duration-200 ${
-                isOpen ? "rotate-180" : ""
-              }`}
+              className={`h-5 w-5 transition-transform duration-200 ${isOpen ? "rotate-180" : ""
+                }`}
             />
           </button>
 
@@ -58,9 +57,8 @@ export default function JobList({ jobs }) {
                 {options.map((option) => (
                   <li key={option}>
                     <button
-                      className={`w-full text-left px-4 py-2 hover:bg-gray-50 ${
-                        selectedOption === option ? "bg-gray-50 font-medium" : ""
-                      }`}
+                      className={`w-full text-left px-4 py-2 hover:bg-gray-50 ${selectedOption === option ? "bg-gray-50 font-medium" : ""
+                        }`}
                       onClick={() => selectOption(option)}
                       role="menuitem"
                     >
@@ -80,30 +78,30 @@ export default function JobList({ jobs }) {
             <article className="bg-white rounded-lg shadow-md p-4 md:p-6 border border-gray-100">
               <div className="flex flex-col md:flex-row md:items-start gap-4">
                 <img
-                    src={icon}
-                    alt={job.company.name}
-                    width={40}
-                    height={40}
-                    className="rounded-md"
+                  src={icon}
+                  alt={job.company.name}
+                  width={40}
+                  height={40}
+                  className="rounded-md"
                 />
 
                 <div className="flex-1">
                   <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-0">
                     <div className="flex items-center gap-3 md:block">
-                      <img
+                      {/* {<img
                         src={job.company.icon || "/placeholder.svg"}
                         alt={`${job.company.name} logo`}
                         width={32}
                         height={32}
                         className="rounded-md md:hidden"
-                      />
+                      />} */}
                       <div>
-                        <h3 className="text-lg font-semibold">{job.title}</h3>
-                        <p className="text-gray-600 text-sm">{job.company.name}</p>
+                        <h3 className="text-lg font-semibold">{isBrowseCompany ? job.company.name : job.title}</h3>
+                        {!isBrowseCompany && <p className="text-gray-600 text-sm">{job.company.name}</p>}
                       </div>
                     </div>
 
-                    {job.isNew && (
+                    {job.isNew && !isBrowseCompany && (
                       <span className="px-3 py-1 text-xs font-medium text-purple-700 bg-purple-100 rounded-full w-fit h-fit">
                         New post
                       </span>
@@ -115,16 +113,16 @@ export default function JobList({ jobs }) {
                       <MapPin className="w-4 h-4" />
                       <span>{job.location}</span>
                     </div>
-                    <div className="flex items-center gap-1">
+                    {!isBrowseCompany && <><div className="flex items-center gap-1">
                       <Clock className="w-4 h-4" />
                       <span>{job.type}</span>
                     </div>
-                    <div className="font-medium text-gray-900">${job.salary}</div>
+                      <div className="font-medium text-gray-900">${job.salary}</div></>}
                   </div>
 
                   <p className="mt-3 text-gray-600 line-clamp-2 md:line-clamp-none">{job.description}</p>
 
-                  <div className="mt-3 text-sm text-gray-500">Posted {job.postedAt}</div>
+                  {!isBrowseCompany && <div className="mt-3 text-sm text-gray-500">Posted {job.postedAt}</div>}
                 </div>
               </div>
             </article>

@@ -17,6 +17,10 @@ import NotificationPanel from "../component/NotificationPanel";
 import image2 from "../image/profile.jpg";
 import t4 from "../image/t4.png";
 import Jobseekerheader from "./Jobseekerheader";
+import { IoMail } from "react-icons/io5";
+import { LiaShareAltSolid } from "react-icons/lia";
+import { TfiMoreAlt } from "react-icons/tfi";
+import tick from '../image/tick.png'
 
 // Utility function for conditional classNames
 const cn = (...classes) => classes.filter(Boolean).join(" ");
@@ -119,7 +123,7 @@ const JobDetails = () => {
         </button>
 
         <div
-          className="flex items-center rounded-full p-1 w-50 md:w-50 overflow-x-auto scrollbar-hide"
+          className="flex items-center rounded-full w-50 md:w-50 overflow-x-auto scrollbar-hide"
           ref={tabsContainerRef}
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
@@ -129,11 +133,10 @@ const JobDetails = () => {
                 key={tab}
                 ref={activeTab === tab ? activeTabRef : null}
                 onClick={() => setActiveTab(tab)}
-                className={`px-3 py-2 md:px-4 rounded-full ms-2 me-2 text-xs md:text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 ${
-                  activeTab === tab
-                    ? "bg-white text-purple-500 shadow-sm"
-                    : "text-gray-600 hover:text-gray-800"
-                }`}
+                className={`px-3 py-2 md:px-4 rounded-full ms-2 me-2 text-xs md:text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 ${activeTab === tab
+                  ? "bg-white text-purple-500 shadow-sm"
+                  : "text-gray-600 hover:text-gray-800"
+                  }`}
               >
                 {tab}
               </button>
@@ -156,21 +159,35 @@ const JobDetails = () => {
           }
         `}</style>
       </div>
-
-      <div className="mb-6 md:mb-8">
-        <h1 className="text-xl md:text-2xl font-bold mb-2">Product Designer</h1>
-        <div className="flex flex-wrap items-center text-gray-600 mb-4">
-          <span className="mr-2">✈️</span>
-          <span className="mr-2">Grameenphone</span>
-          <span className="mr-2">Dhaka, Bangladesh</span>
+      <div className="flex justify-between mt-10">
+        <div className="mb-6 md:mb-8 w-max">
+          <h1 className="text-xl md:text-2xl font-bold mb-2">Product Designer</h1>
+          <div className="flex flex-wrap items-center text-gray-600 mb-3">
+            <span className="mr-2">✈️</span>
+            <span className="mr-2">Grameenphone</span>
+            <span className="mr-2">Dhaka, Bangladesh</span>
+          </div>
+            <div className="grid">
+              <h6 className=" font-bold mb-2">Salary: 25000-30000 INR</h6>
+              <div className="flex space-x-1">
+              <img src={tick}></img> <span className="text-sm font-medium">Applied on 23 May 20</span>
+              </div>
+          </div>
         </div>
-        <div className="flex flex-wrap items-center text-sm text-gray-500">
-          <span className="mr-4">Posted on 15 May 20</span>
-          <span>Expire on 30 May 20</span>
+        <div>
+          <div className="flex space-x-4 h-max items-center">
+            <IoMail size="24" />
+            <LiaShareAltSolid size="30" />
+            <TfiMoreAlt size="24" />
+          </div>
+          <div className="flex flex-wrap items-center text-sm text-gray-500">
+            <span className="mr-4">Posted on 15 May 20</span>
+
+          </div>
         </div>
       </div>
 
-      <div className="flex flex-wrap items-center justify-between mb-6 md:mb-8">
+      <div className="flex flex-wrap items-center border rounded-xl p-3 justify-between mb-6 md:mb-8">
         <div className="flex items-center mb-4 md:mb-0">
           <img
             src={t4}
@@ -545,7 +562,7 @@ const Job = () => {
         <Jobseekerheader />
         {/* <div className="max-w-6xl lg:w-[calc(100% - 16rem)] w-full ml-auto mt-6 bg-white"> */}
         <div className="lg:pl-64">
-          <div className="p-3 flex flex-col sm:flex-row sm:justify-between sm:items-center">
+          <div className="p-3 flex flex-col sm:flex-row  sm:items-center gap-x-4">
             <div className="overflow-x-auto pb-2 sm:pb-0">
               <div className="relative w-full max-w-full">
                 {/* Scroll buttons for mobile */}
@@ -568,11 +585,10 @@ const Job = () => {
                         key={tab}
                         ref={activeTab === tab ? activeTabRef : null}
                         onClick={() => setActiveTab(tab)}
-                        className={`px-3 py-2 md:px-4 rounded-full text-xs md:text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 ${
-                          activeTab === tab
-                            ? "bg-white text-purple-500 shadow-sm"
-                            : "text-gray-600 hover:text-gray-800"
-                        }`}
+                        className={`px-3 py-2 md:px-4 rounded-full text-xs md:text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 ${activeTab === tab
+                          ? "bg-white text-purple-500 shadow-sm"
+                          : "text-gray-600 hover:text-gray-800"
+                          }`}
                       >
                         {tab}
                       </button>

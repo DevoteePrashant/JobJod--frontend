@@ -37,8 +37,8 @@ export const DashboardSidebar = () => {
           isOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >
-        <div className="px-4 py-6">
-          <div className="flex items-center gap-2 md:mx-auto md:justify-center">
+        <div>
+          <div className="flex items-center justify-center h-20">
             {/* Close button */}
             <button
               onClick={() => setIsOpen(false)}
@@ -61,25 +61,24 @@ export const DashboardSidebar = () => {
           </div>
 
           {/* Profile Section */}
-          <div className="flex items-center p-5 space-x-4 m-auto pb-2">
-            <div className="w-16 h-16 rounded-full bg-gray-300 mx-auto mb-2 overflow-hidden ">
+          <div className="flex items-center p-4 space-x-4 m-auto">
+            <div className="relative">
               <img
                 src={image2 || "/placeholder.svg"}
                 alt="profile"
-                className="w-full h-full object-cover"
+                className="w-12 h-12 rounded-full"
               />
             </div>
             <p className="text-sm text-black font-bold">Hello, Anamoul</p>
           </div>
         </div>
 
-        <div className="flex flex-1 flex-col gap-4 p-6">
-          <nav>
+          <nav className="flex-1 p-4 mt-6">
             <ul className="space-y-2">
               <li>
                 <Link to="/Jobseeker" className={getHeaderStyle("jobseeker")}>
                   <RxDashboard />
-                  <span className="ml-3">Dashboard</span>
+                  <span className="mx-auto">Dashboard</span>
                 </Link>
               </li>
 
@@ -98,7 +97,7 @@ export const DashboardSidebar = () => {
                       d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                     />
                   </svg>
-                  <span className="ml-3">Jobs</span>
+                  <span className="mx-auto">Jobs</span>
                 </Link>
               </li>
 
@@ -117,7 +116,7 @@ export const DashboardSidebar = () => {
                       d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                     />
                   </svg>
-                  <span className="ml-3">Profile</span>
+                  <span className="mx-auto">Profile</span>
                 </Link>
               </li>
 
@@ -142,12 +141,11 @@ export const DashboardSidebar = () => {
                       d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
                     />
                   </svg>
-                  <span className="ml-3">Settings</span>
+                  <span className="mx-auto">Settings</span>
                 </Link>
               </li>
             </ul>
           </nav>
-        </div>
       </div>
     </>
   );

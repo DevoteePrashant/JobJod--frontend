@@ -93,7 +93,7 @@ const Navbar = () => {
           <Link to="/JobListingPage" className="hover:text-gray-600">
             Find Jobs
           </Link>
-          <Link href="##" className="hover:text-gray-600">
+          <Link to="/browsecompany" className="hover:text-gray-600">
             Browse Company
           </Link>
         </div>
@@ -147,7 +147,7 @@ const Navbar = () => {
               Find Jobs
             </Link>
             <Link
-              to="##"
+              to="/browsecompany"
               className="text-black font-medium hover:text-gray-600 py-2"
               onClick={() => setMobileMenuOpen(false)}
             >

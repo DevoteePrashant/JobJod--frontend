@@ -87,7 +87,7 @@ function Dheader3() {
           >
             Find Jobs
           </Link>
-          <Link href="##" className=" text-black-800 font-semibold ">
+          <Link to="/browsecompany" className=" text-black-800 font-semibold ">
             Browse Company
           </Link>
         </nav>

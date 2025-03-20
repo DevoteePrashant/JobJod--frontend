@@ -50,6 +50,7 @@ function App() {
           <Route path="/Singlejobview" element={<Singlejobview />}/>
           <Route path="/Singlejobviews" element={<Singlejobviews />}/>
           <Route path="/JobListingPage" element={<JobListingPage />}/>
+          <Route path="/browsecompany" key='1' element={<JobListingPage isBrowseCompany/>}/>
           <Route path="/JobseekersSubSection" element={<JobseekersSubSection />}/>
           <Route path="/CompanyDashboard" element={<CompanyDashboard/>} /> 
           <Route path="/CompanyApplications" element={<CompanyApplications />}/>

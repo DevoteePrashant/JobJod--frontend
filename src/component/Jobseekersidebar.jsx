@@ -35,7 +35,7 @@ const Jobseekersidebar = ({ substrLocation }) => {
           </div>
         </div>
 
-        <div className="flex flex-1 flex-col gap-4 p-6">
+        <div className="flex flex-1 flex-col gap-4 p-4">
           <nav>
             <ul className="space-y-2">
               <li>

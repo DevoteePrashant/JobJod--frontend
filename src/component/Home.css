@@ -153,11 +153,10 @@
       overflow-y: auto;
       
     }
-    .swiper-slide-next > div{
-      background-color: #e3dafb
-    }
+  
   }
   
   .swiper-slide-next > div{
     background-color: #e3dafb
   }
+

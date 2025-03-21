@@ -1,27 +1,34 @@
-
+"use client"
 import { useState } from "react"
-import { ChevronLeft } from "lucide-react"
+import { ChevronLeft, Trash2 } from "lucide-react"
 import { Link } from "react-router-dom"
-import logo2 from "../image/logo2.png";
-import Dheader3 from "./Dheader3";
+import Dheader3 from "./Dheader3"
 
 export default function FormCompany3() {
-  const [formData, setFormData] = useState({
-    title: "",
-    achievementDate: "",
-    from: "",
-    description: ""
-  })
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
-  const handleChange = e => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
+  // Initialize with one empty form
+  const [recognitions, setRecognitions] = useState([
+    {
+      id: crypto.randomUUID(),
+      title: "",
+      achievementDate: "",
+      from: "",
+      description: ""
+    }
+  ])
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const handleChange = (id, field, value) => {
+    setRecognitions(prev =>
+      prev.map(entry =>
+        entry.id === id ? { ...entry, [field]: value } : entry
+      )
+    )
   }
 
   const handleSubmit = e => {
     e.preventDefault()
-    console.log("Form submitted:", formData)
+    console.log("Forms submitted:", recognitions)
     // Handle form submission logic here
   }
 
@@ -31,17 +38,32 @@ export default function FormCompany3() {
   }
 
   const handleAddMore = () => {
-    console.log("Add more clicked")
-    // Handle add more logic here
+    // Add a new empty form entry
+    setRecognitions(prev => [
+      ...prev,
+      {
+        id: crypto.randomUUID(),
+        title: "",
+        achievementDate: "",
+        from: "",
+        description: ""
+      }
+    ])
+  }
+
+  const handleRemove = id => {
+    // Only remove if there's more than one entry
+    if (recognitions.length > 1) {
+      setRecognitions(prev => prev.filter(entry => entry.id !== id))
+    }
   }
 
   return (
     <>
-      {/* <Header /> */}
-      <Dheader3/>
-      <div className="min-h-screen relative flex items-center justify-center p-4  bg-gradient-to-r from-purple-100 via-white to-purple-50">
-          {/* Background Pattern */}
-          <div className="absolute inset-0 w-full h-full">
+      <Dheader3 />
+      <div className="min-h-screen relative flex items-center justify-center p-4 bg-gradient-to-r from-purple-100 via-white to-purple-50">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 w-full h-full">
           <img
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Group-y8VIQbQhSCi7xcFqUiFvxXXwZtkvps.svg"
             alt="Background Pattern"
@@ -63,7 +85,7 @@ export default function FormCompany3() {
           </div>
 
           {/* Form Container - Fixed height for desktop, auto height for mobile */}
-          <div className="w-full bg-white rounded-xl md:rounded-3xl shadow-sm p-4 md:p-8 border border-gray-100 min-h-[450px] md:h-[520px] md:overflow-y-auto">
+          <div className="w-full bg-white rounded-xl md:rounded-3xl shadow-sm p-4 md:p-8 border border-gray-100 md:overflow-y-auto">
             {/* Header with back button */}
             <div className="flex items-center mb-4 md:mb-8">
               <Link to="/FormCompany2">
@@ -79,85 +101,121 @@ export default function FormCompany3() {
             </div>
 
             <form onSubmit={handleSubmit}>
-              {/* Title */}
-              <div className="mb-4 md:mb-6">
-                <label
-                  htmlFor="title"
-                  className="block text-sm font-medium text-gray-700 mb-1"
+              {/* Map through all recognition entries */}
+              {recognitions.map((recognition, index) => (
+                <div
+                  key={recognition.id}
+                  className={`${
+                    index > 0 ? "mt-8 pt-6 border-t border-gray-200" : ""
+                  }`}
                 >
-                  Title
-                </label>
-                <input
-                  type="text"
-                  id="title"
-                  name="title"
-                  value={formData.title}
-                  onChange={handleChange}
-                  className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none"
-                />
-              </div>
+                  {index > 0 && (
+                    <div className="flex justify-between items-center mb-4">
+                      <h3 className="text-lg font-medium">
+                        Recognition #{index + 1}
+                      </h3>
+                      <button
+                        type="button"
+                        onClick={() => handleRemove(recognition.id)}
+                        className="text-red-500 hover:text-red-700"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </button>
+                    </div>
+                  )}
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 md:gap-x-8 gap-y-4 md:gap-y-6 mb-4 md:mb-6">
-                {/* Achievement Date */}
-                <div>
-                  <label
-                    htmlFor="achievementDate"
-                    className="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    Achievement Date
-                  </label>
-                  <div className="relative">
+                  {/* Title */}
+                  <div className="mb-4 md:mb-6">
+                    <label
+                      htmlFor={`title-${recognition.id}`}
+                      className="block text-sm font-medium text-gray-700 mb-1"
+                    >
+                      Title
+                    </label>
                     <input
-                      type="date"
-                      id="achievementDate"
-                      name="achievementDate"
-                      value={formData.achievementDate}
-                      onChange={handleChange}
-                      className="w-full border-b border-gray-300 pb-2 pr-8 focus:border-purple-500 focus:outline-none"
+                      type="text"
+                      id={`title-${recognition.id}`}
+                      value={recognition.title}
+                      onChange={e =>
+                        handleChange(recognition.id, "title", e.target.value)
+                      }
+                      className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none"
                     />
-                    {/* <Calendar className="absolute right-2 bottom-3 h-4 w-4 text-gray-500" /> */}
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 md:gap-x-8 gap-y-4 md:gap-y-6 mb-4 md:mb-6">
+                    {/* Achievement Date */}
+                    <div>
+                      <label
+                        htmlFor={`achievementDate-${recognition.id}`}
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Achievement Date
+                      </label>
+                      <div className="relative">
+                        <input
+                          type="date"
+                          id={`achievementDate-${recognition.id}`}
+                          value={recognition.achievementDate}
+                          onChange={e =>
+                            handleChange(
+                              recognition.id,
+                              "achievementDate",
+                              e.target.value
+                            )
+                          }
+                          className="w-full border-b border-gray-300 pb-2 pr-8 focus:border-purple-500 focus:outline-none"
+                        />
+                      </div>
+                    </div>
+
+                    {/* From */}
+                    <div>
+                      <label
+                        htmlFor={`from-${recognition.id}`}
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        From
+                      </label>
+                      <input
+                        type="text"
+                        id={`from-${recognition.id}`}
+                        value={recognition.from}
+                        onChange={e =>
+                          handleChange(recognition.id, "from", e.target.value)
+                        }
+                        className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <div className="mb-6 md:mb-8">
+                    <label
+                      htmlFor={`description-${recognition.id}`}
+                      className="block text-sm font-medium text-gray-700 mb-1"
+                    >
+                      Description
+                    </label>
+                    <textarea
+                      id={`description-${recognition.id}`}
+                      value={recognition.description}
+                      onChange={e =>
+                        handleChange(
+                          recognition.id,
+                          "description",
+                          e.target.value
+                        )
+                      }
+                      rows={3}
+                      className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none resize-none"
+                    />
                   </div>
                 </div>
-
-                {/* From */}
-                <div>
-                  <label
-                    htmlFor="from"
-                    className="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    From
-                  </label>
-                  <input
-                    type="text"
-                    id="from"
-                    name="from"
-                    value={formData.from}
-                    onChange={handleChange}
-                    className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none"
-                  />
-                </div>
-              </div>
-
-              {/* Description */}
-              <div className="mb-6 md:mb-8">
-                <label
-                  htmlFor="description"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Description
-                </label>
-                <textarea
-                  id="description"
-                  name="description"
-                  value={formData.description}
-                  onChange={handleChange}
-                  rows={3}
-                  className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none resize-none"
-                />
-              </div>
+              ))}
 
               {/* Bottom Buttons */}
-              <div className="flex flex-wrap flex-col md:flex-row  justify-end items-center gap-2 md:gap-4">
+              <div className="flex flex-wrap flex-col md:flex-row justify-end items-center gap-2 md:gap-4 mt-6">
                 <Link to="/FormCompany4">
                   <button
                     type="button"
@@ -171,7 +229,6 @@ export default function FormCompany3() {
                   type="button"
                   onClick={handleAddMore}
                   className="text-white px-4 md:px-6 py-2 md:py-3 rounded-full text-sm md:text-base font-medium"
-                  // Coral color
                   style={{ backgroundColor: "#FF9F7B" }}
                 >
                   Add More +

@@ -112,7 +112,7 @@ function FormJobseeker() {
                             Prefer not to say
                           </option>
                         </select>
-                        <ChevronDown className="absolute right-2 bottom-3 h-4 w-4 text-purple-500" />
+                        <ChevronDown className="absolute right-2 bottom-3 h-4 w-4 " />
                       </div>
                     </div>
 

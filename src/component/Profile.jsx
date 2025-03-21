@@ -12,7 +12,7 @@ import { ProfileInfo } from "../component/ProfileInfo";
 import { Link } from "react-router-dom";
 import { Bell, Mail, Menu, Search, X } from "lucide-react";
 import image2 from "../image/profile.jpg";
-import image from "../image/logo2.png"
+import image from "../image/logo2.png";
 import Jobseekerheader from "./Jobseekerheader";
 
 const profileData = {
@@ -27,7 +27,7 @@ const profileData = {
 };
 
 const Profile = () => {
-  const [activeTab, setActiveTab] = useState("Information")
+  const [activeTab, setActiveTab] = useState("Information");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [showMobileSearch, setShowMobileSearch] = useState(false);
@@ -86,10 +86,7 @@ const Profile = () => {
     { name: "CaseStudy-01.pdf", size: "1.7 MB" },
   ];
 
-
-
   return (
-
     <>
       <div className="">
         {/* Mobile Menu Button */}
@@ -107,7 +104,7 @@ const Profile = () => {
         </div>
 
         {/* Sidebar */}
-        <Jobseekerheader isSidebarVisible={isSidebarVisible}/>
+        <Jobseekerheader isSidebarVisible={isSidebarVisible} />
 
         <div className="flex  w-full  ">
           <div className="flex-1 w-full p-3 lg:ml-64">
@@ -116,37 +113,65 @@ const Profile = () => {
               <img
                 src={profilebg}
                 alt="Profile Background"
-                className="h-24 sm:h-32 md:h-56 lg:w-[80%]  md:w-[80%] w-100 mx-auto"
+                className="h-2 sm:h-32 md:h-56 lg:w-[80%]  md:w-[80%] w-100 mx-auto"
               />
             </div>
 
-
-
             <div className="min-h-screen  p-0 md:p-8">
               <div className="max-w-7xl mx-auto">
-                <ProfileHeader name={profile.name} role={profile.role} avatarUrl="/placeholder.svg?height=96&width=96" />
+                <ProfileHeader
+                  name={profile.name}
+                  role={profile.role}
+                  avatarUrl="/placeholder.svg?height=96&width=96"
+                />
 
                 <div className="flex flex-col lg:flex-row gap-6">
-                  <ProfileSidebar name={profile.name} role={profile.role} avatarUrl="/placeholder.svg?height=96&width=96" />
+                  <ProfileSidebar
+                    name={profile.name}
+                    role={profile.role}
+                    avatarUrl="/placeholder.svg?height=96&width=96"
+                  />
 
                   <div className="flex-1">
                     {activeTab === "Information" && (
-                      <ProfileInfo profile={profile} onEdit={() => console.log("Edit clicked")} />
+                      <ProfileInfo
+                        profile={profile}
+                        onEdit={() => console.log("Edit clicked")}
+                      />
                     )}
                     {activeTab === "Experiences" && (
-                      <ProfileContent experiences={experiences} education={[]} skills={[]} attachments={[]} />
+                      <ProfileContent
+                        experiences={experiences}
+                        education={[]}
+                        skills={[]}
+                        attachments={[]}
+                      />
                     )}
                     {activeTab === "Education" && (
-                      <ProfileContent experiences={[]} education={education} skills={[]} attachments={[]} />
+                      <ProfileContent
+                        experiences={[]}
+                        education={education}
+                        skills={[]}
+                        attachments={[]}
+                      />
                     )}
                     {activeTab === "Skills" && (
-                      <ProfileContent experiences={[]} education={[]} skills={skills} attachments={[]} />
+                      <ProfileContent
+                        experiences={[]}
+                        education={[]}
+                        skills={skills}
+                        attachments={[]}
+                      />
                     )}
                     {activeTab === "Attachments" && (
-                      <ProfileContent experiences={[]} education={[]} skills={[]} attachments={attachments} />
+                      <ProfileContent
+                        experiences={[]}
+                        education={[]}
+                        skills={[]}
+                        attachments={attachments}
+                      />
                     )}
                   </div>
-
                 </div>
                 <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 mt-5  ">
                   <ProfileContent
@@ -156,7 +181,6 @@ const Profile = () => {
                     attachments={attachments}
                   />
                 </div>
-
               </div>
             </div>
           </div>

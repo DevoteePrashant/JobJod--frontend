@@ -1,46 +1,68 @@
+"use client";
 
-
-
-
-import { useState } from "react"
-import logo2 from "../image/logo2.png"
-import { Link } from "react-router-dom"
-import { ChevronDown, ChevronLeft } from "lucide-react"
-import Dheader3 from "./Dheader3"
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { ChevronLeft } from "lucide-react";
+import Dheader3 from "./Dheader3";
 
 function FormJobseeker2() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [formData, setFormData] = useState({
-    fullName: "",
-    emailAddress: "",
-    location: "",
-    gender: "",
-    mobileNumber: "",
-    dateOfBirth: "",
-    highestEducation: "",
-    degree: "",
-    specialization: "",
-    collegeName: "",
-    completionYear: "",
-    currentlyRunning: false
-  })
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [educationEntries, setEducationEntries] = useState([
+    {
+      highestEducation: "",
+      degree: "",
+      specialization: "",
+      collegeName: "",
+      completionYear: "",
+      currentlyRunning: false,
+    },
+  ]);
 
-  const handleChange = e => {
-    const { name, value, type, checked } = e.target
-    setFormData(prev => ({
+  const handleChange = (index, e) => {
+    const { name, value, type, checked } = e.target;
+    setEducationEntries((prev) => {
+      const newEntries = [...prev];
+      newEntries[index] = {
+        ...newEntries[index],
+        [name]: type === "checkbox" ? checked : value,
+      };
+      return newEntries;
+    });
+  };
+
+  const handleEducationTypeSelect = (index, type) => {
+    setEducationEntries((prev) => {
+      const newEntries = [...prev];
+      newEntries[index] = {
+        ...newEntries[index],
+        highestEducation: type,
+      };
+      return newEntries;
+    });
+  };
+
+  const addEducationEntry = () => {
+    setEducationEntries((prev) => [
       ...prev,
-      [name]: type === "checkbox" ? checked : value
-    }))
-  }
+      {
+        highestEducation: "",
+        degree: "",
+        specialization: "",
+        collegeName: "",
+        completionYear: "",
+        currentlyRunning: false,
+      },
+    ]);
+  };
 
-  const handleSubmit = e => {
-    e.preventDefault()
-    console.log("Form submitted:", formData)
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form submitted:", educationEntries);
     // Handle form submission logic here
-  }
+  };
   return (
     <>
-         <Dheader3/>
+      <Dheader3 />
 
       <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-r from-purple-100 via-white to-purple-50">
         {/* Background Pattern */}
@@ -90,135 +112,211 @@ function FormJobseeker2() {
                 className="h-[calc(100%-60px)] md:h-[calc(100%-80px)] flex flex-col"
               >
                 <div className="flex-1">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 md:gap-x-6 gap-y-3 md:gap-y-6">
-                    {/* Highest Education */}
-                    <div className="col-span-1 md:col-span-2">
-                      <label
-                        htmlFor="highestEducation"
-                        className="block text-left text-sm font-medium text-gray-700 mb-1"
+                  <div className="space-y-8">
+                    {educationEntries.map((entry, index) => (
+                      <div
+                        key={index}
+                        className="border-b pb-6 mb-6 last:border-0"
                       >
-                        Your highest education
-                      </label>
-                      <div className="relative">
-                        <select
-                          id="highestEducation"
-                          name="highestEducation"
-                          value={formData.highestEducation}
-                          onChange={handleChange}
-                          className="w-full appearance-none border-b border-gray-300 pb-2 pr-8 focus:border-purple-500 focus:outline-none bg-transparent text-base"
-                        >
-                          <option value="" disabled>
-                            Select Education
-                          </option>
+                        {index > 0 && (
+                          <div className="flex justify-between mb-4">
+                            <h3 className="font-medium">
+                              Education #{index + 1}
+                            </h3>
+                            <button
+                              type="button"
+                              onClick={() =>
+                                setEducationEntries((prev) =>
+                                  prev.filter((_, i) => i !== index)
+                                )
+                              }
+                              className="text-red-500 text-sm"
+                            >
+                              Remove
+                            </button>
+                          </div>
+                        )}
 
-                          <option value="high-school">High School</option>
-                          <option value="bachelors">Bachelor's Degree</option>
-                          <option value="masters">Master's Degree</option>
-                          <option value="phd">PhD</option>
-                          <option value="other">Other</option>
-                        </select>
-                        <ChevronDown className="absolute right-2 bottom-3 h-4 w-4 text-gray-500" />
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 md:gap-x-6 gap-y-3 md:gap-y-6">
+                          {/* Highest Education */}
+                          <div className="col-span-1 md:col-span-2">
+                            <label
+                              htmlFor={`highestEducation-${index}`}
+                              className="block text-left text-sm font-medium text-gray-700 mb-1"
+                            >
+                              Your highest education
+                            </label>
+                            <div className="flex flex-wrap gap-2 mt-2">
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  handleEducationTypeSelect(index, "ssc")
+                                }
+                                className={`px-4 py-2 rounded-full text-sm ${
+                                  entry.highestEducation === "ssc"
+                                    ? "bg-purple-500 text-white"
+                                    : "bg-purple-100 text-purple-800"
+                                }`}
+                              >
+                                SSC
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  handleEducationTypeSelect(index, "hsc")
+                                }
+                                className={`px-4 py-2 rounded-full text-sm ${
+                                  entry.highestEducation === "hsc"
+                                    ? "bg-purple-500 text-white"
+                                    : "bg-purple-100 text-purple-800"
+                                }`}
+                              >
+                                HSC
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  handleEducationTypeSelect(index, "belcher")
+                                }
+                                className={`px-4 py-2 rounded-full text-sm ${
+                                  entry.highestEducation === "belcher"
+                                    ? "bg-purple-500 text-white"
+                                    : "bg-purple-100 text-purple-800"
+                                }`}
+                              >
+                                Bachelor
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  handleEducationTypeSelect(index, "master")
+                                }
+                                className={`px-4 py-2 rounded-full text-sm ${
+                                  entry.highestEducation === "master"
+                                    ? "bg-purple-500 text-white"
+                                    : "bg-purple-100 text-purple-800"
+                                }`}
+                              >
+                                Master
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  handleEducationTypeSelect(index, "phd")
+                                }
+                                className={`px-4 py-2 rounded-full text-sm ${
+                                  entry.highestEducation === "phd"
+                                    ? "bg-purple-500 text-white"
+                                    : "bg-purple-100 text-purple-800"
+                                }`}
+                              >
+                                PhD
+                              </button>
+                            </div>
+                          </div>
+
+                          {/* Degree */}
+                          <div>
+                            <label
+                              htmlFor={`degree-${index}`}
+                              className="block text-left text-sm font-medium text-gray-700 mb-1"
+                            >
+                              Degree
+                            </label>
+                            <input
+                              type="text"
+                              id={`degree-${index}`}
+                              name="degree"
+                              value={entry.degree}
+                              onChange={(e) => handleChange(index, e)}
+                              className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none text-base"
+                            />
+                          </div>
+
+                          {/* Specialization */}
+                          <div>
+                            <label
+                              htmlFor={`specialization-${index}`}
+                              className="block text-left text-sm font-medium text-gray-700 mb-1"
+                            >
+                              Specialization
+                            </label>
+                            <input
+                              type="text"
+                              id={`specialization-${index}`}
+                              name="specialization"
+                              value={entry.specialization}
+                              onChange={(e) => handleChange(index, e)}
+                              className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none text-base"
+                            />
+                          </div>
+
+                          {/* College Name */}
+                          <div>
+                            <label
+                              htmlFor={`collegeName-${index}`}
+                              className="block text-left text-sm font-medium text-gray-700 mb-1"
+                            >
+                              College Name
+                            </label>
+                            <input
+                              type="text"
+                              id={`collegeName-${index}`}
+                              name="collegeName"
+                              value={entry.collegeName}
+                              onChange={(e) => handleChange(index, e)}
+                              className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none text-base"
+                            />
+                          </div>
+
+                          {/* Completion Year */}
+                          <div>
+                            <label
+                              htmlFor={`completionYear-${index}`}
+                              className="block text-left text-sm font-medium text-gray-700 mb-1"
+                            >
+                              Completion Year
+                            </label>
+                            <input
+                              type="text"
+                              id={`completionYear-${index}`}
+                              name="completionYear"
+                              value={entry.completionYear}
+                              onChange={(e) => handleChange(index, e)}
+                              className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none text-base"
+                            />
+                          </div>
+
+                          {/* Currently Running Checkbox */}
+                          <div className="col-span-1 md:col-span-2 flex justify-start w-full">
+                            <label className="inline-flex items-center">
+                              <input
+                                type="checkbox"
+                                name="currentlyRunning"
+                                checked={entry.currentlyRunning}
+                                onChange={(e) => handleChange(index, e)}
+                                className="rounded border-gray-300 text-purple-600 focus:ring-purple-500 h-4 w-4"
+                              />
+                              <span className="ml-2 text-sm font-bold text-black">
+                                Currently running
+                              </span>
+                            </label>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-
-                    {/* Degree */}
-                    <div>
-                      <label
-                        htmlFor="degree"
-                        className="block text-left text-sm font-medium text-gray-700 mb-1"
-                      >
-                        Degree
-                      </label>
-                      <input
-                        type="text"
-                        id="degree"
-                        name="degree"
-                        value={formData.degree}
-                        onChange={handleChange}
-                        className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none text-base"
-                      />
-                    </div>
-
-                    {/* Specialization */}
-                    <div>
-                      <label
-                        htmlFor="specialization"
-                        className="block text-left text-sm font-medium text-gray-700 mb-1"
-                      >
-                        Specialization
-                      </label>
-                      <input
-                        type="text"
-                        id="specialization"
-                        name="specialization"
-                        value={formData.specialization}
-                        onChange={handleChange}
-                        className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none text-base"
-                      />
-                    </div>
-
-                    {/* College Name */}
-                    <div>
-                      <label
-                        htmlFor="collegeName"
-                        className="block text-left text-sm font-medium text-gray-700 mb-1"
-                      >
-                        College Name
-                      </label>
-                      <input
-                        type="text"
-                        id="collegeName"
-                        name="collegeName"
-                        value={formData.collegeName}
-                        onChange={handleChange}
-                        className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none text-base"
-                      />
-                    </div>
-
-                    {/* Completion Year */}
-                    <div>
-                      <label
-                        htmlFor="completionYear"
-                        className="block text-left text-sm font-medium text-gray-700 mb-1"
-                      >
-                        Completion Year
-                      </label>
-                      <input
-                        type="text"
-                        id="completionYear"
-                        name="completionYear"
-                        value={formData.completionYear}
-                        onChange={handleChange}
-                        className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none text-base"
-                      />
-                    </div>
-
-                    {/* Currently Running Checkbox */}
-                    <div className="flex flex-col md:flex-row justify-between items-center mt-6 md:mt-auto ">
-                      <label className="inline-flex">
-                        <input
-                          type="checkbox"
-                          name="currentlyRunning"
-                          checked={formData.currentlyRunning}
-                          onChange={handleChange}
-                          className="rounded border-gray-300 text-purple-600 focus:ring-purple-500 h-4 w-4"
-                        />
-                        <span className="ml-2 text-sm font-bold text-black">
-                          Currently running
-                        </span>
-                      </label>
-                    </div>
+                    ))}
                   </div>
                 </div>
 
                 {/* Bottom Buttons */}
                 <div className="flex flex-col md:flex-row justify-between items-center mt-6 md:mt-auto">
-                  <button
-                    type="button"
-                    className="text-black px-3 py-2 rounded-full font-medium  md:w-auto mb-3 md:mb-0 text-sm md:text-base  "
-                  >
-                    Add more +
-                  </button>
+                <button
+  type="button"
+  onClick={addEducationEntry}
+  className="text-black px-3 py-2 rounded-full font-medium md:w-auto mb-3 md:mb-0 text-sm md:text-base ml-auto" // Added ml-auto
+>
+  Add more +
+</button>
                   <Link to="/FormJobseeker3">
                     <button
                       type="submit"
@@ -237,7 +335,7 @@ function FormJobseeker2() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/30 to-transparent pointer-events-none" />
       </section>
     </>
-  )
+  );
 }
 
-export default FormJobseeker2
+export default FormJobseeker2;

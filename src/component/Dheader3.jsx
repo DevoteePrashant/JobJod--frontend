@@ -25,54 +25,68 @@ function Dheader3() {
   return (
     <> 
     
-    <nav className="w-full mx-auto p-4 relative bg-gradient-to-r from-purple-100 via-white to-purple-50">
-    <div className="absolute inset-0 w-full h-full">
-          <img
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Group-y8VIQbQhSCi7xcFqUiFvxXXwZtkvps.svg"
-            alt="Background Pattern"
-            className="w-full h-full object-cover opacity-40"
-            priority
-          />
-        </div>
-      <div className="flex justify-between items-center">
-        {/* Left Section: Logo */}
-        <div className="flex container relative mx-auto px-4 items-center">
+    <nav className="w-full relative bg-gradient-to-r from-purple-100 via-white to-purple-50">
+  {/* Background Pattern */}
+  <div className="absolute inset-0 w-full h-full">
+    <img
+      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Group-y8VIQbQhSCi7xcFqUiFvxXXwZtkvps.svg"
+      alt="Background Pattern"
+      className="w-full h-full object-cover opacity-40"
+    />
+  </div>
+
+  <div className="w-[93%] p-4 relative z-10">
+    <div className="flex justify-between items-center">
+      {/* Logo and Navigation Links */}
       <div className="flex items-center">
-        <div className="text-2xl font-bold">
+        <div className="text-2xl font-bold lg:ml-24 ">
           <Link to="/">
-            <img src={logo2 || "/placeholder.svg"} alt="JobJod" />
+            <img
+              src={logo2}
+              alt="JobJod"
+              className="h-10"
+            />
           </Link>
         </div>
         <nav className="hidden md:flex ml-10 space-x-6">
-          <Link to="/JobListingPage" className="text-black-800 font-semibold">
+          <Link
+            to="/JobListingPage"
+            className="text-gray-800 font-semibold hover:text-purple-600 transition-colors"
+          >
             Find Jobs
           </Link>
-          <Link to="/browsecompany" className="text-black-800 font-semibold">
+          <Link
+            to="/browsecompany"
+            className="text-gray-800 font-semibold hover:text-purple-600 transition-colors"
+          >
             Browse Company
           </Link>
         </nav>
       </div>
-      <div className="ml-auto">
-        {/* Your right-side elements like notifications, messages, profile pic can go here */}
-      </div>
-    </div>
 
-    <div className="hidden md:flex items-center space-x-4">
-        <Link to="/Login_Signin" className="text-black font-semibold">
-          Hire Now <span className="text-gray-400">|</span>
+      {/* Desktop Auth Buttons */}
+      <div className="hidden md:flex items-center space-x-4">
+        <Link
+          to="/Login_Signin"
+          className="text-gray-800 font-semibold hover:text-purple-600 transition-colors"
+        >
+          Hire Now <span className="text-gray-400 ml-1">|</span>
         </Link>
-        {/* <button className="bg-black text-white px-4 py-2 rounded-full"> */}
-        <button className="bg-black text-white font-bold py-2 px-6 items-center text-center rounded-full  focus:outline-none focus:shadow-outline">
-          <Link to="/Login_Signin" className="text-sm text-black-500 ">
+        <Link to="/Login_Signin">
+          <button
+            variant="default"
+            className="bg-black text-white hover:bg-gray-800 rounded-full p-2"
+          >
             Login / Signup
-          </Link>
-        </button>
-
-        {/* </button> */}
+          </button>
+        </Link>
       </div>
+
+      {/* Mobile Menu Button */}
       <button
-        className="md:hidden text-gray-600 focus:outline-none"
+        className="md:hidden text-gray-800 focus:outline-none z-20"
         onClick={() => setIsMenuOpen(!isMenuOpen)}
+        aria-label="Toggle menu"
       >
         <svg
           width="30"
@@ -89,20 +103,40 @@ function Dheader3() {
 
     {/* Mobile Menu */}
     {isMenuOpen && (
-      <div className="md:hidden bg-white py-4">
+      <div className="md:hidden bg-white py-4 mt-4 rounded-xl shadow-lg p-2">
         <nav className="flex flex-col space-y-4 px-4">
-          <Link to="/JobListingPage"> Find Jobs</Link>
-          <Link to="/browsecompany"> Browse Company</Link>
-          <Link to="/Login_Signin">Hire Now</Link>
-          <Link to="/Login_Signin">
-            <button className="bg-black text-white px-4 py-2 rounded-full">
-              Login/Signup{" "}
+          <Link
+            to="/JobListingPage"
+            className="text-gray-800 font-medium py-2 hover:text-purple-600 transition-colors"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Find Jobs
+          </Link>
+          <Link
+            to="/browsecompany"
+            className="text-gray-800 font-medium py-2 hover:text-purple-600 transition-colors"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Browse Company
+          </Link>
+          <Link
+            to="/Login_Signin"
+            className="text-gray-800 font-medium py-2 hover:text-purple-600 transition-colors"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Hire Now
+          </Link>
+          <Link to="/Login_Signin" onClick={() => setIsMenuOpen(false)}>
+            <button className="w-full bg-black text-white hover:bg-gray-800 rounded-full py-2">
+              Login / Signup
             </button>
           </Link>
         </nav>
       </div>
     )}
-    </nav>
+  </div>
+</nav>
+
   </>
   )
 }

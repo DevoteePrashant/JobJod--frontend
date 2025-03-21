@@ -20,7 +20,7 @@ import img from "../image/dashboard.png";
 import img3 from "../image/education.png";
 import { BsLink45Deg } from "react-icons/bs";
 import DashSidebar from "./DashSidebar";
-import BasicInformation from "./BasicInformation";
+import CompanyBasicInformation from "./CompanyBasicInformation";
 function CompanyProfile() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation()
@@ -245,7 +245,7 @@ function CompanyProfile() {
                 </div>
               </div>
            {/* Basic Information */}
-           <BasicInformation/>
+           <CompanyBasicInformation/>
             </div>
             {/* Overview,mission,vision code  */}
             <div className="rounded-lg p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 lg:pl-20 xl:pl-80 justify-center">

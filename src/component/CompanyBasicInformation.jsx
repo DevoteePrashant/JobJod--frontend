@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 
 export default function ProfileInformation() {
@@ -79,7 +78,8 @@ export default function ProfileInformation() {
               <EditItem
                 label="Email Address"
                 value={tempInfo.emailAddress}
-                onChange={(value) => handleChange("emailAddress", value)}
+                onChange={(value) => {}}
+                editable={false}
               />
               <EditItem
                 label="Phone Number"
@@ -119,10 +119,7 @@ export default function ProfileInformation() {
                 label="Email Address"
                 value={profileInfo.emailAddress}
               />
-              <InfoItem
-                label="Phone Number"
-                value={profileInfo.phoneNumber}
-              />
+              <InfoItem label="Phone Number" value={profileInfo.phoneNumber} />
               <InfoItem label="Location" value={profileInfo.location} />
               <InfoItem
                 label="Year Established"
@@ -151,7 +148,7 @@ function InfoItem({ label, value }) {
   );
 }
 
-function EditItem({ label, value, onChange }) {
+function EditItem({ label, value, onChange, editable = true }) {
   return (
     <div className=" p-4 rounded-lg shadow-sm border border-gray-100">
       <label
@@ -160,13 +157,17 @@ function EditItem({ label, value, onChange }) {
       >
         {label}
       </label>
-      <input
-        id={label.replace(/\s+/g, "-").toLowerCase()}
-        type="text"
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className="mt-1 block w-full rounded-lg border border-gray-300 p-2"
-      />
+      {editable ? (
+        <input
+          id={label.replace(/\s+/g, "-").toLowerCase()}
+          type="text"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          className="mt-1 block w-full rounded-lg border border-gray-300 p-2"
+        />
+      ) : (
+        <p className="font-medium">{value}</p>
+      )}
     </div>
   );
 }

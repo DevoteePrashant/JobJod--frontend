@@ -75,7 +75,7 @@ const Navbar = () => {
     <nav className="w-[93%] mx-auto p-4 relative">
       <div className="flex justify-between items-center">
         {/* Left Section: Logo */}
-        <div className="flex container relative mx-auto px-4 items-center">
+        <div className="flex container relative mx-auto px-0 items-center">
       <div className="flex items-center">
         <div className="text-2xl font-bold">
           <Link to="/">

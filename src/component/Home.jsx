@@ -420,9 +420,9 @@ function JobListingsSectionNew({ searchQuery }) {
     <div className="w-[70%] space-y-6 md:pt-[70px] p-0 md:pl-6 lg:p-0">
       {filteredJobs.length === 0 ? (
         <div className="text-center py-10">
-          <h3 className="text-xl font-semibold">No jobs found</h3>
+          <h3 className="text-2xl font-semibold">No jobs found</h3>
           <p className="text-gray-500 mt-2">
-            Try adjusting your search criteria
+            Select another job
           </p>
         </div>
       ) : (

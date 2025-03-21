@@ -74,7 +74,7 @@ const Dheader = () => {
           </div>
 
           <Link
-            href="/messages"
+            to="/Message"
             className="relative rounded-full p-2 hover:bg-gray-100"
           >
             <Mail className="h-5 w-5" />

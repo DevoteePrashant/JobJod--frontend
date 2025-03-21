@@ -8,6 +8,7 @@ import {
   ChevronDown,
   AlignJustify,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function JobListings() {
   return (
@@ -175,7 +176,7 @@ function JobCard({
   status,
 }) {
   return (
-    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 p-3 sm:p-4 border border-gray-100 rounded-lg hover:shadow-md transition-shadow">
+    <Link to="/Singlejobview"><div className="flex flex-col sm:flex-row gap-3 sm:gap-4 p-3 sm:p-4 border border-gray-100 rounded-lg hover:shadow-md transition-shadow">
       <div className="flex-shrink-0 w-12 h-12">{logo}</div>
       <div className="flex-1">
         <div className="flex flex-col sm:flex-row justify-between items-start gap-2 sm:gap-0">
@@ -229,5 +230,6 @@ function JobCard({
         </p>
       </div>
     </div>
+    </Link>
   );
 }

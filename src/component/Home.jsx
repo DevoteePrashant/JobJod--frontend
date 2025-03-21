@@ -16,13 +16,14 @@ import { Autoplay, Navigation } from "swiper/modules";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
+import Dheader3 from "./Dheader3";
 
 const Home = () => {
   const scrollContainerRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
- 
+
   const handleMouseDown = (e) => {
     setIsDragging(true);
     setStartX(e.pageX - scrollContainerRef.current.offsetLeft);
@@ -137,121 +138,7 @@ function HeroSection() {
 
   return (
     <>
-      <header className=" p-8 py-4 w-full relative overflow-hidden bg-gradient-to-r from-purple-100 via-white to-purple-50">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 w-full h-full">
-          <img
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Group-y8VIQbQhSCi7xcFqUiFvxXXwZtkvps.svg"
-            alt="Background Pattern"
-            className="w-full h-full object-cover opacity-30"
-            width={1440}
-            height={1024}
-            priority
-          />
-        </div>
-
-        {/* SVG Patterns */}
-        <div className="absolute inset-0 w-full h-full">
-          {/* First SVG Pattern */}
-          <svg
-            width="804"
-            height="636"
-            className="absolute left-0 top-0"
-            viewBox="0 0 804 636"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M-192.5 -238C-192.5 -238 -76.5 -191 -76.5 -95.5C-76.5 0 -192.5 47 -192.5 142.5C-192.5 238 -76.5 285 -76.5 380.5C-76.5 476 -192.5 523 -192.5 618.5C-192.5 714 -76.5 761 -76.5 856.5"
-              stroke="#E4E2FF"
-              strokeWidth="3"
-            />
-            {/* Other paths remain the same */}
-          </svg>
-
-          {/* Second SVG Pattern (mirrored on the right) */}
-          <svg
-            width="804"
-            height="636"
-            className="absolute right-0 top-0 transform scale-x-[-1]"
-            viewBox="0 0 804 636"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M-192.5 -238C-192.5 -238 -76.5 -191 -76.5 -95.5C-76.5 0 -192.5 47 -192.5 142.5C-192.5 238 -76.5 285 -76.5 380.5C-76.5 476 -192.5 523 -192.5 618.5C-192.5 714 -76.5 761 -76.5 856.5"
-              stroke="#E4E2FF"
-              strokeWidth="3"
-            />
-            {/* Other paths remain the same */}
-          </svg>
-        </div>
-        <div className="container relative mx-auto flex justify-between items-center">
-          <div className="flex items-center space-x-4">
-            <div className="text-2xl font-bold space-x-16">
-              <></>
-              <Link to="/">
-                <img src={logo2} alt="JobJod" />
-              </Link>
-            </div>
-            <nav className="hidden md:flex ml-10 space-x-6">
-              <Link
-                to="/JobListingPage"
-                className="text-black-800 font-semibold"
-              >
-                Find Jobs
-              </Link>
-              <Link href="##" className=" text-black-800 font-semibold ">
-                Browse Company
-              </Link>
-            </nav>
-          </div>
-          <div className="hidden md:flex items-center space-x-4">
-            <Link to="/" className="text-black font-semibold">
-              Hire Now <span className="text-gray-400">|</span>
-            </Link>
-            {/* <button className="bg-black text-white px-4 py-2 rounded-full"> */}
-            <button className="bg-black text-white font-bold py-2 px-6 items-center text-center rounded-full  focus:outline-none focus:shadow-outline">
-              <Link to="/Login_Signin" className="text-sm text-black-500 ">
-                Login / Signup
-              </Link>
-            </button>
-
-            {/* </button> */}
-          </div>
-          <button
-            className="md:hidden text-gray-600 focus:outline-none"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            <svg
-              width="30"
-              height="25"
-              viewBox="0 0 30 25"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect width="30" height="5" rx="2" fill="#000" />
-              <rect y="10" width="30" height="5" rx="2" fill="#000" />
-              <rect y="20" width="30" height="5" rx="2" fill="#000" />
-            </svg>
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-white py-4">
-            <nav className="flex flex-col space-y-4 px-4">
-              <Link to="/JobListingPage"> Find Jobs</Link>
-              <Link to="/"> Browse Company</Link>
-              <Link to="/">Hire Now</Link>
-              <Link to="/Login_Signin">
-                <button className="bg-black text-white px-4 py-2 rounded-full">
-                  Login/Signup{" "}
-                </button>
-              </Link>
-            </nav>
-          </div>
-        )}
-      </header>
+      <Dheader3/>
 
       <section className="relative w-full min-h-[550px] lg:min-h-[600px] flex items-center justify-center overflow-hidden bg-gradient-to-r from-purple-100 via-white to-purple-50">
         {/* Background Pattern */}
@@ -367,17 +254,54 @@ const SearchInput2 = ({ icon, placeholder, isLocation = false }) => (
   </div>
 );
 
-const JobListingsAndSidebar = () => (
-  <div className="w-[95%] mx-auto flex flex-col md:flex-row gap-6 py-10 px-2 bg-white dark:bg-gray-900 rounded-[24px] border border-gray-200 dark:border-gray-800 ">
-    <Sidebar />
-    <JobListingsSectionNew />
-  </div>
-);
+const JobListingsAndSidebar = () => {
+  const [searchQuery, setSearchQuery] = useState("");
 
-export function JobListingsSectionNew() {
-  const repeatedJobs = [
+  return (
+    <div className="w-[95%] mx-auto flex flex-col md:flex-row gap-6 py-10 px-2 bg-white dark:bg-gray-900 rounded-[24px] border border-gray-200 dark:border-gray-800">
+      <Sidebar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <JobListingsSectionNew searchQuery={searchQuery} />
+    </div>
+  );
+};
+
+function JobListingsSectionNew({ searchQuery }) {
+  const jobs = [
     {
-      title: "Product Designer",
+      title: "Software Development",
+      company: "Google",
+      location: "Mountain View, CA",
+      salary: "$240/hr",
+      tags: ["Full time", "On-site", "Senior"],
+      postedTime: "2 days ago",
+      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+      featured: false,
+      isNew: true,
+    },
+    {
+      title: "Customer Service",
+      company: "Microsoft",
+      location: "Seattle, WA",
+      salary: "$220/hr",
+      tags: ["Contract", "Hybrid", "Senior"],
+      postedTime: "3 days ago",
+      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+      featured: true,
+      isNew: false,
+    },
+    {
+      title: "Data Science",
+      company: "Apple",
+      location: "Cupertino, CA",
+      salary: "$200/hr",
+      tags: ["Full time", "Remote", "Senior"],
+      postedTime: "4 days ago",
+      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
+      featured: false,
+      isNew: true,
+    },
+    {
+      title: "Digital Marketing",
       company: "Google",
       location: "Mountain View, CA",
       salary: "$240/hr",
@@ -410,7 +334,7 @@ export function JobListingsSectionNew() {
       isNew: true,
     },
     {
-      title: "Product Designer",
+      title: "Human Resources",
       company: "Google",
       location: "Mountain View, CA",
       salary: "$240/hr",
@@ -421,7 +345,7 @@ export function JobListingsSectionNew() {
       isNew: true,
     },
     {
-      title: "UI Engineer",
+      title: "Project Management",
       company: "Microsoft",
       location: "Seattle, WA",
       salary: "$220/hr",
@@ -432,40 +356,7 @@ export function JobListingsSectionNew() {
       isNew: false,
     },
     {
-      title: "UX Researcher",
-      company: "Apple",
-      location: "Cupertino, CA",
-      salary: "$200/hr",
-      tags: ["Full time", "Remote", "Senior"],
-      postedTime: "4 days ago",
-      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
-      featured: false,
-      isNew: true,
-    },
-    {
-      title: "Product Designer",
-      company: "Google",
-      location: "Mountain View, CA",
-      salary: "$240/hr",
-      tags: ["Full time", "On-site", "Senior"],
-      postedTime: "2 days ago",
-      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
-      featured: false,
-      isNew: true,
-    },
-    {
-      title: "UI Engineer",
-      company: "Microsoft",
-      location: "Seattle, WA",
-      salary: "$220/hr",
-      tags: ["Contract", "Hybrid", "Senior"],
-      postedTime: "3 days ago",
-      logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-p1j1Qxzz9kF8bgfElLEsKdkaIRBLk0.png",
-      featured: true,
-      isNew: false,
-    },
-    {
-      title: "UX Researcher",
+      title: "Education & Teaching",
       company: "Apple",
       location: "Cupertino, CA",
       salary: "$200/hr",
@@ -488,72 +379,113 @@ export function JobListingsSectionNew() {
     },
   ];
 
+  // Filter and sort jobs based on search query
+  const filteredJobs = jobs
+    .filter((job) => {
+      if (!searchQuery) return true;
+
+      // Search in title, company, and tags
+      return (
+        job.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        job.company.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        job.tags.some((tag) =>
+          tag.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+      );
+    })
+    .sort((a, b) => {
+      // If search query matches title exactly, prioritize those results
+      const aMatchesTitle = a.title
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase());
+      const bMatchesTitle = b.title
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase());
+
+      if (aMatchesTitle && !bMatchesTitle) return -1;
+      if (!aMatchesTitle && bMatchesTitle) return 1;
+
+      // Then prioritize featured jobs
+      if (a.featured && !b.featured) return -1;
+      if (!a.featured && b.featured) return 1;
+
+      // Then prioritize new jobs
+      if (a.isNew && !b.isNew) return -1;
+      if (!a.isNew && b.isNew) return 1;
+
+      return 0;
+    });
+
   return (
     <div className="w-[70%] space-y-6 md:pt-[70px] p-0 md:pl-6 lg:p-0">
-      <div className="w-fit grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8 lg:gap-8">
-        {repeatedJobs.map((job, index) => (
-          <div key={index} className="w-fit h-full ">
-            <div className="h-[270px] w-[280px] relative bg-white dark:bg-gray-900 rounded-[24px] p-5 border border-gray-700 hover:bg-[#e3dafb] dark:hover:bg-purple-900/20 transition-all duration-300 group overflow-hidden">
-              <header className="flex flex-row items-center justify-between">
-                <div className="flex flex-wrap items-center gap-1 sm:gap-2">
-                  <span className="text-md">{job.postedTime}</span>
-                  {job.isNew && (
-                    <span className="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm bg-purple-100 text-purple-700 opacity-0 group-hover:opacity-100 transition-opacity">
-                      New
-                    </span>
-                  )}
-                  {/* {job.featured && (
-                    <span className="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm bg-orange-100 text-orange-700 opacity-0 group-hover:opacity-100 transition-opacity ml-1 sm:ml-2">
-                      Featured
-                    </span>
-                  )} */}
-                </div>
-                <button
-                  className="p-1.5 sm:p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                  aria-label="Bookmark job"
-                >
-                  {/* Bookmark Icon */}
-                  <i className="fa fa-bookmark text-gray-500"></i>
-                </button>
-              </header>
-              <div className="space-y-4 mt-4">
-                <div className="flex items-start gap-3">
-                  <div className="h-10 w-10 rounded-full bg-white border border-gray-200 dark:border-gray-700 flex items-center justify-center overflow-hidden">
-                    <img
-                      src={job.logo || "/placeholder.svg?height=24&width=24"}
-                      alt={`${job.company} logo`}
-                      className="w-7 h-7 object-contain"
-                    />
+      {filteredJobs.length === 0 ? (
+        <div className="text-center py-10">
+          <h3 className="text-xl font-semibold">No jobs found</h3>
+          <p className="text-gray-500 mt-2">
+            Try adjusting your search criteria
+          </p>
+        </div>
+      ) : (
+        <div className="w-fit grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8 lg:gap-8">
+          {filteredJobs.map((job, index) => (
+            <div key={index} className="w-fit h-full">
+              <div className="h-[270px] w-[280px] relative bg-white dark:bg-gray-900 rounded-[24px] p-5 border border-gray-700 hover:bg-[#e3dafb] dark:hover:bg-purple-900/20 transition-all duration-300 group overflow-hidden">
+                <header className="flex flex-row items-center justify-between">
+                  <div className="flex flex-wrap items-center gap-1 sm:gap-2">
+                    <span className="text-md">{job.postedTime}</span>
+                    {job.isNew && (
+                      <span className="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm bg-purple-100 text-purple-700 opacity-0 group-hover:opacity-100 transition-opacity">
+                        New
+                      </span>
+                    )}
                   </div>
+                  <button
+                    className="p-1.5 sm:p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                    aria-label="Bookmark job"
+                  >
+                    {/* Bookmark Icon */}
+                    <i className="fa fa-bookmark text-gray-500"></i>
+                  </button>
+                </header>
+                <div className="space-y-4 mt-4">
+                  <div className="flex items-start gap-3">
+                    <div className="h-10 w-10 rounded-full bg-white border border-gray-200 dark:border-gray-700 flex items-center justify-center overflow-hidden">
+                      <img
+                        src={job.logo || "/placeholder.svg?height=24&width=24"}
+                        alt={`${job.company} logo`}
+                        className="w-7 h-7 object-contain"
+                      />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold">{job.title}</h3>
+                      <p className="text-sm">{job.company}</p>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-1 sm:gap-2">
+                    {job.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2 py-1 sm:px-3 text-xs rounded-full border border-black bg-white group-hover:bg-white/50 dark:group-hover:bg-gray-800/50"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <footer className="flex flex-row items-start sm:items-center justify-between gap-3 bg-white dark:bg-gray-900 rounded-b-[24px] px-5 py-4 dark:border-gray-800 absolute bottom-0 left-0 right-0">
                   <div>
-                    <h3 className="font-semibold">{job.title}</h3>
-                    <p className="text-sm">{job.company}</p>
+                    <div className="font-semibold">{job.salary}</div>
+                    <div className="text-sm">{job.location}</div>
                   </div>
-                </div>
-                <div className="flex flex-wrap gap-1 sm:gap-2">
-                  {job.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2 py-1 sm:px-3 text-xs rounded-full border border-black bg-white group-hover:bg-white/50 dark:group-hover:bg-gray-800/50"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+                  <button className="px-2 py-2 rounded-full border border-black">
+                    View Details
+                  </button>
+                </footer>
               </div>
-              <footer className="flex flex-row items-start sm:items-center justify-between gap-3 bg-white dark:bg-gray-900 rounded-b-[24px] px-5 py-4 dark:border-gray-800 absolute bottom-0 left-0 right-0">
-                <div>
-                  <div className="font-semibold">{job.salary}</div>
-                  <div className="text-sm">{job.location}</div>
-                </div>
-                <button className="px-2 py-2 rounded-full border border-black">
-                  View Details
-                </button>
-              </footer>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -641,7 +573,7 @@ function Logo({ src, alt }) {
   );
 }
 
-export function Sidebar() {
+function Sidebar({ searchQuery, setSearchQuery }) {
   const categories = [
     "Software Development",
     "Data Science",
@@ -655,13 +587,33 @@ export function Sidebar() {
     "Engineering",
     "Human Resources",
     "Project Management",
+    "UI Engineer",
+    "Product Designer",
   ];
+
+  // Function to handle category button clicks
+  const handleCategoryClick = (category) => {
+    // If the category is "Engineering" and we want to prioritize "UI Engineer"
+    if (category === "Engineering") {
+      setSearchQuery("UI Engineer");
+    } else {
+      setSearchQuery(category);
+    }
+  };
+
+  // Function to handle direct search for UI Engineer
+  const handleDirectSearch = () => {
+    setSearchQuery("UI Engineer");
+  };
+
   return (
-    <aside className="w-full lg:w-[35%] xl:w-[30%] md:w-[70%] md:px-2 bg-white rounded-2xl ">
+    <aside className="w-full lg:w-[35%] xl:w-[30%] md:w-[70%] md:px-2 bg-white rounded-2xl">
       <div className="relative mb-6">
         <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
         <input
           type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search your preferred industry"
           className="w-full h-12 pl-11 pr-4 rounded-3xl border border-gray-200 text-gray-600 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
         />
@@ -671,7 +623,12 @@ export function Sidebar() {
         {categories.map((category, i) => (
           <button
             key={i}
+            onClick={() => handleCategoryClick(category)}
             className={`w-full py-4 px-6 rounded-3xl text-center text-sm font-medium transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] ${
+              category.toLowerCase() === searchQuery.toLowerCase()
+                ? "ring-2 ring-purple-500" // Highlight active filter
+                : ""
+            } ${
               i % 3 === 0
                 ? "bg-[#e3dafb] text-purple-700"
                 : i % 3 === 1
@@ -683,6 +640,18 @@ export function Sidebar() {
           </button>
         ))}
       </div>
+
+      {/* Clear filters button */}
+      {/* {searchQuery && (
+        <div className="mt-4 text-center">
+          <button
+            onClick={() => setSearchQuery("")}
+             className="px-3 py-1 text-xs bg-blue-100 text-blue-700 rounded-full hover:bg-blue-200 transition-colors"
+          >
+            Clear filters
+          </button>
+        </div>
+      )} */}
     </aside>
   );
 }
@@ -891,7 +860,7 @@ const ResumeFeatureSection = () => (
 );
 
 const ResumeFeatureHeader = () => (
-  <div className="text-center ">
+  <div className="text-center  ">
     <p className="text-sm text-gray-500 font-semibold uppercase">New feature</p>
     <h1 className="text-3xl font-bold mt-2">Resume leveled up</h1>
     <p className="text-gray-600 mt-2">Showcase your skills the better way</p>

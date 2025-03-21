@@ -85,15 +85,20 @@ function AdminJobseeker() {
                       </span>
                     </div>
                     <div className="flex flex-wrap gap-2 mt-4 sm:mt-6">
-                      <button className="px-3 sm:px-6 py-1.5 sm:py-2 bg-black text-white rounded-full text-xs sm:text-sm font-medium">
+                      <Link to="/Profile"><button className="px-3 sm:px-6 py-1.5 sm:py-2 bg-black text-white rounded-full text-xs sm:text-sm font-medium">
                         Details
                       </button>
+                      </Link>
+                      <Link to="/Job">
                       <button className="px-3 sm:px-6 py-1.5 sm:py-2 bg-black text-white rounded-full text-xs sm:text-sm font-medium">
                         Job Applied
                       </button>
+                      </Link>
+                      <Link to="/Message">
                       <button className="px-3 sm:px-6 py-1.5 sm:py-2 bg-purple-500 text-white rounded-full text-xs sm:text-sm font-medium">
                         Check Messages
                       </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -129,15 +134,19 @@ function AdminJobseeker() {
                       </div>
                     </div>
                     <div className="flex flex-wrap gap-2 mt-4 sm:mt-6">
-                      <button className="px-3 sm:px-6 py-1.5 sm:py-2 bg-black text-white rounded-full text-xs sm:text-sm font-medium">
+                      <Link to="/Profile"><button className="px-3 sm:px-6 py-1.5 sm:py-2 bg-black text-white rounded-full text-xs sm:text-sm font-medium">
                         Details
                       </button>
-                      <button className="px-3 sm:px-6 py-1.5 sm:py-2 bg-black text-white rounded-full text-xs sm:text-sm font-medium">
+                      </Link>
+                      <Link to="/Job"><button className="px-3 sm:px-6 py-1.5 sm:py-2 bg-black text-white rounded-full text-xs sm:text-sm font-medium">
                         Job Applied
                       </button>
+                      </Link>
+                      <Link to="/Message">
                       <button className="px-3 sm:px-6 py-1.5 sm:py-2 bg-purple-500 text-white rounded-full text-xs sm:text-sm font-medium">
                         Check Messages
                       </button>
+                      </Link>
                     </div>
                   </div>
                 </div>

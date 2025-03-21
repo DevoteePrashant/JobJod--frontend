@@ -20,7 +20,7 @@ import img from "../image/dashboard.png";
 import img3 from "../image/education.png";
 import { BsLink45Deg } from "react-icons/bs";
 import DashSidebar from "./DashSidebar";
-
+import BasicInformation from "./BasicInformation";
 function CompanyProfile() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation()
@@ -191,11 +191,11 @@ function CompanyProfile() {
       {/* Mobile Menu Button */}
      <DashSidebar substrLocation={substrLocation}/>
       {/* Main Content */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col overflow-auto">
         {/* Header */}
         <Dheader/>
         {/* Main Content */}
-        <div className="min-h-[24rem] sm:min-h-[32rem] overflow-auto md:min-h-[56rem] lg:w-[80%]  md:w-[80%] w-full mx-auto">
+        <div className="min-h-[24rem] sm:min-h-[32rem]  md:min-h-[56rem] lg:w-[80%]  md:w-[80%] w-full mx-auto">
           <div className="relative bg-white overflow-hidden">
             <img
               alt="Profile Background"
@@ -244,39 +244,8 @@ function CompanyProfile() {
                   </nav>
                 </div>
               </div>
-              <div className="flex-1 rounded-lg max-w-screen-lg mx-auto w-full sm:w-[70px] sticky top-20">
-                <div className="flex justify-between items-start mb-6 p-1">
-                  <div className="mx-5">
-                    <h1 className="text-2xl font-semibold">
-                      Basic Information
-                    </h1>
-                    <p className="text-gray-500">Update profile information</p>
-                  </div>
-                  <button className="px-6 py-2 font-semibold text-purple-600 bg-white border-2 border-purple-600 hover:bg-purple-100 rounded-xl">
-                    Edit
-                  </button>
-                </div>
-                <div className="p-4 md:p-6 w-full max-w-screen-xl mx-auto overflow-hidden">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-                    <InfoItem
-                      label="Email Address"
-                      value="nihargami@gmail.com"
-                    />
-                    <InfoItem label="Phone Number" value="+919876543210" />
-                    <InfoItem label="Location" value="New York, USA" />
-                    <InfoItem label="Year Established" value="22/02/2025" />
-                    <InfoItem
-                      label="Website"
-                      value="www.godhanitechnology.com"
-                    />
-                    <InfoItem label="Pincode" value="123456" />
-                    <InfoItem
-                      label="Interview Person"
-                      value="John Smith,John Doe"
-                    />
-                  </div>
-                </div>
-              </div>
+           {/* Basic Information */}
+           <BasicInformation/>
             </div>
             {/* Overview,mission,vision code  */}
             <div className="rounded-lg p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 lg:pl-20 xl:pl-80 justify-center">

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { DashboardSidebar } from './Siderbar'
-import { Bell, Mail, Menu, Search, X } from "lucide-react"
+import { Bell, Mail, Menu, Search, X, MapPin  } from "lucide-react"
 import NotificationPanel from './NotificationPanel'
 import { Link } from 'react-router-dom'
 import image2 from "../image/profile.jpg"
@@ -47,7 +47,7 @@ const Jobseekerheader = ({isSidebarVisible}) => {
                 />
               </div>
               <div className="relative flex-1">
-                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500" />
+                <MapPin className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500" />
                 <input
                   type="search"
                   placeholder="Search location"

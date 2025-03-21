@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import NotificationPanel from "./NotificationPanel";
-import logo from "../image/logo2.png";
+import logo2 from "../image/logo2.png";
 
 import { Link } from "react-router-dom";
 import { Bell, Mail, MessageSquare, Search, X } from "lucide-react";
@@ -75,30 +75,26 @@ const Navbar = () => {
     <nav className="w-[93%] mx-auto p-4 relative">
       <div className="flex justify-between items-center">
         {/* Left Section: Logo */}
-        <div className="flex items-center">
-          <Link to="/" className="flex items-center space-x-2">
-            <img
-              src={logo}
-              alt="JobJod"
-              className="h-8 md:h-10"
-              onError={handleImageError}
-            />
+        <div className="flex container relative mx-auto px-4 items-center">
+      <div className="flex items-center">
+        <div className="text-2xl font-bold">
+          <Link to="/">
+            <img src={logo2 || "/placeholder.svg"} alt="JobJod" />
           </Link>
         </div>
-
-        {/* Navigation Links - Hidden on mobile */}
-        <div
-          className={`hidden md:flex items-center space-x-6 text-black font-medium`}
-        >
-          <Link to="/JobListingPage" className="hover:text-gray-600">
+        <nav className="hidden md:flex ml-10 space-x-6">
+          <Link to="/JobListingPage" className="text-black-800 font-semibold">
             Find Jobs
           </Link>
-          <Link to="/browsecompany" className="hover:text-gray-600">
+          <Link to="/browsecompany" className="text-black-800 font-semibold">
             Browse Company
           </Link>
-        </div>
-
-
+        </nav>
+      </div>
+      <div className="ml-auto">
+        {/* Your right-side elements like notifications, messages, profile pic can go here */}
+      </div>
+    </div>
 
         {/* Right side icons */}
         <div className="flex items-center gap-2  md:gap-4">

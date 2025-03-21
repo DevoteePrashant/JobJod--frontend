@@ -151,6 +151,10 @@
     .swiper-slide > div {
       max-height: 80vh;
       overflow-y: auto;
+      
+    }
+    .swiper-slide-next > div{
+      background-color: #e3dafb
     }
   }
   

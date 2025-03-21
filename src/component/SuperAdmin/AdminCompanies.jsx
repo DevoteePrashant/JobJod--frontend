@@ -87,15 +87,20 @@ function AdminCompanies() {
                   </div>
                 </div>
                 <div className="flex flex-wrap gap-2 mt-4 sm:mt-6">
-                  <button className="px-4 sm:px-6 py-2 bg-black text-white rounded-full text-xs sm:text-sm font-medium">
+                  <Link to="/CompanyProfile"><button className="px-4 sm:px-6 py-2 bg-black text-white rounded-full text-xs sm:text-sm font-medium">
                     Details
                   </button>
+                  </Link>
+                  <Link to="/CompanyPostJobs">
                   <button className="px-4 sm:px-6 py-2 bg-black text-white rounded-full text-xs sm:text-sm font-medium">
                     Job Posts
                   </button>
+                  </Link>
+                  <Link to="/Message">
                   <button className="px-4 sm:px-6 py-2 bg-purple-400 text-white rounded-full text-xs sm:text-sm font-medium">
                     Check Messages
                   </button>
+                  </Link>
                 </div>
               </div>
 
@@ -129,15 +134,20 @@ function AdminCompanies() {
                   </div>
                 </div>
                 <div className="flex flex-wrap gap-2 mt-4 sm:mt-6">
-                  <button className="px-4 sm:px-6 py-2 bg-black text-white rounded-full text-xs sm:text-sm font-medium">
+                <Link to="/CompanyProfile"><button className="px-4 sm:px-6 py-2 bg-black text-white rounded-full text-xs sm:text-sm font-medium">
                     Details
                   </button>
+                  </Link>
+                  <Link to="/CompanyPostJobs">
                   <button className="px-4 sm:px-6 py-2 bg-black text-white rounded-full text-xs sm:text-sm font-medium">
                     Job Posts
                   </button>
+                  </Link>
+                  <Link to="/Message">
                   <button className="px-4 sm:px-6 py-2 bg-purple-400 text-white rounded-full text-xs sm:text-sm font-medium">
                     Check Messages
                   </button>
+                  </Link>
                 </div>
               </div>
 
@@ -171,15 +181,18 @@ function AdminCompanies() {
                   </div>
                 </div>
                 <div className="flex flex-wrap gap-2 mt-4 sm:mt-6">
-                  <button className="px-4 sm:px-6 py-2 bg-black text-white rounded-full text-xs sm:text-sm font-medium">
+                <Link to="/CompanyProfile"><button className="px-4 sm:px-6 py-2 bg-black text-white rounded-full text-xs sm:text-sm font-medium">
                     Details
                   </button>
-                  <button className="px-4 sm:px-6 py-2 bg-black text-white rounded-full text-xs sm:text-sm font-medium">
+                  </Link>
+                  <Link to="/CompanyPostJobs"><button className="px-4 sm:px-6 py-2 bg-black text-white rounded-full text-xs sm:text-sm font-medium">
                     Job Posts
                   </button>
-                  <button className="px-4 sm:px-6 py-2 bg-purple-400 text-white rounded-full text-xs sm:text-sm font-medium">
+                  </Link>
+                  <Link to="/Message"><button className="px-4 sm:px-6 py-2 bg-purple-400 text-white rounded-full text-xs sm:text-sm font-medium">
                     Check Messages
                   </button>
+                  </Link>
                 </div>
               </div>
             </div>

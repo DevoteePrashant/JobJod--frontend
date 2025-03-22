@@ -113,7 +113,7 @@ const Profile = () => {
               <img
                 src={profilebg}
                 alt="Profile Background"
-                className="h-2 sm:h-32 md:h-56 lg:w-[80%]  md:w-[80%] w-100 mx-auto"
+                className="h-2 sm:h-32 md:h-80 lg:w-[80%]  md:w-[80%] w-100 mx-auto"
               />
             </div>
 

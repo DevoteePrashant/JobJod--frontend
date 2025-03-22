@@ -251,7 +251,7 @@ function CompanyProfile() {
             <div className="rounded-lg p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 lg:pl-20 xl:pl-80 justify-center">
               <div className="mb-8 ">
                 <div className="flex flex-row justify-between items-center mb-4 ">
-                  <h2 className="text-2xl font-medium text-gray-900 ">
+                  <h2 className="text-2xl font-medium text-gray-900  ">
                     {industryData.title}
                   </h2>
                   <div className="flex gap-4">

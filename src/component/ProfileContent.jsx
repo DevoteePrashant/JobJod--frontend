@@ -1,25 +1,10 @@
-import {
-  Briefcase,
-  Award,
-  Crown,
-  FileText,
-  Plus,
-  Star,
-  Download,
-  Eye,
-  Trash
-} from "lucide-react"
+import { Briefcase, Award, Crown, FileText, Plus, Star, Download, Eye, Trash } from "lucide-react"
 import Rectangle from "../image/Rectangle 3890.png"
-export default function ProfileContent({
-  experiences = [],
-  education = [],
-  skills = [],
-  attachments = []
-}) {
+export default function ProfileContent({ experiences = [], education = [], skills = [], attachments = [] }) {
   return (
-    <div className="rounded-lg p-0 sm:p-6 md:p-8 lg:p-10 xl:p-12 lg:pl-20 xl:pl-80 justify-center">
+    <div className="w-full max-w-5xl lg:ml-[310px] mt-2">
       {experiences.length > 0 && (
-        <div className="bg-white rounded-2xl shadow-sm border p-6 max-w-screen-xl  mx-auto overflow-hidden " >
+        <div className="bg-white rounded-xl shadow-sm border p-6 mb-6">
           <SectionHeader
             icon={<Briefcase className="w-4 h-4 sm:w-5 sm:h-5" />}
             title="Experiences"
@@ -30,7 +15,7 @@ export default function ProfileContent({
       )}
 
       {education.length > 0 && (
-        <div className="bg-white rounded-2xl shadow-sm border mt-4 p-6 max-w-screen-xl  mx-auto overflow-hidden ">
+        <div className="bg-white rounded-xl shadow-sm border p-6 mb-6">
           <SectionHeader
             icon={<Award className="w-4 h-4 sm:w-5 sm:h-5" />}
             title="Education & Certifications"
@@ -41,18 +26,14 @@ export default function ProfileContent({
       )}
 
       {skills.length > 0 && (
-        <div className="bg-white rounded-2xl shadow-sm border mt-4 p-6 max-w-screen-xl  mx-auto overflow-hidden ">
-          <SectionHeader
-            icon={<Crown className="w-4 h-4 sm:w-5 sm:h-5" />}
-            title="Skills"
-            buttonText="Add Skills"
-          />
+        <div className="bg-white rounded-xl shadow-sm border p-6 mb-6">
+          <SectionHeader icon={<Crown className="w-4 h-4 sm:w-5 sm:h-5" />} title="Skills" buttonText="Add Skills" />
           <SkillsList skills={skills} />
         </div>
       )}
 
       {attachments.length > 0 && (
-        <div className="bg-white rounded-2xl shadow-sm border mt-4 p-6 max-w-screen-xl  mx-auto overflow-hidden ">
+        <div className="bg-white rounded-xl shadow-sm border p-6">
           <SectionHeader
             icon={<FileText className="w-4 h-4 sm:w-5 sm:h-5" />}
             title="Attachments"
@@ -84,7 +65,7 @@ const ExperienceList = ({ experiences }) => (
       <div key={index} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
         <div className="flex-shrink-0">
           <img
-            src={Rectangle }
+            src={Rectangle || "/placeholder.svg"}
             alt={exp.company}
             className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg"
           />
@@ -95,20 +76,12 @@ const ExperienceList = ({ experiences }) => (
           <p className="text-xs sm:text-sm text-gray-500">
             {exp.location} · {exp.period}
           </p>
-          <p className="text-sm sm:text-sm text-gray-600 mt-1 sm:mt-2">
-            {exp.description}
-          </p>
-          <button className="text-purple-500 text-xs sm:text-sm mt-1 sm:mt-2">
-            See More
-          </button>
+          <p className="text-sm sm:text-sm text-gray-600 mt-1 sm:mt-2">{exp.description}</p>
+          <button className="text-purple-500 text-xs sm:text-sm mt-1 sm:mt-2">See More</button>
         </div>
         <div className="flex gap-2 mt-2 sm:mt-0">
-          <button className="text-gray-500 hover:text-gray-700 text-xs sm:text-sm">
-            Delete
-          </button>
-          <button className="text-purple-500 hover:text-purple-700 text-xs sm:text-sm">
-            Edit
-          </button>
+          <button className="text-gray-500 hover:text-gray-700 text-xs sm:text-sm">Delete</button>
+          <button className="text-purple-500 hover:text-purple-700 text-xs sm:text-sm">Edit</button>
         </div>
       </div>
     ))}
@@ -121,7 +94,7 @@ const EducationList = ({ education }) => (
       <div key={index} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
         <div className="flex-shrink-0 ">
           <img
-            src={Rectangle }
+            src={Rectangle || "/placeholder.svg"}
             alt={edu.school}
             className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg"
           />
@@ -132,20 +105,12 @@ const EducationList = ({ education }) => (
           <p className="text-xs sm:text-sm text-gray-500">
             Grade: {edu.grade} · {edu.period}
           </p>
-          <p className="text-sm sm:text-sm text-gray-600 mt-1 sm:mt-2">
-            {edu.description}
-          </p>
-          <button className="text-purple-500 text-xs sm:text-sm mt-1 sm:mt-2">
-            See More
-          </button>
+          <p className="text-sm sm:text-sm text-gray-600 mt-1 sm:mt-2">{edu.description}</p>
+          <button className="text-purple-500 text-xs sm:text-sm mt-1 sm:mt-2">See More</button>
         </div>
         <div className="flex gap-2 mt-2 sm:mt-0">
-          <button className="text-gray-500 hover:text-gray-700 text-xs sm:text-sm">
-            Delete
-          </button>
-          <button className="text-purple-500 hover:text-purple-700 text-xs sm:text-sm">
-            Edit
-          </button>
+          <button className="text-gray-500 hover:text-gray-700 text-xs sm:text-sm">Delete</button>
+          <button className="text-purple-500 hover:text-purple-700 text-xs sm:text-sm">Edit</button>
         </div>
       </div>
     ))}
@@ -155,20 +120,14 @@ const EducationList = ({ education }) => (
 const SkillsList = ({ skills }) => (
   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
     {skills.map((skill, index) => (
-      <div
-        key={index}
-        className="flex items-center justify-between p-3 sm:p-4  rounded-lg"
-      >
+      <div key={index} className="flex items-center justify-between p-3 sm:p-4  rounded-lg">
         <div>
           <h3 className="font-medium text-sm sm:text-base">{skill.name}</h3>
           <p className="text-xs sm:text-sm text-gray-500">{skill.level}</p>
         </div>
         <div className="flex gap-0.5 sm:gap-1">
-          {[1, 2, 3, 4, 5].map(star => (
-            <Star
-              key={star}
-              className="w-3 h-3 sm:w-4 sm:h-4 text-purple-500 fill-purple-500"
-            />
+          {[1, 2, 3, 4, 5].map((star) => (
+            <Star key={star} className="w-3 h-3 sm:w-4 sm:h-4 text-purple-500 fill-purple-500" />
           ))}
         </div>
       </div>
@@ -207,3 +166,4 @@ const AttachmentsList = ({ attachments }) => (
     ))}
   </div>
 )
+

@@ -170,7 +170,7 @@ const JobDetails = () => {
             <div className="grid">
               <h6 className=" font-bold mb-2">Salary: 25000-30000 INR</h6>
               <div className="flex space-x-1">
-              <img src={tick}></img> <span className="text-sm font-medium">Applied on 23 May 20</span>
+              <img src={tick} alt="tick" /><span className="text-sm font-medium">Applied on 23 May 20</span>
               </div>
           </div>
         </div>

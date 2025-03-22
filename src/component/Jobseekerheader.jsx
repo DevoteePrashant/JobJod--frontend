@@ -1,26 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { DashboardSidebar } from './Siderbar'
-import { Bell, Mail, Menu, Search, X, MapPin  } from "lucide-react"
-import NotificationPanel from './NotificationPanel'
-import { Link } from 'react-router-dom'
-import image2 from "../image/profile.jpg"
+import React, { useEffect, useState } from "react";
+import { DashboardSidebar } from "./Siderbar";
+import { Bell, Mail, Menu, Search, X, MapPin } from "lucide-react";
+import NotificationPanel from "./NotificationPanel";
+import { Link } from "react-router-dom";
+import image2 from "../image/profile.jpg";
 
-const Jobseekerheader = ({isSidebarVisible}) => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false)
-  const [showMobileSearch, setShowMobileSearch] = useState(false)
-  
+const Jobseekerheader = ({ isSidebarVisible }) => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
+  const [showMobileSearch, setShowMobileSearch] = useState(false);
 
-  useEffect(()=>{
-    setIsSidebarOpen(isSidebarVisible)
-  },[isSidebarVisible])
+  useEffect(() => {
+    setIsSidebarOpen(isSidebarVisible);
+  }, [isSidebarVisible]);
 
   return (
     <>
       <DashboardSidebar isOpen={isSidebarOpen} />
 
       {isSidebarOpen && (
-        <div className="fixed inset-0 bg-black/50 z-40 lg:hidden" onClick={() => setIsSidebarOpen(false)} />
+        <div
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          onClick={() => setIsSidebarOpen(false)}
+        />
       )}
 
       <header className="lg:w-[calc(100%-16rem)] left-[16rem] sticky top-0 z-40 w-full border-b bg-white">
@@ -64,7 +66,11 @@ const Jobseekerheader = ({isSidebarVisible}) => {
               className="rounded-full p-2 hover:bg-gray-100"
               aria-label={showMobileSearch ? "Close search" : "Open search"}
             >
-              {showMobileSearch ? <X className="h-5 w-5" /> : <Search className="h-5 w-5" />}
+              {showMobileSearch ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Search className="h-5 w-5" />
+              )}
             </button>
           </div>
 
@@ -79,16 +85,26 @@ const Jobseekerheader = ({isSidebarVisible}) => {
                 <span className="absolute -top-1 -right-1 w-3 h-3 bg-pink-500 rounded-full"></span>
               </button>
 
-              <NotificationPanel isOpen={isNotificationsOpen} onClose={() => setIsNotificationsOpen(false)} />
+              <NotificationPanel
+                isOpen={isNotificationsOpen}
+                onClose={() => setIsNotificationsOpen(false)}
+              />
             </div>
 
-            <Link to="/Message" className="relative rounded-full p-2 hover:bg-gray-100">
+            <Link
+              to="/Message"
+              className="relative rounded-full p-2 hover:bg-gray-100"
+            >
               <Mail className="h-5 w-5" />
               <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-blue-500" />
             </Link>
 
             <div className="h-8 w-8 overflow-hidden rounded-full border-2 border-primary md:h-10 md:w-10">
-              <img src={image2 || "/placeholder.svg"} alt="Profile" className="h-full w-full object-cover" />
+              <img
+                src={image2 || "/placeholder.svg"}
+                alt="Profile"
+                className="h-full w-full object-cover"
+              />
             </div>
           </div>
         </div>
@@ -118,9 +134,8 @@ const Jobseekerheader = ({isSidebarVisible}) => {
           </div>
         )}
       </header>
-
     </>
-  )
-}
+  );
+};
 
-export default Jobseekerheader
+export default Jobseekerheader;

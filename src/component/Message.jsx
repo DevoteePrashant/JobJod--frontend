@@ -1,4 +1,3 @@
-"use client";
 import Avatar from "../image/dashboard.png";
 import { useState, useRef } from "react";
 import Navbar from "./Navbar";
@@ -15,6 +14,7 @@ const Messages = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedChat, setSelectedChat] = useState(null);
   const isMobile = useMediaQuery("(max-width: 768px)");
+  const [activeTab, setActiveTab] = useState("focused");
 
   const messages = [
     {
@@ -29,7 +29,7 @@ const Messages = () => {
     },
     {
       id: 2,
-      name: "Hamish March",
+      name: "Hamish2 March",
       title: "HR Manager · Grameenphone",
       message: "You: Thank you very much for your support...",
       avatar: Avatar,
@@ -39,7 +39,7 @@ const Messages = () => {
     },
     {
       id: 3,
-      name: "Hamish March",
+      name: "Hamish3 March",
       title: "HR Manager · Grameenphone",
       message: "You: Thank you very much for your support...",
       avatar: Avatar,
@@ -49,7 +49,7 @@ const Messages = () => {
     },
     {
       id: 4,
-      name: "Hamish March",
+      name: "Hamish4 March",
       title: "HR Manager · Grameenphone",
       message: "You: Thank you very much for your support...",
       avatar: Avatar,
@@ -59,7 +59,7 @@ const Messages = () => {
     },
     {
       id: 5,
-      name: "Hamish March",
+      name: "Hamish5 March",
       title: "HR Manager · Grameenphone",
       message: "You: Thank you very much for your support...",
       avatar: Avatar,
@@ -69,7 +69,7 @@ const Messages = () => {
     },
     {
       id: 6,
-      name: "Hamish March",
+      name: "Hamish7 March",
       title: "HR Manager · Grameenphone",
       message: "You: Thank you very much for your support...",
       avatar: Avatar,
@@ -79,7 +79,7 @@ const Messages = () => {
     },
     {
       id: 7,
-      name: "Hamish March",
+      name: "Hamish6 March",
       title: "HR Manager · Grameenphone",
       message: "You: Thank you very much for your support...",
       avatar: Avatar,
@@ -89,7 +89,7 @@ const Messages = () => {
     },
     {
       id: 8,
-      name: "Hamish March",
+      name: "Hamish8 March",
       title: "HR Manager · Grameenphone",
       message: "You: Thank you very much for your support...",
       avatar: Avatar,
@@ -100,7 +100,7 @@ const Messages = () => {
     // Adding more messages to demonstrate scrolling
     {
       id: 9,
-      name: "Hamish March",
+      name: "Hamish10 March",
       title: "HR Manager · Grameenphone",
       message: "You: Thank you very much for your support...",
       avatar: Avatar,
@@ -110,7 +110,7 @@ const Messages = () => {
     },
     {
       id: 10,
-      name: "Hamish March",
+      name: "Hamish12 March",
       title: "HR Manager · Grameenphone",
       message: "You: Thank you very much for your support...",
       avatar: Avatar,
@@ -201,74 +201,94 @@ const Messages = () => {
 
   // Render message list view
   const renderMessageList = () => (
-    <div className=" flex flex-col h-full bg-white">
+    <div className=" flex flex-col h-full bg-white border-t border-gray-200">
       {/* Navigation Tabs - iOS Style */}
       <div className="flex items-center px-3 py-3 border-b border-gray-200 flex-shrink-0">
         <span className="text-sm font-medium mr-4">Messages</span>
-        <span className="text-sm font-medium bg-blue-100 text-blue-600 px-4 py-1 ms-16 rounded-full mr-4">
+        <span
+          className={`text-sm font-medium px-2 py-1 ms-16 rounded-full mr-4 cursor-pointer ${
+            activeTab === "focused"
+              ? "bg-blue-100 text-blue-600"
+              : "text-gray-500"
+          }`}
+          onClick={() => setActiveTab("focused")}
+        >
           Focused
         </span>
-        <span className="text-sm font-medium text-gray-500">Others</span>
+        <span
+          className={`text-sm font-medium px-2 py-1 mr-4 rounded-full cursor-pointer ${
+            activeTab === "others"
+              ? "bg-blue-100 text-blue-600"
+              : "text-gray-500"
+          }`}
+          onClick={() => setActiveTab("others")}
+        >
+          Others
+        </span>
       </div>
 
       {/* Message List - With proper scrolling */}
-      <div className="flex-1 overflow-y-auto  ">
-        {messages.map((msg) => (
-          <div
-            key={msg.id}
-            className="flex items-center px-4 py-3 hover:bg-gray-100 cursor-pointer border-b border-gray-100 last:border-none"
-            onClick={() => openChat(msg.id)}
-          >
-            <div className="relative">
-              <img
-                src={msg.avatar || "/placeholder.svg"}
-                alt={msg.name}
-                className="w-10 h-10 rounded-full"
-              />
-              {msg.online && (
-                <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-white"></span>
-              )}
-            </div>
-            <div className="ml-3 flex-1 min-w-0">
-              <div className="flex justify-between items-center">
-                <p className="text-sm font-medium text-gray-900">{msg.name}</p>
-                <div className="flex items-center">
-                  <p className="text-xs text-gray-500 mr-1">
-                    {formatTime(msg.timestamp)}
-                  </p>
-                  {msg.pinned && (
-                    <span className="h-2 w-2 bg-pink-500 rounded-full"></span>
-                  )}
-                </div>
-              </div>
-              <p className="text-xs text-gray-500">{msg.title}</p>
-              <p className="text-xs text-gray-500 truncate">{msg.message}</p>
-            </div>
-            <div className="ml-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="w-4 h-4 text-gray-400"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M8.25 4.5l7.5 7.5-7.5 7.5"
+      <div className="flex-1 overflow-y-auto">
+        {messages
+          .filter((msg) => (activeTab === "focused" ? msg.pinned : true))
+          .map((msg) => (
+            <div
+              key={msg.id}
+              className="flex items-center px-4 py-3 hover:bg-gray-100 cursor-pointer border-b border-gray-100 last:border-none"
+              onClick={() => openChat(msg.id)}
+            >
+              <div className="relative">
+                <img
+                  src={msg.avatar || "/placeholder.svg"}
+                  alt={msg.name}
+                  className="w-10 h-10 rounded-full"
                 />
-              </svg>
+                {msg.online && (
+                  <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-white"></span>
+                )}
+              </div>
+              <div className="ml-3 flex-1 min-w-0">
+                <div className="flex justify-between items-center">
+                  <p className="text-sm font-medium text-gray-900">
+                    {msg.name}
+                  </p>
+                  <div className="flex items-center">
+                    <p className="text-xs text-gray-500 mr-1">
+                      {formatTime(msg.timestamp)}
+                    </p>
+                    {msg.pinned && (
+                      <span className="h-2 w-2 bg-pink-500 rounded-full"></span>
+                    )}
+                  </div>
+                </div>
+                <p className="text-xs text-gray-500">{msg.title}</p>
+                <p className="text-xs text-gray-500 truncate">{msg.message}</p>
+              </div>
+              <div className="ml-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="w-4 h-4 text-gray-400"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                  />
+                </svg>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
     </div>
   );
 
   // Render chat view
   const renderChatView = () => (
-    <div className="  flex flex-col h-full bg-white">
+    <div className="  flex flex-col h-full bg-white border-t border-gray-200">
       {/* Chat Header */}
       <div className="px-4 py-2 flex items-center justify-between border-b border-gray-200 flex-shrink-0">
         <div className="flex items-center space-x-2">
@@ -279,7 +299,7 @@ const Messages = () => {
             <ChevronLeft className="h-5 w-5" />
           </button>
           <img
-            src={Avatar}
+            src={Avatar || "/placeholder.svg"}
             alt="Hamish March"
             className="w-8 h-8 rounded-full"
           />

@@ -1,148 +1,62 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { ChevronDown, ArrowLeft, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react"
+import { ChevronDown, ArrowLeft, X } from "lucide-react"
+import TimePicker  from "./timePicker"
+import PropTypes from "prop-types";
+import SearchableDropdown from "./searchabledropdownupdated"
 
 export default function JobPostModal({ isOpen, onClose }) {
-  // State to track selected skills
-  const [skills, setSkills] = useState([]);
-  const [minExperience, setMinExperience] = useState("");
-  const [maxExperience, setMaxExperience] = useState("");
-  const [candidateLocations, setCandidateLocations] = useState("");
-  const [minSalary, setMinSalary] = useState("");
-  const [maxSalary, setMaxSalary] = useState("");
-  const [currentStep, setCurrentStep] = useState(1);
-  const [totalExperience, setTotalExperience] = useState("");
-  const [qualification, setQualification] = useState("");
-  const [englishLevel, setEnglishLevel] = useState("");
-  const [gender, setGender] = useState("");
-  const [showTotalExpDropdown, setShowTotalExpDropdown] = useState(false);
-  const [showQualificationDropdown, setShowQualificationDropdown] =
-    useState(false);
-  const [showEnglishDropdown, setShowEnglishDropdown] = useState(false);
-  const [showGenderDropdown, setShowGenderDropdown] = useState(false);
-  const [minimumAgeOpen, setMinimumAgeOpen] = useState(false);
-  const [minimumAge, setMinimumAge] = useState("");
+  const [industry, setIndustry] = useState("Software Development")
+  const [department, setDepartment] = useState("")
+  const [joiningDate, setJoiningDate] = useState("")
+  const [noticePeriod, setNoticePeriod] = useState("")
+  const [jobTitle, setJobTitle] = useState("")
+  const [expiryTime, setExpiryTime] = useState("")
 
-  const [formData, setFormData] = useState({
-    jobTiming: "",
-    interviewTiming: "",
-    interviewLocation: "",
-    interviewInstructions: "",
-  });
+  const jobTitleOptions = [
+    { value: "software-engineer", label: "Software Engineer", group: "Technology" },
+    { value: "frontend-developer", label: "Frontend Developer", group: "Technology" },
+    { value: "backend-developer", label: "Backend Developer", group: "Technology" },
+    { value: "full-stack-developer", label: "Full Stack Developer", group: "Technology" },
+    { value: "mobile-developer", label: "Mobile Developer", group: "Technology" },
+    { value: "devops-engineer", label: "DevOps Engineer", group: "Technology" },
+    { value: "data-scientist", label: "Data Scientist", group: "Technology" },
+    { value: "product-designer", label: "Product Designer", group: "Technology" },
+    { value: "ui-ux-designer", label: "UI/UX Designer", group: "Technology" },
+    { value: "qa-engineer", label: "QA Engineer", group: "Technology" },
+  ]
 
-  const toggleMinimumAge = () => {
-    setMinimumAgeOpen(!minimumAgeOpen);
-  };
+  const expiryTimeOptions = [
+    { value: "30", label: "30 days" },
+    { value: "60", label: "60 days" },
+    { value: "90", label: "90 days" },
+  ]
+  const industries = [
+    "Software Development",
+    "Data Science",
+    "Product Design",
+    "Digital Marketing",
+    "Customer Service",
+    "Sales & Business",
+    "Healthcare & Medical",
+    "Finance & Accounting",
+    "Education & Training",
+    "Engineering",
+  ]
 
-  const handleSelectAge = (age) => {
-    setMinimumAge(age);
-    setMinimumAgeOpen(false);
-  };
-
-  const addSkill = (skill) => {
-    if (!skills.includes(skill)) {
-      setSkills([...skills, skill]);
-    }
-  };
-
-  const removeSkill = (index) => {
-    setSkills(skills.filter((_, i) => i !== index));
-  };
-
-  // Toggle dropdown visibility
-  const toggleDropdown = (dropdown) => {
-    switch (dropdown) {
-      case "experience":
-        setShowTotalExpDropdown(!showTotalExpDropdown);
-        setShowQualificationDropdown(false);
-        setShowEnglishDropdown(false);
-        setShowGenderDropdown(false);
-        break;
-      case "qualification":
-        setShowQualificationDropdown(!showQualificationDropdown);
-        setShowTotalExpDropdown(false);
-        setShowEnglishDropdown(false);
-        setShowGenderDropdown(false);
-        break;
-      case "english":
-        setShowEnglishDropdown(!showEnglishDropdown);
-        setShowTotalExpDropdown(false);
-        setShowQualificationDropdown(false);
-        setShowGenderDropdown(false);
-        break;
-      case "gender":
-        setShowGenderDropdown(!showGenderDropdown);
-        setShowTotalExpDropdown(false);
-        setShowQualificationDropdown(false);
-        setShowEnglishDropdown(false);
-        break;
-      default:
-        setShowTotalExpDropdown(false);
-        setShowQualificationDropdown(false);
-        setShowEnglishDropdown(false);
-        setShowGenderDropdown(false);
-    }
-  };
-
-  // Handle selection
-  const handleSelect = (dropdown, value) => {
-    switch (dropdown) {
-      case "experience":
-        setTotalExperience(value);
-        setShowTotalExpDropdown(false);
-        break;
-      case "qualification":
-        setQualification(value);
-        setShowQualificationDropdown(false);
-        break;
-      case "english":
-        setEnglishLevel(value);
-        setShowEnglishDropdown(false);
-        break;
-      case "gender":
-        setGender(value);
-        setShowGenderDropdown(false);
-        break;
-    }
-  };
-  if (!isOpen) return null;
-
-  const goToNextStep = () => {
-    setCurrentStep(currentStep + 1);
-  };
-
-  const goToPreviousStep = () => {
-    setCurrentStep(currentStep - 1);
-  };
-
-  const handleSalaryChange = (type, value) => {
-    if (type === "min") {
-      setMinSalary(value);
-    } else {
-      setMaxSalary(value);
-    }
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form Data Submitted:", formData);
-  };
-
-  // Function to add or remove a skill
-  const handleSkillSelect = (skill) => {
-    if (skills.includes(skill)) {
-      setSkills(skills.filter((s) => s !== skill));
-    } else {
-      setSkills([...skills, skill]);
-    }
-  };
-
+  const departments = [
+    "Engineering",
+    "Product",
+    "Design",
+    "Marketing",
+    "Sales",
+    "Customer Support",
+    "Human Resources",
+    "Finance",
+    "Operations",
+    "Research",
+  ]
   const availableSkills = [
     "JavaScript",
     "React",
@@ -154,8 +68,269 @@ export default function JobPostModal({ isOpen, onClose }) {
     "Python",
     "Java",
     "C#",
-    "PHP",
-  ];
+    "PHP"
+  ]
+  
+  
+
+// State to track selected skills
+const [jobStartTime, setJobStartTime] = useState("09:00AM")
+const [jobEndTime, setJobEndTime] = useState("05:00PM")
+const [interviewStartTime, setInterviewStartTime] = useState("09:00AM")
+const [interviewEndTime, setInterviewEndTime] = useState("05:00PM")
+const [minExperience, setMinExperience] = useState("")
+const [maxExperience, setMaxExperience] = useState("")
+const [candidateLocations, setCandidateLocations] = useState("")
+const [minSalary, setMinSalary] = useState("")
+const [maxSalary, setMaxSalary] = useState("")
+const [currentStep, setCurrentStep] = useState(1)
+const [totalExperience, setTotalExperience] = useState("")
+const [qualification, setQualification] = useState("")
+const [englishLevel, setEnglishLevel] = useState("")
+const [gender, setGender] = useState("")
+const [showTotalExpDropdown, setShowTotalExpDropdown] = useState(false)
+const [showQualificationDropdown, setShowQualificationDropdown] = useState(
+  false
+)
+const [showEnglishDropdown, setShowEnglishDropdown] = useState(false)
+const [showGenderDropdown, setShowGenderDropdown] = useState(false)
+const [minimumAgeOpen, setMinimumAgeOpen] = useState(false)
+const [minimumAge, setMinimumAge] = useState("")
+const [showConfirmation, setShowConfirmation] = useState(false)
+const [industrySearchQuery, setIndustrySearchQuery] = useState("")
+const [showIndustryDropdown, setShowIndustryDropdown] = useState(false);
+  const dropdownRef = useRef(null);
+
+const [formData, setFormData] = useState({
+  jobTiming: "",
+  interviewTiming: "",
+  interviewLocation: "",
+  interviewInstructions: ""
+})
+
+const [skills, setSkills] = useState([
+  "Adobe Photoshop",
+  "Adobe Illustrator",
+  "UI/UX Design",
+]);
+const [newSkill, setNewSkill] = useState("");
+const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+
+
+// Common skills for the dropdown
+const skillOptions = [
+  "JavaScript",
+  "React",
+  "Node.js",
+  "Python",
+  "Java",
+  "HTML/CSS",
+  "SQL",
+  "TypeScript",
+  "Adobe Photoshop",
+  "Adobe Illustrator",
+  "UI/UX Design",
+  "Project Management",
+  "Data Analysis",
+  "Marketing",
+  "Content Writing",
+];
+
+// Filter options based on input
+const filteredOptions = skillOptions.filter(
+  (skill) =>
+    !skills.includes(skill) &&
+    skill.toLowerCase().includes(newSkill.toLowerCase())
+);
+
+const handleAddSkill = (e) => {
+  if (e.key === "Enter" && newSkill.trim()) {
+    if (!skills.includes(newSkill.trim())) {
+      setSkills([...skills, newSkill.trim()]);
+    }
+    setNewSkill("");
+    e.preventDefault();
+  }
+};
+
+const handleSelectSkill = (skill) => {
+  if (!skills.includes(skill)) {
+    setSkills([...skills, skill]);
+  }
+  setNewSkill("");
+  setIsDropdownOpen(false);
+};
+
+const handleRemoveSkill = (indexToRemove) => {
+  setSkills(skills.filter((_, index) => index !== indexToRemove));
+};
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+  console.log("Skills submitted:", skills);
+  // Handle form submission logic here
+};
+
+// Close dropdown when clicking outside
+useEffect(() => {
+  function handleClickOutside(event) {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setIsDropdownOpen(false);
+    }
+  }
+
+  document.addEventListener("mousedown", handleClickOutside);
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, []);
+
+const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+
+const toggleMinimumAge = () => {
+  setMinimumAgeOpen(!minimumAgeOpen)
+}
+
+const handleSelectAge = age => {
+  setMinimumAge(age)
+  setMinimumAgeOpen(false)
+}
+
+const addSkill = skill => {
+  if (!skills.includes(skill)) {
+    setSkills([...skills, skill])
+  }
+}
+
+const removeSkill = index => {
+  setSkills(skills.filter((_, i) => i !== index))
+}
+
+// Toggle dropdown visibility
+const toggleDropdown = dropdown => {
+  switch (dropdown) {
+    case "experience":
+      setShowTotalExpDropdown(!showTotalExpDropdown)
+      setShowQualificationDropdown(false)
+      setShowEnglishDropdown(false)
+      setShowGenderDropdown(false)
+      break
+    case "qualification":
+      setShowQualificationDropdown(!showQualificationDropdown)
+      setShowTotalExpDropdown(false)
+      setShowEnglishDropdown(false)
+      setShowGenderDropdown(false)
+      break
+    case "english":
+      setShowEnglishDropdown(!showEnglishDropdown)
+      setShowTotalExpDropdown(false)
+      setShowQualificationDropdown(false)
+      setShowGenderDropdown(false)
+      break
+    case "gender":
+      setShowGenderDropdown(!showGenderDropdown)
+      setShowTotalExpDropdown(false)
+      setShowQualificationDropdown(false)
+      setShowEnglishDropdown(false)
+      break
+    default:
+      setShowTotalExpDropdown(false)
+      setShowQualificationDropdown(false)
+      setShowEnglishDropdown(false)
+      setShowGenderDropdown(false)
+  }
+}
+
+// Handle selection
+const handleSelect = (dropdown, value) => {
+  switch (dropdown) {
+    case "experience":
+      setTotalExperience(value)
+      setShowTotalExpDropdown(false)
+      break
+    case "qualification":
+      setQualification(value)
+      setShowQualificationDropdown(false)
+      break
+    case "english":
+      setEnglishLevel(value)
+      setShowEnglishDropdown(false)
+      break
+    case "gender":
+      setGender(value)
+      setShowGenderDropdown(false)
+      break
+  }
+}
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowIndustryDropdown(false);
+      }
+    };
+
+  document.addEventListener("mousedown", handleClickOutside)
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside)
+  }
+}, [showIndustryDropdown])
+
+if (!isOpen) return null
+
+const goToNextStep = () => {
+  setCurrentStep(currentStep + 1)
+}
+
+const goToPreviousStep = () => {
+  setCurrentStep(currentStep - 1)
+}
+
+const handleSalaryChange = (type, value) => {
+  if (type === "min") {
+    setMinSalary(value)
+  } else {
+    setMaxSalary(value)
+  }
+}
+
+const handleChange = e => {
+  const { name, value } = e.target
+  setFormData({ ...formData, [name]: value })
+}
+
+
+// Function to add or remove a skill
+const handleSkillSelect = skill => {
+  if (skills.includes(skill)) {
+    setSkills(skills.filter(s => s !== skill))
+  } else {
+    setSkills([...skills, skill])
+  }
+}
+
+
+const filteredIndustries = industrySearchQuery
+  ? industries.filter(industry =>
+      industry.toLowerCase().includes(industrySearchQuery.toLowerCase())
+    )
+  : industries
+
+const handleCancel = () => {
+  setShowConfirmation(true)
+}
+
+const handleConfirmClose = () => {
+  setShowConfirmation(false)
+  onClose()
+}
+
+const handleCancelClose = () => {
+  setShowConfirmation(false)
+}
 
   return (
     <div className="  fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
@@ -189,43 +364,14 @@ export default function JobPostModal({ isOpen, onClose }) {
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Job Title */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Job Title
-                  </label>
-                  <div className="relative">
-                    <select className="w-full border-b border-gray-300 pb-2 focus:outline-none focus:border-purple-500 appearance-none bg-transparent">
-                      <option value="">Select a job title</option>
+                <StyledDropdown
+              label="Job Title"
+              placeholder="Select a job title"
+              options={jobTitleOptions}
+              value={jobTitle}
+              onChange={setJobTitle}
+            />
 
-                      {/* Technology Sector */}
-                      <optgroup label="Technology">
-                        <option value="software-engineer">
-                          Software Engineer
-                        </option>
-                        <option value="frontend-developer">
-                          Frontend Developer
-                        </option>
-                        <option value="backend-developer">
-                          Backend Developer
-                        </option>
-                        <option value="full-stack-developer">
-                          Full Stack Developer
-                        </option>
-                        <option value="mobile-developer">
-                          Mobile Developer
-                        </option>
-                        <option value="devops-engineer">DevOps Engineer</option>
-                        <option value="data-scientist">Data Scientist</option>
-                        <option value="product-designer">
-                          Product Designer
-                        </option>
-                        <option value="ui-ux-designer">UI/UX Designer</option>
-                        <option value="qa-engineer">QA Engineer</option>
-                      </optgroup>
-                    </select>
-                    <ChevronDown className="absolute right-2 bottom-2 h-5 w-5 text-gray-400 pointer-events-none" />
-                  </div>
-                </div>
 
                 {/* Interview Person Name */}
                 <div>
@@ -237,44 +383,40 @@ export default function JobPostModal({ isOpen, onClose }) {
                       type="text"
                       className="w-full border-b border-gray-300 pb-2 focus:outline-none focus:border-purple-500"
                     />
-                    <ChevronDown className="absolute right-2 bottom-2 h-5 w-5 text-gray-400" />
+               
                   </div>
                 </div>
 
                 {/* Industry */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Industry
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full border-b border-gray-300 pb-2 focus:outline-none focus:border-purple-500"
-                  />
-                </div>
+                <SearchableDropdown
+          label="Industry"
+          placeholder="Search industry..."
+          options={industries}
+          value={industry}
+          onChange={setIndustry}
+        />
 
                 {/* Department */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Department
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full border-b border-gray-300 pb-2 focus:outline-none focus:border-purple-500"
-                  />
+                 
+        <SearchableDropdown
+          label="Department"
+          placeholder="Search department..."
+          options={departments}
+          value={department}
+          onChange={setDepartment}
+        />
                 </div>
 
                 {/* Expiry Time */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Expiry Time
-                  </label>
-                  <div className="relative">
-                    <input
-                      type="text"
-                      className="w-full border-b border-gray-300 pb-2 focus:outline-none focus:border-purple-500"
-                    />
-                    <ChevronDown className="absolute right-2 bottom-2 h-5 w-5 text-gray-400" />
-                  </div>
+                <StyledDropdown
+              label="Expiry Time"
+              placeholder="Select expiry time"
+              options={expiryTimeOptions}
+              value={expiryTime}
+              onChange={setExpiryTime}
+            />
                 </div>
 
                 {/* Joining Date */}
@@ -301,7 +443,7 @@ export default function JobPostModal({ isOpen, onClose }) {
                         id="min-salary"
                         type="number"
                         value={minSalary}
-                        onChange={(e) =>
+                        onChange={e =>
                           handleSalaryChange("min", e.target.value)
                         }
                         className="w-full border-0 border-b border-gray-300 rounded-none pb-2 focus:ring-0 focus:border-blue-500"
@@ -313,7 +455,7 @@ export default function JobPostModal({ isOpen, onClose }) {
                         id="max-salary"
                         type="number"
                         value={maxSalary}
-                        onChange={(e) =>
+                        onChange={e =>
                           handleSalaryChange("max", e.target.value)
                         }
                         className="w-full border-0 border-b border-gray-300 rounded-none pb-2 focus:ring-0 focus:border-blue-500"
@@ -565,7 +707,7 @@ export default function JobPostModal({ isOpen, onClose }) {
                             type="text"
                             placeholder="Min Experience"
                             value={minExperience}
-                            onChange={(e) => setMinExperience(e.target.value)}
+                            onChange={e => setMinExperience(e.target.value)}
                             className="w-full border-0 border-b border-gray-300 pb-2 focus:ring-0 focus:border-purple-500"
                           />
                         </div>
@@ -574,7 +716,7 @@ export default function JobPostModal({ isOpen, onClose }) {
                             type="text"
                             placeholder="Max Experience"
                             value={maxExperience}
-                            onChange={(e) => setMaxExperience(e.target.value)}
+                            onChange={e => setMaxExperience(e.target.value)}
                             className="w-full border-0 border-b border-gray-300 pb-2 focus:ring-0 focus:border-purple-500"
                           />
                         </div>
@@ -621,9 +763,7 @@ export default function JobPostModal({ isOpen, onClose }) {
                           type="text"
                           placeholder="Candidate Locations"
                           value={candidateLocations}
-                          onChange={(e) =>
-                            setCandidateLocations(e.target.value)
-                          }
+                          onChange={e => setCandidateLocations(e.target.value)}
                           className="w-full border-0 border-b border-gray-300 pb-2 focus:ring-0 focus:border-purple-500"
                         />
                       </div>
@@ -669,7 +809,7 @@ export default function JobPostModal({ isOpen, onClose }) {
                         <button
                           type="button"
                           className="px-8 py-2.5 rounded-full bg-[#FF9776] text-white transition-colors text-sm font-medium"
-                          onClick={onClose}
+                          onClick={handleCancel}
                         >
                           Cancel
                         </button>
@@ -866,7 +1006,7 @@ export default function JobPostModal({ isOpen, onClose }) {
                           <button
                             type="button"
                             className="px-8 py-2.5 rounded-full bg-[#FF9776] text-white transition-colors text-sm font-medium"
-                            onClick={onClose}
+                            onClick={handleCancel}
                           >
                             Cancel
                           </button>
@@ -909,43 +1049,82 @@ export default function JobPostModal({ isOpen, onClose }) {
                   <label className="text-sm font-medium block mb-2">
                     Add skills which require in candidate
                   </label>
-                  <div className="relative">
-                    {/* Dropdown for adding skills */}
-                    <select
-                      className="w-full border-b border-gray-300 pb-2 focus:outline-none focus:border-purple-500"
-                      onChange={(e) => handleSkillSelect(e.target.value)}
-                      value=""
-                    >
-                      <option value="" disabled>
-                        Select a skill
-                      </option>
-                      {availableSkills.map((skill, index) => (
-                        <option key={index} value={skill}>
-                          {skill}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  {/* Display Selected Skills */}
-                  {skills.length > 0 && (
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {skills.map((skill, index) => (
-                        <div
-                          key={index}
-                          className="w-full border-b border-gray-300 pb-2 focus:outline-none focus:border-purple-500"
-                        >
-                          <span>{skill}</span>
-                          <button
-                            onClick={() => removeSkill(index)}
-                            className="ml-2 text-purple-600 hover:text-purple-800"
-                          >
-                            ✕
-                          </button>
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                      <form
+                               onSubmit={handleSubmit}
+                               className="h-[calc(100%-60px)] md:h-[calc(100%-80px)] flex flex-col"
+                             >
+                               <div className="flex-1">
+                                 {/* Skills Input with Dropdown */}
+                                 <div className="relative mb-4 md:mb-6" ref={dropdownRef}>
+                                   <input
+                                     type="text"
+                                     value={newSkill}
+                                     onChange={(e) => setNewSkill(e.target.value)}
+                                     onKeyDown={handleAddSkill}
+                                     onFocus={() => setIsDropdownOpen(true)}
+                                     placeholder="Add skills (Get noticed for the right job by adding your skills)"
+                                     className="w-full border-b border-gray-300 pb-2 pr-8 focus:border-purple-500 focus:outline-none text-sm md:text-base"
+                                   />
+                                   <button
+                                     type="button"
+                                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                                     className="absolute right-2 bottom-3 h-4 w-4 text-gray-500"
+                                   >
+                                     <ChevronDown className="h-4 w-4" />
+                                   </button>
+               
+                                   {/* Dropdown Menu */}
+                                   {isDropdownOpen && (
+                                     <div className="absolute z-10 mt-1 w-full bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto">
+                                       {filteredOptions.length > 0 ? (
+                                         filteredOptions.map((skill, index) => (
+                                           <div
+                                             key={index}
+                                             className="px-4 py-2 hover:bg-purple-50 cursor-pointer flex items-center justify-between text-sm"
+                                             onClick={() => handleSelectSkill(skill)}
+                                           >
+                                             <span>{skill}</span>
+                                             <button
+                                               type="button"
+                                               className="text-purple-500 hover:text-purple-700"
+                                             >
+                                               {/* <Check className="h-4 w-4" /> */}
+                                             </button>
+                                           </div>
+                                         ))
+                                       ) : (
+                                         <div className="px-4 py-2 text-gray-500 text-sm">
+                                           {newSkill
+                                             ? "No matching skills found"
+                                             : "Type to search or select a skill"}
+                                         </div>
+                                       )}
+                                     </div>
+                                   )}
+                                 </div>
+               
+                                 {/* Skills Tags */}
+                                 <div className="flex flex-wrap gap-2 mb-6 md:mb-8">
+                                   {skills.map((skill, index) => (
+                                     <div
+                                       key={index}
+                                       className="flex items-center gap-1 md:gap-2 bg-purple-100 text-black px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-semibold"
+                                     >
+                                       <span>{skill}</span>
+                                       <button
+                                         type="button"
+                                         onClick={() => handleRemoveSkill(index)}
+                                         className="hover:bg-purple-200 rounded-full p-0.5"
+                                       >
+                                         <X className="h-3 w-3" />
+                                       </button>
+                                     </div>
+                                   ))}
+                                 </div>
+                               </div>
+               
+                              
+                             </form>
                 </div>
 
                 {/* Responsibility Section */}
@@ -964,7 +1143,7 @@ export default function JobPostModal({ isOpen, onClose }) {
                 <button
                   type="button"
                   className="px-8 py-2.5 rounded-full bg-[#FF9776] text-white transition-colors text-sm font-medium"
-                  onClick={onClose}
+                  onClick={handleCancel}
                 >
                   Cancel
                 </button>
@@ -981,43 +1160,36 @@ export default function JobPostModal({ isOpen, onClose }) {
 
           {/* Step 5 Form */}
           {currentStep === 5 && (
-            <div className="flex-1 overflow-y-auto">
+            <div className="flex-1 overflow-y-hidden">
               <div className="p-6">
                 <form className="space-y-6" onSubmit={handleSubmit}>
                   {/* Job Timing */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Job Timing
-                    </label>
-                    <input
-                      type="text"
-                      name="jobTiming"
-                      value={formData.jobTiming}
-                      onChange={handleChange}
-                      placeholder="09:00AM - 05:00PM"
-                      className="w-[50%] border-b border-gray-300 pb-2 focus:outline-none focus:border-purple-500"
-                    />
+                   
+                    <TimePicker
+          label="Job Timing"
+          startTime={jobStartTime}
+          endTime={jobEndTime}
+          onStartTimeChange={setJobStartTime}
+          onEndTimeChange={setJobEndTime}
+        />
+
                   </div>
 
                   {/* Interview Details */}
                   <div>
-                    <h3 className="text-sm font-medium text-gray-700 mb-4">
-                      Interview Details
-                    </h3>
+                   
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6">
                       {/* Interview Timing */}
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                          Timing
-                        </label>
-                        <input
-                          type="text"
-                          name="interviewTiming"
-                          value={formData.interviewTiming}
-                          onChange={handleChange}
-                          placeholder="09:00AM - 05:00PM"
-                          className="w-full border-b border-gray-300 pb-2 focus:outline-none focus:border-purple-500"
-                        />
+                       
+                        <TimePicker
+            label="Interview Details"
+            startTime={interviewStartTime}
+            endTime={interviewEndTime}
+            onStartTimeChange={setInterviewStartTime}
+            onEndTimeChange={setInterviewEndTime}
+          />
                       </div>
 
                       {/* Interview Location */}
@@ -1058,7 +1230,7 @@ export default function JobPostModal({ isOpen, onClose }) {
                     <button
                       type="button"
                       className="px-6 py-2.5 rounded-full bg-[#FF9776] text-white transition-colors text-sm font-medium"
-                      onClick={onClose}
+                      onClick={handleCancel}
                     >
                       Cancel
                     </button>
@@ -1077,6 +1249,152 @@ export default function JobPostModal({ isOpen, onClose }) {
           )}
         </div>
       </div>
+      {/* Confirmation Dialog */}
+      {showConfirmation && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-[60] flex items-center justify-center p-4">
+          <div className="bg-white rounded-xl p-6 w-full max-w-md">
+            <h3 className="text-lg font-medium mb-4">
+              Are you sure you want to close?
+            </h3>
+            <p className="text-gray-500 mb-6">
+              Any unsaved changes will be lost.
+            </p>
+            <div className="flex justify-end gap-4">
+              <button
+                type="button"
+                className="px-6 py-2 rounded-full bg-gray-200 text-gray-800 transition-colors text-sm font-medium"
+                onClick={handleCancelClose}
+              >
+                No, continue editing
+              </button>
+              <button
+                type="button"
+                className="px-6 py-2 rounded-full bg-[#FF9776] text-white transition-colors text-sm font-medium"
+                onClick={handleConfirmClose}
+              >
+                Yes, close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+
+ const StyledDropdown = ({
+  label,
+  placeholder = "Select an option",
+  options = [],
+  value,
+  onChange,
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  // Get the selected option label
+  const selectedOption = options.find((option) => option.value === value);
+  const selectedLabel = selectedOption ? selectedOption.label : "";
+
+  // Group options by group
+  const groupedOptions = options.reduce((groups, option) => {
+    const group = option.group || "default";
+    if (!groups[group]) {
+      groups[group] = [];
+    }
+    groups[group].push(option);
+    return groups;
+  }, {});
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  return (
+    <div>
+      {/* Dropdown Label */}
+      <label className="block text-sm font-medium text-gray-700 mb-1">
+        {label}
+      </label>
+
+      {/* Dropdown Wrapper */}
+      <div className="relative" ref={dropdownRef}>
+        {/* Dropdown Button */}
+        <div
+          className="w-full border-b border-gray-300 pb-2 focus:outline-none focus:border-purple-500 appearance-none bg-transparent cursor-pointer flex items-center justify-between"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <div
+            className={`${
+              value ? "text-gray-900 font-medium" : "text-gray-500"
+            }`}
+          >
+            {selectedLabel || placeholder}
+          </div>
+          <ChevronDown className="h-5 w-5 text-gray-400 pointer-events-none" />
+        </div>
+
+        {/* Dropdown Menu */}
+        {isOpen && (
+          <div className="absolute z-20 mt-1 w-full bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto">
+            {Object.keys(groupedOptions).map((group) => (
+              <div key={group}>
+                {/* Group Header */}
+                {group !== "default" && (
+                  <div className="px-4 py-1 text-xs font-semibold text-gray-500 uppercase tracking-wider bg-gray-50">
+                    {group}
+                  </div>
+                )}
+                {/* Group Options */}
+                <ul className="py-1">
+                  {groupedOptions[group].map((option, index) => (
+                    <li
+                      key={index}
+                      className={`px-4 py-2 text-sm cursor-pointer ${
+                        option.value === value
+                          ? " text-black font-medium"
+                          : "hover:bg-gray-100"
+                      }`}
+                      onClick={() => {
+                        onChange(option.value);
+                        setIsOpen(false);
+                      }}
+                    >
+                      {option.label}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
-}
+};
+
+// PropTypes for validation
+StyledDropdown.propTypes = {
+  label: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      group: PropTypes.string,
+    })
+  ).isRequired,
+  value: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+};

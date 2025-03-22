@@ -1,173 +1,266 @@
-import { useState } from "react";
-
-export default function ProfileInformation() {
+import React, { useState } from "react";
+import { User } from "lucide-react";
+import dashboard from "../image/dashboard.png"
+export default function ProfileInfo() {
   const [isEditing, setIsEditing] = useState(false);
-  const [profileInfo, setProfileInfo] = useState({
-    emailAddress: "nihargami@gmail.com",
-    phoneNumber: "+919876543210",
+  const [profileData, setProfileData] = useState({
+    email: "anamoulrouf.bd@gmail.com",
+    phone: "+911234567890",
     location: "New York, USA",
-    yearEstablished: "22/02/2025",
-    website: "www.godhanitechnology.com",
+    yearEstablished: "2025-02-22",
+    website: "www.anamoulrouf.com",
     pincode: "123456",
-    interviewPerson: "John Smith,John Doe",
+    interviewPersons: ["John Smith", "John Doe"],
   });
 
-  const [tempInfo, setTempInfo] = useState({ ...profileInfo });
+  const [formData, setFormData] = useState({ ...profileData });
+  const [newPerson, setNewPerson] = useState("");
+  const [phoneError, setPhoneError] = useState(null);
+  const [pincodeError, setPincodeError] = useState(null);
 
-  const handleEdit = () => {
-    setTempInfo({ ...profileInfo });
-    setIsEditing(true);
+  const phoneRegex = /^\+?(\d{1,3})?[-.\s]?(\d{3})[-.\s]?(\d{4,6})$/;
+  const pincodeRegex = /^\d{6}$/; // Regular expression for 6-digit pincode
+
+  const validatePhone = (phone) => {
+    if (!phoneRegex.test(phone)) {
+      setPhoneError("Invalid phone number format.");
+    } else {
+      setPhoneError(null);
+    }
   };
 
-  const handleCancel = () => {
-    setIsEditing(false);
+  const validatePincode = (pincode) => {
+    if (!pincodeRegex.test(pincode)) {
+      setPincodeError("Invalid pincode. Please enter a 6-digit number.");
+    } else {
+      setPincodeError(null);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+    if (name === "phone") {
+      validatePhone(value);
+    } else if (name === "pincode") {
+      validatePincode(value);
+    }
+  };
+
+  const handleAddPerson = () => {
+    if (newPerson.trim()) {
+      setFormData({
+        ...formData,
+        interviewPersons: [...formData.interviewPersons, newPerson.trim()],
+      });
+      setNewPerson("");
+    }
+  };
+
+  const handleRemovePerson = (index) => {
+    const updatedPersons = [...formData.interviewPersons];
+    updatedPersons.splice(index, 1);
+    setFormData({
+      ...formData,
+      interviewPersons: updatedPersons,
+    });
   };
 
   const handleSave = () => {
-    setProfileInfo({ ...tempInfo });
-    setIsEditing(false);
-    // Here you would typically send the updated data to your backend
+    if (!phoneError && !pincodeError) {
+      setProfileData(formData);
+      setIsEditing(false);
+    }
   };
 
-  const handleChange = (field, value) => {
-    setTempInfo((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
+  const handleCancel = () => {
+    setFormData({ ...profileData });
+    setIsEditing(false);
   };
 
   return (
-    <div className="  flex-1 rounded-lg max-w-screen-lg mx-auto w-full sm:w-full sticky top-20">
-      <div className="flex justify-between items-start mb-6 p-1">
-        <div className="mx-5">
-          <h1 className="text-2xl font-semibold">Basic Information</h1>
-          <p className="text-gray-500">Update profile information</p>
+    <div className="w-full max-w-5xl mx-auto p-4 border border-gray-200 rounded-xl">
+      <div className="flex flex-row items-center justify-between mb-4">
+        <div className="flex items-center gap-4">
+          <div className="flex h-16 w-16 items-center justify-center rounded-full">
+         
+            <img src={dashboard} alt="logo"className="rounded full" />
+          </div>
+          <div>
+            <h2 className="text-2xl font-bold">Basic Information</h2>
+            <p>Update profile information</p>
+          </div>
         </div>
         {isEditing ? (
-          <div className="space-x-2">
+          <div className="flex gap-2">
             <button
-              type="button"
-              className="border border-gray-300 rounded-xl px-4 py-2 text-gray-600 hover:bg-gray-100 "
+              className="py-2 px-4 border border-gray-200 rounded-xl hover:bg-gray-100"
               onClick={handleCancel}
             >
               Cancel
             </button>
             <button
-              type="button"
-              className="bg-purple-600 hover:bg-purple-700 text-white rounded-xl px-4 py-2"
+              className="py-2 px-4  bg-purple-500 text-white rounded-xl hover:bg-purple-600"
               onClick={handleSave}
+              disabled={phoneError || pincodeError}
             >
               Save
             </button>
           </div>
         ) : (
           <button
-            type="button"
-            className="px-6 py-2 font-semibold text-purple-600 bg-white border-2 border-purple-600 hover:bg-purple-100 rounded-xl"
-            onClick={handleEdit}
+            className="py-2 px-4 border  border-purple-500 text-purple-500 rounded-xl hover:bg-purple-50"
+            onClick={() => setIsEditing(true)}
           >
             Edit
           </button>
         )}
       </div>
-      <div className="p-4 md:p-6 w-full max-w-screen-xl mx-auto overflow-hidden">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+      <div className="grid gap-6 md:grid-cols-2">
+        <div className="space-y-2">
+          <div className="text-sm font-medium text-gray-500 rounded-xl">Email Address</div>
           {isEditing ? (
-            // Edit mode - show form inputs
-            <>
-              <EditItem
-                label="Email Address"
-                value={tempInfo.emailAddress}
-                onChange={(value) => {}}
-                editable={false}
-              />
-              <EditItem
-                label="Phone Number"
-                value={tempInfo.phoneNumber}
-                onChange={(value) => handleChange("phoneNumber", value)}
-              />
-              <EditItem
-                label="Location"
-                value={tempInfo.location}
-                onChange={(value) => handleChange("location", value)}
-              />
-              <EditItem
-                label="Year Established"
-                value={tempInfo.yearEstablished}
-                onChange={(value) => handleChange("yearEstablished", value)}
-              />
-              <EditItem
-                label="Website"
-                value={tempInfo.website}
-                onChange={(value) => handleChange("website", value)}
-              />
-              <EditItem
-                label="Pincode"
-                value={tempInfo.pincode}
-                onChange={(value) => handleChange("pincode", value)}
-              />
-              <EditItem
-                label="Interview Person"
-                value={tempInfo.interviewPerson}
-                onChange={(value) => handleChange("interviewPerson", value)}
-              />
-            </>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              className="w-full p-2 border border-gray-200 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+            />
           ) : (
-            // View mode - show information
-            <>
-              <InfoItem
-                label="Email Address"
-                value={profileInfo.emailAddress}
-              />
-              <InfoItem label="Phone Number" value={profileInfo.phoneNumber} />
-              <InfoItem label="Location" value={profileInfo.location} />
-              <InfoItem
-                label="Year Established"
-                value={profileInfo.yearEstablished}
-              />
-              <InfoItem label="Website" value={profileInfo.website} />
-              <InfoItem label="Pincode" value={profileInfo.pincode} />
-              <InfoItem
-                label="Interview Person"
-                value={profileInfo.interviewPerson}
-              />
-            </>
+            <div className="text-gray-700">{profileData.email}</div>
           )}
         </div>
+
+        <div className="space-y-2">
+          <div className="text-sm font-medium text-gray-500">Phone Number</div>
+          {isEditing ? (
+            <input
+              type="tel"
+              name="phone"
+              value={formData.phone}
+              onChange={handleInputChange}
+              className="w-full p-2 border border-gray-200 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+            />
+          ) : (
+            <div className="text-gray-700">{profileData.phone}</div>
+          )}
+          {phoneError && (
+            <div className="text-red-500">{phoneError}</div>
+          )}
+        </div>
+
+        <div className="space-y-2">
+          <div className="text-sm font-medium text-gray-500">Location</div>
+          {isEditing ? (
+            <input
+              type="text"
+              name="location"
+              value={formData.location}
+              onChange={handleInputChange}
+              className="w-full p-2 border border-gray-200 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+            />
+          ) : (
+            <div className="text-gray-700">{profileData.location}</div>
+          )}
+        </div>
+
+        <div className="space-y-2">
+          <div className="text-sm font-medium text-gray-500">
+            Year Established
+          </div>
+          {isEditing ? (
+            <input
+              type="date"
+              name="yearEstablished"
+              value={formData.yearEstablished}
+              onChange={handleInputChange}
+              className="w-full p-2 border border-gray-200 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+            />
+          ) : (
+            <div className="text-gray-700">{profileData.yearEstablished}</div>
+          )}
+        </div>
+
+        <div className="space-y-2">
+          <div className="text-sm font-medium text-gray-500">Website</div>
+          {isEditing ? (
+            <input
+              type="url"
+              name="website"
+              value={formData.website}
+              onChange={handleInputChange}
+              className="w-full p-2 border border-gray-200 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+            />
+          ) : (
+            <div className="text-gray-700">{profileData.website}</div>
+          )}
+        </div>
+
+        <div className="space-y-2">
+          <div className="text-sm font-medium text-gray-500">Pincode</div>
+          {isEditing ? (
+            <input
+              type="number"
+              name="pincode"
+              value={formData.pincode}
+              onChange={handleInputChange}
+              className="w-full p-2 border border-gray-200 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+            />
+          ) : (
+            <div className="text-gray-700">{profileData.pincode}</div>
+          )}
+          {pincodeError && (
+            <div className="text-red-500">{pincodeError}</div>
+          )}
+        </div>
+
+        <div className="space-y-2 md:col-span-2">
+          <div className="text-sm font-medium text-gray-500">
+            Interview Persons
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {(isEditing
+              ? formData.interviewPersons
+              : profileData.interviewPersons
+            ).map((person, index) => (
+              <span
+                key={index}
+                className="bg-purple-100 text-purple-800 hover:bg-purple-200 p-2 rounded-xl"
+              >
+                {person}
+                {isEditing && (
+                  <button
+                    className="ml-2 text-purple-600 hover:text-purple-800"
+                    onClick={() => handleRemovePerson(index)}
+                  >
+                    ×
+                  </button>
+                )}
+              </span>
+            ))}
+            {isEditing && (
+              <div className="flex gap-2 items-center mt-2">
+                <input
+                  placeholder="Add person"
+                  value={newPerson}
+                  onChange={(e) => setNewPerson(e.target.value)}
+                  className="w-48 p-2  border border-gray-200 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+                />
+                <button
+                  className="py-2 px-4 border rounded-xl border-gray-200  hover:bg-gray-100"
+                  onClick={handleAddPerson}
+                >
+                  Add
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
-    </div>
-  );
-}
-
-function InfoItem({ label, value }) {
-  return (
-    <div className=" p-4 rounded-lg shadow-sm border border-gray-100">
-      <p className="text-gray-500 text-sm mb-1">{label}</p>
-      <p className="font-medium">{value}</p>
-    </div>
-  );
-}
-
-function EditItem({ label, value, onChange, editable = true }) {
-  return (
-    <div className=" p-4 rounded-lg shadow-sm border border-gray-100">
-      <label
-        htmlFor={label.replace(/\s+/g, "-").toLowerCase()}
-        className="text-gray-500 text-sm mb-1"
-      >
-        {label}
-      </label>
-      {editable ? (
-        <input
-          id={label.replace(/\s+/g, "-").toLowerCase()}
-          type="text"
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          className="mt-1 block w-full rounded-lg border border-gray-300 p-2"
-        />
-      ) : (
-        <p className="font-medium">{value}</p>
-      )}
     </div>
   );
 }

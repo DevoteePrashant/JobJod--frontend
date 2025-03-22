@@ -5,7 +5,7 @@ import Footer from "../component/Footer";
 import Group from "../image/Group.svg";
 import imges from "../image/login.png";
 import logo2 from "../image/logo2.png";
-import { Bookmark, Search, Star } from "lucide-react";
+import { Bookmark, MapPin, Search, Star } from "lucide-react";
 import "./Home.css";
 import LogoSlider from "./LogoSlider";
 import { FaBookmark } from "react-icons/fa6";
@@ -138,8 +138,7 @@ function HeroSection() {
 
   return (
     <>
-      <Dheader3/>
-
+      <Dheader3 />
       <section className="relative w-full min-h-[550px] lg:min-h-[600px] flex items-center justify-center overflow-hidden bg-gradient-to-r from-purple-100 via-white to-purple-50">
         {/* Background Pattern */}
         <div className="absolute inset-0 w-full h-full">
@@ -420,9 +419,9 @@ function JobListingsSectionNew({ searchQuery }) {
     <div className="w-[70%] space-y-6 md:pt-[70px] p-0 md:pl-6 lg:p-0">
       {filteredJobs.length === 0 ? (
         <div className="text-center py-10">
-          <h3 className="text-2xl font-semibold">No jobs found</h3>
+          <h3 className="text-xl font-semibold">No jobs found</h3>
           <p className="text-gray-500 mt-2">
-            Select another job
+            Try adjusting your search criteria
           </p>
         </div>
       ) : (
@@ -573,7 +572,7 @@ function Logo({ src, alt }) {
   );
 }
 
-function Sidebar({ searchQuery, setSearchQuery }) {
+export function Sidebar({ searchQuery, setSearchQuery }) {
   const categories = [
     "Software Development",
     "Data Science",
@@ -601,10 +600,10 @@ function Sidebar({ searchQuery, setSearchQuery }) {
     }
   };
 
-  // Function to handle direct search for UI Engineer
-  const handleDirectSearch = () => {
-    setSearchQuery("UI Engineer");
-  };
+  // Filter categories based on search query
+  const filteredCategories = categories.filter((category) =>
+    category.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <aside className="w-full lg:w-[35%] xl:w-[30%] md:w-[70%] md:px-2 bg-white rounded-2xl">
@@ -620,7 +619,7 @@ function Sidebar({ searchQuery, setSearchQuery }) {
       </div>
 
       <div className="space-y-3">
-        {categories.map((category, i) => (
+        {filteredCategories.map((category, i) => (
           <button
             key={i}
             onClick={() => handleCategoryClick(category)}
@@ -642,16 +641,16 @@ function Sidebar({ searchQuery, setSearchQuery }) {
       </div>
 
       {/* Clear filters button */}
-      {/* {searchQuery && (
+      {searchQuery && (
         <div className="mt-4 text-center">
           <button
             onClick={() => setSearchQuery("")}
-             className="px-3 py-1 text-xs bg-blue-100 text-blue-700 rounded-full hover:bg-blue-200 transition-colors"
+            className="px-3 py-1 text-xs bg-blue-100 text-blue-700 rounded-full hover:bg-blue-200 transition-colors"
           >
             Clear filters
           </button>
         </div>
-      )} */}
+      )}
     </aside>
   );
 }

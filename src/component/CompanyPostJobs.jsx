@@ -21,10 +21,7 @@ function CompanyPostJobs() {
   const [isJobModalOpen, setIsJobModalOpen] = useState(false)
   const location=useLocation();
   const substrLocation=location.pathname.substring(1)
- 
-  
-
-  const toggleMobileMenu = () => {
+const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen)
   }
 

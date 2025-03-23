@@ -23,7 +23,7 @@ import { TfiMoreAlt } from "react-icons/tfi";
 import tick from '../image/tick.png'
 
 // Utility function for conditional classNames
-const cn = (...classes) => classes.filter(Boolean).join(" ");
+export const cn = (...classes) => classes.filter(Boolean).join(" ");
 
 // Mock data
 const profileData = {

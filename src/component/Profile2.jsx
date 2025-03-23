@@ -1,7 +1,17 @@
 import { Briefcase, Award, Crown, FileText, Plus, Eye, Download, Trash } from "lucide-react"
 
 export default function Profile2() {
+  const [showExperienceModal, setShowExperienceModal] = useState(false)
+  const [showEducationModal, setShowEducationModal] = useState(false)
+  const [showSkillModal, setShowSkillModal] = useState(false)
+  const [showFileModal, setShowFileModal] = useState(false)
+
+  const handleAddExperienceClick = () => {
+    setEditingExperience(null)
+    setShowExperienceModal(true)
+  }
   return (
+    <>
     <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 md:p-10 max-w-screen-lg mx-auto w-full sm:w-[720px] sm:mr-[320px]">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center"></div>
       <div className="mt-6 sm:mt-8">
@@ -13,7 +23,7 @@ export default function Profile2() {
             </div>
             <h2 className="text-lg sm:text-xl font-semibold">Experiences</h2>
           </div>
-          <button className="px-3 py-1.5 sm:px-4 sm:py-2 text-purple-600 hover:bg-purple-50 rounded-lg flex items-center gap-1 sm:gap-2 text-xs sm:text-sm">
+          <button handleAddExperienceClick={handleAddExperienceClick} className="px-3 py-1.5 sm:px-4 sm:py-2 text-purple-600 hover:bg-purple-50 rounded-lg flex items-center gap-1 sm:gap-2 text-xs sm:text-sm">
             <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
             Add Experience
           </button>
@@ -108,6 +118,21 @@ export default function Profile2() {
         </div>
       </div>
     </div>
+    {showExperienceModal && (
+        <ExperienceModal
+          experience={editingExperience}
+          onClose={() => setShowExperienceModal(false)}
+          onSave={data => {
+            if (editingExperience) {
+              onEditExperience(editingExperience.id, data)
+            } else {
+              onAddExperience(data)
+            }
+            setShowExperienceModal(false)
+          }}
+        />
+      )}
+    </>
   )
 }
 

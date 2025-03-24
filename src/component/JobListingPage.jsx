@@ -105,9 +105,9 @@ console.log(isBrowseCompany,"isBrowseCompanyisBrowseCompany")
         />
       </div>
       <Navbar />
-        <div className="w-full max-w-[1800px] mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <div className="w-full max-w-[1800px] mx-auto py-6 px-4 sm:px-10 lg:px-20">
        
-        <div className=" mx-auto py-12 ">
+        <div className=" mx-auto">
       <h1 className="text-4xl md:text-5xl font-bold mb-3">
         Find your <span className="text-purple-500">{isBrowseCompany ? 'desired job':'new job'}</span> today
       </h1>

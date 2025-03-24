@@ -13,7 +13,7 @@ import { Link, useLocation } from "react-router-dom"
 import { ChevronDown, ChevronDownIcon, ChevronUp, ChevronUpIcon, Plus, PlusIcon, User } from "lucide-react"
 import profile from "../image/Notificationlogo1.png"
 import t1 from "../image/t1.png"
-import JobPostModal from "./JobPostModal"
+// import JobPostModal from "./JobPostModal"
 import DashSidebar from "./DashSidebar"
 
 function CompanyPostJobs() {
@@ -341,7 +341,7 @@ const toggleMobileMenu = () => {
       </div>
 
       {/* Job Post Modal */}
-      <JobPostModal isOpen={isJobModalOpen} onClose={closeJobModal} />
+      {/* <JobPostModal isOpen={isJobModalOpen} onClose={closeJobModal} /> */}
     </div>
   )
 }

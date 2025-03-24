@@ -33,7 +33,7 @@ const UserSelection = () => {
           {/* Job Seeker Option */}
           <div
             className="cursor-pointer border-2 border-gray-200 rounded-xl p-6 flex flex-col items-center w-full sm:w-48 
-                 hover:shadow-md transition-all duration-300 transform "
+                 hover:border-purple-500 hover:shadow-md transition-all duration-300 transform "
             onClick={() => handleNavigate("Job Seeker")}
           >
             <div className="p-4 rounded-full mb-4 ">
@@ -52,7 +52,7 @@ const UserSelection = () => {
           {/* Job Giver Option */}
           <div
             className="cursor-pointer border-4 rounded-xl p-6 flex flex-col items-center w-full sm:w-48
-                border-purple-500 hover:shadow-md transition-all duration-300 transform "
+               hover:border-purple-500 hover:shadow-md transition-all duration-300 transform "
             onClick={() => handleNavigate("Job Giver")}
           >
             <div className="p-4 rounded-full mb-4">

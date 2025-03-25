@@ -11,7 +11,6 @@ import Home from "./component/Home";
 import JobListingPage from "./component/JobListingPage";
 import JobseekersSubSection from "./component/JobseekersSubSection";
 import Singlejobview from "./component/Singlejobview";
-import Singlejobviews from "./component/Singlejobviews";
 import CompanyApplications from "./component/CompanyApplications";
 import CompanyProfile from "./component/CompanyProfile";
 import CompanyPostJobs from "./component/CompanyPostJobs";
@@ -48,7 +47,6 @@ function App() {
           <Route path="/Profile" element={<Profile />}/>
           <Route path="/Message" element={<Message />}/>
           <Route path="/Singlejobview" element={<Singlejobview />}/>
-          <Route path="/Singlejobviews" element={<Singlejobviews />}/>
           <Route path="/JobListingPage" element={<JobListingPage />}/>
           <Route path="/browsecompany" key='1' element={<JobListingPage isBrowseCompany/>}/>
           <Route path="/JobseekersSubSection" element={<JobseekersSubSection />}/>

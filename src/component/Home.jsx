@@ -244,7 +244,7 @@ const SearchInput2 = ({ icon, placeholder, isLocation = false }) => (
       isLocation ? "md:border-l md:border-gray-200" : ""
     }`}
   >
-    <FiMapPin className="text-gray-400 h-5 w-5 text-gray-400" />
+    <FiMapPin className="text-gray-400 h-5 w-5 " />
     <input
       type="text"
       placeholder={placeholder}
@@ -418,12 +418,11 @@ function JobListingsSectionNew({ searchQuery }) {
   return (
     <div className="w-[70%] space-y-6 md:pt-[70px] p-0 md:pl-6 lg:p-0 ">
       {filteredJobs.length === 0 ? (
-        <div className="text-center py-10  ">
-          <h3 className="text-xl font-semibold ">No jobs found</h3>
-          <p className="text-gray-500 mt-2 ">
-            Try adjusting your search criteria
-          </p>
-        </div>
+    <div className="w-full text-center py-10">
+    <h3 className="text-xl font-semibold">No jobs found</h3>
+    <p className="text-gray-500 mt-2">Try adjusting your search criteria</p>
+  </div>
+        
       ) : (
         <div className="w-fit grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8 lg:gap-8">
           {filteredJobs.map((job, index) => (
@@ -900,8 +899,8 @@ const ResumeBuilderSection = () => (
 );
 
 const EmailSignupSection = () => (
-  <div className="flex flex-col items-center justify-center w-full py-12 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900 flex ms-auto me-auto  flex-col p-2 z-2    items-center justify-center bg-white dark:bg-gray-900 px-4 sm:px-6 lg:px-10 py-10 rounded-lg shadow-md border border-gray-200 dark:border-gray-800">
-    <h2 className="text-3xl  font-semibold text-gray-900 dark:text-white text-center">
+  <div className="flex items-center justify-center w-full py-12   lg:px-8 bg-white  ms-auto me-auto  flex-col p-2 z-2   dark:bg-gray-900 px-4 sm:px-6 lg:px-10 py-10 rounded-lg shadow-md border border-gray-200 dark:border-gray-800">
+    <h2 className="text-xl  font-semibold text-gray-900 dark:text-white text-center">
       Signup for new Job alerts
     </h2>
     <p className="text-gray-600 dark:text-gray-400 mt-2 text-sm text-center mb-6">

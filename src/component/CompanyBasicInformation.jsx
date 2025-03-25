@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import { User } from "lucide-react";
+"use client"
+
+import { useState } from "react"
 import dashboard from "../image/dashboard.png"
 export default function ProfileInfo() {
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(false)
   const [profileData, setProfileData] = useState({
     email: "anamoulrouf.bd@gmail.com",
     phone: "+911234567890",
@@ -10,92 +11,95 @@ export default function ProfileInfo() {
     yearEstablished: "2025-02-22",
     website: "www.anamoulrouf.com",
     pincode: "123456",
-    interviewPersons: ["John Smith", "John Doe"],
-  });
+    interviewPersons: ["John Smith", "John Doe"]
+  })
 
-  const [formData, setFormData] = useState({ ...profileData });
-  const [newPerson, setNewPerson] = useState("");
-  const [phoneError, setPhoneError] = useState(null);
-  const [pincodeError, setPincodeError] = useState(null);
+  const [formData, setFormData] = useState({ ...profileData })
+  const [newPerson, setNewPerson] = useState("")
+  const [phoneError, setPhoneError] = useState(null)
+  const [pincodeError, setPincodeError] = useState(null)
 
-  const phoneRegex = /^\+?(\d{1,3})?[-.\s]?(\d{3})[-.\s]?(\d{4,6})$/;
-  const pincodeRegex = /^\d{6}$/; // Regular expression for 6-digit pincode
+  const phoneRegex = /^\+?(\d{1,3})?[-.\s]?(\d{3})[-.\s]?(\d{4,6})$/
+  const pincodeRegex = /^\d{6}$/ // Regular expression for 6-digit pincode
 
-  const validatePhone = (phone) => {
+  const validatePhone = phone => {
     if (!phoneRegex.test(phone)) {
-      setPhoneError("Invalid phone number format.");
+      setPhoneError("Invalid phone number format.")
     } else {
-      setPhoneError(null);
+      setPhoneError(null)
     }
-  };
+  }
 
-  const validatePincode = (pincode) => {
+  const validatePincode = pincode => {
     if (!pincodeRegex.test(pincode)) {
-      setPincodeError("Invalid pincode. Please enter a 6-digit number.");
+      setPincodeError("Invalid pincode. Please enter a 6-digit number.")
     } else {
-      setPincodeError(null);
+      setPincodeError(null)
     }
-  };
+  }
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
+  const handleInputChange = e => {
+    const { name, value } = e.target
     setFormData({
       ...formData,
-      [name]: value,
-    });
+      [name]: value
+    })
     if (name === "phone") {
-      validatePhone(value);
+      validatePhone(value)
     } else if (name === "pincode") {
-      validatePincode(value);
+      validatePincode(value)
     }
-  };
+  }
 
   const handleAddPerson = () => {
     if (newPerson.trim()) {
       setFormData({
         ...formData,
-        interviewPersons: [...formData.interviewPersons, newPerson.trim()],
-      });
-      setNewPerson("");
+        interviewPersons: [...formData.interviewPersons, newPerson.trim()]
+      })
+      setNewPerson("")
     }
-  };
+  }
 
-  const handleRemovePerson = (index) => {
-    const updatedPersons = [...formData.interviewPersons];
-    updatedPersons.splice(index, 1);
+  const handleRemovePerson = index => {
+    const updatedPersons = [...formData.interviewPersons]
+    updatedPersons.splice(index, 1)
     setFormData({
       ...formData,
-      interviewPersons: updatedPersons,
-    });
-  };
+      interviewPersons: updatedPersons
+    })
+  }
 
   const handleSave = () => {
     if (!phoneError && !pincodeError) {
-      setProfileData(formData);
-      setIsEditing(false);
+      setProfileData(formData)
+      setIsEditing(false)
     }
-  };
+  }
 
   const handleCancel = () => {
-    setFormData({ ...profileData });
-    setIsEditing(false);
-  };
+    setFormData({ ...profileData })
+    setIsEditing(false)
+  }
 
   return (
     <div className="w-full max-w-5xl mx-auto p-4 border border-gray-200 rounded-xl">
-      <div className="flex flex-row items-center justify-between mb-4">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4 relative">
         <div className="flex items-center gap-4">
           <div className="flex h-16 w-16 items-center justify-center rounded-full">
-         
-            <img src={dashboard} alt="logo"className="rounded full" />
+            <img
+              src={dashboard || "/placeholder.svg"}
+              alt="logo"
+              className="rounded full"
+            />
           </div>
           <div>
-            <h2 className="text-2xl font-bold">Basic Information</h2>
-            <p>Update profile information</p>
+            <h2 className="text-xl font-bold">Basic Information</h2>
+            <p>Update profile </p>
           </div>
         </div>
         {isEditing ? (
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2 self-end sm:self-auto">
             <button
               className="py-2 px-4 border border-gray-200 rounded-xl hover:bg-gray-100"
               onClick={handleCancel}
@@ -103,7 +107,7 @@ export default function ProfileInfo() {
               Cancel
             </button>
             <button
-              className="py-2 px-4  bg-purple-500 text-white rounded-xl hover:bg-purple-600"
+              className="py-2 px-4 bg-purple-500 text-white rounded-xl hover:bg-purple-600"
               onClick={handleSave}
               disabled={phoneError || pincodeError}
             >
@@ -112,7 +116,7 @@ export default function ProfileInfo() {
           </div>
         ) : (
           <button
-            className="py-2 px-4 border  border-purple-500 text-purple-500 rounded-xl hover:bg-purple-50"
+            className="py-2  px-4 border border-purple-500 text-purple-500 rounded-xl hover:bg-purple-50 absolute right-4 top-4 sm:static mt-4 "
             onClick={() => setIsEditing(true)}
           >
             Edit
@@ -121,7 +125,9 @@ export default function ProfileInfo() {
       </div>
       <div className="grid gap-6 md:grid-cols-2">
         <div className="space-y-2">
-          <div className="text-sm font-medium text-gray-500 rounded-xl">Email Address</div>
+          <div className="text-sm font-medium text-gray-500 rounded-xl">
+            Email Address
+          </div>
           {isEditing ? (
             <input
               type="email"
@@ -148,9 +154,7 @@ export default function ProfileInfo() {
           ) : (
             <div className="text-gray-700">{profileData.phone}</div>
           )}
-          {phoneError && (
-            <div className="text-red-500">{phoneError}</div>
-          )}
+          {phoneError && <div className="text-red-500">{phoneError}</div>}
         </div>
 
         <div className="space-y-2">
@@ -213,9 +217,7 @@ export default function ProfileInfo() {
           ) : (
             <div className="text-gray-700">{profileData.pincode}</div>
           )}
-          {pincodeError && (
-            <div className="text-red-500">{pincodeError}</div>
-          )}
+          {pincodeError && <div className="text-red-500">{pincodeError}</div>}
         </div>
 
         <div className="space-y-2 md:col-span-2">
@@ -247,7 +249,7 @@ export default function ProfileInfo() {
                 <input
                   placeholder="Add person"
                   value={newPerson}
-                  onChange={(e) => setNewPerson(e.target.value)}
+                  onChange={e => setNewPerson(e.target.value)}
                   className="w-48 p-2  border border-gray-200 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
                 />
                 <button
@@ -262,5 +264,5 @@ export default function ProfileInfo() {
         </div>
       </div>
     </div>
-  );
+  )
 }

@@ -1,106 +1,121 @@
-import { useState } from "react";
-import { User } from "lucide-react";
-import profile from "../image/profile.jpg";
+"use client"
+
+import { useState } from "react"
+import profile from "../image/profile.jpg"
 
 export default function ProfileInfo() {
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(false)
   const [profileData, setProfileData] = useState({
     email: "anamoulrouf.bd@gmail.com",
     phone: "+919876543210",
     gender: "Male",
     dateOfBirth: "2003-03-07", // Use YYYY-MM-DD format for date input
     location: "New York, USA",
-    pincode: "123456",
-  });
+    pincode: "123456"
+  })
 
-  const [formData, setFormData] = useState({ ...profileData });
-  const [errors, setErrors] = useState({});
+  const [formData, setFormData] = useState({ ...profileData })
+  const [errors, setErrors] = useState({})
 
-  const phoneRegex = /^\+?(\d{1,3})?[-.\s]?(\d{3})[-.\s]?(\d{4,6})$/;
-  const pincodeRegex = /^[0-9]{6}$/;
+  const phoneRegex = /^\+?(\d{1,3})?[-.\s]?(\d{3})[-.\s]?(\d{4,6})$/
+  const pincodeRegex = /^[0-9]{6}$/
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
+  const handleInputChange = e => {
+    const { name, value } = e.target
 
     if (name === "phone") {
       if (!phoneRegex.test(value)) {
         setErrors({
           ...errors,
-          phone: "Invalid phone number format",
-        });
+          phone: "Invalid phone number format"
+        })
       } else {
         setErrors({
           ...errors,
-          phone: null,
-        });
+          phone: null
+        })
       }
     } else if (name === "pincode") {
       if (!pincodeRegex.test(value)) {
         setErrors({
           ...errors,
-          pincode: "Invalid pincode. Please enter a 6-digit pincode.",
-        });
+          pincode: "Invalid pincode. Please enter a 6-digit pincode."
+        })
       } else {
         setErrors({
           ...errors,
-          pincode: null,
-        });
+          pincode: null
+        })
       }
     }
 
     setFormData({
       ...formData,
-      [name]: value,
-    });
-  };
+      [name]: value
+    })
+  }
 
   const handleSave = () => {
     if (errors.phone || errors.pincode) {
-      alert("Please correct the errors");
-      return;
+      alert("Please correct the errors")
+      return
     }
 
-    setProfileData(formData);
-    setIsEditing(false);
-  };
+    setProfileData(formData)
+    setIsEditing(false)
+  }
 
   const handleCancel = () => {
-    setFormData({ ...profileData });
-    setIsEditing(false);
-    setErrors({});
-  };
+    setFormData({ ...profileData })
+    setIsEditing(false)
+    setErrors({})
+  }
 
   return (
     <div className="w-full max-w-5xl mx-auto mt-6 p-4 border border-gray-200 rounded-xl">
       <div className="flex flex-col md:flex-row items-center justify-between mb-10">
-        <div className="flex items-center gap-4">
-          <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-b from-orange-300 to-blue-500">
-            {/* <User  /> */}
-            <img src={profile} alt="Profile" className="rounded-full " />
+        <div className="flex items-center justify-between w-full md:w-auto">
+          <div className="flex items-center gap-4">
+            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-b ">
+              {/* <User  /> */}
+              <img
+                src={profile || "/placeholder.svg"}
+                alt="Profile"
+                className="rounded-full "
+              />
+            </div>
+            <div>
+              <h2 className="text-xl font-bold">Basic Information</h2>
+              <p>Update profile information</p>
+            </div>
           </div>
-          <div>
-            <h2 className="text-2xl font-bold">Basic Information</h2>
-            <p>Update profile information</p>
-          </div>
+          {!isEditing && (
+            <button
+              className="py-2 px-4 border border-purple-500 text-purple-500 rounded-xl hover:bg-purple-50 md:hidden"
+              onClick={() => setIsEditing(true)}
+            >
+              Edit
+            </button>
+          )}
         </div>
         {isEditing ? (
           <div className="flex flex-col gap-2 w-full md:w-auto md:flex-row mt-4 md:mt-0">
-            <button
-              className="py-2 px-4 border border-gray-200 rounded-xl hover:bg-gray-100 w-full md:w-auto"
-              onClick={handleCancel}
-            >
-              Cancel
-            </button>
             <button
               className="py-2 px-4 bg-purple-500 text-white rounded-xl hover:bg-purple-600 w-full md:w-auto"
               onClick={handleSave}
             >
               Save
             </button>
+            <button
+              className="py-2 px-4 border border-gray-200 rounded-xl hover:bg-gray-100 w-full md:w-auto"
+              onClick={handleCancel}
+            >
+              Cancel
+            </button>
           </div>
         ) : (
           <button
-            className="py-2 mt-2 px-4 border border-purple-500 text-purple-500 rounded-xl hover:bg-purple-50"
+            className="py-2 px-4 border border-purple-500 text-purple-500 rounded-xl hover:bg-purple-50 hidden md:block "
             onClick={() => setIsEditing(true)}
           >
             Edit
@@ -240,5 +255,5 @@ export default function ProfileInfo() {
         }
       `}</style>
     </div>
-  );
+  )
 }

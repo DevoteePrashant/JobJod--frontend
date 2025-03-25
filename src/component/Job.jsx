@@ -1,35 +1,26 @@
-import React, { useEffect, useRef, useState } from "react";
-import profile from "../image/profile.jpg";
-import logo2 from "../image/logo2.png";
-import image from "../image/logo2.png";
-import { Link } from "react-router-dom";
-import {
-  Bell,
-  ChevronLeft,
-  ChevronRight,
-  Mail,
-  Menu,
-  Search,
-  X,
-} from "lucide-react";
-import { RxDashboard } from "react-icons/rx";
-import NotificationPanel from "../component/NotificationPanel";
-import image2 from "../image/profile.jpg";
-import t4 from "../image/t4.png";
-import Jobseekerheader from "./Jobseekerheader";
-import { IoMail } from "react-icons/io5";
-import { LiaShareAltSolid } from "react-icons/lia";
-import { TfiMoreAlt } from "react-icons/tfi";
-import tick from '../image/tick.png'
+"use client"
+
+import { useEffect, useRef, useState } from "react"
+import image from "../image/logo2.png"
+import { Link } from "react-router-dom"
+import { ChevronDown, ChevronLeft, ChevronRight, Filter } from "lucide-react"
+import { RxDashboard } from "react-icons/rx"
+import image2 from "../image/profile.jpg"
+import t4 from "../image/t4.png"
+import Jobseekerheader from "./Jobseekerheader"
+import { IoMail } from "react-icons/io5"
+import { LiaShareAltSolid } from "react-icons/lia"
+import { TfiMoreAlt } from "react-icons/tfi"
+import tick from "../image/tick.png"
 
 // Utility function for conditional classNames
-export const cn = (...classes) => classes.filter(Boolean).join(" ");
+export const cn = (...classes) => classes.filter(Boolean).join(" ")
 
 // Mock data
 const profileData = {
   name: "Anamoul",
-  avatar: "/placeholder.svg?height=100&width=100",
-};
+  avatar: "/placeholder.svg?height=100&width=100"
+}
 
 const jobData = [
   {
@@ -37,78 +28,78 @@ const jobData = [
     company: "Grameenphone",
     location: "Dhaka, Bangladesh",
     appliedDate: "23 May 20",
-    logoUrl: t4,
+    logoUrl: t4
   },
   {
     title: "UX Designer",
     company: " Alpha",
     location: "Dhaka, Bangladesh",
     appliedDate: "10 June 20",
-    logoUrl: t4,
+    logoUrl: t4
   },
   {
     title: "Product Designer",
     company: "Grameenphone",
     location: "Dhaka, Bangladesh",
     appliedDate: "23 May 20",
-    logoUrl: t4,
+    logoUrl: t4
   },
   {
     title: "UX Designer",
     company: " Alpha",
     location: "Dhaka, Bangladesh",
     appliedDate: "10 June 20",
-    logoUrl: t4,
+    logoUrl: t4
   },
   {
     title: "Frontend Developer",
     company: "Zudio",
     location: "Dhaka, Bangladesh",
     appliedDate: "15 July 20",
-    logoUrl: t4,
-  },
-];
+    logoUrl: t4
+  }
+]
 
 const JobDetails = () => {
-  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
-  const [showNotifications, setShowNotifications] = useState(false);
-  const [activeTab, setActiveTab] = useState("Job Description");
+  const [isSidebarVisible, setIsSidebarVisible] = useState(false)
+  const [showNotifications, setShowNotifications] = useState(false)
+  const [activeTab, setActiveTab] = useState("Job Description")
 
-  const tabs = ["Application Status", "Job Description"];
-  const tabsContainerRef = useRef(null);
-  const activeTabRef = useRef(null);
+  const tabs = ["Application Status", "Job Description"]
+  const tabsContainerRef = useRef(null)
+  const activeTabRef = useRef(null)
 
   // Scroll active tab into view when it changes
   useEffect(() => {
     if (activeTabRef.current && tabsContainerRef.current) {
-      const container = tabsContainerRef.current;
-      const activeTabElement = activeTabRef.current;
+      const container = tabsContainerRef.current
+      const activeTabElement = activeTabRef.current
 
       // Calculate position to center the active tab
       const scrollLeft =
         activeTabElement.offsetLeft -
         container.clientWidth / 2 +
-        activeTabElement.clientWidth / 2;
+        activeTabElement.clientWidth / 2
 
       container.scrollTo({
         left: scrollLeft,
-        behavior: "smooth",
-      });
+        behavior: "smooth"
+      })
     }
-  }, [activeTab]);
+  }, [activeTab])
 
   // Scroll tabs left/right
-  const scroll = (direction) => {
+  const scroll = direction => {
     if (tabsContainerRef.current) {
-      const container = tabsContainerRef.current;
-      const scrollAmount = container.clientWidth / 2;
+      const container = tabsContainerRef.current
+      const scrollAmount = container.clientWidth / 2
 
       container.scrollBy({
         left: direction === "left" ? -scrollAmount : scrollAmount,
-        behavior: "smooth",
-      });
+        behavior: "smooth"
+      })
     }
-  };
+  }
 
   return (
     <div className="p-0 md:p-6">
@@ -128,15 +119,16 @@ const JobDetails = () => {
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           <div className="flex items-center px-6  bg-gray-100 p-1 rounded-full  md:px-0">
-            {tabs.map((tab) => (
+            {tabs.map(tab => (
               <button
                 key={tab}
                 ref={activeTab === tab ? activeTabRef : null}
                 onClick={() => setActiveTab(tab)}
-                className={`px-3 py-2 md:px-4 rounded-full ms-2 me-2 text-xs md:text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 ${activeTab === tab
-                  ? "bg-white text-purple-500 shadow-sm"
-                  : "text-gray-600 hover:text-gray-800"
-                  }`}
+                className={`px-3 py-2 md:px-4 rounded-full ms-2 me-2 text-xs md:text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 ${
+                  activeTab === tab
+                    ? "bg-white text-purple-500 shadow-sm"
+                    : "text-gray-600 hover:text-gray-800"
+                }`}
               >
                 {tab}
               </button>
@@ -161,17 +153,20 @@ const JobDetails = () => {
       </div>
       <div className="flex justify-between mt-10">
         <div className="mb-6 md:mb-8 w-max">
-          <h1 className="text-xl md:text-2xl font-bold mb-2">Product Designer</h1>
+          <h1 className="text-xl md:text-2xl font-bold mb-2">
+            Product Designer
+          </h1>
           <div className="flex flex-wrap items-center text-gray-600 mb-3">
             <span className="mr-2">✈️</span>
             <span className="mr-2">Grameenphone</span>
             <span className="mr-2">Dhaka, Bangladesh</span>
           </div>
-            <div className="grid">
-              <h6 className=" font-bold mb-2">Salary: 25000-30000 INR</h6>
-              <div className="flex space-x-1">
-              <img src={tick} alt="tick" /><span className="text-sm font-medium">Applied on 23 May 20</span>
-              </div>
+          <div className="grid">
+            <h6 className=" font-bold mb-2">Salary: 25000-30000 INR</h6>
+            <div className="flex space-x-1">
+              <img src={tick || "/placeholder.svg"} alt="tick" />
+              <span className="text-sm font-medium">Applied on 23 May 20</span>
+            </div>
           </div>
         </div>
         <div>
@@ -182,7 +177,6 @@ const JobDetails = () => {
           </div>
           <div className="flex flex-wrap items-center text-sm text-gray-500">
             <span className="mr-4">Posted on 15 May 20</span>
-
           </div>
         </div>
       </div>
@@ -190,7 +184,7 @@ const JobDetails = () => {
       <div className="flex flex-wrap items-center border rounded-xl p-3 justify-between mb-6 md:mb-8">
         <div className="flex items-center mb-4 md:mb-0">
           <img
-            src={t4}
+            src={t4 || "/placeholder.svg"}
             className="w-12 h-12 rounded-full bg-gray-200 mr-4"
             alt=""
             srcset=""
@@ -275,7 +269,7 @@ const JobDetails = () => {
           <div className="flex flex-wrap items-center justify-between">
             <div className="flex items-center mb-4 md:mb-0">
               <img
-                src={t4}
+                src={t4 || "/placeholder.svg"}
                 className="w-12 h-12 bg-blue-100 rounded-lg mr-4"
                 alt=""
                 srcset=""
@@ -292,9 +286,9 @@ const JobDetails = () => {
         </div>
       </div>
     </div>
-  );
-};
-const ApplicationsList = () => {
+  )
+}
+const ApplicationsList = ({ filter = "All Jobs" }) => {
   const applications = [
     {
       id: 1,
@@ -306,6 +300,7 @@ const ApplicationsList = () => {
       logoColor: "bg-blue-400",
       statusColor: "text-green-500",
       statusIcon: "✓",
+      img: t4
     },
     {
       id: 2,
@@ -317,6 +312,7 @@ const ApplicationsList = () => {
       logoColor: "bg-orange-400",
       statusColor: "text-blue-500",
       statusIcon: "✓",
+      img: t4
     },
     {
       id: 3,
@@ -327,6 +323,7 @@ const ApplicationsList = () => {
       logoColor: "bg-blue-500",
       statusColor: "text-blue-600",
       statusIcon: "👑",
+      img: t4
     },
     {
       id: 4,
@@ -337,6 +334,7 @@ const ApplicationsList = () => {
       logoColor: "bg-pink-500",
       statusColor: "text-purple-500",
       statusIcon: "👤",
+      img: t4
     },
     {
       id: 5,
@@ -347,37 +345,49 @@ const ApplicationsList = () => {
       logoColor: "bg-blue-400",
       statusColor: "text-red-500",
       statusIcon: "✕",
-    },
-  ];
+      img: t4
+    }
+  ]
+
+  // Filter applications based on the selected tab
+  const filteredApplications =
+    filter === "All Jobs"
+      ? applications
+      : applications.filter(app => app.status === filter)
 
   return (
     <div className="space-y-4">
-      {applications.map((app) => (
+      {filteredApplications.map(app => (
         <div
           key={app.id}
-          className="flex items-center p-2 rounded-lg bg-purple-50"
+          className="flex items-center p-2 rounded-xl bg-purple-50"
         >
-          <div
-            className={`w-12 h-12 rounded-full ${app.logoColor} mr-4 flex-shrink-0`}
-          ></div>
+          <img src={t4 || "/placeholder.svg"} alt="icons" />
+
           <div className="flex-1 min-w-0">
             <h3 className="font-semibold truncate">{app.title}</h3>
             <p className="text-sm text-gray-600 truncate">
               {app.company} · {app.location}
             </p>
-            <div className="mt-1">
+            <div className=" flex mt-1">
+              <img
+                src={app.img || "/placeholder.svg"}
+                alt=""
+                width={"34px"}
+                srcset=""
+              />
               <span
                 className={`text-xs px-2 py-1 rounded-full inline-flex items-center ${app.statusColor}`}
               >
-                {app.status} {app.statusIcon}
+                {app.status}
               </span>
             </div>
           </div>
         </div>
       ))}
     </div>
-  );
-};
+  )
+}
 
 const DashboardSidebar = ({ profile, isOpen, onClose }) => (
   <div
@@ -495,18 +505,19 @@ const DashboardSidebar = ({ profile, isOpen, onClose }) => (
       </nav>
     </div>
   </div>
-);
+)
 
 const Job = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
-  const [showMobileSearch, setShowMobileSearch] = useState(false);
-  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
-  const [showNotifications, setShowNotifications] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false)
+  const [showMobileSearch, setShowMobileSearch] = useState(false)
+  const [isSidebarVisible, setIsSidebarVisible] = useState(false)
+  const [showNotifications, setShowNotifications] = useState(false)
+  const [showFilterDropdown, setShowFilterDropdown] = useState(false)
 
   const toggleSidebar = () => {
-    setIsSidebarVisible(!isSidebarVisible);
-  };
+    setIsSidebarVisible(!isSidebarVisible)
+  }
 
   const tabs = [
     "All Jobs",
@@ -514,112 +525,143 @@ const Job = () => {
     "Short Listed",
     "Interview",
     "Hired",
-    "Rejected",
-  ];
-  const [activeTab, setActiveTab] = useState(tabs[0]);
-  const tabsContainerRef = useRef(null);
-  const activeTabRef = useRef(null);
+    "Rejected"
+  ]
+  const [activeTab, setActiveTab] = useState(tabs[0])
+  const tabsContainerRef = useRef(null)
+  const activeTabRef = useRef(null)
+  const filterDropdownRef = useRef(null)
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        filterDropdownRef.current &&
+        !filterDropdownRef.current.contains(event.target)
+      ) {
+        setShowFilterDropdown(false)
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [])
 
   // Scroll active tab into view when it changes
   useEffect(() => {
     if (activeTabRef.current && tabsContainerRef.current) {
-      const container = tabsContainerRef.current;
-      const activeTabElement = activeTabRef.current;
+      const container = tabsContainerRef.current
+      const activeTabElement = activeTabRef.current
 
       // Calculate position to center the active tab
       const scrollLeft =
         activeTabElement.offsetLeft -
         container.clientWidth / 2 +
-        activeTabElement.clientWidth / 2;
+        activeTabElement.clientWidth / 2
 
       container.scrollTo({
         left: scrollLeft,
-        behavior: "smooth",
-      });
+        behavior: "smooth"
+      })
     }
-  }, [activeTab]);
+  }, [activeTab])
 
   // Scroll tabs left/right
-  const scroll = (direction) => {
+  const scroll = direction => {
     if (tabsContainerRef.current) {
-      const container = tabsContainerRef.current;
-      const scrollAmount = container.clientWidth / 2;
+      const container = tabsContainerRef.current
+      const scrollAmount = container.clientWidth / 2
 
       container.scrollBy({
         left: direction === "left" ? -scrollAmount : scrollAmount,
-        behavior: "smooth",
-      });
+        behavior: "smooth"
+      })
     }
-  };
+  }
 
   return (
     <>
       <div className="min-h-screen">
-        {/* Mobile Menu Button */}
-
-        {/* Sidebar */}
-
         <Jobseekerheader />
-        {/* <div className="max-w-6xl lg:w-[calc(100% - 16rem)] w-full ml-auto mt-6 bg-white"> */}
         <div className="lg:pl-64">
-          <div className="p-3 flex flex-col sm:flex-row  sm:items-center gap-x-4">
-            <div className="overflow-x-auto pb-2 sm:pb-0">
-              <div className="relative w-full max-w-full">
-                {/* Scroll buttons for mobile */}
-                <button
-                  onClick={() => scroll("left")}
-                  className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 rounded-full p-1 shadow-sm md:hidden"
-                  aria-label="Scroll tabs left"
-                >
-                  <ChevronLeft className="h-4 w-4 text-gray-600" />
-                </button>
+          <div className="p-3 flex flex-col sm:flex-row sm:items-center gap-x-4">
+            {/* Mobile Filter Button */}
+            <div
+              className="relative sm:hidden w-full mb-2"
+              ref={filterDropdownRef}
+            >
+              <button
+                onClick={() => setShowFilterDropdown(!showFilterDropdown)}
+                className="flex items-center justify-between w-full px-4 py-2 bg-gray-100 rounded-full text-gray-700"
+              >
+                <span className="flex items-center">
+                  <Filter className="w-4 h-4 mr-2" />
+                  {activeTab}
+                </span>
+                <ChevronDown className="w-4 h-4" />
+              </button>
 
+              {showFilterDropdown && (
+                <div className="absolute top-full left-0 right-0 mt-1 bg-white rounded-lg shadow-lg z-20 border">
+                  {tabs.map(tab => (
+                    <button
+                      key={tab}
+                      onClick={() => {
+                        setActiveTab(tab)
+                        setShowFilterDropdown(false)
+                      }}
+                      className={`block w-full text-left px-4 py-2 ${
+                        activeTab === tab
+                          ? "bg-purple-50 text-purple-500"
+                          : "hover:bg-gray-50"
+                      }`}
+                    >
+                      {tab}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Desktop Tabs */}
+            <div className="hidden sm:block overflow-x-auto pb-2 sm:pb-0">
+              <div className="relative w-full max-w-full">
                 <div
                   className="flex items-center bg-gray-100 rounded-full p-1 w-full overflow-x-auto scrollbar-hide"
                   ref={tabsContainerRef}
                   style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
                 >
                   <div className="flex items-center px-6 md:px-0">
-                    {tabs.map((tab) => (
+                    {tabs.map(tab => (
                       <button
                         key={tab}
                         ref={activeTab === tab ? activeTabRef : null}
                         onClick={() => setActiveTab(tab)}
-                        className={`px-3 py-2 md:px-4 rounded-full text-xs md:text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 ${activeTab === tab
-                          ? "bg-white text-purple-500 shadow-sm"
-                          : "text-gray-600 hover:text-gray-800"
-                          }`}
+                        className={`px-3 py-2 md:px-4 rounded-full text-xs md:text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 ${
+                          activeTab === tab
+                            ? "bg-white text-purple-500 shadow-sm"
+                            : "text-gray-600 hover:text-gray-800"
+                        }`}
                       >
                         {tab}
                       </button>
                     ))}
                   </div>
                 </div>
-
-                <button
-                  onClick={() => scroll("right")}
-                  className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 rounded-full p-1 shadow-sm md:hidden"
-                  aria-label="Scroll tabs right"
-                >
-                  <ChevronRight className="h-4 w-4 text-gray-600" />
-                </button>
-
-                {/* CSS to hide scrollbar */}
-                <style jsx global>{`
-                  .scrollbar-hide::-webkit-scrollbar {
-                    display: none;
-                  }
-                `}</style>
               </div>
             </div>
-            <button className="px-6 py-2 mt-2 sm:mt-0 rounded-full border border-gray-200 text-purple-500 hover:bg-gray-50 w-full sm:w-auto">
+
+            <button className="hidden sm:block px-6 py-2 rounded-full border border-gray-200 text-purple-500 hover:bg-gray-50 w-full sm:w-auto">
               Save
             </button>
           </div>
-          <div className="flex flex-col lg:flex-row md:float-col">
+
+          <div className="flex flex-col lg:flex-row">
             {/* Left Sidebar - Applications List */}
-            <div className="w-full lg:w-[30%]  p-3">
-              <ApplicationsList />
+            <div className="w-full lg:w-[30%] p-3">
+              <ApplicationsList filter={activeTab} />
             </div>
             {/* Main Content - Job Details */}
             <div className="w-full lg:w-[70%] p-3">
@@ -635,9 +677,17 @@ const Job = () => {
             onClick={toggleSidebar}
           ></div>
         )}
+
+        {/* Overlay for filter dropdown */}
+        {showFilterDropdown && (
+          <div
+            className="fixed inset-0 bg-black bg-opacity-10 sm:hidden z-10"
+            onClick={() => setShowFilterDropdown(false)}
+          ></div>
+        )}
       </div>
     </>
-  );
-};
-
-export default Job;
+  )
+}
+  
+export default Job

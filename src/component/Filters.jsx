@@ -1,7 +1,7 @@
 const Filters = () => {
   return (
-    <aside className="w-full lg:w-[25%] xl:w-[25%]  bg-white p-4 sm:p-6 rounded-lg shadow-md overflow-hidden mt-12">
-      <h2 className="text-lg font-semibold mb-4">Filters</h2>
+    <aside className="w-full lg:w-[100%] xl:w-[100%]  bg-white p-4 sm:p-6 rounded-lg shadow-md overflow-hidden lg:mt-12  ">
+      <h2 className="text-lg font-semibold mb-4 hidden lg:block">Filters</h2>
 
       {/* Location Filter */}
       <div className="mb-6">

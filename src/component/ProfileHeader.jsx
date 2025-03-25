@@ -44,7 +44,7 @@ export function ProfileHeader({ name, role, avatarUrl }) {
             <div className="w-4 h-4 bg-purple-500 rounded-full" />
           </div>
         </div>
-        <div className="text-center sm:text-left">
+        <div className="text-center sm:text-left order-last">
           <h1 className="text-2xl font-semibold">{profileData.name}</h1>
           <p className="text-gray-600">{profileData.role}</p>
         </div>

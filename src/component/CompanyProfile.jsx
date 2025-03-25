@@ -398,7 +398,7 @@ function CompanyProfile() {
             <div className="relative bg-white overflow-hidden">
               <img
                 alt="Profile Background"
-                className="w-full h-auto object-cover object-center min-h-[12rem] sm:min-h-[16rem] md:min-h-[20rem] lg:min-h-[24rem] xl:min-h-[28rem] max-w-screen-lg mx-auto"
+                className="w-full h-auto object-cover object-center min-h-[12rem] sm:min-h-[16rem] md:min-h-[20rem] lg:min-h-[24rem] xl:min-h-[28rem] max-w-screen-lg mx-auto hidden md:block"
                 src="/static/media/g.af47b1fe0a2396978832.png"
               />
             </div>
@@ -408,7 +408,7 @@ function CompanyProfile() {
                   <div className="relative order-1 sm:order-none">
                     <img
                       alt="AnamoulRouf'sprofilepicture"
-                      className="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-4 border-white shadow-lg object-cover"
+                      className="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-4 border-white shadow-lg object-cover md:mt-4 "
                       src={img}
                     />
                     <div className="absolute bottom-0 right-0 w-6 h-6 bg-white rounded-full flex items-center justify-center">
@@ -416,7 +416,7 @@ function CompanyProfile() {
                     </div>
                   </div>
 
-                  <div className="text-center sm:text-left mt-auto mb-auto">
+                  <div className="text-center sm:text-left mt-auto mb-auto order-last">
                     <h1 className="text-2xl font-semibold">Nihar Gami</h1>
                     <p className="text-gray-600">Godhani Technology</p>
                   </div>
@@ -448,7 +448,7 @@ function CompanyProfile() {
               </div>
               {/* Overview,mission,vision code  */}
               <div className="rounded-lg p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 lg:pl-20 xl:pl-80 justify-center">
-                <div className="mb-8 ">
+                <div className=" ">
                   <div className="flex flex-row justify-between items-center mb-4 ">
                     <h2 className="text-2xl font-medium text-gray-900  ">
                       Company Industry

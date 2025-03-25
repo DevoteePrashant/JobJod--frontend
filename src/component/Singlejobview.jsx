@@ -9,7 +9,6 @@ import t4 from "../image/t4.png"
 import p1 from "../image/Notificationlogo1.png"
 import star from "../image/star.png"
 import tick from "../image/tick.png"
-import { Link } from "react-router-dom"
 import { Facebook, Linkedin, MoreVertical } from "lucide-react"
 
 const Singlejobview = () => {
@@ -17,6 +16,8 @@ const Singlejobview = () => {
   const [showShareMenu, setShowShareMenu] = useState(false)
   const menuRef = useRef(null)
   const [showJobDetails, setShowJobDetails] = useState(false)
+  const [isApplied, setIsApplied] = useState(false)
+  const [showCompanyPage, setShowCompanyPage] = useState(false)
 
   // Close the menu when clicking outside
   useEffect(() => {
@@ -56,7 +57,7 @@ const Singlejobview = () => {
     const title = encodeURIComponent("Product Designer")
     const summary = encodeURIComponent("Job opportunity at Grameenphone")
     window.open(
-      `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}&summary=${summary}`,
+      `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}&summary}`,
       "_blank"
     )
     setShowShareMenu(false)
@@ -66,11 +67,24 @@ const Singlejobview = () => {
     // Only toggle in mobile view
     if (window.innerWidth < 768) {
       setShowJobDetails(true)
+      setShowCompanyPage(false)
     }
   }
 
   const handleBackToList = () => {
     setShowJobDetails(false)
+    setShowCompanyPage(false)
+  }
+
+  const handleViewPageClick = e => {
+    // For mobile view, show the company page in the same view
+    if (window.innerWidth < 768) {
+      e.preventDefault()
+      setShowCompanyPage(true)
+      setShowJobDetails(false)
+    }
+    // For desktop view, just let the link open in a new tab naturally
+    // Don't prevent default behavior for desktop
   }
 
   return (
@@ -80,7 +94,7 @@ const Singlejobview = () => {
         {/* Left Side - Job Listings */}
         <div
           className={`w-full md:w-1/4 p-4 border-r-2 border-gray-200 ${
-            showJobDetails ? "hidden md:block" : "block"
+            showJobDetails || showCompanyPage ? "hidden md:block" : "block"
           }`}
         >
           <div className="text-xl font-semibold text-gray-700 mb-2 mx-6">
@@ -295,7 +309,7 @@ const Singlejobview = () => {
         {/* Right Side - Job Details */}
         <div
           className={`w-full md:w-3/4 p-6 ${
-            showJobDetails ? "block" : "hidden md:block"
+            showJobDetails && !showCompanyPage ? "block" : "hidden md:block"
           }`}
           style={{
             overflowY: "scroll",
@@ -348,20 +362,37 @@ const Singlejobview = () => {
               <h2 className="font-bold mt-2">Salary:25000-30000 INR</h2>
               <div className="flex items-center">
                 {/* <img src={tick || "/placeholder.svg"} alt="tick" className="mr-1 h-4 w-4" />
-            <span className="text-sm">Applied on 23 May 20</span> */}
+      <span className="text-sm">Applied on 23 May 20</span> */}
               </div>
             </div>
             <div className="flex items-center mt-4 md:mt-0">
-              <Link to="/Singlejobviews">
-                <button className="bg-purple-500 text-white rounded-xl px-6 py-2 text-sm font-medium mr-2">
-                  Apply Now
-                </button>
-              </Link>
-              <Link to="/Singlejobviews">
-                <button className="bg-black text-white rounded-xl px-5 py-2 text-sm font-medium">
-                  Save
-                </button>
-              </Link>
+              {!isApplied ? (
+                <>
+                  <button
+                    className="bg-purple-500 text-white rounded-xl px-6 py-2 text-sm font-medium mr-2"
+                    onClick={() => setIsApplied(true)}
+                  >
+                    Apply Now
+                  </button>
+                  <button
+                    className="bg-black text-white rounded-xl px-5 py-2 text-sm font-medium"
+                    onClick={() => setIsApplied(true)}
+                  >
+                    Save
+                  </button>
+                </>
+              ) : (
+                <div className="flex items-center">
+                  <img
+                    src={tick || "/placeholder.svg"}
+                    alt="tick"
+                    className="mr-2 h-4 w-4"
+                  />
+                  <span className="text-sm font-semibold">
+                    Applied on 23 May 20
+                  </span>
+                </div>
+              )}
               <div className="relative ml-2" ref={menuRef}>
                 <button
                   className="text-gray-500 p-1 rounded-full hover:bg-gray-100"
@@ -423,8 +454,8 @@ const Singlejobview = () => {
               </div>
             </div>
             {/* <button className="ml-auto text-purple-400 rounded-md px-4 py-2 text-sm font-bold">
-            Send Message
-          </button> */}
+      Send Message
+    </button> */}
           </div>
           {/* Responsibilities */}
           <div className="mt-6">
@@ -502,7 +533,7 @@ const Singlejobview = () => {
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div className="flex items-start md:items-center gap-2">
                 <img
-                  src={t1}
+                  src={t1 || "/placeholder.svg"}
                   alt="Company Logo"
                   className="w-8 h-8 rounded-full mt-1 md:mt-0"
                 />
@@ -519,12 +550,15 @@ const Singlejobview = () => {
                 </div>
               </div>
 
-              <Link
+              <a
                 href="##"
                 className="text-purple-400 text-sm font-bold md:self-start"
+                onClick={handleViewPageClick}
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 View Page
-              </Link>
+              </a>
             </div>
 
             <div className="mt-3 md:mt-2">
@@ -537,6 +571,214 @@ const Singlejobview = () => {
                   {expanded ? "see less" : "see more"}
                 </button>
               </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Company Page View (for mobile) */}
+        <div
+          className={`w-full md:w-3/4 p-6 ${
+            showCompanyPage ? "block" : "hidden"
+          }`}
+          style={{
+            overflowY: "scroll",
+            maxHeight: "100vh",
+            msOverflowStyle: "none",
+            scrollbarWidth: "none"
+          }}
+        >
+          {/* Back button for company page view */}
+          <button
+            className="mb-4 flex items-center text-gray-600"
+            onClick={handleBackToList}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 mr-1"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L4.414 9H17a1 1 0 110 2H4.414l5.293 5.293a1 1 0 010 1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
+            Back to jobs
+          </button>
+
+          {/* Company Page Content */}
+          <div className="flex items-center gap-4 mb-6">
+            <img
+              src={t1 || "/placeholder.svg"}
+              alt="Company Logo"
+              className="w-16 h-16 rounded-xl"
+            />
+            <div>
+              <h2 className="text-2xl font-semibold text-gray-800">
+                Grameenphone Ltd.
+              </h2>
+              <div className="text-sm text-gray-600">
+                Telecommunications | Dhaka, Bangladesh
+              </div>
+              <div className="text-xs text-gray-500 mt-1">
+                <span className="text-green-500 font-semibold">
+                  Actively Hiring
+                </span>{" "}
+                • 6,424 employees
+              </div>
+            </div>
+          </div>
+
+          <div className="grid gap-6">
+            <div>
+              <h3 className="text-lg font-semibold text-gray-700 mb-2">
+                About the Company
+              </h3>
+              <p className="text-sm text-gray-600">
+                {description}
+                <br />
+                <br />
+                Grameenphone is the leading telecommunications service provider
+                in Bangladesh with more than 76 million subscribers. The company
+                started its journey in March 1997 and has been at the forefront
+                of technological innovation in the country's mobile
+                telecommunications industry.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold text-gray-700 mb-2">
+                Open Positions
+              </h3>
+              <div className="grid gap-4">
+                <div className="border rounded-lg p-4 hover:bg-gray-50">
+                  <div className="text-md font-medium text-gray-800">
+                    Product Designer
+                  </div>
+                  <div className="text-sm text-gray-600 mt-1">
+                    Dhaka, Bangladesh • Full-time
+                  </div>
+                  <div className="text-xs text-gray-500 mt-1">
+                    Posted on 15 May 20 • 25,000-30,000 INR
+                  </div>
+                </div>
+
+                <div className="border rounded-lg p-4 hover:bg-gray-50">
+                  <div className="text-md font-medium text-gray-800">
+                    UX Researcher
+                  </div>
+                  <div className="text-sm text-gray-600 mt-1">
+                    Dhaka, Bangladesh • Full-time
+                  </div>
+                  <div className="text-xs text-gray-500 mt-1">
+                    Posted on 18 May 20 • 22,000-28,000 INR
+                  </div>
+                </div>
+
+                <div className="border rounded-lg p-4 hover:bg-gray-50">
+                  <div className="text-md font-medium text-gray-800">
+                    Frontend Developer
+                  </div>
+                  <div className="text-sm text-gray-600 mt-1">
+                    Dhaka, Bangladesh • Full-time
+                  </div>
+                  <div className="text-xs text-gray-500 mt-1">
+                    Posted on 20 May 20 • 30,000-40,000 INR
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold text-gray-700 mb-2">
+                Company Benefits
+              </h3>
+              <div className="grid grid-cols-2 gap-3 text-sm">
+                <div className="flex items-center">
+                  <svg
+                    className="w-5 h-5 mr-2 text-green-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  Health Insurance
+                </div>
+                <div className="flex items-center">
+                  <svg
+                    className="w-5 h-5 mr-2 text-green-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  Paid Time Off
+                </div>
+                <div className="flex items-center">
+                  <svg
+                    className="w-5 h-5 mr-2 text-green-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  Flexible Hours
+                </div>
+                <div className="flex items-center">
+                  <svg
+                    className="w-5 h-5 mr-2 text-green-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  Professional Development
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold text-gray-700 mb-2">
+                Contact Information
+              </h3>
+              <div className="text-sm text-gray-600">
+                <p>Website: www.grameenphone.com</p>
+                <p>Email: careers@grameenphone.com</p>
+                <p>Phone: +880 2 9882990</p>
+                <p>
+                  Address: GP House, Bashundhara, Baridhara, Dhaka-1229,
+                  Bangladesh
+                </p>
+              </div>
             </div>
           </div>
         </div>

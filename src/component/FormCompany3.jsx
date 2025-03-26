@@ -1,10 +1,28 @@
 "use client"
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { ChevronLeft, Trash2 } from "lucide-react"
 import { Link } from "react-router-dom"
 import Dheader3 from "./Dheader3"
 
+import SearchableDropdown from "./searchabledropdownupdated"
+
 export default function FormCompany3() {
+  const [CompanyName, setCompanyNames] = useState("Tech Innovations Ltd.")
+
+  const CompanyNames = [
+    "Tech Innovations Ltd.",
+    "Global Solutions Inc.",
+    "Pioneer Software",
+    "NextGen Technologies",
+    "Elite Web Services",
+    "Future Vision Corp.",
+    "Summit IT Solutions",
+    "Infinity Systems",
+    "Skyline Enterprises",
+    "Blue Ocean Technologies",
+    "Vertex Solutions"
+  ]
+
   // Initialize with one empty form
   const [recognitions, setRecognitions] = useState([
     {
@@ -17,6 +35,9 @@ export default function FormCompany3() {
   ])
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const formContainerRef = useRef(null)
+  const lastFormRef = useRef(null)
 
   const handleChange = (id, field, value) => {
     setRecognitions(prev =>
@@ -39,16 +60,24 @@ export default function FormCompany3() {
 
   const handleAddMore = () => {
     // Add a new empty form entry
+    const newId = crypto.randomUUID()
     setRecognitions(prev => [
       ...prev,
       {
-        id: crypto.randomUUID(),
+        id: newId,
         title: "",
         achievementDate: "",
         from: "",
         description: ""
       }
     ])
+
+    // Scroll to the new form after state update
+    setTimeout(() => {
+      if (lastFormRef.current) {
+        lastFormRef.current.scrollIntoView({ behavior: "smooth" })
+      }
+    }, 100)
   }
 
   const handleRemove = id => {
@@ -61,7 +90,7 @@ export default function FormCompany3() {
   return (
     <>
       <Dheader3 />
-      <div className="min-h-screen relative flex items-center justify-center p-4 bg-gradient-to-r from-purple-100 via-white to-purple-50">
+      <div className="min-h-screen relative flex items-center justify-center p-4 bg-gradient-to-r from-purple-100 via-white to-purple-50 ">
         {/* Background Pattern */}
         <div className="absolute inset-0 w-full h-full">
           <img
@@ -85,7 +114,11 @@ export default function FormCompany3() {
           </div>
 
           {/* Form Container - Fixed height for desktop, auto height for mobile */}
-          <div className="w-full bg-white rounded-xl md:rounded-3xl shadow-sm p-4 md:p-8 border border-gray-100 md:overflow-y-auto">
+          <div
+            ref={formContainerRef}
+            className="w-full bg-white rounded-xl md:rounded-3xl shadow-sm p-4 md:p-8 border border-gray-100 md:overflow-y-auto"
+            style={{ maxHeight: "70vh" }}
+          >
             {/* Header with back button */}
             <div className="flex items-center mb-4 md:mb-8">
               <Link to="/FormCompany2">
@@ -105,6 +138,7 @@ export default function FormCompany3() {
               {recognitions.map((recognition, index) => (
                 <div
                   key={recognition.id}
+                  ref={index === recognitions.length - 1 ? lastFormRef : null}
                   className={`${
                     index > 0 ? "mt-8 pt-6 border-t border-gray-200" : ""
                   }`}
@@ -126,20 +160,30 @@ export default function FormCompany3() {
 
                   {/* Title */}
                   <div className="mb-4 md:mb-6">
-                    <label
-                      htmlFor={`title-${recognition.id}`}
-                      className="block text-sm font-medium text-gray-700 mb-1"
-                    >
-                      Title
-                    </label>
-                    <input
-                      type="text"
-                      id={`title-${recognition.id}`}
-                      value={recognition.title}
-                      onChange={e =>
-                        handleChange(recognition.id, "title", e.target.value)
-                      }
-                      className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none"
+                    {/* <label
+                    htmlFor={`title-${recognition.id}`}
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Title
+                  </label>
+                  <input
+                    type="text"
+                    id={`title-${recognition.id}`}
+                    value={recognition.title}
+                    onChange={e =>
+                      handleChange(recognition.id, "title", e.target.value)
+                    }
+                    className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none"
+                  /> */}
+
+                    <SearchableDropdown
+                      label=" Title"
+                      placeholder="Title"
+                      options={CompanyNames}
+                      value={CompanyName}
+                      onChange={setCompanyNames}
+                      allowAddNew={true}
+                      allowDirectEdit={true}
                     />
                   </div>
 
@@ -215,7 +259,7 @@ export default function FormCompany3() {
               ))}
 
               {/* Bottom Buttons */}
-              <div className="flex flex-wrap flex-col md:flex-row justify-end items-center gap-2 md:gap-4 mt-6">
+              <div className="flex flex-wrap flex-col md:flex-row justify-end items-center gap-2 md:gap-4 mt-6 sm:mb-3 ">
                 <Link to="/FormCompany4">
                   <button
                     type="button"
@@ -236,7 +280,7 @@ export default function FormCompany3() {
                 <Link to="/FormCompany4">
                   <button
                     type="submit"
-                    className="bg-purple-500 hover:bg-purple-600 text-white px-4 md:px-6 py-2 md:py-3 rounded-full text-sm md:text-base font-medium"
+                    className="bg-purple-500 hover:bg-purple-600 text-white px-4 md:px-6 py-2 md:py-3  rounded-full text-sm md:text-base  font-medium"
                   >
                     Save & Next
                   </button>

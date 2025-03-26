@@ -5,7 +5,8 @@ const navItems = [
   { icon: Briefcase, label: "Experiences" },
   { icon: Award, label: "Education" },
   { icon: Crown, label: "Skills" },
-  { icon: FileText, label: "Attachments" },
+  { icon: FileText, label: "Resume & Links" },
+  { icon: FileText, label: "Job Preference" }
 ];
 
 export function ProfileSidebar({ name, role, avatarUrl }) {

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import React, { useEffect, useRef } from 'react'
 import logo2 from "../image/logo2.png";
 import Dheader3 from "./Dheader3"
+import SearchableDropdown from "./searchabledropdownupdated"
 
 // import Header from "./Header"
 
@@ -30,6 +31,22 @@ export default function FormCompany2() {
     console.log("Skipped to next step")
     // Handle skip logic here
   }
+
+  const industries = [
+    "Software Development",
+    "Data Science",
+    "Product Design",
+    "Digital Marketing",
+    "Customer Service",
+    "Sales & Business",
+    "Healthcare & Medical",
+    "Finance & Accounting",
+    "Education & Training",
+    "Engineering",
+  ]
+
+  
+      const [industry, setIndustry] = useState("Software Development");
 
   return (
     <>
@@ -80,8 +97,16 @@ export default function FormCompany2() {
             <form onSubmit={handleSubmit}>
               {/* Company Industry */}
             <div className="mb-6 md:mb-8">
-                   <label htmlFor="degree"className="block text-sm font-medium text-gray-700 mb-1">Company Industry</label>
-                  <input type="text" id="company"name="company" className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none text-sm md:text-base"/>
+                    <SearchableDropdown
+                           label="Company Industry"
+                           placeholder="Search industry..."
+                           options={industries}
+                           value={industry}
+                           onChange={setIndustry}
+                           allowAddNew={true}
+                           allowDirectEdit={true}
+                         />
+                 
               </div>
               {/* Overview */}
               <div className="mb-6 md:mb-8">

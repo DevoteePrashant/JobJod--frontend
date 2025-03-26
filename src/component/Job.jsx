@@ -7,11 +7,19 @@ import { ChevronDown, ChevronLeft, ChevronRight, Filter } from "lucide-react"
 import { RxDashboard } from "react-icons/rx"
 import image2 from "../image/profile.jpg"
 import t4 from "../image/t4.png"
+import t1 from "../image/t1.png"
+import t2 from "../image/t2.png"
+import t3 from "../image/t3.png"
+import close from "../image/close-circle.png"
+import crown from "../image/crown.png"
+import List from "../image/List-list.png"
+import tick from "../image/tick.png"
+import star from "../image/star.png"
 import Jobseekerheader from "./Jobseekerheader"
 import { IoMail } from "react-icons/io5"
 import { LiaShareAltSolid } from "react-icons/lia"
 import { TfiMoreAlt } from "react-icons/tfi"
-import tick from "../image/tick.png"
+
 
 // Utility function for conditional classNames
 export const cn = (...classes) => classes.filter(Boolean).join(" ")
@@ -300,7 +308,8 @@ const ApplicationsList = ({ filter = "All Jobs" }) => {
       logoColor: "bg-blue-400",
       statusColor: "text-green-500",
       statusIcon: "✓",
-      img: t4
+      img: tick,
+      img2: t1
     },
     {
       id: 2,
@@ -312,7 +321,8 @@ const ApplicationsList = ({ filter = "All Jobs" }) => {
       logoColor: "bg-orange-400",
       statusColor: "text-blue-500",
       statusIcon: "✓",
-      img: t4
+      img: List,
+      img2: t2
     },
     {
       id: 3,
@@ -323,7 +333,8 @@ const ApplicationsList = ({ filter = "All Jobs" }) => {
       logoColor: "bg-blue-500",
       statusColor: "text-blue-600",
       statusIcon: "👑",
-      img: t4
+      img: crown,
+      img2: t3
     },
     {
       id: 4,
@@ -334,7 +345,8 @@ const ApplicationsList = ({ filter = "All Jobs" }) => {
       logoColor: "bg-pink-500",
       statusColor: "text-purple-500",
       statusIcon: "👤",
-      img: t4
+      img: star,
+      img2: t4
     },
     {
       id: 5,
@@ -345,7 +357,8 @@ const ApplicationsList = ({ filter = "All Jobs" }) => {
       logoColor: "bg-blue-400",
       statusColor: "text-red-500",
       statusIcon: "✕",
-      img: t4
+      img: close,
+      img2: t1
     }
   ]
 
@@ -362,9 +375,9 @@ const ApplicationsList = ({ filter = "All Jobs" }) => {
           key={app.id}
           className="flex items-center p-2 rounded-xl bg-purple-50"
         >
-          <img src={t4 || "/placeholder.svg"} alt="icons" />
+          <img src={app.img2 || "/placeholder.svg"} alt="icons" />
 
-          <div className="flex-1 min-w-0">
+          <div className="flex-1 min-w-0 ps-2">
             <h3 className="font-semibold truncate">{app.title}</h3>
             <p className="text-sm text-gray-600 truncate">
               {app.company} · {app.location}
@@ -373,7 +386,7 @@ const ApplicationsList = ({ filter = "All Jobs" }) => {
               <img
                 src={app.img || "/placeholder.svg"}
                 alt=""
-                width={"34px"}
+                // width={"16px"}
                 srcset=""
               />
               <span

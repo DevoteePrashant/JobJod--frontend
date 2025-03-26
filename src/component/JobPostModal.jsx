@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import SearchableDropdown from "./searchabledropdownupdated"
 
 
+
 export default function JobPostModal({ isOpen, onClose , options = [] , label = "Select an option",
     placeholder = "Type to search...", 
     value = "",
@@ -14,7 +15,7 @@ export default function JobPostModal({ isOpen, onClose , options = [] , label = 
   const [industry, setIndustry] = useState("Software Development");
   const [location, setLocation] = useState("Atlanta");
   const [department, setDepartment] = useState("")
-
+  const [Interview, setInterview] = useState("John Doe");
 
   const [joiningDate, setJoiningDate] = useState("")
   const [noticePeriod, setNoticePeriod] = useState("")
@@ -63,6 +64,11 @@ const [jobDescription, setJobDescription] = useState(""); // ✅ Stores job desc
 
 const [newSkill, setNewSkill] = useState("");
 const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const [selectedPersons, setSelectedPersons] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
+
 const jobTitleOptions = [
     { value: "software-engineer", label: "Software Engineer", group: "Technology" },
     { value: "frontend-developer", label: "Frontend Developer", group: "Technology" },
@@ -105,19 +111,22 @@ const jobTitleOptions = [
     "Operations",
     "Research",
   ]
-  const InterviewPerson = [
-    "John Doe",
-    "Jane Smith",
-    "Michael Johnson",
-    "Emily Davis",
-    "David Wilson",
-    "Sarah Brown",
-    "James Anderson",
-    "Jessica Martinez",
-    "Robert Taylor",
-    "Laura Thomas",
-    "Daniel White"
+  const InterviewPersons = [
+    { name: "John Doe"  },
+    { name: "Jane Smith"  },
+    { name: "Michael Johnson" },
+    { name: "Emily Davis"  },
+    { name: "David Wilson"  },
+    { name: "Sarah Brown"  },
+    { name: "James Anderson" },
+    { name: "Jessica Martinez"  },
+    { name: "Robert Taylor"  },
+    { name: "Laura Thomas"  },
+    { name: "Daniel White"  },
   ];
+
+
+  
   
   const locations = [ 
     "New York",
@@ -246,39 +255,49 @@ const removeSkill = index => {
 }
 
 // Toggle dropdown visibility
-const toggleDropdown = dropdown => {
-  switch (dropdown) {
-    case "experience":
-      setShowTotalExpDropdown(!showTotalExpDropdown)
-      setShowQualificationDropdown(false)
-      setShowEnglishDropdown(false)
-      setShowGenderDropdown(false)
-      break
-    case "qualification":
-      setShowQualificationDropdown(!showQualificationDropdown)
-      setShowTotalExpDropdown(false)
-      setShowEnglishDropdown(false)
-      setShowGenderDropdown(false)
-      break
-    case "english":
-      setShowEnglishDropdown(!showEnglishDropdown)
-      setShowTotalExpDropdown(false)
-      setShowQualificationDropdown(false)
-      setShowGenderDropdown(false)
-      break
-    case "gender":
-      setShowGenderDropdown(!showGenderDropdown)
-      setShowTotalExpDropdown(false)
-      setShowQualificationDropdown(false)
-      setShowEnglishDropdown(false)
-      break
-    default:
-      setShowTotalExpDropdown(false)
-      setShowQualificationDropdown(false)
-      setShowEnglishDropdown(false)
-      setShowGenderDropdown(false)
+// const toggleDropdown = dropdown => {
+//   switch (dropdown) {
+//     case "experience":
+//       setShowTotalExpDropdown(!showTotalExpDropdown)
+//       setShowQualificationDropdown(false)
+//       setShowEnglishDropdown(false)
+//       setShowGenderDropdown(false)
+//       break
+//     case "qualification":
+//       setShowQualificationDropdown(!showQualificationDropdown)
+//       setShowTotalExpDropdown(false)
+//       setShowEnglishDropdown(false)
+//       setShowGenderDropdown(false)
+//       break
+//     case "english":
+//       setShowEnglishDropdown(!showEnglishDropdown)
+//       setShowTotalExpDropdown(false)
+//       setShowQualificationDropdown(false)
+//       setShowGenderDropdown(false)
+//       break
+//     case "gender":
+//       setShowGenderDropdown(!showGenderDropdown)
+//       setShowTotalExpDropdown(false)
+//       setShowQualificationDropdown(false)
+//       setShowEnglishDropdown(false)
+//       break
+//     default:
+//       setShowTotalExpDropdown(false)
+//       setShowQualificationDropdown(false)
+//       setShowEnglishDropdown(false)
+//       setShowGenderDropdown(false)
+//   }
+// }
+
+const toggleDropdown = (field) => {
+  if (field === "experience") {
+    setShowTotalExpDropdown(!showTotalExpDropdown);
+  } else if (field === "qualification") {
+    setShowQualificationDropdown(!showQualificationDropdown);
+  } else if (field === "english") {
+    setShowEnglishDropdown(!showEnglishDropdown);
   }
-}
+};
 
 
   // Close dropdown when clicking outside
@@ -350,12 +369,19 @@ const handleCancelClose = () => {
  const filteredOptions2 =
     query === "" ? options : options.filter((option) => option.toLowerCase().includes(query.toLowerCase()))
 
-  const handleSelect = (option) => {
-    onChange(option)
-    setQuery("")
-    setIsAddingNew(false)
-    setNewOption("")
-  }
+    const handleSelect = (field, value) => {
+      if (field === "experience") {
+        setTotalExperience(value);
+        setShowTotalExpDropdown(false); // Close dropdown
+      } else if (field === "qualification") {
+        setQualification(value);
+        setShowQualificationDropdown(false); // Close dropdown
+      } else if (field === "english") {
+        setEnglishLevel(value);
+        setShowEnglishDropdown(false); // Close dropdown
+      }
+    };
+    
 
   const handleAddNewOption = () => {
     if (newOption && !options.includes(newOption)) {
@@ -365,6 +391,28 @@ const handleCancelClose = () => {
       setNewOption("")
     }
   }
+  
+  
+  
+    // Filter options based on input
+    const filteredPersons = InterviewPersons.filter(
+      (person) =>
+        !selectedPersons.some((p) => p.name === person.name) &&
+        person.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  
+    // Add selected person
+    const handleAddPerson = (person) => {
+      setSelectedPersons([...selectedPersons, person]);
+      setSearchTerm("");
+      setIsDropdownOpen(false);
+    };
+  
+    // Remove person
+    const handleRemovePerson = (index) => {
+      setSelectedPersons(selectedPersons.filter((_, i) => i !== index));
+    };
+
 
 
   return (
@@ -412,15 +460,64 @@ const handleCancelClose = () => {
          {/* Interview Person Name */}
                 <div>
                   <div className="relative">
-                  <SearchableDropdown
-          label="Interview Person Name"
-          placeholder="Search industry..."
-          options={InterviewPerson}
-          value={industry}
-          onChange={setIndustry}
-          allowAddNew={true}
-          allowDirectEdit={true}
-        />
+             <div>
+                                            <div className="w-full">
+                   <label className="block text-sm font-medium text-gray-700 mb-1">
+                     Select Interview Persons
+                   </label>
+             
+                   {/* Input and Dropdown */}
+                   <div className="relative" ref={dropdownRef}>
+                     <div className="flex items-center border-b border-gray-300">
+                       <input
+                         type="text"
+                         value={searchTerm}
+                         onChange={(e) => {
+                           setSearchTerm(e.target.value);
+                           setIsDropdownOpen(true);
+                         }}
+                         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                         className="w-full pb-2 focus:outline-none focus:border-purple-500"
+                         placeholder="Type to add interview persons..."
+                       />
+                       <ChevronDown className="h-5 w-5 text-gray-400 cursor-pointer" />
+                     </div>
+             
+                     {/* Dropdown with Suggestions */}
+                     {isDropdownOpen && filteredPersons.length > 0 && (
+  <ul className="absolute w-full bg-white border border-gray-300 mt-1 rounded-md shadow-lg z-50 max-h-40 overflow-auto">
+    {filteredPersons.map((person, index) => (
+      <li
+        key={index}
+        className="p-2 cursor-pointer hover:bg-gray-200 flex items-center gap-2"
+        onClick={() => handleAddPerson(person)}
+      >
+        {person.name}
+      </li>
+    ))}
+  </ul>
+)}
+
+                   </div>
+             
+                   {/* Display Selected Persons */}
+                   <div className="mt-2 flex flex-wrap gap-2">
+                     {selectedPersons.map((person, index) => (
+                       <span
+                         key={index}
+                         className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full flex items-center gap-2 border border-purple-300"
+                       >
+                        
+                         {person.name}
+                         <X
+                           className="h-4 w-4 text-purple-600 cursor-pointer"
+                           onClick={() => handleRemovePerson(index)}
+                         />
+                       </span>
+                     ))}
+                   </div>
+                 </div>
+                                            </div>
                   </div>
                 </div>
 
@@ -553,7 +650,7 @@ const handleCancelClose = () => {
       <div className="relative">
         <label className="block text-sm font-medium text-gray-700 ">Total Experience</label>
         <div
-          className="flex justify-between items-center border-b border-gray-300 pb-2 cursor-pointer"
+          className="flex justify-between items-center border-b border-gray-300 pb-2 cursor-pointer "
           onClick={() => toggleDropdown("experience")}
         >
           <span className="text-sm">{totalExperience || "Total Experience of Candidate"}</span>
@@ -783,9 +880,8 @@ const handleCancelClose = () => {
         label="Gender"
         options={genderOptions}
         value={gender}
-        onChange={value =>
-          setGender(typeof value === "object" ? value.value : value)
-        }
+        // onChange={setGender}
+        onChange={(selected) => setGender(selected)}
         placeholder="Select gender"
       />
 
@@ -798,7 +894,8 @@ const handleCancelClose = () => {
           placeholder="Locations"
           options={locations}
           value={location}
-          onChange={setLocation}
+          // onChange={setLocation}
+          onChange={(selected) => setLocation(selected)}
           allowAddNew={true}
           allowDirectEdit={true}
         />
@@ -962,23 +1059,23 @@ const handleCancelClose = () => {
           </div>
         </div>
 
-        {/* Action Buttons */}
-        <div className="flex justify-end gap-4 pt-6">
-          <button
-            type="button"
-            className="px-6 py-2.5 rounded-full bg-[#FF9776] text-white transition-colors text-sm font-medium"
-            onClick={handleCancel}
-          >
-            Cancel
-          </button>
-          <button
-            type="button"
-            className="px-6 py-2.5 rounded-full bg-purple-500 text-white hover:bg-purple-600 transition-colors text-sm font-medium"
-            onClick={goToNextStep}
-          >
-            Save & Next
-          </button>
-        </div>
+         {/* Action buttons */}
+         <div className="flex justify-end gap-4 pt-6">
+                        <button
+                          type="button"
+                          className="px-8 py-2.5 rounded-full bg-[#FF9776] text-white transition-colors text-sm font-medium"
+                          onClick={handleCancel}
+                        >
+                          Cancel
+                        </button>
+                        <button
+                          type="button"
+                          className="px-8 py-2.5 rounded-full bg-purple-500 text-white hover:bg-purple-600 transition-colors text-sm font-medium"
+                          onClick={goToNextStep}
+                        >
+                          Next
+                        </button>
+                      </div>
       </form>
     </div>
   </div>
@@ -1066,22 +1163,23 @@ const handleCancelClose = () => {
       </div>
 
       {/* Navigation Buttons */}
-      <div className="flex justify-end gap-4 pt-6">
-        <button
-          type="button"
-          className="px-6 py-2.5 rounded-full bg-[#FF9776] text-white transition-colors text-sm font-medium"
-          onClick={handleCancel}
-        >
-          Cancel
-        </button>
-        <button
-          type="button"
-          className="px-6 py-2.5 rounded-full bg-purple-500 text-white hover:bg-purple-600 transition-colors text-sm font-medium"
-          onClick={goToNextStep}
-        >
-          Save & Next
-        </button>
-      </div>
+        {/* Action buttons */}
+        <div className="flex justify-end gap-4 pt-6">
+                        <button
+                          type="button"
+                          className="px-8 py-2.5 rounded-full bg-[#FF9776] text-white transition-colors text-sm font-medium"
+                          onClick={handleCancel}
+                        >
+                          Cancel
+                        </button>
+                        <button
+                          type="button"
+                          className="px-8 py-2.5 rounded-full bg-purple-500 text-white hover:bg-purple-600 transition-colors text-sm font-medium"
+                          onClick={goToNextStep}
+                        >
+                          Next
+                        </button>
+                      </div>
     </form>
   </div>
 </div>

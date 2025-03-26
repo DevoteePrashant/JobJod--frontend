@@ -1,19 +1,95 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import logo2 from "../image/logo2.png";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import Dheader3 from "./Dheader3";
+import SearchableDropdown from "./searchabledropdownupdated"
+import { ChevronDown, X } from "lucide-react";
 
-export default function FormCompany() {
+export default function FormCompany({skillOptions }) {
+  const [newSkill, setNewSkill] = useState("");
+  const [skills, setSkills] = useState([]); // Stores selected skills
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const [selectedPersons, setSelectedPersons] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
+
+    
+
+  const InterviewPersons = [
+    { name: "John Doe"  },
+    { name: "Jane Smith"  },
+    { name: "Michael Johnson" },
+    { name: "Emily Davis"  },
+    { name: "David Wilson"  },
+    { name: "Sarah Brown"  },
+    { name: "James Anderson" },
+    { name: "Jessica Martinez"  },
+    { name: "Robert Taylor"  },
+    { name: "Laura Thomas"  },
+    { name: "Daniel White"  },
+  ];
+
+
+  
+  const CompanyNames = [
+    "Tech Innovations Ltd.",
+    "Global Solutions Inc.",
+    "Pioneer Software",
+    "NextGen Technologies",
+    "Elite Web Services",
+    "Future Vision Corp.",
+    "Summit IT Solutions",
+    "Infinity Systems",
+    "Skyline Enterprises",
+    "Blue Ocean Technologies",
+    "Vertex Solutions"
+  ];
+  
+
+
+  
+
+  
+    // Filter options based on input
+    const filteredPersons = InterviewPersons.filter(
+      (person) =>
+        !selectedPersons.some((p) => p.name === person.name) &&
+        person.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  
+    // Add selected person
+    const handleAddPerson = (person) => {
+      setSelectedPersons([...selectedPersons, person]);
+      setSearchTerm("");
+      setIsDropdownOpen(false);
+    };
+  
+    // Remove person
+    const handleRemovePerson = (index) => {
+      setSelectedPersons(selectedPersons.filter((_, i) => i !== index));
+    };
+
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
     emailAddress: "",
+    pincode: "",
     location: "",
     gender: "",
     mobileNumber: "",
     dateOfBirth: "",
+    yearEstablished:" ",
   });
+
+  
+    const [industry, setIndustry] = useState("Software Development");
+    const [Interview, setInterview] = useState("John Doe");
+    const [CompanyName, setCompanyNames] = useState("Tech Innovations Ltd.");
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -68,7 +144,7 @@ export default function FormCompany() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 md:gap-x-8 gap-y-4 md:gap-y-6">
                   {/* Company Name */}
                   <div>
-                    <label
+                    {/* <label
                       htmlFor="companyName"
                       className="block text-sm font-medium text-gray-700 mb-1"
                     >
@@ -81,27 +157,78 @@ export default function FormCompany() {
                       value={formData.companyName}
                       onChange={handleChange}
                       className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none"
-                    />
+                    /> */}
+                       <SearchableDropdown
+          label="company Name"
+          placeholder="company Name"
+          options={CompanyNames}
+          value={CompanyName}
+          onChange={setCompanyNames}
+          allowAddNew={true}
+          allowDirectEdit={true}
+        />
                   </div>
 
                   {/* Interview Person's Name */}
-                  <div>
-                    <label
-                      htmlFor="interviewPersonName"
-                      className="block text-sm font-medium text-gray-700 mb-1"
-                    >
-                      Interview Persons Name
-                    </label>
-                    <input
-                      type="text"
-                      id="interviewPersonName"
-                      name="interviewPersonName"
-                      value={formData.interviewPersonName}
-                      onChange={handleChange}
-                      className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none"
-                    />
-                  </div>
+                    {/* Interview Person Name */}
+                               <div>
+                               <div className="w-full">
+      <label className="block text-sm font-medium text-gray-700 mb-1">
+        Select Interview Persons
+      </label>
 
+      {/* Input and Dropdown */}
+      <div className="relative" ref={dropdownRef}>
+        <div className="flex items-center border-b border-gray-300">
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              setIsDropdownOpen(true);
+            }}
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            className="w-full pb-2 focus:outline-none focus:border-purple-500"
+            placeholder="Type to add interview persons..."
+          />
+          <ChevronDown className="h-5 w-5 text-gray-400 cursor-pointer" />
+        </div>
+
+        {/* Dropdown with Suggestions */}
+        {isDropdownOpen && filteredPersons.length > 0 && (
+          <ul className="absolute w-full bg-white border border-gray-300 mt-1 rounded-md shadow-lg max-h-40 z-100 overflow-auto">
+            {filteredPersons.map((person, index) => (
+              <li
+                key={index}
+                className="p-2 cursor-pointer hover:bg-gray-200 flex items-center  z-100 gap-2"
+                onClick={() => handleAddPerson(person)}
+              >
+               
+                {person.name}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      {/* Display Selected Persons */}
+      <div className="mt-2 flex flex-wrap  z-100 gap-2">
+        {selectedPersons.map((person, index) => (
+          <span
+            key={index}
+            className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full flex items-center  z-100 gap-2 border border-purple-300"
+          >
+           
+            {person.name}
+            <X
+              className="h-4 w-4 text-purple-600 cursor-pointer"
+              onClick={() => handleRemovePerson(index)}
+            />
+          </span>
+        ))}
+      </div>
+    </div>
+                               </div>
                   {/* Email Address */}
                   <div>
                     <label
@@ -150,7 +277,7 @@ export default function FormCompany() {
                       type="text"
                       id="location"
                       name="location"
-                      value={formData.location}
+                      value={formData.location2}
                       onChange={handleChange}
                       className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none"
                     />
@@ -165,14 +292,32 @@ export default function FormCompany() {
                       Year Established
                     </label>
                     <div className="relative">
-                      <input
-                        type="date"
-                        id="yearEstablished"
-                        name="yearEstablished"
-                        value={formData.yearEstablished}
-                        onChange={handleChange}
-                        className="w-full border-b border-gray-300 pb-2 pr-8 focus:border-purple-500 focus:outline-none"
-                      />
+                    <input
+  type="text"
+  id="yearEstablished"
+  name="yearEstablished"
+  value={formData.yearEstablished} // Ensure it's never undefined
+  onChange={(e) => {
+    let value = e.target.value.replace(/\D/g, ''); // Remove non-digits
+
+    // Allow empty input
+    if (value === '') {
+      setFormData((prev) => ({ ...prev, yearEstablished: '' }));
+      return;
+    }
+
+    // Allow input up to 4 digits
+    if (value.length > 4) return;
+
+    // Update state immediately for partial values
+    setFormData((prev) => ({ ...prev, yearEstablished: value }));
+  }}
+  placeholder="yyyy"
+  maxLength="4"
+  className="w-full border-b border-gray-300 pb-2 pr-8 focus:border-purple-500 focus:outline-none"
+/>
+
+
                     </div>
                     {/* <div className={`w-full max-w-md ${className || ""}`}>
       <div className="relative">
@@ -238,22 +383,39 @@ export default function FormCompany() {
                       Pincode
                     </label>
                     <input
-                      type="text"
-                      id="pincode"
-                      name="pincode"
-                      value={formData.location}
-                      onChange={handleChange}
-                      className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none"
-                    />
+  type="text"
+  id="pincode"
+  name="pincode"
+  value={formData.pincode}
+  onChange={(e) => {
+    let value = e.target.value.replace(/\D/g, ""); // Remove non-digits
+
+    // Allow empty input
+    if (value === "") {
+      setFormData((prev) => ({ ...prev, pincode: "" }));
+      return;
+    }
+
+    // Restrict to 6 digits (typical pincode length)
+    if (value.length > 6) return;
+
+    // Update state
+    setFormData((prev) => ({ ...prev, pincode: value }));
+  }}
+  className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none"
+/>
+
+
+                    
                   </div>
                 </div>
               </div>
 
               {/* Save & Next Button */}
-              <div className="flex flex-col md:flex-row justify-end items-center gap-2 md:gap-4 mt-8 md:mt-12">
+              <div className="flex flex-col md:flex-row justify-end items-center gap-2 md:gap-4 mb-3 mt-4 md:mb-12 mt:mb-12">
                 <Link to="/FormCompany2">
                   <button
-                    type="submit"
+                    type="submit" 
                     className="bg-purple-500 hover:bg-purple-600 text-white px-4 md:px-6 py-2.5 md:py-3 rounded-full text-sm md:text-base font-medium"
                   >
                     Save & Next

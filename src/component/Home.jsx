@@ -418,11 +418,12 @@ function JobListingsSectionNew({ searchQuery }) {
   return (
     <div className="w-[70%] space-y-6 md:pt-[70px] p-0 md:pl-6 lg:p-0 ">
       {filteredJobs.length === 0 ? (
-    <div className="w-full text-center py-10">
-    <h3 className="text-xl font-semibold">No jobs found</h3>
-    <p className="text-gray-500 mt-2">Try adjusting your search criteria</p>
-  </div>
-        
+        <div className="w-full text-center py-10 md:py-5 ">
+          <h3 className="text-lg md:text-center font-semibold">No jobs found</h3>
+          <p className="text-gray-500 mt-2 text-sm md:text-base">
+            Try adjusting your search criteria
+          </p>
+        </div>
       ) : (
         <div className="w-fit grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8 lg:gap-8">
           {filteredJobs.map((job, index) => (
@@ -899,7 +900,7 @@ const ResumeBuilderSection = () => (
 );
 
 const EmailSignupSection = () => (
-  <div className="flex items-center justify-center w-full py-12   lg:px-8 bg-white  ms-auto me-auto  flex-col p-2 z-2   dark:bg-gray-900 px-4 sm:px-6 lg:px-10 py-10 rounded-lg shadow-md border border-gray-200 dark:border-gray-800">
+  <div className="flex items-center justify-center w-full py-12    bg-white  ms-auto me-auto  flex-col p-2 z-2   dark:bg-gray-900 px-4 sm:px-6 lg:px-10  rounded-lg shadow-md border border-gray-200 dark:border-gray-800">
     <h2 className="text-xl  font-semibold text-gray-900 dark:text-white text-center">
       Signup for new Job alerts
     </h2>
@@ -917,10 +918,10 @@ const EmailSignupSection = () => (
         />
         <button
           type="submit"
-          className="absolute right-[3px] top-[6px] bottom-[6px] px-5 py-2 bg-purple-500 text-white font-medium rounded-full hover:bg-purple-600 transition flex items-center justify-center"
+          className="absolute right-[3px] top-[6px] bottom-[6px] px-5 py-2 bg-purple-500 text-white font-semibold rounded-full hover:bg-purple-600 transition flex items-center justify-center"
           style={{ minWidth: "140px" }}
         >
-          <span className="whitespace-nowrap">Get Started &gt;</span>
+          <span className="whitespace-nowrap text-sm">Get Started &gt;</span>
         </button>
       </form>
     </div>

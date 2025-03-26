@@ -386,7 +386,7 @@ function CompanyProfile() {
 
   return (
     <>
-      <div className="flex h-screen bg-gray-50">
+      <div className="flex h-screen bg-white">
         {/* Mobile Menu Button */}
         <DashSidebar substrLocation={substrLocation} />
         {/* Main Content */}
@@ -394,7 +394,7 @@ function CompanyProfile() {
           {/* Header */}
           <Dheader />
           {/* Main Content */}
-          <div className="min-h-[24rem] sm:min-h-[32rem]  md:min-h-[56rem] lg:w-[80%]  md:w-[80%] w-full mx-auto">
+          <div className="min-h-[24rem] sm:min-h-[32rem] overflow-auto md:overflow-visible md:min-h-[56rem] lg:w-[80%]  md:w-[80%] w-full mx-auto">
             <div className="relative bg-white overflow-hidden">
               <img
                 alt="Profile Background"
@@ -447,13 +447,13 @@ function CompanyProfile() {
                 <CompanyBasicInformation />
               </div>
               {/* Overview,mission,vision code  */}
-              <div className="rounded-lg p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 lg:pl-20 xl:pl-80 justify-center">
+              <div className=" bg-white rounded-lg p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 lg:pl-20 xl:pl-80 justify-center ">
                 <div className=" ">
                   <div className="flex flex-row justify-between items-center mb-4 ">
                     <h2 className="text-2xl font-medium text-gray-900  ">
                       Company Industry
                     </h2>
-                    <div className="flex space-x-2">
+                    <div className="flex space-x-2 ">
                       <button
                         className="py-2 px-4 border  border-purple-500 text-purple-500 rounded-xl hover:bg-purple-50"
                         onClick={() => setShowAddIndustryModal(true)}
@@ -463,7 +463,7 @@ function CompanyProfile() {
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 ">
                     {industries.map((industry) => (
                       <div key={industry.id} className="flex items-center">
                         <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
@@ -491,7 +491,7 @@ function CompanyProfile() {
                   </div>
                 </div>
               </div>
-              <div className="rounded-lg p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 lg:pl-20 xl:pl-80 justify-center">
+              <div className="rounded-lg p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 lg:pl-20 xl:pl-80 justify-center ">
                 {sections.map((section, index) => (
                   <div key={section.title} className="mb-4 sm:mb-6 md:mb-8">
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4">
@@ -530,6 +530,7 @@ function CompanyProfile() {
               </div>
 
               {/* Recognition Section */}
+              <div className="">
               <div className="rounded-lg p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 lg:pl-20 xl:pl-80 ">
                 <div className="flex items-center justify-between mb-8 ">
                   <div className="flex items-center gap-4">
@@ -625,6 +626,7 @@ function CompanyProfile() {
                     </div>
                   ))}
                 </div>
+              </div>
               </div>
 
               {/* Culture section */}

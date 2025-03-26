@@ -15,6 +15,7 @@ import { ExperienceModal } from "./ExperienceModal";
 import { SkillModal } from "./SkillModal";
 import { FileUploadModal } from "./FileUploadModal";
 import { EducationModal } from "./EducationModal";
+import JobPreference from "./JobPreference";
 
 export default function ProfileContent({
   experiences = [],
@@ -44,7 +45,7 @@ export default function ProfileContent({
   const [editingExperience, setEditingExperience] = useState(null);
   const [editingEducation, setEditingEducation] = useState(null);
   const [editingSkill, setEditingSkill] = useState(null);
-console.log(editingEducation,"editingEducation")
+  console.log(editingEducation, "editingEducation");
   // Handlers for opening modals
   const handleAddExperienceClick = () => {
     setEditingExperience(null);
@@ -65,7 +66,6 @@ console.log(editingEducation,"editingEducation")
   };
 
   const handleEditEducationClick = (id) => {
-    
     const edu = education.find((e) => e.id === id);
     if (edu) {
       setEditingEducation(edu);
@@ -157,6 +157,7 @@ console.log(editingEducation,"editingEducation")
             />
           </div>
         )}
+        <JobPreference />
       </div>
       {/* Experience Modal */}
       {showExperienceModal && (
@@ -286,7 +287,7 @@ const ExperienceList = ({ experiences, onEdit, onDelete }) => {
   );
 };
 
-const EducationList = ({ education,onEdit, onDelete }) => (
+const EducationList = ({ education, onEdit, onDelete }) => (
   <div className="space-y-4 sm:space-y-6">
     {education.map((edu, index) => (
       <div key={index} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -311,10 +312,16 @@ const EducationList = ({ education,onEdit, onDelete }) => (
           </button>
         </div>
         <div className="flex gap-2 mt-2 sm:mt-0">
-          <button className="text-gray-500 hover:text-gray-700 text-xs sm:text-sm" onClick={() => onDelete(edu.id)}>
+          <button
+            className="text-gray-500 hover:text-gray-700 text-xs sm:text-sm"
+            onClick={() => onDelete(edu.id)}
+          >
             Delete
           </button>
-          <button className="text-purple-500 hover:text-purple-700 text-xs sm:text-sm" onClick={() => onEdit(edu.id)}>
+          <button
+            className="text-purple-500 hover:text-purple-700 text-xs sm:text-sm"
+            onClick={() => onEdit(edu.id)}
+          >
             Edit
           </button>
         </div>
@@ -364,13 +371,22 @@ const AttachmentsList = ({ attachments, onView, onDownload, onDelete }) => (
           </div>
         </div>
         <div className="flex gap-1 sm:gap-2">
-          <button className="p-1.5 sm:p-2 hover:bg-gray-100 rounded-full" onClick={() => onView(file.id)}>
+          <button
+            className="p-1.5 sm:p-2 hover:bg-gray-100 rounded-full"
+            onClick={() => onView(file.id)}
+          >
             <Eye className="w-3 h-3 sm:w-4 sm:h-4" />
           </button>
-          <button className="p-1.5 sm:p-2 hover:bg-gray-100 rounded-full" onClick={() => onDownload(file.id)}>
+          <button
+            className="p-1.5 sm:p-2 hover:bg-gray-100 rounded-full"
+            onClick={() => onDownload(file.id)}
+          >
             <Download className="w-3 h-3 sm:w-4 sm:h-4" />
           </button>
-          <button className="p-1.5 sm:p-2 hover:bg-gray-100 rounded-full" onClick={() => onDelete(file.id)}>
+          <button
+            className="p-1.5 sm:p-2 hover:bg-gray-100 rounded-full"
+            onClick={() => onDelete(file.id)}
+          >
             <Trash className="w-3 h-3 sm:w-4 sm:h-4" />
           </button>
         </div>

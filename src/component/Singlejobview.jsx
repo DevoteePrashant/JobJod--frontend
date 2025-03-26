@@ -1,91 +1,94 @@
-"use client"
+"use client";
 
-import Navbar from "./Navbar"
-import { useState, useRef, useEffect } from "react"
-import t1 from "../image/t1.png"
-import t2 from "../image/t2.png"
-import t3 from "../image/t3.png"
-import t4 from "../image/t4.png"
-import p1 from "../image/Notificationlogo1.png"
-import star from "../image/star.png"
-import tick from "../image/tick.png"
-import { Facebook, Linkedin, MoreVertical } from "lucide-react"
+import Navbar from "./Navbar";
+import { useState, useRef, useEffect } from "react";
+import t1 from "../image/t1.png";
+import t2 from "../image/t2.png";
+import t3 from "../image/t3.png";
+import t4 from "../image/t4.png";
+import p1 from "../image/Notificationlogo1.png";
+import star from "../image/star.png";
+import tick from "../image/tick.png";
+import { Facebook, Linkedin, MoreVertical } from "lucide-react";
 
 const Singlejobview = () => {
-  const [expanded, setExpanded] = useState(false)
-  const [showShareMenu, setShowShareMenu] = useState(false)
-  const menuRef = useRef(null)
-  const [showJobDetails, setShowJobDetails] = useState(false)
-  const [isApplied, setIsApplied] = useState(false)
-  const [showCompanyPage, setShowCompanyPage] = useState(false)
+  const [expanded, setExpanded] = useState(false);
+  const [showShareMenu, setShowShareMenu] = useState(false);
+  const menuRef = useRef(null);
+  const [showJobDetails, setShowJobDetails] = useState(false);
+  const [isApplied, setIsApplied] = useState(false);
+  const [showCompanyPage, setShowCompanyPage] = useState(false);
 
   // Close the menu when clicking outside
   useEffect(() => {
     function handleClickOutside(event) {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setShowShareMenu(false)
+        setShowShareMenu(false);
       }
     }
 
-    document.addEventListener("mousedown", handleClickOutside)
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
-  }, [menuRef])
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [menuRef]);
 
   const description =
-    "The right and contemporary use of technology is key to the progress of a nation. Keeping this in mind, Grameenphone always brings future-proof technology in order to facilitate your progress. The possibilities in this new world are immense and someone as bright as you should be the forerunner in leading the change..."
+    "The right and contemporary use of technology is key to the progress of a nation. Keeping this in mind, Grameenphone always brings future-proof technology in order to facilitate your progress. The possibilities in this new world are immense and someone as bright as you should be the forerunner in leading the change...";
 
   // Share functions
   const shareOnWhatsApp = () => {
-    const url = encodeURIComponent(window.location.href)
+    const url = encodeURIComponent(window.location.href);
     const text = encodeURIComponent(
       "Check out this job: Product Designer at Grameenphone"
-    )
-    window.open(`https://wa.me/?text=${text}%20${url}`, "_blank")
-    setShowShareMenu(false)
-  }
+    );
+    window.open(`https://wa.me/?text=${text}%20${url}`, "_blank");
+    setShowShareMenu(false);
+  };
 
   const shareOnFacebook = () => {
-    const url = encodeURIComponent(window.location.href)
-    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, "_blank")
-    setShowShareMenu(false)
-  }
+    const url = encodeURIComponent(window.location.href);
+    window.open(
+      `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+      "_blank"
+    );
+    setShowShareMenu(false);
+  };
 
   const shareOnLinkedIn = () => {
-    const url = encodeURIComponent(window.location.href)
-    const title = encodeURIComponent("Product Designer")
-    const summary = encodeURIComponent("Job opportunity at Grameenphone")
+    const url = encodeURIComponent(window.location.href);
+    const title = encodeURIComponent("Product Designer");
+    const summary = encodeURIComponent("Job opportunity at Grameenphone");
     window.open(
       `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}&summary}`,
       "_blank"
-    )
-    setShowShareMenu(false)
-  }
+    );
+    setShowShareMenu(false);
+  };
 
   const handleJobItemClick = () => {
     // Only toggle in mobile view
     if (window.innerWidth < 768) {
-      setShowJobDetails(true)
-      setShowCompanyPage(false)
+      setShowJobDetails(true);
+      setShowCompanyPage(false);
     }
-  }
+  };
 
   const handleBackToList = () => {
-    setShowJobDetails(false)
-    setShowCompanyPage(false)
-  }
+    setShowJobDetails(false);
+    setShowCompanyPage(false);
+  };
 
-  const handleViewPageClick = e => {
+  const handleViewPageClick = (e) => {
     // For mobile view, show the company page in the same view
     if (window.innerWidth < 768) {
-      e.preventDefault()
-      setShowCompanyPage(true)
-      setShowJobDetails(false)
+      e.preventDefault();
+      setShowCompanyPage(true);
+      setShowJobDetails(false);
     }
     // For desktop view, just let the link open in a new tab naturally
     // Don't prevent default behavior for desktop
-  }
+  };
 
   return (
     <>
@@ -93,7 +96,7 @@ const Singlejobview = () => {
       <div className="bg-white rounded-lg overflow-hidden md:flex">
         {/* Left Side - Job Listings */}
         <div
-          className={`w-full md:w-1/4 p-4 border-r-2 border-gray-200 ${
+          className={`w-full md:w-[22%] p-4 border-r-2 border-gray-200 ${
             showJobDetails || showCompanyPage ? "hidden md:block" : "block"
           }`}
         >
@@ -315,7 +318,7 @@ const Singlejobview = () => {
             overflowY: "scroll",
             maxHeight: "100vh",
             msOverflowStyle: "none",
-            scrollbarWidth: "none"
+            scrollbarWidth: "none",
           }}
         >
           {/* Add back button for mobile view */}
@@ -584,7 +587,7 @@ const Singlejobview = () => {
             overflowY: "scroll",
             maxHeight: "100vh",
             msOverflowStyle: "none",
-            scrollbarWidth: "none"
+            scrollbarWidth: "none",
           }}
         >
           {/* Back button for company page view */}
@@ -784,7 +787,7 @@ const Singlejobview = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Singlejobview
+export default Singlejobview;

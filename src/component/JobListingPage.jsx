@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Filters from "./Filters"
-import JobList from "./JobList"
-import { MapPin, Search, X, SlidersHorizontal } from "lucide-react"
-import RightSidebar from "./RightSidebar"
-import Navbar from "./Navbar"
-import Group from "../image/Group.svg"
-import Footer from "./Footer"
+import { useState } from "react";
+import Filters from "./Filters";
+import JobList from "./JobList";
+import { MapPin, Search, X, SlidersHorizontal } from "lucide-react";
+import RightSidebar from "./RightSidebar";
+import Navbar from "./Navbar";
+import Group from "../image/Group.svg";
+import Footer from "./Footer";
 
 const JobListingPage = ({ isBrowseCompany }) => {
   // Job data
@@ -16,7 +16,7 @@ const JobListingPage = ({ isBrowseCompany }) => {
       id: 1,
       company: {
         name: "Linear Company",
-        logo: "/placeholder.svg?height=40&width=40"
+        logo: "/placeholder.svg?height=40&width=40",
       },
       title: "Software Engineer",
       location: "Brussels",
@@ -25,23 +25,23 @@ const JobListingPage = ({ isBrowseCompany }) => {
       postedAt: "29 min ago",
       isNew: true,
       description:
-        "Mollit in laborum tempor Lorem incididunt irure. Aute eu ex ad sunt."
+        "Mollit in laborum tempor Lorem incididunt irure. Aute eu ex ad sunt.",
     },
     {
       id: 2,
       company: {
         name: "Notion",
-        logo: "/placeholder.svg?height=40&width=40"
+        logo: "/placeholder.svg?height=40&width=40",
       },
       title: "Junior UI Designer",
       location: "Madrid",
       type: "Part time",
       salary: "30-32k",
       postedAt: "1 day ago",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-    }
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    },
     // Add more job listings as needed
-  ]
+  ];
 
   // Filters state
   const [filters, setFilters] = useState({
@@ -50,42 +50,42 @@ const JobListingPage = ({ isBrowseCompany }) => {
     salaryType: "Yearly",
     datePosted: "",
     experience: "",
-    employmentType: []
-  })
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false)
-  const [showMobileSearch, setShowMobileSearch] = useState(false)
-  const [isSidebarVisible, setIsSidebarVisible] = useState(false)
-  const [showNotifications, setShowNotifications] = useState(false)
-  const [showFilterSidebar, setShowFilterSidebar] = useState(false)
+    employmentType: [],
+  });
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
+  const [showMobileSearch, setShowMobileSearch] = useState(false);
+  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+  const [showNotifications, setShowNotifications] = useState(false);
+  const [showFilterSidebar, setShowFilterSidebar] = useState(false);
 
   const toggleSidebar = () => {
-    setIsSidebarVisible(!isSidebarVisible)
-  }
+    setIsSidebarVisible(!isSidebarVisible);
+  };
 
   const toggleFilterSidebar = () => {
-    setShowFilterSidebar(!showFilterSidebar)
+    setShowFilterSidebar(!showFilterSidebar);
     // When opening the sidebar on mobile, we want to prevent scrolling
     if (!showFilterSidebar) {
-      document.body.style.overflow = "hidden"
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "auto"
+      document.body.style.overflow = "auto";
     }
-  }
+  };
 
-  const [jobType, setJobType] = useState("")
-  const [location, setLocation] = useState("")
+  const [jobType, setJobType] = useState("");
+  const [location, setLocation] = useState("");
 
-  const handleSubmit = e => {
-    e.preventDefault()
+  const handleSubmit = (e) => {
+    e.preventDefault();
     // Handle form submission logic here
-    console.log("Searching for:", { jobType, location })
-  }
+    console.log("Searching for:", { jobType, location });
+  };
 
-  const handleImageError = event => {
-    event.target.src = "/placeholder.svg" // Fallback image
-  }
+  const handleImageError = (event) => {
+    event.target.src = "/placeholder.svg"; // Fallback image
+  };
 
   return (
     <>
@@ -123,7 +123,7 @@ const JobListingPage = ({ isBrowseCompany }) => {
                     placeholder="Information Technology"
                     className="w-full bg-white focus:outline-none text-gray-700 ml-3"
                     value={jobType}
-                    onChange={e => setJobType(e.target.value)}
+                    onChange={(e) => setJobType(e.target.value)}
                   />
                 </div>
 
@@ -135,7 +135,7 @@ const JobListingPage = ({ isBrowseCompany }) => {
                     placeholder="City, state or zip"
                     className="w-full bg-white focus:outline-none text-gray-700 ml-3"
                     value={location}
-                    onChange={e => setLocation(e.target.value)}
+                    onChange={(e) => setLocation(e.target.value)}
                   />
                 </div>
 
@@ -163,7 +163,7 @@ const JobListingPage = ({ isBrowseCompany }) => {
 
           <div className="flex flex-col lg:flex-row gap-6">
             {/* Desktop Filters - visible only on large screens */}
-            <div className="hidden lg:block">
+            <div className="hidden lg:block w-[25%]">
               <Filters filters={filters} setFilters={setFilters} />
             </div>
 
@@ -202,7 +202,7 @@ const JobListingPage = ({ isBrowseCompany }) => {
       </div>
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default JobListingPage
+export default JobListingPage;

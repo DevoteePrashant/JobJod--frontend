@@ -416,16 +416,18 @@ function JobListingsSectionNew({ searchQuery }) {
     });
 
   return (
-    <div className="w-[70%] space-y-6 md:pt-[70px] p-0 md:pl-6 lg:p-0 ">
+    <div className="p-0 md:pl-6 lg:p-0 w-full">
       {filteredJobs.length === 0 ? (
         <div className="w-full text-center py-10 md:py-5 ">
-          <h3 className="text-lg md:text-center font-semibold">No jobs found</h3>
+          <h3 className="text-lg md:text-center font-semibold">
+            No jobs found
+          </h3>
           <p className="text-gray-500 mt-2 text-sm md:text-base">
             Try adjusting your search criteria
           </p>
         </div>
       ) : (
-        <div className="w-fit grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8 lg:gap-8">
+        <div className="w-fit flex flex-wrap justify-center gap-8 lg:gap-8">
           {filteredJobs.map((job, index) => (
             <div key={index} className="w-fit h-full">
               <div className="h-[270px] w-[280px] relative bg-white dark:bg-gray-900 rounded-[24px] p-5 border border-gray-700 hover:bg-[#e3dafb] dark:hover:bg-purple-900/20 transition-all duration-300 group overflow-hidden">

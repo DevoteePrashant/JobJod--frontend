@@ -137,7 +137,7 @@ export default function LegalDocuments() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
+    <div className="max-w-4xl mx-auto ">
       <h1 className="text-2xl font-bold mb-6">Legal Information</h1>
 
       {/* Hidden file input */}

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { ChevronLeft } from "lucide-react"
+import { ChevronDown, ChevronLeft, X } from "lucide-react"
 import { Link } from "react-router-dom"
 import React, { useEffect, useRef } from 'react'
 import logo2 from "../image/logo2.png";
@@ -47,6 +47,49 @@ export default function FormCompany2() {
 
   
       const [industry, setIndustry] = useState("Software Development");
+      const [selectedPersons, setSelectedPersons] = useState([]);
+      const [searchTerm, setSearchTerm] = useState("");
+      const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+      const dropdownRef = useRef(null);
+    
+      // Filter available persons based on search term
+      const InterviewPersons = [
+        { name: "John Doe" },
+        { name: "Jane Smith" },
+        { name: "Alice Johnson" },
+        { name: "Bob Brown" },
+      ];
+
+      const filteredPersons = InterviewPersons.filter(
+        (person) =>
+          !selectedPersons.some((p) => p.name === person.name) &&
+          person.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    
+      // Add a selected person
+      const handleAddPerson = (person) => {
+        setSelectedPersons([...selectedPersons, person]);
+        setSearchTerm("");
+        setIsDropdownOpen(false);
+      };
+    
+      // Remove a selected person
+      const handleRemovePerson = (index) => {
+        setSelectedPersons(selectedPersons.filter((_, i) => i !== index));
+      };
+    
+      // Close dropdown when clicking outside
+      useEffect(() => {
+        const handleClickOutside = (event) => {
+          if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+            setIsDropdownOpen(false);
+          }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+          document.removeEventListener("mousedown", handleClickOutside);
+        };
+      }, []);
 
   return (
     <>
@@ -95,19 +138,63 @@ export default function FormCompany2() {
             </div>
 
             <form onSubmit={handleSubmit}>
-              {/* Company Industry */}
-            <div className="mb-6 md:mb-8">
-                    <SearchableDropdown
-                           label="Company Industry"
-                           placeholder="Search industry..."
-                           options={industries}
-                           value={industry}
-                           onChange={setIndustry}
-                           allowAddNew={true}
-                           allowDirectEdit={true}
-                         />
-                 
-              </div>
+            <div className="w-full">
+      <label className="block text-sm font-medium text-gray-700 mb-1">
+        Select Interview Persons
+      </label>
+
+      {/* Input and Dropdown */}
+      <div className="relative" ref={dropdownRef}>
+        <div className="flex items-center border-b border-gray-300">
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              setIsDropdownOpen(true);
+            }}
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            className="w-full pb-2 focus:outline-none focus:border-purple-500"
+            placeholder="Type to add interview persons..."
+          />
+          <ChevronDown
+            className="h-5 w-5 text-gray-400 cursor-pointer"
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+          />
+        </div>
+
+        {/* Dropdown with Suggestions */}
+        {isDropdownOpen && filteredPersons.length > 0 && (
+          <ul className="absolute w-full bg-white border border-gray-300 mt-1 rounded-md shadow-lg max-h-40 z-50 overflow-auto">
+            {filteredPersons.map((person, index) => (
+              <li
+                key={index}
+                className="p-2 cursor-pointer hover:bg-gray-200 flex items-center gap-2"
+                onClick={() => handleAddPerson(person)}
+              >
+                {person.name}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      {/* Display Selected Persons */}
+      <div className="mt-2 flex flex-wrap gap-2">
+        {selectedPersons.map((person, index) => (
+          <span
+            key={index}
+            className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full flex items-center border border-purple-300"
+          >
+            {person.name}
+            <X
+              className="h-4 w-4 text-purple-600 cursor-pointer ml-2"
+              onClick={() => handleRemovePerson(index)}
+            />
+          </span>
+        ))}
+      </div>
+    </div>
               {/* Overview */}
               <div className="mb-6 md:mb-8">
                    <label htmlFor="degree"className="block text-sm font-medium text-gray-700 mb-1">Overview</label>

@@ -1,116 +1,134 @@
-import { useState } from "react"
-import { Modal } from "./common/Modal"
-import {
-    Star
-} from "lucide-react"
-import { cn } from "./Jobseeker"
+"use client"
 
-export const SkillModal = ({ skill, onClose, onSave }) => {
-    const [formData, setFormData] = useState({
-        name: skill?.name || "",
-        level: skill?.level || "Beginner",
-        rating: skill?.rating || 3
+import { useEffect, useState } from "react"
+import { Star } from "lucide-react"
+
+export const SkillModal = ({
+  isOpen,
+  onClose,
+  onSave,
+  initialData,
+  isEditMode
+}) => {
+  const [formData, setFormData] = useState({
+    name: "",
+    level: "Beginner",
+    rating: 1
+  })
+
+  useEffect(() => {
+    if (initialData) {
+      // Make sure we're not including the index in the form data
+      const { index, ...rest } = initialData
+      setFormData(rest)
+    } else {
+      setFormData({
+        name: "",
+        level: "Beginner",
+        rating: 1
+      })
+    }
+  }, [initialData, isOpen])
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    onSave({
+      name: formData.name,
+      level: formData.level,
+      rating: Number(formData.rating)
     })
+  }
 
-    const handleChange = e => {
-        const { name, value } = e.target
-        setFormData(prev => ({ ...prev, [name]: value }))
-    }
+  const handleStarClick = rating => {
+    setFormData({ ...formData, rating })
+  }
 
-    const handleRatingChange = rating => {
-        setFormData(prev => ({ ...prev, rating }))
-    }
+  return (
+    <div
+      className={`fixed inset-0 bg-black/50 z-50 ${
+        isOpen ? "block" : "hidden"
+      }`}
+    >
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-xl w-full max-w-md">
+        <h2 className="text-xl font-bold mb-4">
+          {isEditMode ? "Edit Skill" : "Add New Skill"}
+        </h2>
 
-    const handleSubmit = e => {
-        e.preventDefault()
-        onSave(formData)
-    }
+        <form onSubmit={handleSubmit}>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium mb-1">
+                Skill Name
+              </label>
+              <input
+                type="text"
+                value={formData.name}
+                onChange={e =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
+                className="w-full p-2 border rounded-lg"
+                required
+              />
+            </div>
 
-    return (
-        <Modal title={skill ? "Edit Skill" : "Add Skill"} onClose={onClose}>
-            <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                    <label
-                        htmlFor="name"
-                        className="block text-sm font-medium text-gray-700 mb-1"
-                    >
-                        Skill Name
-                    </label>
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        className="w-full p-2 border rounded-md"
-                        placeholder="e.g. React"
+            <div>
+              <label className="block text-sm font-medium mb-1">
+                Skill Level
+              </label>
+              <select
+                value={formData.level}
+                onChange={e =>
+                  setFormData({ ...formData, level: e.target.value })
+                }
+                className="w-full p-2 border rounded-lg"
+              >
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+                <option value="Expert">Expert</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-1">Rating</label>
+              <div className="flex gap-2">
+                {[1, 2, 3, 4, 5].map(star => (
+                  <button
+                    key={star}
+                    type="button"
+                    onClick={() => handleStarClick(star)}
+                    className="focus:outline-none"
+                  >
+                    <Star
+                      className={`w-6 h-6 ${
+                        formData.rating >= star
+                          ? "text-purple-500 fill-purple-500"
+                          : "text-gray-300"
+                      }`}
                     />
-                </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
 
-                <div>
-                    <label
-                        htmlFor="level"
-                        className="block text-sm font-medium text-gray-700 mb-1"
-                    >
-                        Proficiency Level
-                    </label>
-                    <select
-                        id="level"
-                        name="level"
-                        value={formData.level}
-                        onChange={handleChange}
-                        required
-                        className="w-full p-2 border rounded-md"
-                    >
-                        <option value="Beginner">Beginner</option>
-                        <option value="Intermediate">Intermediate</option>
-                        <option value="Advanced">Advanced</option>
-                        <option value="Expert">Expert</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Rating
-                    </label>
-                    <div className="flex gap-2">
-                        {[1, 2, 3, 4, 5].map(rating => (
-                            <button
-                                key={rating}
-                                type="button"
-                                onClick={() => handleRatingChange(rating)}
-                                className="p-1 focus:outline-none"
-                            >
-                                <Star
-                                    className={cn(
-                                        "w-6 h-6",
-                                        rating <= formData.rating
-                                            ? "text-purple-500 fill-purple-500"
-                                            : "text-gray-300 fill-gray-300"
-                                    )}
-                                />
-                            </button>
-                        ))}
-                    </div>
-                </div>
-
-                <div className="flex justify-end gap-2 pt-2">
-                    <button
-                        type="button"
-                        onClick={onClose}
-                        className="px-4 py-2 border rounded-md text-gray-700 hover:bg-gray-50"
-                    >
-                        Cancel
-                    </button>
-                    <button
-                        type="submit"
-                        className="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700"
-                    >
-                        {skill ? "Update" : "Add"}
-                    </button>
-                </div>
-            </form>
-        </Modal>
-    )
+          <div className="mt-6 flex justify-end gap-3">
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-4 py-2 text-gray-500 hover:text-gray-700"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
+            >
+              {isEditMode ? "Save Changes" : "Add Skill"}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  )
 }

@@ -330,7 +330,7 @@ export default function JobCandidateListing() {
                       {/* )} */}
                     </div>
 
-                    <br />
+               
 
                     <button className="w-full md:w-48 sm:w-48 justify-center rounded-full bg-violet-400 py-2 px-4 font-medium text-gray-800 hover:bg-violet-500">
                       Profile

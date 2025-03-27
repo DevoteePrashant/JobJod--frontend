@@ -270,6 +270,7 @@ const Profile = () => {
                 <ProfileHeader
                   name={profile.name}
                   role={profile.role}
+               
                   avatarUrl="/placeholder.svg?height=96&width=96"
                 />
 
@@ -283,6 +284,7 @@ const Profile = () => {
                   <div className="flex-1">
                     {activeTab === "Information" && (
                       <ProfileInfo
+                         href="#ProfileHeader"
                         profile={profile}
                         onEdit={() => console.log("Edit clicked")}
                       />

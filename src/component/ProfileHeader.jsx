@@ -32,7 +32,7 @@ export function ProfileHeader({ name, role, avatarUrl }) {
   };
 
   return (
-    <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-8 gap-4">
+    <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-8 gap-4" >
       <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
         <div className="relative order-1 sm:order-none">
           <img
@@ -50,7 +50,7 @@ export function ProfileHeader({ name, role, avatarUrl }) {
         </div>
       </div>
 
-      <div className="flex items-center justify-center sm:justify-start gap-2">
+      <div className="flex items-center justify-center sm:justify-start gap-2"  id="ProfileHeader">
         <div className="flex items-center gap-2">
           <button className="rounded-full p-2 hover:bg-gray-100">
             <Share2 className="h-5 w-5" />

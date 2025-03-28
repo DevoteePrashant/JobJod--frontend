@@ -17,7 +17,7 @@ import DashSidebar from './DashSidebar';
 function CompanyApplications() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation()
-  const substrLocation=location.pathname.substring(1);
+  const substrLocation = location.pathname.substring(1);
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
@@ -25,15 +25,15 @@ function CompanyApplications() {
   return (
     <div className="flex h-screen bg-white">
       {/* Mobile Menu Button */}
-     <DashSidebar substrLocation={substrLocation}></DashSidebar>
+      <DashSidebar substrLocation={substrLocation}></DashSidebar>
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
         <Dheader />
 
         {/* Content Area */}
-          <CompanyProfile />
-        
+        <CompanyProfile />
+
       </div>
     </div>
   );

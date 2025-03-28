@@ -21,8 +21,8 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 function CompanyDashboard() {
   const [hoveredSegment, setHoveredSegment] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const location=useLocation();
-  const substrLocation=location.pathname.substring(1)
+  const location = useLocation();
+  const substrLocation = location.pathname.substring(1)
   const data2 = {
     labels: ["Shortlisted", "Hired", "Rejected"],
     datasets: [
@@ -104,11 +104,11 @@ function CompanyDashboard() {
   return (
     <div className="flex h-screen bg-gray-50">
       {/* Mobile Menu Button */}
-    {/* dashboard sidebar code start */}
-    <DashSidebar substrLocation={substrLocation}/> 
+      {/* dashboard sidebar code start */}
+      <DashSidebar substrLocation={substrLocation} />
 
-    {/* dashboard sidebar code end */}
-      {/* Main Content */}  
+      {/* dashboard sidebar code end */}
+      {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-auto ">
         {/* Header */}
         <Dheader />
@@ -154,7 +154,7 @@ function CompanyDashboard() {
                         style={{
                           opacity:
                             hoveredSegment !== null &&
-                            hoveredSegment !== item.id
+                              hoveredSegment !== item.id
                               ? 0.5
                               : 1,
                         }}

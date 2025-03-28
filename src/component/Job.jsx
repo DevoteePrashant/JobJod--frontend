@@ -202,7 +202,7 @@ const JobDetails = () => {
             <p className="text-sm text-gray-600">HR Manager · Grameenphone</p>
           </div>
         </div>
-        <button className="text-blue-500">Send Message</button>
+        <Link to="/Message"><button className="text-blue-500">Send Message</button></Link>
       </div>
 
       <div className="space-y-6">

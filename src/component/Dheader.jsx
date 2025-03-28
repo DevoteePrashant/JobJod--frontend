@@ -7,8 +7,6 @@ import {
 
 import { Bell, Mail, Search, X } from "lucide-react";
 import NotificationPanel from "./NotificationPanel";
-// Remove the direct import of the image that's causing the error
-// import profile from '../image/dashboard.png';
 import image2 from "../image/profile.jpg";
 import { Link } from "react-router-dom";
 
@@ -50,15 +48,7 @@ const Dheader = () => {
       <div className="flex items-center space-x-2 sm:space-x-4">
         {/* Mobile Search Toggle */}
         <div className="md:hidden flex items-center">
-          {/* <button
-            onClick={() => setShowMobileSearch(!showMobileSearch)}
-            className="p-2 text-gray-700 hover:text-gray-900"
-          >
-            <FontAwesomeIcon
-              icon={showMobileSearch ? faXmark : faSearch}
-              className="text-xl"
-            />
-          </button> */}
+      
         </div>
         <div className="flex flex-1 justify-end md:hidden">
           <button

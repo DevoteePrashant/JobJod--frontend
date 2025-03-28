@@ -1,21 +1,23 @@
+
 import {
   Briefcase,
   Award,
   Crown,
   FileText,
   Plus,
-  Star,
   Download,
   Eye,
-  Trash,
-} from "lucide-react";
-import Rectangle from "../image/Rectangle 3890.png";
-import { useState } from "react";
-import { ExperienceModal } from "./ExperienceModal";
-import { SkillModal } from "./SkillModal";
-import { FileUploadModal } from "./FileUploadModal";
-import { EducationModal } from "./EducationModal";
-import JobPreference from "./JobPreference";
+  Pencil,Trash2,
+} from "lucide-react"
+
+
+import Rectangle from "../image/Rectangle 3890.png"
+import { useState } from "react"
+import { ExperienceModal } from "./ExperienceModal"
+import { SkillModal } from "./SkillModal"
+import { FileUploadModal } from "./FileUploadModal"
+import { EducationModal } from "./EducationModal"
+import JobPreference from "./JobPreference"
 
 export default function ProfileContent({
   experiences = [],
@@ -34,61 +36,61 @@ export default function ProfileContent({
   onDeleteSkill = () => {},
   onViewAttachment = () => {},
   onDownloadAttachment = () => {},
-  onDeleteAttachment = () => {},
+  onDeleteAttachment = () => {}
 }) {
-  const [showExperienceModal, setShowExperienceModal] = useState(false);
-  const [showEducationModal, setShowEducationModal] = useState(false);
-  const [showSkillModal, setShowSkillModal] = useState(false);
-  const [showFileModal, setShowFileModal] = useState(false);
+  const [showExperienceModal, setShowExperienceModal] = useState(false)
+  const [showEducationModal, setShowEducationModal] = useState(false)
+  const [showSkillModal, setShowSkillModal] = useState(false)
+  const [showFileModal, setShowFileModal] = useState(false)
 
   // State for editing
-  const [editingExperience, setEditingExperience] = useState(null);
-  const [editingEducation, setEditingEducation] = useState(null);
-  const [editingSkill, setEditingSkill] = useState(null);
-  console.log(editingEducation, "editingEducation");
+  const [editingExperience, setEditingExperience] = useState(null)
+  const [editingEducation, setEditingEducation] = useState(null)
+  const [editingSkill, setEditingSkill] = useState(null)
+  console.log(editingEducation, "editingEducation")
   // Handlers for opening modals
   const handleAddExperienceClick = () => {
-    setEditingExperience(null);
-    setShowExperienceModal(true);
-  };
+    setEditingExperience(null)
+    setShowExperienceModal(true)
+  }
 
-  const handleEditExperienceClick = (id) => {
-    const experience = experiences.find((exp) => exp.id === id);
+  const handleEditExperienceClick = id => {
+    const experience = experiences.find(exp => exp.id === id)
     if (experience) {
-      setEditingExperience(experience);
-      setShowExperienceModal(true);
+      setEditingExperience(experience)
+      setShowExperienceModal(true)
     }
-  };
+  }
 
   const handleAddEducationClick = () => {
-    setEditingEducation(null);
-    setShowEducationModal(true);
-  };
+    setEditingEducation(null)
+    setShowEducationModal(true)
+  }
 
-  const handleEditEducationClick = (id) => {
-    const edu = education.find((e) => e.id === id);
+  const handleEditEducationClick = id => {
+    const edu = education.find(e => e.id === id)
     if (edu) {
-      setEditingEducation(edu);
-      setShowEducationModal(true);
+      setEditingEducation(edu)
+      setShowEducationModal(true)
     }
-  };
+  }
 
   const handleAddSkillClick = () => {
-    setEditingSkill(null);
-    setShowSkillModal(true);
-  };
+    setEditingSkill(null)
+    setShowSkillModal(true)
+  }
 
-  const handleEditSkillClick = (id) => {
-    const skill = skills.find((s) => s.id === id);
+  const handleEditSkillClick = id => {
+    const skill = skills.find(s => s.id === id)
     if (skill) {
-      setEditingSkill(skill);
-      setShowSkillModal(true);
+      setEditingSkill(skill)
+      setShowSkillModal(true)
     }
-  };
+  }
 
   const handleAddFileClick = () => {
-    setShowFileModal(true);
-  };
+    setShowFileModal(true)
+  }
 
   return (
     <>
@@ -164,13 +166,13 @@ export default function ProfileContent({
         <ExperienceModal
           experience={editingExperience}
           onClose={() => setShowExperienceModal(false)}
-          onSave={(data) => {
+          onSave={data => {
             if (editingExperience) {
-              onEditExperience(editingExperience.id, data);
+              onEditExperience(editingExperience.id, data)
             } else {
-              onAddExperience(data);
+              onAddExperience(data)
             }
-            setShowExperienceModal(false);
+            setShowExperienceModal(false)
           }}
         />
       )}
@@ -178,13 +180,13 @@ export default function ProfileContent({
         <EducationModal
           education={editingEducation}
           onClose={() => setShowEducationModal(false)}
-          onSave={(data) => {
+          onSave={data => {
             if (editingEducation) {
-              onEditEducation(editingEducation.id, data);
+              onEditEducation(editingEducation.id, data)
             } else {
-              onAddEducation(data);
+              onAddEducation(data)
             }
-            setShowEducationModal(false);
+            setShowEducationModal(false)
           }}
         />
       )}
@@ -192,13 +194,13 @@ export default function ProfileContent({
         <SkillModal
           skill={editingSkill}
           onClose={() => setShowSkillModal(false)}
-          onSave={(data) => {
+          onSave={data => {
             if (editingSkill) {
-              onEditSkill(editingSkill.id, data);
+              onEditSkill(editingSkill.id, data)
             } else {
-              onAddSkill(data);
+              onAddSkill(data)
             }
-            setShowSkillModal(false);
+            setShowSkillModal(false)
           }}
         />
       )}
@@ -207,14 +209,14 @@ export default function ProfileContent({
       {showFileModal && (
         <FileUploadModal
           onClose={() => setShowFileModal(false)}
-          onUpload={(file) => {
-            onAddFile(file);
-            setShowFileModal(false);
+          onUpload={file => {
+            onAddFile(file)
+            setShowFileModal(false)
           }}
         />
       )}
     </>
-  );
+  )
 }
 
 const SectionHeader = ({ icon, title, buttonText, onButtonClick }) => (
@@ -231,17 +233,17 @@ const SectionHeader = ({ icon, title, buttonText, onButtonClick }) => (
       {buttonText}
     </button>
   </div>
-);
+)
 
 const ExperienceList = ({ experiences, onEdit, onDelete }) => {
-  const [expandedItems, setExpandedItems] = useState({});
+  const [expandedItems, setExpandedItems] = useState({})
 
-  const toggleExpand = (id) => {
-    setExpandedItems((prev) => ({
+  const toggleExpand = id => {
+    setExpandedItems(prev => ({
       ...prev,
-      [id]: !prev[id],
-    }));
-  };
+      [id]: !prev[id]
+    }))
+  }
 
   return (
     <div className="space-y-4 sm:space-y-6">
@@ -284,8 +286,8 @@ const ExperienceList = ({ experiences, onEdit, onDelete }) => {
         </div>
       ))}
     </div>
-  );
-};
+  )
+}
 
 const EducationList = ({ education, onEdit, onDelete }) => (
   <div className="space-y-4 sm:space-y-6">
@@ -328,31 +330,50 @@ const EducationList = ({ education, onEdit, onDelete }) => (
       </div>
     ))}
   </div>
-);
+)
 
-const SkillsList = ({ skills }) => (
+const SkillsList = ({ skills, onEdit, onDelete }) => (
   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
     {skills.map((skill, index) => (
       <div
         key={index}
-        className="flex items-center justify-between p-3 sm:p-4  rounded-lg"
+        className="flex items-center justify-between p-3 sm:p-4 rounded-lg"
       >
         <div>
           <h3 className="font-medium text-sm sm:text-base">{skill.name}</h3>
           <p className="text-xs sm:text-sm text-gray-500">{skill.level}</p>
         </div>
-        <div className="flex gap-0.5 sm:gap-1">
-          {[...Array(skill.rating).keys()].map((star) => (
-            <Star
-              key={star}
-              className="w-3 h-3 sm:w-4 sm:h-4 text-purple-500 fill-purple-500"
-            />
-          ))}
+        <div className="flex  items-center gap-2">
+          {/* <div className="flex gap-0.5 sm:gap-1 mr-2">
+            {[...Array(skill.rating).keys()].map(star => (
+              <Star
+                key={star}
+                className="w-3 h-3 sm:w-4 sm:h-4 text-purple-500 fill-purple-500"
+              />
+            ))}
+          </div> */}
+          <div className="flex gap-2">
+            <button
+              className="text-gray-500 hover:text-gray-700 text-xs sm:text-sm"
+              onClick={() => onDelete(skill.id)}
+            >
+            <Trash2 className="h-4 w-4 text-gray-500" />
+                                  
+            </button>
+            <button
+              className="text-purple-500 hover:text-purple-700 text-xs sm:text-sm"
+              onClick={() => onEdit(skill.id)}
+            >
+              
+              <Pencil className="h-4 w-4 text-violet-500" />
+              
+            </button>
+          </div>
         </div>
       </div>
     ))}
   </div>
-);
+)
 
 const AttachmentsList = ({ attachments, onView, onDownload, onDelete }) => (
   <div className="space-y-2 sm:space-y-3">
@@ -387,10 +408,10 @@ const AttachmentsList = ({ attachments, onView, onDownload, onDelete }) => (
             className="p-1.5 sm:p-2 hover:bg-gray-100 rounded-full"
             onClick={() => onDelete(file.id)}
           >
-            <Trash className="w-3 h-3 sm:w-4 sm:h-4" />
+            <Trash2 className="w-3 h-3 sm:w-4 sm:h-4" />
           </button>
         </div>
       </div>
     ))}
   </div>
-);
+)

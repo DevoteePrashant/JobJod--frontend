@@ -853,7 +853,7 @@ const ResumeFeatureSection = () => (
       <ResumeBuilderSection />
 
       {/* Button */}
-      <button className="mt-6 ms-auto me-auto px-8 py-4 bg-black text-white text-sm font-medium rounded-full border border-gray-400 hover:bg-gray-800 transition-colors duration-200 shadow-md flex items-center justify-center gap-2">
+      <button className="mt-6 ms-auto me-auto px-8 py-2 bg-black text-white text-sm font-medium rounded-full border border-gray-400 hover:bg-gray-800 transition-colors duration-200 shadow-md flex items-center justify-center gap-2">
         Get Started <span className="ml-1">&gt;</span>
       </button>
     </div>

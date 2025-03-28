@@ -160,7 +160,7 @@ export default function FormCompany3() {
 
                   {/* Title */}
                   <div className="mb-4 md:mb-6">
-                    {/* <label
+                    <label
                     htmlFor={`title-${recognition.id}`}
                     className="block text-sm font-medium text-gray-700 mb-1"
                   >
@@ -174,9 +174,9 @@ export default function FormCompany3() {
                       handleChange(recognition.id, "title", e.target.value)
                     }
                     className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none"
-                  /> */}
+                  />
 
-                    <SearchableDropdown
+                    {/* <SearchableDropdown
                       label=" Title"
                       placeholder="Title"
                       options={CompanyNames}
@@ -184,7 +184,7 @@ export default function FormCompany3() {
                       onChange={setCompanyNames}
                       allowAddNew={true}
                       allowDirectEdit={true}
-                    />
+                    /> */}
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 md:gap-x-8 gap-y-4 md:gap-y-6 mb-4 md:mb-6">

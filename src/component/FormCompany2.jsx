@@ -10,27 +10,18 @@ import SearchableDropdown from "./searchabledropdownupdated"
 
 export default function FormCompany2() {
   const [formData, setFormData] = useState({
+    industries: [],
     overview: "",
     vision: "",
-    mission: ""
+    mission: "",
   })
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const handleChange = e => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
-  }
-
-  const handleSubmit = e => {
-    e.preventDefault()
-    console.log("Form submitted:", formData)
-    // Handle form submission logic here
-  }
-
-  const handleSkip = () => {
-    console.log("Skipped to next step")
-    // Handle skip logic here
-  }
+  const [skills, setSkills] = useState([])
+  const [newIndustry, setNewIndustry] = useState("")
+  const [newSkill, setNewSkill] = useState("")
+  const [isIndustryDropdownOpen, setIsIndustryDropdownOpen] = useState(false)
+  const [isSkillDropdownOpen, setIsSkillDropdownOpen] = useState(false)
+  const industryDropdownRef = useRef(null)
+  const skillDropdownRef = useRef(null)
 
   const industries = [
     "Software Development",
@@ -45,52 +36,77 @@ export default function FormCompany2() {
     "Engineering",
   ]
 
-  
-      const [industry, setIndustry] = useState("Software Development");
-      const [selectedPersons, setSelectedPersons] = useState([]);
-      const [searchTerm, setSearchTerm] = useState("");
-      const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-      const dropdownRef = useRef(null);
-    
-      // Filter available persons based on search term
-      const InterviewPersons = [
-        { name: "John Doe" },
-        { name: "Jane Smith" },
-        { name: "Alice Johnson" },
-        { name: "Bob Brown" },
-      ];
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setFormData((prev) => ({ ...prev, [name]: value }))
+  }
 
-      const filteredPersons = InterviewPersons.filter(
-        (person) =>
-          !selectedPersons.some((p) => p.name === person.name) &&
-          person.name.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    
-      // Add a selected person
-      const handleAddPerson = (person) => {
-        setSelectedPersons([...selectedPersons, person]);
-        setSearchTerm("");
-        setIsDropdownOpen(false);
-      };
-    
-      // Remove a selected person
-      const handleRemovePerson = (index) => {
-        setSelectedPersons(selectedPersons.filter((_, i) => i !== index));
-      };
-    
-      // Close dropdown when clicking outside
-      useEffect(() => {
-        const handleClickOutside = (event) => {
-          if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-            setIsDropdownOpen(false);
-          }
-        };
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-          document.removeEventListener("mousedown", handleClickOutside);
-        };
-      }, []);
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const submissionData = {
+      ...formData,
+      skills: skills,
+    }
+    console.log("Form submitted:", submissionData)
+    // Handle form submission logic here
+  }
 
+  const handleSkip = () => {
+    console.log("Skipped to next step")
+    // Handle skip logic here
+  }
+
+  const handleSelectIndustry = (industry) => {
+    if (!formData.industries.includes(industry)) {
+      setFormData((prev) => ({ ...prev, industries: [...prev.industries, industry] }))
+    }
+    setNewIndustry("")
+    setIsIndustryDropdownOpen(false)
+  }
+
+  const handleRemoveIndustry = (industry) => {
+    setFormData((prev) => ({
+      ...prev,
+      industries: prev.industries.filter((ind) => ind !== industry),
+    }))
+  }
+
+  const handleAddSkill = () => {
+    if (newSkill && !skills.includes(newSkill)) {
+      setSkills((prev) => [...prev, newSkill])
+      setNewSkill("")
+    }
+    setIsSkillDropdownOpen(false)
+  }
+
+  const handleSelectSkill = (skill) => {
+    if (!skills.includes(skill)) {
+      setSkills((prev) => [...prev, skill])
+    }
+    setNewSkill("")
+    setIsSkillDropdownOpen(false)
+  }
+
+  const handleRemoveSkill = (skill) => {
+    setSkills((prev) => prev.filter((s) => s !== skill))
+  }
+
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (industryDropdownRef.current && !industryDropdownRef.current.contains(event.target)) {
+        setIsIndustryDropdownOpen(false)
+      }
+      if (skillDropdownRef.current && !skillDropdownRef.current.contains(event.target)) {
+        setIsSkillDropdownOpen(false)
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [])
   return (
     <>
       {/* <Header /> */}
@@ -138,63 +154,84 @@ export default function FormCompany2() {
             </div>
 
             <form onSubmit={handleSubmit}>
-            <div className="w-full">
-      <label className="block text-sm font-medium text-gray-700 mb-1">
-        Select Interview Persons
-      </label>
+              {/* Company Industry */}
+            <div className="mb-6 md:mb-8">
+                    {/* <SearchableDropdown
+                           label="Company Industry"
+                           placeholder="Search industry..."
+                           options={industries}
+                           value={industry}
+                           onChange={setIndustry}
+                           allowAddNew={true}
+                           allowDirectEdit={true}
+                         /> */}
+                  <div>
 
-      {/* Input and Dropdown */}
-      <div className="relative" ref={dropdownRef}>
-        <div className="flex items-center border-b border-gray-300">
-          <input
-            type="text"
-            value={searchTerm}
-            onChange={(e) => {
-              setSearchTerm(e.target.value);
-              setIsDropdownOpen(true);
-            }}
-            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="w-full pb-2 focus:outline-none focus:border-purple-500"
-            placeholder="Type to add interview persons..."
-          />
-          <ChevronDown
-            className="h-5 w-5 text-gray-400 cursor-pointer"
-            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-          />
+
+        {/* Skills Input and Dropdown */}
+        <div className="mb-6 md:mb-8">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Company Industries</label>
+
+            <div className="relative" ref={industryDropdownRef}>
+              <div className="flex items-center border-b border-gray-300">
+                <input
+                  type="text"
+                  value={newIndustry}
+                  onChange={(e) => {
+                    setNewIndustry(e.target.value)
+                    setIsIndustryDropdownOpen(true)
+                  }}
+                  onClick={() => setIsIndustryDropdownOpen(!isIndustryDropdownOpen)}
+                  className="w-full pb-2 focus:outline-none focus:border-purple-500"
+                  placeholder="Type to select industry..."
+                />
+                <ChevronDown
+                  className="h-5 w-5 text-gray-400 cursor-pointer"
+                  onClick={() => setIsIndustryDropdownOpen(!isIndustryDropdownOpen)}
+                />
+              </div>
+
+              {isIndustryDropdownOpen && (
+                <div className="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto">
+                  {industries
+                    .filter((ind) => ind.toLowerCase().includes(newIndustry.toLowerCase()))
+                    .map((industry, index) => (
+                      <div
+                        key={index}
+                        className="px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer"
+                        onClick={() => handleSelectIndustry(industry)}
+                      >
+                        {industry}
+                      </div>
+                    ))}
+                </div>
+              )}
+            </div>
+
+            {formData.industries.length > 0 && (
+              <div className="flex flex-wrap gap-2 mt-3">
+                {formData.industries.map((industry, index) => (
+                  <div
+                    key={index}
+                    className="bg-[#e3dafb] text-gray-700 px-3 py-1 rounded-full flex items-center gap-2"
+                  >
+                    {industry}
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveIndustry(industry)}
+                      className="text-red-500 hover:text-red-700"
+                    >
+                      <X className="h-3 w-3" />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
-
-        {/* Dropdown with Suggestions */}
-        {isDropdownOpen && filteredPersons.length > 0 && (
-          <ul className="absolute w-full bg-white border border-gray-300 mt-1 rounded-md shadow-lg max-h-40 z-50 overflow-auto">
-            {filteredPersons.map((person, index) => (
-              <li
-                key={index}
-                className="p-2 cursor-pointer hover:bg-gray-200 flex items-center gap-2"
-                onClick={() => handleAddPerson(person)}
-              >
-                {person.name}
-              </li>
-            ))}
-          </ul>
-        )}
       </div>
-
-      {/* Display Selected Persons */}
-      <div className="mt-2 flex flex-wrap gap-2">
-        {selectedPersons.map((person, index) => (
-          <span
-            key={index}
-            className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full flex items-center border border-purple-300"
-          >
-            {person.name}
-            <X
-              className="h-4 w-4 text-purple-600 cursor-pointer ml-2"
-              onClick={() => handleRemovePerson(index)}
-            />
-          </span>
-        ))}
-      </div>
-    </div>
+              </div>
               {/* Overview */}
               <div className="mb-6 md:mb-8">
                    <label htmlFor="degree"className="block text-sm font-medium text-gray-700 mb-1">Overview</label>
@@ -215,7 +252,7 @@ export default function FormCompany2() {
                     name="vision"
                     value={formData.vision}
                     onChange={handleChange}
-                    rows={3}
+                    rows={2}
                     className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none resize-none"
                   />
                 </div>
@@ -233,7 +270,7 @@ export default function FormCompany2() {
                     name="mission"
                     value={formData.mission}
                     onChange={handleChange}
-                    rows={3}
+                    rows={2}
                     className="w-full border-b border-gray-300 pb-2 focus:border-purple-500 focus:outline-none resize-none"
                   />
                 </div>

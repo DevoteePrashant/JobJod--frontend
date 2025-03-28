@@ -41,7 +41,6 @@ function App() {
         <Routes> 
         <Route path="/" element={<Home  />} /> 
           <Route path="/LoginPage" element={<LoginPage />} /> 
-          {/* <Route path="/Signup" element={<Signup  />} />  */}
           <Route path="/Jobseeker" element={<Jobseeker />} /> 
           <Route path="/Job" element={<Job/>}/>
           <Route path="/Profile" element={<Profile />}/>
@@ -74,19 +73,7 @@ function App() {
           <Route path="/AdminJobseeker" element={<AdminJobseeker />}/>
           <Route path="/AdminCompanies" element={<AdminCompanies />}/>
           <Route path="/Login_Signin" element={<Login_Signin />}/>
-     
-
-
-
-
-          
-
-
-
-
-         {/* <Route path="/RightSidebar" element={<RightSidebar />}/>} */}
         </Routes> 
-        {/* <Footer/> */}
       </Router> 
     </>
   );

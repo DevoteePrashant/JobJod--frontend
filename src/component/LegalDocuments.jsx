@@ -137,7 +137,8 @@ export default function LegalDocuments() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto ">
+    <div className="max-w-5xl mx-auto ">
+      <div className="bg-white rounded-xl shadow-sm border ">
       <h1 className="text-2xl font-bold mb-6">Legal Information</h1>
 
       {/* Hidden file input */}
@@ -239,6 +240,7 @@ export default function LegalDocuments() {
           onConfirm={confirmDelete}
         />
       )}
+    </div>
     </div>
   )
 }

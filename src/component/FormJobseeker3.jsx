@@ -117,7 +117,7 @@ function FormJobseeker3() {
                 {experiences.map((experience, index) => (
                   <div
                     key={experience.id}
-                    className="mb-8 pb-6 border-b border-gray-200 relative"
+                    className="mb-8 pb-6  border-gray-200 relative"
                   >
                     {experiences.length > 1 && (
                       <button
@@ -311,7 +311,7 @@ function FormJobseeker3() {
 
                 {/* Bottom Buttons */}
                 <div className="flex flex-wrap md:flex-row flex-col justify-end items-center gap-2 md:gap-4 mt-6">
-                  <Link to="/Formjobseeker4">
+                  <Link to="/FormJobseeker7">
                     <button
                       type="button"
                       className="text-gray-600 text-sm md:text-base font-medium hover:text-gray-800 mr-1"
@@ -327,7 +327,7 @@ function FormJobseeker3() {
                   >
                     Add More +
                   </button>
-                  <Link to="/Formjobseeker4">
+                  <Link to="/FormJobseeker7">
                     <button
                       type="submit"
                       className="bg-purple-500 hover:bg-purple-600 text-white px-4 md:px-6 py-2 md:py-3 rounded-full text-sm md:text-base font-medium"

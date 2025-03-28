@@ -1264,7 +1264,7 @@ function CompanyProfile() {
               </div>
               <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 sticky">
                 <div className="w-full lg:w-[280px] lg:flex-shrink-0 ">
-                  <div className="bg-white rounded-2xl shadow-sm border p-4">
+                  <div className="bg-white rounded-2xl shadow-sm border m-4 md:p-4">
                     <nav>
                       <ul className="space-y-2 font-semibold">
                         <NavItem
@@ -1286,7 +1286,11 @@ function CompanyProfile() {
                 <CompanyBasicInformation />
               </div>
               {/* Overview,mission,vision code  */}
-              <div className=" bg-white rounded-lg p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 lg:pl-20 xl:pl-80 justify-center ">                <div className=" ">
+              {/* <div className=" bg-white rounded-lg p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 lg:pl-20 xl:pl-80 justify-center "> 
+             
+              </div> */}
+              <div className="rounded-lg p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 lg:pl-20 xl:pl-80 justify-center ">
+              <div className="bg-white rounded-xl shadow-sm border p-6">
                   <div className="flex flex-row justify-between items-center mb-4 ">
                     <h2 className="text-2xl font-medium text-gray-900  ">
                       Company Industry
@@ -1303,6 +1307,7 @@ function CompanyProfile() {
 
                   <div className="flex flex-wrap gap-2 ">
                     {industries.map((industry) => (
+                      
                       <div key={industry.id} className="flex items-center">
                         <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
                           {industry.name}
@@ -1327,11 +1332,9 @@ function CompanyProfile() {
                       </div>
                     ))}
                   </div>
-                </div>
-              </div>
-              <div className="rounded-lg p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 lg:pl-20 xl:pl-80 justify-center ">
+            
                 {sections.map((section, index) => (
-                  <div key={section.title} className="mb-4 sm:mb-6 md:mb-8">
+                  <div key={section.title} className="mb-4 sm:mb-6 md:mb-8 mt-3">
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4">
                       <h2 className="text-xl sm:text-2xl font-medium text-gray-900 mb-2 sm:mb-0">
                         {section.title}
@@ -1365,11 +1368,13 @@ function CompanyProfile() {
                     )}
                   </div>
                 ))}
+                </div>
               </div>
 
               {/* Recognition Section */}
-              <div className="">
+     
               <div className="rounded-lg p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 lg:pl-20 xl:pl-80 " id="ProfileHeader">
+              <div className="bg-white rounded-xl shadow-sm border p-6">
                   <div className="flex items-center justify-between mb-8 ">
                     <div className="flex items-center gap-4">
                       <div className="relative w-12 h-12">
@@ -1464,11 +1469,12 @@ function CompanyProfile() {
                       </div>
                     ))}
                   </div>
-                </div>
+                  </div>
               </div>
 
               {/* Culture section */}
               <div className="rounded-lg p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 lg:pl-20 xl:pl-80 ">
+              <div className="bg-white rounded-xl shadow-sm border p-6">
                 <div className="flex justify-between items-center mb-8 mt-8">
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 bg-gradient-to-r from-green-100 to-blue-100 rounded-md flex items-center justify-center relative">
@@ -1502,6 +1508,7 @@ function CompanyProfile() {
                     Add
                   </button>
                 </div>
+                
 
                 {/* Company Environment Section */}
                 {cultures.map((culture) => (
@@ -1533,6 +1540,7 @@ function CompanyProfile() {
                     <div className="border-b border-gray-200 mt-6"></div>
                   </div>
                 ))}
+              </div>
               </div>
               {/* Legal information */}
               <div className="rounded-lg p-4 pt-[unset] sm:p-6 md:p-8 lg:p-10 xl:p-12 lg:pl-20 xl:pl-80">
